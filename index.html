@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Tiếng Nhật - Flashcard Speed Master</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --success: #10b981;
+      --success-hover: #059669;
+      --success-bg: #d1fae5;
+      --error: #ef4444;
+      --error-bg: #fee2e2;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .app-container {
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      padding: 28px 24px;
+      transition: all 0.3s ease;
+    }
+
+    /* Màn hình 1: Main Menu */
+    #mode-select-view {
+      max-width: 680px;
+      text-align: center;
+    }
+
+    .main-hero {
+      margin-bottom: 28px;
+    }
+
+    .main-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .main-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .mode-card {
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 16px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .mode-card:hover:not(.disabled) {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -5px rgba(79, 70, 229, 0.15);
+      background: #ffffff;
+    }
+
+    .mode-icon {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--primary);
+    }
+
+    .mode-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .mode-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .mode-card.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      filter: grayscale(0.6);
+      background: #f1f5f9;
+    }
+
+    .badge-coming-soon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #cbd5e1;
+      color: #475569;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    /* Màn hình 2: Chọn hàng chữ */
+    #home-view {
+      max-width: 1100px;
+      display: none;
+    }
+
+    /* Màn hình 3: Luyện tập Flashcard */
+    #practice-view {
+      max-width: 460px;
+      display: none;
+    }
+
+    .view-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .view-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .btn-header-action {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1.5px solid var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-header-action:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .grid-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .columns-container {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 8px 4px 20px 4px;
+      scroll-behavior: smooth;
+    }
+
+    .columns-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .columns-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+    .columns-container::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .kana-column {
+      flex: 0 0 72px;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: 12px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .kana-column.active {
+      border-color: var(--success);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+      background-color: #f0fdf4;
+    }
+
+    .kana-column.inactive {
+      opacity: 0.55;
+      filter: grayscale(0.5);
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      background-color: #cbd5e1;
+      border-radius: 999px;
+      transition: background-color 0.2s;
+    }
+
+    .kana-column.active .toggle-switch {
+      background-color: var(--success);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .kana-column.active .toggle-switch::after {
+      transform: translateX(16px);
+    }
+
+    .kana-cell {
+      text-align: center;
+      width: 100%;
+      padding: 4px 0;
+      border-bottom: 1px dashed #f1f5f9;
+    }
+
+    .kana-cell:last-child {
+      border-bottom: none;
+    }
+
+    .kana-cell .char {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: block;
+    }
+
+    .kana-cell .romaji {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .home-bottom-bar {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .selection-info {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .selection-info b {
+      color: var(--primary);
+    }
+
+    .btn-start-test {
+      background-color: var(--success);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-start-test:hover {
+      background-color: var(--success-hover);
+      transform: translateY(-1px);
+    }
+
+    .streak-badge {
+      background-color: #fef3c7;
+      color: #d97706;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stats-pill {
+      display: flex;
+      border: 1.5px solid #64748b;
+      border-radius: 9999px;
+      padding: 10px 0;
+      margin-bottom: 24px;
+      background-color: #ffffff;
+    }
+
+    .stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #cbd5e1;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .katakana-char {
+      font-size: 5.5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-main);
+    }
+
+    .answer-hint {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      min-height: 26px;
+    }
+
+    .romaji-input {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.25rem;
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .romaji-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+    }
+
+    .feedback {
+      min-height: 40px;
+      padding: 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .feedback.show {
+      opacity: 1;
+    }
+
+    .feedback.incorrect {
+      background-color: var(--error-bg);
+      color: var(--error);
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-action-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .btn-skip {
+      flex: 1;
+      background-color: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .btn-reveal, .btn-reset {
+      flex: 1;
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      padding: 32px 24px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .modal-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .modal-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-restart {
+      background-color: var(--primary);
+      color: white;
+      padding: 12px;
+    }
+
+    .btn-back-home {
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. MAIN MENU -->
+  <div class="app-container" id="mode-select-view">
+    <div class="main-hero">
+      <div class="main-title">日本語 Flashcard Master</div>
+      <div class="main-subtitle">Chọn chế độ bạn muốn luyện tập hôm nay</div>
+    </div>
+
+    <div class="modes-grid">
+      <div class="mode-card" id="card-hiragana">
+        <div class="mode-icon">あ</div>
+        <div class="mode-name">Hiragana</div>
+        <div class="mode-desc">Bảng chữ mềm cơ bản</div>
+      </div>
+
+      <div class="mode-card" id="card-katakana">
+        <div class="mode-icon">ア</div>
+        <div class="mode-name">Katakana</div>
+        <div class="mode-desc">Bảng chữ cứng / Từ ngoại nhập</div>
+      </div>
+
+      <div class="mode-card disabled">
+        <span class="badge-coming-soon">Sắp ra mắt</span>
+        <div class="mode-icon" style="font-size: 2.2rem; color: #94a3b8;">語彙</div>
+        <div class="mode-name" style="color: #64748b;">Từ vựng</div>
+        <div class="mode-desc">Theo cấp độ N5 - N1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CHỌN HÀNG CHỮ -->
+  <div class="app-container" id="home-view">
+    <div class="view-header">
+      <button class="btn-header-action" id="btn-back-to-main-menu">← Trang chủ</button>
+      <div class="view-title" id="mode-select-title">Bảng chọn hàng chữ</div>
+      <div class="grid-controls">
+        <button class="btn-header-action" id="btn-select-all">Chọn tất cả</button>
+        <button class="btn-header-action" id="btn-deselect-all">Bỏ chọn tất cả</button>
+      </div>
+    </div>
+
+    <div class="columns-container" id="columns-wrapper"></div>
+
+    <div class="home-bottom-bar">
+      <div class="selection-info">
+        Đã chọn: <b id="selected-groups-count">0</b> hàng (<b id="selected-chars-count">0</b> chữ)
+      </div>
+      <button class="btn-start-test" id="btn-start-test">Bắt đầu học ngay</button>
+    </div>
+  </div>
+
+  <!-- 3. LUYỆN TẬP FLASHCARD -->
+  <div class="app-container" id="practice-view">
+    <div class="view-header">
+      <button class="btn-header-action" id="btn-back-to-column-menu">← Chọn lại hàng</button>
+      <div class="streak-badge">
+        🔥 <span id="streak-count">0</span>
+      </div>
+    </div>
+
+    <div class="stats-pill">
+      <div class="stat-item">
+        <span class="stat-label">Accuracy</span>
+        <span class="stat-value" id="accuracy-val">0%</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Remaining</span>
+        <span class="stat-value" id="remaining-val">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Incorrect</span>
+        <span class="stat-value" id="incorrect-val">0 / 0</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="katakana-char" id="katakana-display">あ</div>
+      <div class="answer-hint" id="answer-hint"></div>
+    </div>
+
+    <input 
+      type="text" 
+      id="romaji-input" 
+      class="romaji-input" 
+      placeholder="Gõ Romaji..." 
+      autocomplete="off"
+    />
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="actions">
+      <button class="btn-skip" id="btn-skip">Bỏ qua câu này</button>
+      <div class="btn-action-row">
+        <button class="btn-reveal" id="btn-reveal">Xem đáp án</button>
+        <button class="btn-reset" id="btn-reset">Làm lại vòng này</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL HOÀN THÀNH -->
+  <div class="modal-overlay" id="modal-completion">
+    <div class="modal-content">
+      <div class="modal-title">🎉 Xuất sắc!</div>
+      <div class="modal-desc" id="modal-stats-desc"></div>
+      <div class="modal-buttons">
+        <button class="btn-restart" id="btn-restart">Học lại vòng này</button>
+        <button class="btn-back-home" id="btn-modal-home">Chọn hàng khác</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const HIRAGANA_GROUPS = [
+      { id: 'a', name: 'A', selected: true, items: [{ kana: 'あ', romaji: ['a'] }, { kana: 'い', romaji: ['i'] }, { kana: 'う', romaji: ['u'] }, { kana: 'え', romaji: ['e'] }, { kana: 'お', romaji: ['o'] }] },
+      { id: 'ka', name: 'Ka', selected: true, items: [{ kana: 'か', romaji: ['ka'] }, { kana: 'き', romaji: ['ki'] }, { kana: 'く', romaji: ['ku'] }, { kana: 'け', romaji: ['ke'] }, { kana: 'こ', romaji: ['ko'] }] },
+      { id: 'sa', name: 'Sa', selected: false, items: [{ kana: 'さ', romaji: ['sa'] }, { kana: 'し', romaji: ['shi', 'si'] }, { kana: 'す', romaji: ['su'] }, { kana: 'せ', romaji: ['se'] }, { kana: 'そ', romaji: ['so'] }] },
+      { id: 'ta', name: 'Ta', selected: false, items: [{ kana: 'た', romaji: ['ta'] }, { kana: 'ち', romaji: ['chi', 'ti'] }, { kana: 'つ', romaji: ['tsu', 'tu'] }, { kana: 'て', romaji: ['te'] }, { kana: 'と', romaji: ['to'] }] },
+      { id: 'na', name: 'Na', selected: false, items: [{ kana: 'な', romaji: ['na'] }, { kana: 'に', romaji: ['ni'] }, { kana: 'ぬ', romaji: ['nu'] }, { kana: 'ね', romaji: ['ne'] }, { kana: 'の', romaji: ['no'] }] },
+      { id: 'ha', name: 'Ha', selected: false, items: [{ kana: 'は', romaji: ['ha'] }, { kana: 'ひ', romaji: ['hi'] }, { kana: 'ふ', romaji: ['fu', 'hu'] }, { kana: 'へ', romaji: ['he'] }, { kana: 'ほ', romaji: ['ho'] }] },
+      { id: 'ma', name: 'Ma', selected: false, items: [{ kana: 'ま', romaji: ['ma'] }, { kana: 'み', romaji: ['mi'] }, { kana: 'む', romaji: ['mu'] }, { kana: 'め', romaji: ['me'] }, { kana: 'も', romaji: ['mo'] }] },
+      { id: 'ya', name: 'Ya', selected: false, items: [{ kana: 'や', romaji: ['ya'] }, { kana: 'ゆ', romaji: ['yu'] }, { kana: 'よ', romaji: ['yo'] }] },
+      { id: 'ra', name: 'Ra', selected: false, items: [{ kana: 'ら', romaji: ['ra'] }, { kana: 'り', romaji: ['ri'] }, { kana: 'る', romaji: ['ru'] }, { kana: 'れ', romaji: ['re'] }, { kana: 'ろ', romaji: ['ro'] }] },
+      { id: 'wa', name: 'Wa/N', selected: false, items: [{ kana: 'わ', romaji: ['wa'] }, { kana: 'を', romaji: ['wo', 'o'] }, { kana: 'ん', romaji: ['n'] }] },
+      { id: 'ga', name: 'Ga', selected: false, items: [{ kana: 'が', romaji: ['ga'] }, { kana: 'ぎ', romaji: ['gi'] }, { kana: 'ぐ', romaji: ['gu'] }, { kana: 'げ', romaji: ['ge'] }, { kana: 'ご', romaji: ['go'] }] },
+      { id: 'za', name: 'Za', selected: false, items: [{ kana: 'ざ', romaji: ['za'] }, { kana: 'じ', romaji: ['ji', 'zi'] }, { kana: 'ず', romaji: ['zu'] }, { kana: 'ぜ', romaji: ['ze'] }, { kana: 'ぞ', romaji: ['zo'] }] },
+      { id: 'da', name: 'Da', selected: false, items: [{ kana: 'だ', romaji: ['da'] }, { kana: 'ぢ', romaji: ['ji', 'di'] }, { kana: 'づ', romaji: ['zu', 'du'] }, { kana: 'で', romaji: ['de'] }, { kana: 'ど', romaji: ['do'] }] },
+      { id: 'ba', name: 'Ba', selected: false, items: [{ kana: 'ば', romaji: ['ba'] }, { kana: 'び', romaji: ['bi'] }, { kana: 'ぶ', romaji: ['bu'] }, { kana: 'べ', romaji: ['be'] }, { kana: 'ぼ', romaji: ['bo'] }] },
+      { id: 'pa', name: 'Pa', selected: false, items: [{ kana: 'ぱ', romaji: ['pa'] }, { kana: 'ぴ', romaji: ['pi'] }, { kana: 'ぷ', romaji: ['pu'] }, { kana: 'ぺ', romaji: ['pe'] }, { kana: 'ぽ', romaji: ['po'] }] }
+    ];
+
+    const KATAKANA_GROUPS = [
+      { id: 'a', name: 'A', selected: true, items: [{ kana: 'ア', romaji: ['a'] }, { kana: 'イ', romaji: ['i'] }, { kana: 'ウ', romaji: ['u'] }, { kana: 'エ', romaji: ['e'] }, { kana: 'オ', romaji: ['o'] }] },
+      { id: 'ka', name: 'Ka', selected: true, items: [{ kana: 'カ', romaji: ['ka'] }, { kana: 'キ', romaji: ['ki'] }, { kana: 'ク', romaji: ['ku'] }, { kana: 'ケ', romaji: ['ke'] }, { kana: 'コ', romaji: ['ko'] }] },
+      { id: 'sa', name: 'Sa', selected: false, items: [{ kana: 'サ', romaji: ['sa'] }, { kana: 'シ', romaji: ['shi', 'si'] }, { kana: 'ス', romaji: ['su'] }, { kana: 'セ', romaji: ['se'] }, { kana: 'ソ', romaji: ['so'] }] },
+      { id: 'ta', name: 'Ta', selected: false, items: [{ kana: 'タ', romaji: ['ta'] }, { kana: 'チ', romaji: ['chi', 'ti'] }, { kana: 'ツ', romaji: ['tsu', 'tu'] }, { kana: 'テ', romaji: ['te'] }, { kana: 'ト', romaji: ['to'] }] },
+      { id: 'na', name: 'Na', selected: false, items: [{ kana: 'ナ', romaji: ['na'] }, { kana: 'ニ', romaji: ['ni'] }, { kana: 'ヌ', romaji: ['nu'] }, { kana: 'ネ', romaji: ['ne'] }, { kana: 'ノ', romaji: ['no'] }] },
+      { id: 'ha', name: 'Ha', selected: false, items: [{ kana: 'ハ', romaji: ['ha'] }, { kana: 'ヒ', romaji: ['hi'] }, { kana: 'フ', romaji: ['fu', 'hu'] }, { kana: 'ヘ', romaji: ['he'] }, { kana: 'ホ', romaji: ['ho'] }] },
+      { id: 'ma', name: 'Ma', selected: false, items: [{ kana: 'マ', romaji: ['ma'] }, { kana: 'ミ', romaji: ['mi'] }, { kana: 'ム', romaji: ['mu'] }, { kana: 'メ', romaji: ['me'] }, { kana: 'モ', romaji: ['mo'] }] },
+      { id: 'ya', name: 'Ya', selected: false, items: [{ kana: 'ヤ', romaji: ['ya'] }, { kana: 'ユ', romaji: ['yu'] }, { kana: 'ヨ', romaji: ['yo'] }] },
+      { id: 'ra', name: 'Ra', selected: false, items: [{ kana: 'ラ', romaji: ['ra'] }, { kana: 'リ', romaji: ['ri'] }, { kana: 'ル', romaji: ['ru'] }, { kana: 'レ', romaji: ['re'] }, { kana: 'ロ', romaji: ['ro'] }] },
+      { id: 'wa', name: 'Wa/N', selected: false, items: [{ kana: 'ワ', romaji: ['wa'] }, { kana: 'ヲ', romaji: ['wo', 'o'] }, { kana: 'ン', romaji: ['n'] }] },
+      { id: 'ga', name: 'Ga', selected: false, items: [{ kana: 'ガ', romaji: ['ga'] }, { kana: 'ギ', romaji: ['gi'] }, { kana: 'グ', romaji: ['gu'] }, { kana: 'ゲ', romaji: ['ge'] }, { kana: 'ゴ', romaji: ['go'] }] },
+      { id: 'za', name: 'Za', selected: false, items: [{ kana: 'ザ', romaji: ['za'] }, { kana: 'ジ', romaji: ['ji', 'zi'] }, { kana: 'ズ', romaji: ['zu'] }, { kana: 'ゼ', romaji: ['ze'] }, { kana: 'ゾ', romaji: ['zo'] }] },
+      { id: 'da', name: 'Da', selected: false, items: [{ kana: 'ダ', romaji: ['da'] }, { kana: 'ヂ', romaji: ['ji', 'di'] }, { kana: 'ヅ', romaji: ['zu', 'du'] }, { kana: 'デ', romaji: ['de'] }, { kana: 'ド', romaji: ['do'] }] },
+      { id: 'ba', name: 'Ba', selected: false, items: [{ kana: 'バ', romaji: ['ba'] }, { kana: 'ビ', romaji: ['bi'] }, { kana: 'ブ', romaji: ['bu'] }, { kana: 'ベ', romaji: ['be'] }, { kana: 'ボ', romaji: ['bo'] }] },
+      { id: 'pa', name: 'Pa', selected: false, items: [{ kana: 'パ', romaji: ['pa'] }, { kana: 'ピ', romaji: ['pi'] }, { kana: 'プ', romaji: ['pu'] }, { kana: 'ペ', romaji: ['pe'] }, { kana: 'ポ', romaji: ['po'] }] }
+    ];
+
+    let currentAlphabet = 'hiragana';
+    let selectedGroupIds = new Set(['a', 'ka']);
+    
+    let sessionTotalCards = 0;
+    let sessionDeck = [];
+    let activeDeck = [];
+    let currentCard = null;
+    let streak = 0;
+    let isLockInput = false;
+
+    let firstTryCorrectCount = 0;
+    let incorrectCardsCount = 0;
+    let hasCurrentCardMadeMistake = false;
+
+    const modeSelectView = document.getElementById('mode-select-view');
+    const homeView = document.getElementById('home-view');
+    const practiceView = document.getElementById('practice-view');
+
+    const cardHiragana = document.getElementById('card-hiragana');
+    const cardKatakana = document.getElementById('card-katakana');
+    const modeSelectTitle = document.getElementById('mode-select-title');
+
+    const btnBackToMainMenu = document.getElementById('btn-back-to-main-menu');
+    const columnsWrapper = document.getElementById('columns-wrapper');
+    const selectedGroupsCount = document.getElementById('selected-groups-count');
+    const selectedCharsCount = document.getElementById('selected-chars-count');
+
+    const katakanaDisplay = document.getElementById('katakana-display');
+    const answerHint = document.getElementById('answer-hint');
+    const romajiInput = document.getElementById('romaji-input');
+    const feedback = document.getElementById('feedback');
+    const streakCount = document.getElementById('streak-count');
+
+    const accuracyVal = document.getElementById('accuracy-val');
+    const remainingVal = document.getElementById('remaining-val');
+    const incorrectVal = document.getElementById('incorrect-val');
+
+    const btnSelectAll = document.getElementById('btn-select-all');
+    const btnDeselectAll = document.getElementById('btn-deselect-all');
+    const btnStartTest = document.getElementById('btn-start-test');
+    const btnBackToColumnMenu = document.getElementById('btn-back-to-column-menu');
+
+    const btnSkip = document.getElementById('btn-skip');
+    const btnReveal = document.getElementById('btn-reveal');
+    const btnReset = document.getElementById('btn-reset');
+    const modalCompletion = document.getElementById('modal-completion');
+    const modalStatsDesc = document.getElementById('modal-stats-desc');
+    const btnRestart = document.getElementById('btn-restart');
+    const btnModalHome = document.getElementById('btn-modal-home');
+
+    function getCurrentDataSet() {
+      return currentAlphabet === 'hiragana' ? HIRAGANA_GROUPS : KATAKANA_GROUPS;
+    }
+
+    cardHiragana.addEventListener('click', () => selectMode('hiragana'));
+    cardKatakana.addEventListener('click', () => selectMode('katakana'));
+
+    function selectMode(alphabet) {
+      currentAlphabet = alphabet;
+      selectedGroupIds = new Set(['a', 'ka']);
+
+      modeSelectTitle.textContent = `Bảng chọn hàng ${alphabet === 'hiragana' ? 'Hiragana' : 'Katakana'}`;
+      modeSelectView.style.display = 'none';
+      homeView.style.display = 'block';
+
+      renderHomeColumns();
+    }
+
+    btnBackToMainMenu.addEventListener('click', () => {
+      homeView.style.display = 'none';
+      modeSelectView.style.display = 'block';
+    });
+
+    function renderHomeColumns() {
+      columnsWrapper.innerHTML = '';
+      let totalCharsSelected = 0;
+      const dataSet = getCurrentDataSet();
+
+      dataSet.forEach(group => {
+        const isSelected = selectedGroupIds.has(group.id);
+        if (isSelected) totalCharsSelected += group.items.length;
+
+        const colEl = document.createElement('div');
+        colEl.className = `kana-column ${isSelected ? 'active' : 'inactive'}`;
+        
+        let html = `<div class="toggle-switch"></div>`;
+        group.items.forEach(item => {
+          html += `
+            <div class="kana-cell">
+              <span class="char">${item.kana}</span>
+              <span class="romaji">${item.romaji[0]}</span>
+            </div>
+          `;
+        });
+        colEl.innerHTML = html;
+
+        colEl.addEventListener('click', () => {
+          if (selectedGroupIds.has(group.id)) {
+            selectedGroupIds.delete(group.id);
+          } else {
+            selectedGroupIds.add(group.id);
+          }
+          renderHomeColumns();
+        });
+
+        columnsWrapper.appendChild(colEl);
+      });
+
+      selectedGroupsCount.textContent = selectedGroupIds.size;
+      selectedCharsCount.textContent = totalCharsSelected;
+      btnStartTest.textContent = `Bắt đầu học (${selectedGroupIds.size} hàng)`;
+    }
+
+    btnSelectAll.addEventListener('click', () => {
+      getCurrentDataSet().forEach(g => selectedGroupIds.add(g.id));
+      renderHomeColumns();
+    });
+
+    btnDeselectAll.addEventListener('click', () => {
+      selectedGroupIds.clear();
+      renderHomeColumns();
+    });
+
+    btnStartTest.addEventListener('click', () => {
+      if (selectedGroupIds.size === 0) {
+        alert('Vui lòng chọn ít nhất 1 hàng!');
+        return;
+      }
+
+      sessionDeck = [];
+      getCurrentDataSet().forEach(g => {
+        if (selectedGroupIds.has(g.id)) {
+          sessionDeck.push(...g.items);
+        }
+      });
+
+      sessionTotalCards = sessionDeck.length;
+      homeView.style.display = 'none';
+      practiceView.style.display = 'block';
+
+      resetSession();
+    });
+
+    btnBackToColumnMenu.addEventListener('click', goToColumnMenu);
+    btnModalHome.addEventListener('click', goToColumnMenu);
+
+    function goToColumnMenu() {
+      modalCompletion.classList.remove('active');
+      practiceView.style.display = 'none';
+      homeView.style.display = 'block';
+      renderHomeColumns();
+    }
+
+    function resetSession() {
+      activeDeck = [...sessionDeck];
+      streak = 0;
+      firstTryCorrectCount = 0;
+      incorrectCardsCount = 0;
+      hasCurrentCardMadeMistake = false;
+      isLockInput = false;
+
+      updateStatsUI();
+      modalCompletion.classList.remove('active');
+      nextCard();
+    }
+
+    function updateStatsUI() {
+      streakCount.textContent = streak;
+      remainingVal.textContent = activeDeck.length;
+      incorrectVal.textContent = `${incorrectCardsCount} / ${sessionTotalCards}`;
+
+      const accuracyPct = sessionTotalCards > 0 
+        ? Math.round((firstTryCorrectCount / sessionTotalCards) * 100) 
+        : 0;
+      accuracyVal.textContent = `${accuracyPct}%`;
+    }
+
+    function nextCard() {
+      if (activeDeck.length === 0) {
+        showCompletionModal();
+        return;
+      }
+
+      isLockInput = false;
+      hasCurrentCardMadeMistake = false;
+
+      const randomIndex = Math.floor(Math.random() * activeDeck.length);
+      currentCard = activeDeck[randomIndex];
+
+      // Đặt maxlength động theo độ dài đáp án dài nhất của từ hiện tại
+      const maxLen = Math.max(...currentCard.romaji.map(r => r.length));
+      romajiInput.maxLength = maxLen;
+
+      katakanaDisplay.textContent = currentCard.kana;
+      romajiInput.value = '';
+      answerHint.textContent = '';
+      hideFeedback();
+      romajiInput.focus();
+    }
+
+    // Xử lý gõ tự động realtime
+    romajiInput.addEventListener('input', () => {
+      if (isLockInput || !currentCard) return;
+
+      const userInput = romajiInput.value.trim().toLowerCase();
+      if (!userInput) {
+        hideFeedback();
+        return;
+      }
+
+      // 1. Kiểm tra khớp đáp án chính xác
+      const isCorrect = currentCard.romaji.includes(userInput);
+
+      if (isCorrect) {
+        isLockInput = true;
+
+        if (!hasCurrentCardMadeMistake) {
+          firstTryCorrectCount++;
+        }
+
+        streak++;
+        activeDeck = activeDeck.filter(card => card.kana !== currentCard.kana);
+        
+        updateStatsUI();
+        
+        // CHUYỂN TỪ TỨC THÌ (Tối ưu tốc độ tối đa)
+        nextCard();
+        return;
+      }
+
+      // 2. Nếu gõ đủ độ dài tối đa mà chưa đúng -> TÍNH SAI
+      const maxLen = Math.max(...currentCard.romaji.map(r => r.length));
+
+      if (userInput.length >= maxLen) {
+        if (!hasCurrentCardMadeMistake) {
+          incorrectCardsCount++;
+          hasCurrentCardMadeMistake = true;
+        }
+
+        streak = 0;
+        updateStatsUI();
+        showFeedback('Chưa đúng!', 'incorrect');
+        
+        // Bôi đen toàn bộ chữ cũ để người dùng chỉ cần gõ ký tự tiếp theo là tự đè chữ mới
+        romajiInput.select();
+      } else {
+        // Chưa đủ ký tự max (ví dụ: đang gõ 2/3 ký tự) -> Cho cơ hội sửa/xóa mà chưa phạt sai
+        hideFeedback();
+      }
+    });
+
+    function revealAnswer() {
+      if (!currentCard) return;
+
+      if (!hasCurrentCardMadeMistake) {
+        incorrectCardsCount++;
+        hasCurrentCardMadeMistake = true;
+        streak = 0;
+        updateStatsUI();
+      }
+
+      answerHint.textContent = `Đáp án: ${currentCard.romaji.join(' / ')}`;
+      romajiInput.focus();
+    }
+
+    function skipCard() {
+      if (isLockInput || activeDeck.length <= 1) return;
+
+      if (!hasCurrentCardMadeMistake) {
+        incorrectCardsCount++;
+        hasCurrentCardMadeMistake = true;
+      }
+
+      streak = 0;
+      updateStatsUI();
+
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * activeDeck.length);
+      } while (activeDeck[nextIndex].kana === currentCard.kana);
+
+      currentCard = activeDeck[nextIndex];
+      
+      const maxLen = Math.max(...currentCard.romaji.map(r => r.length));
+      romajiInput.maxLength = maxLen;
+
+      katakanaDisplay.textContent = currentCard.kana;
+      romajiInput.value = '';
+      answerHint.textContent = '';
+      hideFeedback();
+      hasCurrentCardMadeMistake = false;
+      romajiInput.focus();
+    }
+
+    function showCompletionModal() {
+      const accuracyPct = sessionTotalCards > 0 
+        ? Math.round((firstTryCorrectCount / sessionTotalCards) * 100) 
+        : 0;
+      modalStatsDesc.innerHTML = `Hoàn thành <b>${sessionTotalCards}</b> chữ ${currentAlphabet === 'hiragana' ? 'Hiragana' : 'Katakana'}!<br>Đúng ngay lần đầu: <b>${accuracyPct}%</b> | Số từ gõ sai: <b>${incorrectCardsCount}</b>`;
+      modalCompletion.classList.add('active');
+    }
+
+    function showFeedback(text, statusClass) {
+      feedback.textContent = text;
+      feedback.className = `feedback show ${statusClass}`;
+    }
+
+    function hideFeedback() {
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+    }
+
+    btnSkip.addEventListener('click', skipCard);
+    btnReveal.addEventListener('click', revealAnswer);
+    btnReset.addEventListener('click', resetSession);
+    btnRestart.addEventListener('click', resetSession);
+  </script>
+</body>
+</html>
