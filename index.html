@@ -142,7 +142,7 @@
     }
     .test-mode-label { font-size: 0.95rem; font-weight: 700; color: var(--primary); }
 
-    /* 5. KANA & PRACTICE VIEWS - NÂNG RỘNG KHUNG FLASHCARD */
+    /* 5. KANA & PRACTICE VIEWS */
     #home-view { max-width: 1100px; display: none; }
     #practice-view { max-width: 540px; display: none; }
 
@@ -180,7 +180,7 @@
     .stat-label { font-size: 0.75rem; color: #64748b; margin-bottom: 4px; font-weight: 500; }
     .stat-value { font-size: 1.5rem; font-weight: 600; color: #0f172a; line-height: 1.1; }
 
-    /* CARD FLASHCARD DISPLAY FIX - CHỐNG TRÀN CHỮ VÀ VỠ BỐ CỤC */
+    /* CARD FLASHCARD DISPLAY */
     .card {
       background: #f8fafc; border: 2px solid var(--border); border-radius: 20px;
       padding: 16px 20px 24px 20px; margin-bottom: 16px; text-align: center; position: relative;
@@ -226,6 +226,35 @@
     .hide-furigana rt { visibility: hidden; opacity: 0; }
 
     .word-meaning { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-top: 10px; line-height: 1.4; }
+
+    .custom-note-display {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .custom-sentence-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #4338ca;
+      font-style: italic;
+      background: #eef2ff;
+      padding: 6px 14px;
+      border-radius: 8px;
+    }
+
+    .custom-img-thumb {
+      max-height: 140px;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      object-fit: cover;
+    }
+
     .answer-hint { margin-top: 8px; font-size: 0.95rem; font-weight: 600; color: var(--primary); min-height: 24px; word-break: break-word; }
 
     .furigana-toggle-wrapper {
@@ -254,12 +283,17 @@
 
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 100; padding: 20px; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
-    .modal-content { background: #ffffff; padding: 32px 24px; border-radius: 20px; text-align: center; max-width: 380px; width: 100%; }
-    .modal-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
-    .modal-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 24px; line-height: 1.5; }
+    .modal-content { background: #ffffff; padding: 28px 24px; border-radius: 20px; text-align: center; max-width: 400px; width: 100%; }
+    .modal-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+    .modal-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
     .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
     .btn-restart { background-color: var(--primary); color: white; padding: 12px; }
     .btn-back-home { background-color: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 12px; }
+
+    .form-group { text-align: left; margin-bottom: 16px; }
+    .form-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; outline: none; font-size: 0.95rem; }
+    .form-input:focus { border-color: var(--primary); }
   </style>
 </head>
 <body>
@@ -308,14 +342,15 @@
 
       <div class="level-card" id="level-n5">
         <div class="level-title">N5</div>
-        <div class="level-subtitle">Sơ cấp 1 (25 Bài)</div>
+        <div class="level-subtitle">Sơ cấp 1 (Bài 1 - 25)</div>
       </div>
 
-      <div class="level-card disabled">
-        <span class="badge-coming-soon">Sắp ra</span>
-        <div class="level-title" style="color: #94a3b8;">N4</div>
-        <div class="level-subtitle">Sơ cấp 2</div>
+      <!-- ĐÃ MỞ KHÓA MÀN HÌNH N4 -->
+      <div class="level-card" id="level-n4">
+        <div class="level-title" style="color: #2563eb;">N4</div>
+        <div class="level-subtitle">Sơ cấp 2 (Bài 26 - 50)</div>
       </div>
+
       <div class="level-card disabled">
         <span class="badge-coming-soon">Sắp ra</span>
         <div class="level-title" style="color: #94a3b8;">N3</div>
@@ -338,7 +373,7 @@
   <div class="app-container" id="lesson-select-view">
     <div class="view-header">
       <button class="btn-header-action" id="btn-back-from-lesson">← Chọn Cấp độ</button>
-      <div class="view-title">Từ vựng N5 - Minna no Nihongo</div>
+      <div class="view-title" id="lesson-view-title">Từ vựng Minna no Nihongo</div>
       <div></div>
     </div>
 
@@ -359,7 +394,7 @@
     <div class="topics-list" id="topics-wrapper"></div>
 
     <div class="test-mode-box" id="test-mode-toggle">
-      <div class="test-mode-label">⚡ Chế độ Kiểm Tra (Ẩn chữ Nhật, đoán từ qua Nghĩa)</div>
+      <div class="test-mode-label">Đủ Tày thì bấm (Test mode)</div>
       <div class="toggle-switch"></div>
     </div>
 
@@ -418,34 +453,69 @@
 
     <div class="card" id="flashcard-box">
       <div class="card-top-tools" id="vocab-tools">
+        <button class="icon-btn" id="btn-open-note-modal" title="Thêm Ảnh & Câu ví dụ cá nhân cho từ này">📌</button>
         <button class="icon-btn active" id="btn-toggle-speaker" title="Tự động phát âm thanh khi trả lời đúng">🔊</button>
       </div>
 
       <div id="ruby-display"></div>
       <div class="word-meaning" id="meaning-display"></div>
+
+      <div class="custom-note-display" id="custom-note-display" style="display: none;">
+        <img id="custom-img-view" class="custom-img-thumb" src="" alt="Ảnh ghi nhớ" style="display: none;" />
+        <div id="custom-sentence-view" class="custom-sentence-text" style="display: none;"></div>
+      </div>
+
       <div class="answer-hint" id="answer-hint"></div>
     </div>
 
     <label class="furigana-toggle-wrapper" id="furigana-toggle-wrapper">
       <input type="checkbox" id="chk-toggle-furigana" checked />
-      <span>Hiển thị phiên âm (Furigana) trên đầu Kanji</span>
+      <span>Show Furigana</span>
     </label>
 
     <input 
       type="text" 
       id="romaji-input" 
       class="romaji-input" 
-      placeholder="Gõ Romaji..." 
+      placeholder="Gõ tiếng Nhật" 
       autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      lang="en"
     />
 
     <div class="feedback" id="feedback"></div>
 
     <div class="actions">
-      <button class="btn-skip" id="btn-skip">Bỏ qua từ này</button>
+      <button class="btn-skip" id="btn-skip">Skip</button>
       <div class="btn-action-row">
-        <button class="btn-reveal" id="btn-reveal">🔊 Xem đáp án / Nghe lại</button>
-        <button class="btn-reset" id="btn-reset">Làm lại vòng này</button>
+        <button class="btn-reveal" id="btn-reveal">Toi qua ngoo (Enter)</button>
+        <button class="btn-reset" id="btn-reset">Làm lại</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL BỔ SUNG GHI CHÚ & ẢNH CÁ NHÂN -->
+  <div class="modal-overlay" id="modal-custom-note">
+    <div class="modal-content">
+      <div class="modal-title">Ghi Chú Cá Nhân</div>
+      <div class="modal-desc" id="modal-note-word-info">Lưu câu yêu thích hoặc tải ảnh gợi nhớ cho từ này</div>
+      
+      <div class="form-group">
+        <label class="form-label">Câu ví dụ / Mẹo nhớ yêu thích:</label>
+        <input type="text" id="note-sentence-input" class="form-input" placeholder="Trống" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Tải ảnh gợi nhớ từ máy:</label>
+        <input type="file" id="note-file-input" accept="image/*" class="form-input" />
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn-restart" id="btn-save-note">Lưu Ghi Chú</button>
+        <button class="btn-back-home" id="btn-delete-note" style="color: var(--error); border-color: var(--error-bg);">Xóa Ghi Chú Đã Lưu</button>
+        <button class="btn-back-home" id="btn-close-note">Đóng</button>
       </div>
     </div>
   </div>
@@ -462,392 +532,14 @@
     </div>
   </div>
 
+  <!-- NẠP FILE DỮ LIỆU -->
+  <script src="data.js"></script>
+
+  <!-- LOGIC ỨNG DỤNG -->
   <script>
-    const HIRAGANA_GROUPS = [
-      { id: 'a', name: 'A', selected: true, items: [{ kana: 'あ', romaji: ['a'] }, { kana: 'い', romaji: ['i'] }, { kana: 'う', romaji: ['u'] }, { kana: 'え', romaji: ['e'] }, { kana: 'お', romaji: ['o'] }] },
-      { id: 'ka', name: 'Ka', selected: true, items: [{ kana: 'か', romaji: ['ka'] }, { kana: 'き', romaji: ['ki'] }, { kana: 'く', romaji: ['ku'] }, { kana: 'け', romaji: ['ke'] }, { kana: 'こ', romaji: ['ko'] }] },
-      { id: 'sa', name: 'Sa', selected: false, items: [{ kana: 'さ', romaji: ['sa'] }, { kana: 'し', romaji: ['shi', 'si'] }, { kana: 'す', romaji: ['su'] }, { kana: 'せ', romaji: ['se'] }, { kana: 'そ', romaji: ['so'] }] },
-      { id: 'ta', name: 'Ta', selected: false, items: [{ kana: 'た', romaji: ['ta'] }, { kana: 'ち', romaji: ['chi', 'ti'] }, { kana: 'つ', romaji: ['tsu', 'tu'] }, { kana: 'て', romaji: ['te'] }, { kana: 'と', romaji: ['to'] }] },
-      { id: 'na', name: 'Na', selected: false, items: [{ kana: 'な', romaji: ['na'] }, { kana: 'に', romaji: ['ni'] }, { kana: 'ぬ', romaji: ['nu'] }, { kana: 'ね', romaji: ['ne'] }, { kana: 'の', romaji: ['no'] }] },
-      { id: 'ha', name: 'Ha', selected: false, items: [{ kana: 'は', romaji: ['ha'] }, { kana: 'ひ', romaji: ['hi'] }, { kana: 'ふ', romaji: ['fu', 'hu'] }, { kana: 'へ', romaji: ['he'] }, { kana: 'ほ', romaji: ['ho'] }] },
-      { id: 'ma', name: 'Ma', selected: false, items: [{ kana: 'ま', romaji: ['ma'] }, { kana: 'み', romaji: ['mi'] }, { kana: 'む', romaji: ['mu'] }, { kana: 'め', romaji: ['me'] }, { kana: 'も', romaji: ['mo'] }] },
-      { id: 'ya', name: 'Ya', selected: false, items: [{ kana: 'や', romaji: ['ya'] }, { kana: 'ゆ', romaji: ['yu'] }, { kana: 'よ', romaji: ['yo'] }] },
-      { id: 'ra', name: 'Ra', selected: false, items: [{ kana: 'ら', romaji: ['ra'] }, { kana: 'り', romaji: ['ri'] }, { kana: 'る', romaji: ['ru'] }, { kana: 'れ', romaji: ['re'] }, { kana: 'ろ', romaji: ['ro'] }] },
-      { id: 'wa', name: 'Wa/N', selected: false, items: [{ kana: 'わ', romaji: ['wa'] }, { kana: 'を', romaji: ['wo', 'o'] }, { kana: 'ん', romaji: ['n'] }] },
-      { id: 'ga', name: 'Ga', selected: false, items: [{ kana: 'が', romaji: ['ga'] }, { kana: 'ぎ', romaji: ['gi'] }, { kana: 'ぐ', romaji: ['gu'] }, { kana: 'げ', romaji: ['ge'] }, { kana: 'ご', romaji: ['go'] }] },
-      { id: 'za', name: 'Za', selected: false, items: [{ kana: 'ざ', romaji: ['za'] }, { kana: 'じ', romaji: ['ji', 'zi'] }, { kana: 'ず', romaji: ['zu'] }, { kana: 'ぜ', romaji: ['ze'] }, { kana: 'ぞ', romaji: ['zo'] }] },
-      { id: 'da', name: 'Da', selected: false, items: [{ kana: 'だ', romaji: ['da'] }, { kana: 'ぢ', romaji: ['ji', 'di'] }, { kana: 'づ', romaji: ['zu', 'du'] }, { kana: 'で', romaji: ['de'] }, { kana: 'ど', romaji: ['do'] }] },
-      { id: 'ba', name: 'Ba', selected: false, items: [{ kana: 'ば', romaji: ['ba'] }, { kana: 'び', romaji: ['bi'] }, { kana: 'ぶ', romaji: ['bu'] }, { kana: 'べ', romaji: ['be'] }, { kana: 'ぼ', romaji: ['bo'] }] },
-      { id: 'pa', name: 'Pa', selected: false, items: [{ kana: 'ぱ', romaji: ['pa'] }, { kana: 'ぴ', romaji: ['pi'] }, { kana: 'ぷ', romaji: ['pu'] }, { kana: 'ぺ', romaji: ['pe'] }, { kana: 'ぽ', romaji: ['po'] }] }
-    ];
-
-    const KATAKANA_GROUPS = [
-      { id: 'a', name: 'A', selected: true, items: [{ kana: 'ア', romaji: ['a'] }, { kana: 'イ', romaji: ['i'] }, { kana: 'ウ', romaji: ['u'] }, { kana: 'エ', romaji: ['e'] }, { kana: 'オ', romaji: ['o'] }] },
-      { id: 'ka', name: 'Ka', selected: true, items: [{ kana: 'カ', romaji: ['ka'] }, { kana: 'キ', romaji: ['ki'] }, { kana: 'ク', romaji: ['ku'] }, { kana: 'ケ', romaji: ['ke'] }, { kana: 'コ', romaji: ['ko'] }] },
-      { id: 'sa', name: 'Sa', selected: false, items: [{ kana: 'サ', romaji: ['sa'] }, { kana: 'シ', romaji: ['shi', 'si'] }, { kana: 'ス', romaji: ['su'] }, { kana: 'セ', romaji: ['se'] }, { kana: 'ソ', romaji: ['so'] }] },
-      { id: 'ta', name: 'Ta', selected: false, items: [{ kana: 'タ', romaji: ['ta'] }, { kana: 'チ', romaji: ['chi', 'ti'] }, { kana: 'ツ', romaji: ['tsu', 'tu'] }, { kana: 'テ', romaji: ['te'] }, { kana: 'ト', romaji: ['to'] }] },
-      { id: 'na', name: 'Na', selected: false, items: [{ kana: 'ナ', romaji: ['na'] }, { kana: 'ニ', romaji: ['ni'] }, { kana: 'ヌ', romaji: ['nu'] }, { kana: 'ネ', romaji: ['ne'] }, { kana: 'ノ', romaji: ['no'] }] },
-      { id: 'ha', name: 'Ha', selected: false, items: [{ kana: 'ハ', romaji: ['ha'] }, { kana: 'ヒ', romaji: ['hi'] }, { kana: 'フ', romaji: ['fu', 'hu'] }, { kana: 'ヘ', romaji: ['he'] }, { kana: 'ホ', romaji: ['ho'] }] },
-      { id: 'ma', name: 'Ma', selected: false, items: [{ kana: 'マ', romaji: ['ma'] }, { kana: 'ミ', romaji: ['mi'] }, { kana: 'ム', romaji: ['mu'] }, { kana: 'メ', romaji: ['me'] }, { kana: 'モ', romaji: ['mo'] }] },
-      { id: 'ya', name: 'Ya', selected: false, items: [{ kana: 'ヤ', romaji: ['ya'] }, { kana: 'ユ', romaji: ['yu'] }, { kana: 'ヨ', romaji: ['yo'] }] },
-      { id: 'ra', name: 'Ra', selected: false, items: [{ kana: 'ラ', romaji: ['ra'] }, { kana: 'リ', romaji: ['ri'] }, { kana: 'ル', romaji: ['ru'] }, { kana: 'レ', romaji: ['re'] }, { kana: 'ロ', romaji: ['ro'] }] },
-      { id: 'wa', name: 'Wa/N', selected: false, items: [{ kana: 'ワ', romaji: ['wa'] }, { kana: 'ヲ', romaji: ['wo', 'o'] }, { kana: 'ン', romaji: ['n'] }] },
-      { id: 'ga', name: 'Ga', selected: false, items: [{ kana: 'ガ', romaji: ['ga'] }, { kana: 'ギ', romaji: ['gi'] }, { kana: 'グ', romaji: ['gu'] }, { kana: 'ゲ', romaji: ['ge'] }, { kana: 'ゴ', romaji: ['go'] }] },
-      { id: 'za', name: 'Za', selected: false, items: [{ kana: 'ザ', romaji: ['za'] }, { kana: 'ジ', romaji: ['ji', 'zi'] }, { kana: 'ズ', romaji: ['zu'] }, { kana: 'ゼ', romaji: ['ze'] }, { kana: 'ゾ', romaji: ['zo'] }] },
-      { id: 'da', name: 'Da', selected: false, items: [{ kana: 'ダ', romaji: ['da'] }, { kana: 'ヂ', romaji: ['ji', 'di'] }, { kana: 'ヅ', romaji: ['zu', 'du'] }, { kana: 'デ', romaji: ['de'] }, { kana: 'ド', romaji: ['do'] }] },
-      { id: 'ba', name: 'Ba', selected: false, items: [{ kana: 'バ', romaji: ['ba'] }, { kana: 'ビ', romaji: ['bi'] }, { kana: 'ブ', romaji: ['bu'] }, { kana: 'ベ', romaji: ['be'] }, { kana: 'ボ', romaji: ['bo'] }] },
-      { id: 'pa', name: 'Pa', selected: false, items: [{ kana: 'パ', romaji: ['pa'] }, { kana: 'ピ', romaji: ['pi'] }, { kana: 'プ', romaji: ['pu'] }, { kana: 'ペ', romaji: ['pe'] }, { kana: 'ポ', romaji: ['po'] }] }
-    ];
-
-    // DỮ LIỆU CÂU GIAO TIẾP "LỚP CÔ TƯƠI" (45 CÂU)
-    const CO_TUOI_TOPICS = [
-      {
-        id: 'tuoi_chao_hoi', name: '1. Chào hỏi & Xin phép cơ bản (9 câu)', selected: true,
-        items: [
-          { kana: 'おはようございます', romaji: ['ohayougozaimasu'], rubyHtml: 'おはようございます', meaning: 'Chào buổi sáng ( Chào lần gặp đầu tiên trong ngày )' },
-          { kana: 'こんにちは', romaji: ['konnichiwa'], rubyHtml: 'こんにちは', meaning: 'Xin chào , chào buổi trưa , chào buổi chiều' },
-          { kana: 'ありがとうございます', romaji: ['arigatougozaimasu'], rubyHtml: 'ありがとうございます', meaning: 'Cám ơn !' },
-          { kana: 'おねがいします', romaji: ['onegaishimasu'], rubyHtml: 'おねがいします', meaning: 'Làm ơn ...' },
-          { kana: 'すみません', romaji: ['sumimasen'], rubyHtml: 'すみません', meaning: 'Xin lỗi!' },
-          { kana: 'さようなら', romaji: ['sayounara', 'sayonara'], rubyHtml: 'さようなら', meaning: 'Tạm biệt' },
-          { kana: 'またあした', romaji: ['mataashita'], rubyHtml: 'またあした', meaning: 'Hẹn gặp lại ngày mai' },
-          { kana: 'すみません、はいってもいいですか', romaji: ['sumimasenhaittemoiidesuka', 'haittemoiidesuka'], rubyHtml: 'すみません、はいってもいいですか', meaning: 'Xin lỗi ! Tôi đi vào có được không ạ ?' },
-          { kana: 'すみません、でてもいいですか', romaji: ['sumimasendetemoiidesuka', 'detemoiidesuka'], rubyHtml: 'すみません、でてもいいですか', meaning: 'Xin lỗi ! Tôi đi ra ngoài có được không ạ?' }
-        ]
-      },
-      {
-        id: 'tuoi_trao_doi', name: '2. Hỏi đáp & Trao đổi trong lớp (13 câu)', selected: true,
-        items: [
-          { kana: 'すわってもいいですか', romaji: ['suwattemoiidesuka'], rubyHtml: 'すわってもいいですか', meaning: 'Tôi ngồi xuống được không ạ ?' },
-          { kana: 'すみません、もういちどおねがいします', romaji: ['sumimasenmouichidoonegaishimasu', 'mouichidoonegaishimasu'], rubyHtml: 'すみません、もういちどおねがいします', meaning: 'Làm ơn đọc lại 1 lần' },
-          { kana: 'せんせい、しつもんがあります', romaji: ['senseishitsumongaarimasu', 'shitsumongaarimasu'], rubyHtml: 'せんせい、しつもんがあります', meaning: 'Thưa sensei ! Em có câu hỏi' },
-          { kana: 'わかりました', romaji: ['wakarimashita'], rubyHtml: 'わかりました', meaning: 'Em đã hiểu rồi !' },
-          { kana: 'まだわかりません', romaji: ['madawakarimasen'], rubyHtml: 'まだわかりません', meaning: 'Em chưa hiểu !' },
-          { kana: 'なんですか', romaji: ['nandesuka'], rubyHtml: 'なんですか', meaning: 'Gì vậy ạ !' },
-          { kana: 'どうしてですか', romaji: ['doushitedesuka'], rubyHtml: 'どうしてですか', meaning: 'Tại sao ?' },
-          { kana: 'にほんごでなんといいますか', romaji: ['nihongodenantoiimasuka'], rubyHtml: '<ruby>日本語<rt>にほんご</rt></ruby>でなんといいますか', meaning: 'Trong tiếng Nhật thì nói như thế nào ?' },
-          { kana: 'どういういみですか', romaji: ['douiuimidesuka'], rubyHtml: 'どういう<ruby>意味<rt>いみ</rt></ruby>ですか', meaning: 'Có ý nghĩa là gì ?' },
-          { kana: 'いいですか', romaji: ['iidesuka'], rubyHtml: 'いいですか', meaning: 'Có được không? (có làm sao không?)' },
-          { kana: 'そうですか', romaji: ['soudesuka'], rubyHtml: 'そうですか', meaning: 'Vậy à , vậy ạ' },
-          { kana: 'そうですね', romaji: ['soudesune'], rubyHtml: 'そうですね', meaning: 'Đúng vậy , đúng như thế đó' },
-          { kana: 'おつかれさまでした', romaji: ['otsukaresamadeshita'], rubyHtml: 'おつかれさまでした', meaning: 'Anh/Chị đã vất vả rồi !' }
-        ]
-      },
-      {
-        id: 'tuoi_menh_lenh', name: '3. Bắt đầu, Kết thúc & Mệnh lệnh (11 câu)', selected: true,
-        items: [
-          { kana: 'はじめましょう', romaji: ['hajimemashou'], rubyHtml: 'はじめましょう', meaning: 'Bắt đầu tiết học nào !' },
-          { kana: 'おわりましょう', romaji: ['owarimashou'], rubyHtml: 'おわりましょう', meaning: 'Kết thúc tiết học tại đây !' },
-          { kana: 'やすみましょう', romaji: ['yasumimashou'], rubyHtml: 'やすみましょう', meaning: 'Cùng nghỉ giải lao' },
-          { kana: 'たってください', romaji: ['tattekudasai'], rubyHtml: 'たってください', meaning: 'Hãy đứng lên !' },
-          { kana: 'すわってください', romaji: ['suwattekudasai'], rubyHtml: 'すわってください', meaning: 'Hãy ngồi xuống !' },
-          { kana: 'きいてください', romaji: ['kiitekudasai'], rubyHtml: 'きいてください', meaning: 'Hãy Nghe !' },
-          { kana: 'みてください', romaji: ['mitekudasai'], rubyHtml: 'みてください', meaning: 'Hãy nhìn' },
-          { kana: 'ほんをあけてください', romaji: ['honwoaketekudasai', 'honoaketekudasai'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby>をあけてください', meaning: 'Hãy mở sách !' },
-          { kana: 'ページをあけてください', romaji: ['pe-jiwoaketekudasai', 'pejiwoaketekudasai'], rubyHtml: 'ページをあけてください', meaning: 'Hãy mở sách trang ...' },
-          { kana: 'しつもんがありますか', romaji: ['shitsumongaarimasuka'], rubyHtml: 'しつもんがありますか', meaning: 'Có câu hỏi không?' },
-          { kana: 'れんしゅうしましょう', romaji: ['renshuushimashou'], rubyHtml: 'れんしゅうしましょう', meaning: 'Cùng luyện tập nào !' }
-        ]
-      },
-      {
-        id: 'tuoi_tu_vung', name: '4. Từ vựng lớp học & Lời khen (12 câu)', selected: true,
-        items: [
-          { kana: 'れい', romaji: ['rei'], rubyHtml: 'れい', meaning: 'Ví dụ ( Ví dụ như )' },
-          { kana: 'かいわ', romaji: ['kaiwa'], rubyHtml: 'かいわ', meaning: 'Hội thoại' },
-          { kana: 'ちょうかい', romaji: ['choukai'], rubyHtml: 'ちょうかい', meaning: 'Nghe' },
-          { kana: 'どっかい', romaji: ['dokkai'], rubyHtml: 'どっかい', meaning: 'Đọc Hiểu' },
-          { kana: 'しゅくだい', romaji: ['shukudai'], rubyHtml: 'しゅくだい', meaning: 'Bài tập về nhà' },
-          { kana: 'テスト', romaji: ['tesuto'], rubyHtml: 'テスト', meaning: 'Bài test (bài kiểm tra)' },
-          { kana: 'しけん', romaji: ['shiken'], rubyHtml: 'しけん', meaning: 'Kỳ thi' },
-          { kana: 'しずかに', romaji: ['shizukani'], rubyHtml: 'しずかに', meaning: 'Hãy im lặng !' },
-          { kana: 'すごいですね', romaji: ['sugoidesune'], rubyHtml: 'すごいですね', meaning: 'Giỏi nhỉ , siêu nhỉ' },
-          { kana: 'ちがいます', romaji: ['chigaimasu'], rubyHtml: 'ちがいます', meaning: 'Sai rồi !' },
-          { kana: 'がんばってください', romaji: ['ganbattekudasai'], rubyHtml: 'がんばってください', meaning: 'Cố gắng lên nhé !' },
-          { kana: 'しつれいします', romaji: ['shitsureishimasu'], rubyHtml: 'しつれいします', meaning: 'Xin phép !' }
-        ]
-      }
-    ];
-
-    // DỮ LIỆU BÀI 1 ĐẾN BÀI 10 MINNA NO NIHONGO CHUẨN PDF
-    const MINNA_LESSONS_DATA = {
-      1: [
-        { id: 'b1_xungho', name: 'A. Cách xưng hô', selected: true, items: [
-          { kana: 'わたし', romaji: ['watashi'], rubyHtml: '<ruby>私<rt>わたし</rt></ruby>', meaning: 'Tôi' },
-          { kana: 'あなた', romaji: ['anata'], rubyHtml: 'あなた', meaning: 'Bạn, anh, chị...' },
-          { kana: 'あのひと', romaji: ['anohito'], rubyHtml: 'あの<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người đó, anh kia, chị kia' },
-          { kana: 'あのかた', romaji: ['anokata'], rubyHtml: 'あの<ruby>方<rt>かた</rt></ruby>', meaning: 'Vị đó, người đó (lịch sự)' },
-          { kana: '~さん', romaji: ['san'], rubyHtml: '～さん', meaning: 'Anh, chị, ông, bà (hậu tố)' },
-          { kana: '~ちゃん', romaji: ['chan'], rubyHtml: '～ちゃん', meaning: 'Bé (hậu tố xưng hô trẻ em)' },
-          { kana: 'だれ', romaji: ['dare'], rubyHtml: 'だれ', meaning: 'Ai' },
-          { kana: 'どなた', romaji: ['donata'], rubyHtml: 'どなた', meaning: 'Vị nào, ai (lịch sự)' }
-        ]},
-        { id: 'b1_nghenghiep', name: 'B. Nghề nghiệp cơ bản', selected: true, items: [
-          { kana: 'おしごとは?', romaji: ['oshigotowa'], rubyHtml: 'お<ruby>仕事<rt>しごと</rt></ruby>は', meaning: 'Công việc của bạn là gì?' },
-          { kana: 'きょうし', romaji: ['kyoushi'], rubyHtml: '<ruby>教師<rt>きょうし</rt></ruby>', meaning: 'Giáo viên' },
-          { kana: 'せんせい', romaji: ['sensei'], rubyHtml: '<ruby>先生<rt>せんせい</rt></ruby>', meaning: 'Thầy / Cô giáo' },
-          { kana: 'かいしゃいん', romaji: ['kaishain'], rubyHtml: '<ruby>会社員<rt>かいしゃいん</rt></ruby>', meaning: 'Nhân viên công ty' },
-          { kana: 'ぎんこういん', romaji: ['ginkoin', 'ginkouin'], rubyHtml: '<ruby>銀行員<rt>ぎんこういん</rt></ruby>', meaning: 'Nhân viên ngân hàng' },
-          { kana: 'いしゃ', romaji: ['isha'], rubyHtml: '<ruby>医者<rt>いしゃ</rt></ruby>', meaning: 'Bác sĩ' },
-          { kana: 'エンジニア', romaji: ['enjinia'], rubyHtml: 'エンジニア', meaning: 'Kỹ sư' },
-          { kana: 'かんごし', romaji: ['kangoshi'], rubyHtml: '<ruby>看護師<rt>かんごし</rt></ruby>', meaning: 'Y tá' },
-          { kana: 'かしゅ', romaji: ['kashu'], rubyHtml: '<ruby>歌手<rt>かしゅ</rt></ruby>', meaning: 'Ca sĩ' },
-          { kana: 'はいゆう', romaji: ['haiyuu'], rubyHtml: '<ruby>俳優<rt>はいゆう</rt></ruby>', meaning: 'Diễn viên' }
-        ]},
-        { id: 'b1_diadiem', name: 'C. Địa điểm', selected: true, items: [
-          { kana: 'かいしゃ', romaji: ['kaisha'], rubyHtml: '<ruby>会社<rt>かいしゃ</rt></ruby>', meaning: 'Công ty' },
-          { kana: 'ぎんこう', romaji: ['ginkou'], rubyHtml: '<ruby>銀行<rt>ぎんこう</rt></ruby>', meaning: 'Ngân hàng' },
-          { kana: 'だいがく', romaji: ['daigaku'], rubyHtml: '<ruby>大学<rt>だいがく</rt></ruby>', meaning: 'Đại học' }
-        ]},
-        { id: 'b1_datnuoc', name: 'D. Đất nước, Người, Ngôn ngữ', selected: true, items: [
-          { kana: 'ベトナム', romaji: ['betonamu'], rubyHtml: 'ベトナム', meaning: 'Việt Nam' },
-          { kana: 'ベトナムじん', romaji: ['betonamujin'], rubyHtml: 'ベトナム<ruby>人<rt>じん</rt></ruby>', meaning: 'Người Việt' },
-          { kana: 'ベトナムご', romaji: ['betonamugo'], rubyHtml: 'ベトナム<ruby>語<rt>ご</rt></ruby>', meaning: 'Tiếng Việt' },
-          { kana: 'イギリス', romaji: ['igirisu'], rubyHtml: 'イギリス', meaning: 'Anh' },
-          { kana: 'えいご', romaji: ['eigo'], rubyHtml: '<ruby>英語<rt>えいご</rt></ruby>', meaning: 'Tiếng Anh' },
-          { kana: 'アメリカ', romaji: ['amerika'], rubyHtml: 'アメリカ', meaning: 'Mĩ' },
-          { kana: 'ちゅうごく', romaji: ['chuugoku'], rubyHtml: '<ruby>中国<rt>ちゅうごく</rt></ruby>', meaning: 'Trung Quốc' },
-          { kana: 'にほん', romaji: ['nihon'], rubyHtml: '<ruby>日本<rt>にほん</rt></ruby>', meaning: 'Nhật Bản' },
-          { kana: 'にほんご', romaji: ['nihongo'], rubyHtml: '<ruby>日本<rt>にほん</rt></ruby><ruby>語<rt>ご</rt></ruby>', meaning: 'Tiếng Nhật' }
-        ]}
-      ],
-      2: [
-        { id: 'b2_chithi', name: 'A. Chỉ thị từ chỉ đồ vật', selected: true, items: [
-          { kana: 'これ', romaji: ['kore'], rubyHtml: 'これ', meaning: 'Cái này (gần người nói)' },
-          { kana: 'この', romaji: ['kono'], rubyHtml: 'この', meaning: '~ này' },
-          { kana: 'それ', romaji: ['sore'], rubyHtml: 'それ', meaning: 'Cái đó (gần người nghe)' },
-          { kana: 'その', romaji: ['sono'], rubyHtml: 'その', meaning: '~ đó' },
-          { kana: 'あれ', romaji: ['are'], rubyHtml: 'あれ', meaning: 'Cái kia (xa cả hai)' },
-          { kana: 'あの', romaji: ['ano'], rubyHtml: 'あの', meaning: '~ kia' }
-        ]},
-        { id: 'b2_dovat', name: 'B. Một số đồ vật', selected: true, items: [
-          { kana: 'ほん', romaji: ['hon'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby>', meaning: 'Sách' },
-          { kana: 'じしょ', romaji: ['jisho'], rubyHtml: '<ruby>辞書<rt>じしょ</rt></ruby>', meaning: 'Từ điển' },
-          { kana: 'ざっし', romaji: ['zasshi'], rubyHtml: '<ruby>雑誌<rt>ざっし</rt></ruby>', meaning: 'Tạp chí' },
-          { kana: 'しんぶん', romaji: ['shinbun'], rubyHtml: '<ruby>新聞<rt>しんぶん</rt></ruby>', meaning: 'Tờ báo' },
-          { kana: 'ノート', romaji: ['no-to', 'noto'], rubyHtml: 'ノート', meaning: 'Vở' },
-          { kana: 'てちょう', romaji: ['techou'], rubyHtml: '<ruby>手帳<rt>てちょう</rt></ruby>', meaning: 'Sổ tay' },
-          { kana: 'めいし', romaji: ['meishi'], rubyHtml: '<ruby>名刺<rt>めいし</rt></ruby>', meaning: 'Danh thiếp' },
-          { kana: 'カード', romaji: ['ka-do', 'kado'], rubyHtml: 'カード', meaning: 'Thẻ' },
-          { kana: 'えんぴつ', romaji: ['enpitsu'], rubyHtml: 'えんぴつ', meaning: 'Bút chì' },
-          { kana: 'ボールペン', romaji: ['bo-rupen', 'borupen'], rubyHtml: 'ボールペン', meaning: 'Bút bi' },
-          { kana: 'かぎ', romaji: ['kagi'], rubyHtml: 'かぎ', meaning: 'Chìa khóa' },
-          { kana: 'とけい', romaji: ['tokei'], rubyHtml: '<ruby>時計<rt>とけい</rt></ruby>', meaning: 'Đồng hồ' },
-          { kana: 'かさ', romaji: ['kasa'], rubyHtml: 'かさ', meaning: 'Ô, dù' },
-          { kana: 'かばん', romaji: ['kaban'], rubyHtml: 'かばん', meaning: 'Túi xách, cặp' },
-          { kana: 'くるま', romaji: ['kuruma'], rubyHtml: '<ruby>車<rt>くるま</rt></ruby>', meaning: 'Ô tô, xe hơi' },
-          { kana: 'つくえ', romaji: ['tsukue'], rubyHtml: '<ruby>机<rt>つくえ</rt></ruby>', meaning: 'Bàn' },
-          { kana: 'いす', romaji: ['isu'], rubyHtml: 'いす', meaning: 'Ghế' },
-          { kana: 'おかね', romaji: ['okane'], rubyHtml: 'お<ruby>金<rt>かね</rt></ruby>', meaning: 'Tiền' }
-        ]},
-        { id: 'b2_hoithoai', name: 'C & D. Từ vựng & Hội thoại', selected: true, items: [
-          { kana: 'おみやげ', romaji: ['omiyage'], rubyHtml: 'お<ruby>土産<rt>みやげ</rt></ruby>', meaning: 'Quà tặng' },
-          { kana: 'なに', romaji: ['nani', 'nan'], rubyHtml: '<ruby>何<rt>なに</rt></ruby>', meaning: 'Cái gì' },
-          { kana: 'どうぞ', romaji: ['douzo'], rubyHtml: 'どうぞ', meaning: 'Xin mời' },
-          { kana: 'これからおせわになります', romaji: ['korekaraosewaninarimasu'], rubyHtml: 'これからお<ruby>世話<rt>せわ</rt></ruby>になります', meaning: 'Từ nay rất mong sự giúp đỡ của anh/chị' }
-        ]}
-      ],
-      3: [
-        { id: 'b3_chithi', name: 'A. Chỉ thị từ chỉ nơi chốn', selected: true, items: [
-          { kana: 'ここ', romaji: ['koko'], rubyHtml: 'ここ', meaning: 'Chỗ này, đây' },
-          { kana: 'こちら', romaji: ['kochira'], rubyHtml: 'こちら', meaning: 'Đằng này (Lịch sự của ここ)' },
-          { kana: 'そこ', romaji: ['soko'], rubyHtml: 'そこ', meaning: 'Chỗ đó, đó' },
-          { kana: 'そちら', romaji: ['sochira'], rubyHtml: 'そちら', meaning: 'Đằng đó (Lịch sự của そこ)' },
-          { kana: 'あそこ', romaji: ['asoko'], rubyHtml: 'あそこ', meaning: 'Chỗ kia, kia' },
-          { kana: 'あちら', romaji: ['achira'], rubyHtml: 'あちら', meaning: 'Đằng kia (Lịch sự của あそこ)' },
-          { kana: 'どこ', romaji: ['doko'], rubyHtml: 'どこ', meaning: 'Đâu, chỗ nào' },
-          { kana: 'どちら', romaji: ['dochira'], rubyHtml: 'どちら', meaning: 'Hướng nào, đâu (Lịch sự)' }
-        ]},
-        { id: 'b3_noichon', name: 'B. Từ vựng chỉ nơi chốn', selected: true, items: [
-          { kana: 'きょうしつ', romaji: ['kyoushitsu'], rubyHtml: '<ruby>教室<rt>きょうしつ</rt></ruby>', meaning: 'Phòng học' },
-          { kana: 'しょくどう', romaji: ['shokudou'], rubyHtml: '<ruby>食堂<rt>しょくどう</rt></ruby>', meaning: 'Nhà ăn' },
-          { kana: 'じむしょ', romaji: ['jimusho'], rubyHtml: '<ruby>事務所<rt>じむしょ</rt></ruby>', meaning: 'Văn phòng' },
-          { kana: 'かいぎしつ', romaji: ['kaigishitsu'], rubyHtml: '<ruby>会議室<rt>かいぎしつ</rt></ruby>', meaning: 'Phòng họp' },
-          { kana: 'うけつけ', romaji: ['uketsuke'], rubyHtml: '<ruby>受付<rt>うけつけ</rt></ruby>', meaning: 'Quầy lễ tân' },
-          { kana: 'へや', romaji: ['heya'], rubyHtml: '<ruby>部屋<rt>へや</rt></ruby>', meaning: 'Căn phòng' },
-          { kana: 'トイレ', romaji: ['toire'], rubyHtml: 'トイレ', meaning: 'Nhà vệ sinh' },
-          { kana: 'おてあらい', romaji: ['otearai'], rubyHtml: 'お<ruby>手洗<rt>てあら</rt></ruby>い', meaning: 'Nhà vệ sinh' },
-          { kana: 'かいだん', romaji: ['kaidan'], rubyHtml: '<ruby>階段<rt>かいだん</rt></ruby>', meaning: 'Cầu thang' },
-          { kana: 'エレベーター', romaji: ['erebe-ta-', 'erebeta'], rubyHtml: 'エレベーター', meaning: 'Thang máy' },
-          { kana: 'うち', romaji: ['uchi'], rubyHtml: 'うち', meaning: 'Nhà' }
-        ]},
-        { id: 'b3_dovat_hoithoai', name: 'C & D. Đồ vật & Hội thoại', selected: true, items: [
-          { kana: 'じどうはんばいき', romaji: ['jidouhanbaiki'], rubyHtml: '<ruby>自動販売機<rt>じどうはんばいき</rt></ruby>', meaning: 'Máy bán hàng tự động' },
-          { kana: 'でんわ', romaji: ['denwa'], rubyHtml: '<ruby>電話<rt>でんわ</rt></ruby>', meaning: 'Điện thoại' },
-          { kana: 'くつ', romaji: ['kutsu'], rubyHtml: 'くつ', meaning: 'Giày' },
-          { kana: 'ネクタイ', romaji: ['nekutai'], rubyHtml: 'ネクタイ', meaning: 'Cà vạt' },
-          { kana: 'ワイン', romaji: ['wain'], rubyHtml: 'ワイン', meaning: 'Rượu vang' },
-          { kana: 'いくらですか', romaji: ['ikuradesuka'], rubyHtml: 'いくらですか', meaning: 'Bao nhiêu tiền ?' },
-          { kana: 'いらっしゃいませ', romaji: ['irasshaimase'], rubyHtml: 'いらっしゃいませ', meaning: 'Xin chào quý khách' }
-        ]}
-      ],
-      4: [
-        { id: 'b4_dongtu', name: 'A & B. Nơi chốn & Động từ', selected: true, items: [
-          { kana: 'おきます', romaji: ['okimasu'], rubyHtml: '<ruby>起<rt>お</rt></ruby>きます', meaning: 'Thức dậy' },
-          { kana: 'ねます', romaji: ['nemasu'], rubyHtml: '<ruby>寝<rt>ね</rt></ruby>ます', meaning: 'Ngủ, đi ngủ' },
-          { kana: 'はたらきます', romaji: ['hatarakimasu'], rubyHtml: '<ruby>働<rt>はたら</rt></ruby>きます', meaning: 'Làm việc' },
-          { kana: 'やすみます', romaji: ['yasumimasu'], rubyHtml: '<ruby>休<rt>やす</rt></ruby>みます', meaning: 'Nghỉ ngơi' },
-          { kana: 'べんきょうします', romaji: ['benkyoushimasu'], rubyHtml: '<ruby>勉強<rt>べんきょう</rt></ruby>します', meaning: 'Học tập' },
-          { kana: 'おわります', romaji: ['owarimasu'], rubyHtml: '<ruby>終<rt>お</rt></ruby>わります', meaning: 'Kết thúc, xong' },
-          { kana: 'ゆうびんきょく', romaji: ['yuubinkyoku'], rubyHtml: '<ruby>郵便局<rt>ゆうびんきょく</rt></ruby>', meaning: 'Bưu điện' },
-          { kana: 'としょかん', romaji: ['toshokan'], rubyHtml: '<ruby>図書館<rt>としょかん</rt></ruby>', meaning: 'Thư viện' },
-          { kana: 'びじゅつかん', romaji: ['bijutsukan'], rubyHtml: '<ruby>美術館<rt>びじゅつかん</rt></ruby>', meaning: 'Bảo tàng mỹ thuật' }
-        ]},
-        { id: 'b4_thoigian', name: 'C & D. Thời gian & Thứ ngày', selected: true, items: [
-          { kana: 'いま', romaji: ['ima'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>', meaning: 'Bây giờ' },
-          { kana: 'なんじ', romaji: ['nanji'], rubyHtml: '<ruby>何時<rt>なんじ</rt></ruby>', meaning: 'Mấy giờ?' },
-          { kana: 'ごぜん', romaji: ['gozen'], rubyHtml: '<ruby>午前<rt>ごぜん</rt></ruby>', meaning: 'Sáng (Sáng trước 12h)' },
-          { kana: 'ごご', romaji: ['gogo'], rubyHtml: '<ruby>午後<rt>ごご</rt></ruby>', meaning: 'Chiều (Mặt trời lặn)' },
-          { kana: 'あさ', romaji: ['asa'], rubyHtml: '<ruby>朝<rt>あさ</rt></ruby>', meaning: 'Buổi sáng' },
-          { kana: 'ひる', romaji: ['hiru'], rubyHtml: '<ruby>昼<rt>ひる</rt></ruby>', meaning: 'Buổi trưa' },
-          { kana: 'ばん', romaji: ['ban'], rubyHtml: '<ruby>晩<rt>ばん</rt></ruby>', meaning: 'Buổi tối' },
-          { kana: 'きのう', romaji: ['kinou'], rubyHtml: 'きのう', meaning: 'Hôm qua' },
-          { kana: 'きょう', romaji: ['kyou'], rubyHtml: 'きょう', meaning: 'Hôm nay' },
-          { kana: 'あした', romaji: ['ashita'], rubyHtml: 'あした', meaning: 'Ngày mai' },
-          { kana: 'げつようび', romaji: ['getsuyoubi'], rubyHtml: '<ruby>月曜日<rt>げつようび</rt></ruby>', meaning: 'Thứ hai' },
-          { kana: 'にちようび', romaji: ['nichiyoubi'], rubyHtml: '<ruby>日曜日<rt>にちようび</rt></ruby>', meaning: 'Chủ nhật' }
-        ]}
-      ],
-      5: [
-        { id: 'b5_phuongtien', name: 'A, B & C. Di chuyển & Phương tiện', selected: true, items: [
-          { kana: 'いきます', romaji: ['ikimasu'], rubyHtml: '<ruby>行<rt>い</rt></ruby>きます', meaning: 'Đi' },
-          { kana: 'きます', romaji: ['kimasu'], rubyHtml: '<ruby>来<rt>き</rt></ruby>きます', meaning: 'Đến' },
-          { kana: 'かえります', romaji: ['kaerimasu'], rubyHtml: '<ruby>帰<rt>かえ</rt></ruby>ります', meaning: 'Về' },
-          { kana: 'えき', romaji: ['eki'], rubyHtml: '<ruby>駅<rt>えき</rt></ruby>', meaning: 'Ga, nhà ga' },
-          { kana: 'ひこうき', romaji: ['hikouki'], rubyHtml: '<ruby>飛行機<rt>ひこうき</rt></ruby>', meaning: 'Máy bay' },
-          { kana: 'ふね', romaji: ['fune'], rubyHtml: '<ruby>船<rt>ふね</rt></ruby>', meaning: 'Thuyền, tàu thủy' },
-          { kana: 'でんしゃ', romaji: ['densha'], rubyHtml: '<ruby>電車<rt>でんしゃ</rt></ruby>', meaning: 'Xe điện' },
-          { kana: 'ちかてつ', romaji: ['chikatetsu'], rubyHtml: '<ruby>地下鉄<rt>ちかてつ</rt></ruby>', meaning: 'Tàu điện ngầm' },
-          { kana: 'しんかんせん', romaji: ['shinkansen'], rubyHtml: '<ruby>新幹線<rt>しんかんせん</rt></ruby>', meaning: 'Tàu siêu tốc Shinkansen' },
-          { kana: 'じてんしゃ', romaji: ['jitensha'], rubyHtml: '<ruby>自転車<rt>じてんしゃ</rt></ruby>', meaning: 'Xe đạp' },
-          { kana: 'あるいて', romaji: ['aruite'], rubyHtml: '<ruby>歩<rt>ある</rt></ruby>いて', meaning: 'Đi bộ' }
-        ]},
-        { id: 'b5_ngay_thang', name: 'E & F. Từ chỉ Ngày & Tháng', selected: true, items: [
-          { kana: 'せんしゅう', romaji: ['senshuu'], rubyHtml: '<ruby>先週<rt>せんしゅう</rt></ruby>', meaning: 'Tuần trước' },
-          { kana: 'こんしゅう', romaji: ['konshuu'], rubyHtml: '<ruby>今週<rt>こんしゅう</rt></ruby>', meaning: 'Tuần này' },
-          { kana: 'らいしゅう', romaji: ['raishuu'], rubyHtml: '<ruby>来週<rt>らいしゅう</rt></ruby>', meaning: 'Tuần sau' },
-          { kana: 'ついたち', romaji: ['tsuitachi'], rubyHtml: '<ruby>一日<rt>ついたち</rt></ruby>', meaning: 'Ngày mùng 1' },
-          { kana: 'ふつか', romaji: ['futsuka'], rubyHtml: '<ruby>二日<rt>ふつか</rt></ruby>', meaning: 'Ngày mùng 2' },
-          { kana: 'みっか', romaji: ['mikka'], rubyHtml: '<ruby>三日<rt>みっか</rt></ruby>', meaning: 'Ngày mùng 3' },
-          { kana: 'よっか', romaji: ['yokka'], rubyHtml: '<ruby>四日<rt>よっか</rt></ruby>', meaning: 'Ngày mùng 4' },
-          { kana: 'いつか', romaji: ['itsuka'], rubyHtml: '<ruby>五日<rt>いつか</rt></ruby>', meaning: 'Ngày mùng 5' },
-          { kana: 'とおか', romaji: ['tooka'], rubyHtml: '<ruby>十日<rt>とおか</rt></ruby>', meaning: 'Ngày mùng 10' },
-          { kana: 'はつか', romaji: ['hatsuka'], rubyHtml: '<ruby>二十日<rt>はつか</rt></ruby>', meaning: 'Ngày 20' },
-          { kana: 'たんじょうび', romaji: ['tanjoubi'], rubyHtml: '<ruby>誕生日<rt>たんじょうび</rt></ruby>', meaning: 'Sinh nhật' }
-        ]}
-      ],
-      6: [
-        { id: 'b6_dongtu', name: 'A. Động từ ăn uống / sinh hoạt', selected: true, items: [
-          { kana: 'たべます', romaji: ['tabemasu'], rubyHtml: '<ruby>食<rt>た</rt></ruby>べます', meaning: 'Ăn' },
-          { kana: 'みます', romaji: ['mimasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>ます', meaning: 'Nhìn, xem' },
-          { kana: 'ききます', romaji: ['kikimasu'], rubyHtml: '<ruby>聞<rt>き</rt></ruby>きます', meaning: 'Nghe' },
-          { kana: 'よみます', romaji: ['yomimasu'], rubyHtml: '<ruby>読<rt>よ</rt></ruby>みます', meaning: 'Đọc' },
-          { kana: 'かきます', romaji: ['kakimasu'], rubyHtml: '<ruby>書<rt>か</rt></ruby>きます', meaning: 'Viết' },
-          { kana: 'かいます', romaji: ['kaimasu'], rubyHtml: '<ruby>買<rt>か</rt></ruby>います', meaning: 'Mua' },
-          { kana: 'しゃしんをとります', romaji: ['shashinwotorimasu', 'shashinotorimasu'], rubyHtml: '<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ります', meaning: 'Chụp ảnh' },
-          { kana: 'ともだちにあいます', romaji: ['tomodachiniaimasu'], rubyHtml: '<ruby>友達<rt>ともだち</rt></ruby>に<ruby>会<rt>あ</rt></ruby>います', meaning: 'Gặp bạn bè' }
-        ]},
-        { id: 'b6_doan', name: 'B & C. Đồ ăn & Đồ vật khác', selected: true, items: [
-          { kana: 'ごはん', romaji: ['gohan'], rubyHtml: '<ruby>ご飯<rt>ごはん</rt></ruby>', meaning: 'Cơm / Bữa ăn' },
-          { kana: 'あさごはん', romaji: ['asagohan'], rubyHtml: '<ruby>朝ご飯<rt>あさごはん</rt></ruby>', meaning: 'Bữa sáng' },
-          { kana: 'ひるごはん', romaji: ['hirugohan'], rubyHtml: '<ruby>昼ご飯<rt>ひるごはん</rt></ruby>', meaning: 'Bữa trưa' },
-          { kana: 'ばんごはん', romaji: ['bangohan'], rubyHtml: '<ruby>晩ご飯<rt>ばんごはん</rt></ruby>', meaning: 'Bữa tối' },
-          { kana: 'みず', romaji: ['mizu'], rubyHtml: '<ruby>水<rt>みず</rt></ruby>', meaning: 'Nước' },
-          { kana: 'おちゃ', romaji: ['ocha'], rubyHtml: 'お<ruby>茶<rt>ちゃ</rt></ruby>', meaning: 'Trà' },
-          { kana: 'ビール', romaji: ['bi-ru', 'biru'], rubyHtml: 'ビール', meaning: 'Bia' },
-          { kana: 'てがみ', romaji: ['tegami'], rubyHtml: '<ruby>手紙<rt>てがみ</rt></ruby>', meaning: 'Thư' },
-          { kana: 'いっしょに', romaji: ['isshoni'], rubyHtml: '<ruby>一緒<rt>いっしょ</rt></ruby>に', meaning: 'Cùng nhau' }
-        ]}
-      ],
-      7: [
-        { id: 'b7_dongtu', name: 'A & B. Động từ & Vật dụng', selected: true, items: [
-          { kana: 'きります', romaji: ['kirimasu'], rubyHtml: '<ruby>切<rt>き</rt></ruby>ります', meaning: 'Cắt' },
-          { kana: 'おくります', romaji: ['okurimasu'], rubyHtml: '<ruby>送<rt>おく</rt></ruby>ります', meaning: 'Gửi' },
-          { kana: 'あげます', romaji: ['agemasu'], rubyHtml: 'あげます', meaning: 'Cho, tặng' },
-          { kana: 'もらいます', romaji: ['moraimasu'], rubyHtml: 'もらいます', meaning: 'Nhận' },
-          { kana: 'かします', romaji: ['kashimasu'], rubyHtml: '<ruby>貸<rt>か</rt></ruby>します', meaning: 'Cho mượn' },
-          { kana: 'かります', romaji: ['karimasu'], rubyHtml: '<ruby>借<rt>か</rt></ruby>ります', meaning: 'Mượn' },
-          { kana: 'おしえます', romaji: ['oshiemasu'], rubyHtml: '<ruby>教<rt>おし</rt></ruby>えます', meaning: 'Dạy học' },
-          { kana: 'ならいます', romaji: ['naraimasu'], rubyHtml: '<ruby>習<rt>なら</rt></ruby>います', meaning: 'Học tập' },
-          { kana: 'て', romaji: ['te'], rubyHtml: '<ruby>手<rt>て</rt></ruby>', meaning: 'Tay' },
-          { kana: 'はし', romaji: ['hashi'], rubyHtml: 'はし', meaning: 'Đũa' },
-          { kana: 'はさみ', romaji: ['hasami'], rubyHtml: 'はさみ', meaning: 'Kéo' },
-          { kana: 'プレゼント', romaji: ['purezento'], rubyHtml: 'プレゼント', meaning: 'Quà tặng' },
-          { kana: 'おとうさん', romaji: ['otousan'], rubyHtml: 'お<ruby>父<rt>とう</rt></ruby>さん', meaning: 'Bố (người khác)' },
-          { kana: 'おかあさん', romaji: ['okaasan'], rubyHtml: 'お<ruby>母<rt>かあ</rt></ruby>さん', meaning: 'Mẹ (người khác)' }
-        ]}
-      ],
-      8: [
-        { id: 'b8_na', name: 'A. Tính từ đuôi な', selected: true, items: [
-          { kana: 'ハンサム', romaji: ['hansamu'], rubyHtml: 'ハンサム', meaning: 'Đẹp trai' },
-          { kana: 'きれい', romaji: ['kirei'], rubyHtml: 'きれい', meaning: 'Đẹp, sạch sẽ' },
-          { kana: 'しずか', romaji: ['shizuka'], rubyHtml: '<ruby>静<rt>しず</rt></ruby>か', meaning: 'Yên tĩnh' },
-          { kana: 'にぎやか', romaji: ['nigiyaka'], rubyHtml: 'にぎやか', meaning: 'Náo nhiệt' },
-          { kana: 'ゆうめい', romaji: ['yuumei'], rubyHtml: '<ruby>有名<rt>ゆうめい</rt></ruby>', meaning: 'Nổi tiếng' },
-          { kana: 'しんせつ', romaji: ['shinsetsu'], rubyHtml: '<ruby>親切<rt>しんせつ</rt></ruby>', meaning: 'Thân thiện, tốt bụng' },
-          { kana: 'げんき', romaji: ['genki'], rubyHtml: '<ruby>元気<rt>げんき</rt></ruby>', meaning: 'Khỏe mạnh' },
-          { kana: 'べんり', romaji: ['benri'], rubyHtml: '<ruby>便利<rt>べんり</rt></ruby>', meaning: 'Tiện lợi' }
-        ]},
-        { id: 'b8_i', name: 'B & C. Tính từ đuôi い & Danh từ', selected: true, items: [
-          { kana: 'おおきい', romaji: ['ookii'], rubyHtml: '<ruby>大<rt>おお</rt></ruby>きい', meaning: 'Lớn, to' },
-          { kana: 'ちいさい', romaji: ['chiisai'], rubyHtml: '<ruby>小<rt>ちい</rt></ruby>さい', meaning: 'Nhỏ, bé' },
-          { kana: 'あたらしい', romaji: ['atarashii'], rubyHtml: '<ruby>新<rt>あたら</rt></ruby>しい', meaning: 'Mới' },
-          { kana: 'ふるい', romaji: ['furui'], rubyHtml: '<ruby>古<rt>ふる</rt></ruby>い', meaning: 'Cũ' },
-          { kana: 'いい', romaji: ['ii', 'yoi'], rubyHtml: 'いい', meaning: 'Tốt' },
-          { kana: 'わるい', romaji: ['warui'], rubyHtml: '<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Xấu, tồi' },
-          { kana: 'あつい', romaji: ['atsui'], rubyHtml: '<ruby>暑<rt>あつ</rt></ruby>い', meaning: 'Nóng (Thời tiết)' },
-          { kana: 'さむい', romaji: ['samui'], rubyHtml: '<ruby>寒<rt>さむ</rt></ruby>い', meaning: 'Lạnh (Thời tiết)' },
-          { kana: 'むずかしい', romaji: ['muzukashii'], rubyHtml: '<ruby>難<rt>むずか</rt></ruby>しい', meaning: 'Khó' },
-          { kana: 'たかい', romaji: ['takai'], rubyHtml: '<ruby>高<rt>たか</rt></ruby>い', meaning: 'Đắt / Cao' },
-          { kana: 'やすい', romaji: ['yasui'], rubyHtml: '<ruby>安<rt>やす</rt></ruby>い', meaning: 'Rẻ' },
-          { kana: 'おいしい', romaji: ['oishii'], rubyHtml: 'おいしい', meaning: 'Ngon' }
-        ]}
-      ],
-      9: [
-        { id: 'b9_sothich', name: 'A, B & C. Sở thích / Khả năng', selected: true, items: [
-          { kana: 'わかります', romaji: ['wakarimasu'], rubyHtml: '分かります', meaning: 'Hiểu, nắm được' },
-          { kana: 'あります', romaji: ['arimasu'], rubyHtml: 'あります', meaning: 'Có (Sở hữu)' },
-          { kana: 'すき', romaji: ['suki'], rubyHtml: '<ruby>好<rt>す</rt></ruby>き', meaning: 'Thích' },
-          { kana: 'きらい', romaji: ['kirai'], rubyHtml: '<ruby>嫌<rt>きら</rt></ruby>い', meaning: 'Ghét, không thích' },
-          { kana: 'じょうず', romaji: ['jouzu'], rubyHtml: '<ruby>上手<rt>じょうず</rt></ruby>', meaning: 'Giỏi, khéo' },
-          { kana: 'へた', romaji: ['heta'], rubyHtml: '<ruby>下手<rt>へた</rt></ruby>', meaning: 'Kém, dở' },
-          { kana: 'りょうり', romaji: ['ryouri'], rubyHtml: '<ruby>料理<rt>りょうり</rt></ruby>', meaning: 'Món ăn, nấu ăn' },
-          { kana: 'スポーツ', romaji: ['supo-tsu', 'supotsu'], rubyHtml: 'スポーツ', meaning: 'Thể thao' },
-          { kana: 'おんがく', romaji: ['ongaku'], rubyHtml: '<ruby>音楽<rt>おんがく</rt></ruby>', meaning: 'Âm nhạc' },
-          { kana: 'うた', romaji: ['uta'], rubyHtml: '<ruby>歌<rt>うた</rt></ruby>', meaning: 'Bài hát' },
-          { kana: 'じかん', romaji: ['jikan'], rubyHtml: '<ruby>時間<rt>じかん</rt></ruby>', meaning: 'Thời gian' },
-          { kana: 'ようじ', romaji: ['youji'], rubyHtml: '<ruby>用事<rt>ようじ</rt></ruby>', meaning: 'Việc bận' }
-        ]}
-      ],
-      10: [
-        { id: 'b10_tontai', name: 'A & B. Động từ tồn tại & Đối tượng', selected: true, items: [
-          { kana: 'あります', romaji: ['arimasu'], rubyHtml: 'あります', meaning: 'Có (tồn tại vật vô giác)' },
-          { kana: 'います', romaji: ['imashu', 'imasu'], rubyHtml: 'います', meaning: 'Có, ở (người, động vật)' },
-          { kana: 'おとこのひと', romaji: ['otokonohito'], rubyHtml: '<ruby>男<rt>おとこ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người đàn ông' },
-          { kana: 'おんなのひと', romaji: ['onnanohito'], rubyHtml: '<ruby>女<rt>おんな</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người phụ nữ' },
-          { kana: 'いぬ', romaji: ['inu'], rubyHtml: '<ruby>犬<rt>いぬ</rt></ruby>', meaning: 'Con chó' },
-          { kana: 'ねこ', romaji: ['neko'], rubyHtml: '<ruby>猫<rt>ねこ</rt></ruby>', meaning: 'Con mèo' },
-          { kana: 'き', romaji: ['ki'], rubyHtml: '<ruby>木<rt>き</rt></ruby>', meaning: 'Cây, gỗ' },
-          { kana: 'もの', romaji: ['mono'], rubyHtml: 'もの', meaning: 'Đồ vật' },
-          { kana: 'れいぞうこ', romaji: ['reizouko'], rubyHtml: '<ruby>冷蔵庫<rt>れいぞうこ</rt></ruby>', meaning: 'Tủ lạnh' }
-        ]},
-        { id: 'b10_vitri', name: 'C. Từ vựng Vị trí nơi chốn', selected: true, items: [
-          { kana: 'うえ', romaji: ['ue'], rubyHtml: '<ruby>上<rt>うえ</rt></ruby>', meaning: 'Trên' },
-          { kana: 'した', romaji: ['shita'], rubyHtml: '<ruby>下<rt>した</rt></ruby>', meaning: 'Dưới' },
-          { kana: 'まえ', romaji: ['mae'], rubyHtml: '<ruby>前<rt>まえ</rt></ruby>', meaning: 'Trước' },
-          { kana: 'うしろ', romaji: ['ushiro'], rubyHtml: '<ruby>後ろ<rt>うしろ</rt></ruby>', meaning: 'Sau' },
-          { kana: 'みぎ', romaji: ['migi'], rubyHtml: '<ruby>右<rt>みぎ</rt></ruby>', meaning: 'Phải' },
-          { kana: 'ひだり', romaji: ['hidari'], rubyHtml: '<ruby>左<rt>ひだり</rt></ruby>', meaning: 'Trái' },
-          { kana: 'なか', romaji: ['naka'], rubyHtml: '<ruby>中<rt>なか</rt></ruby>', meaning: 'Trong' },
-          { kana: 'そと', romaji: ['soto'], rubyHtml: '<ruby>外<rt>そと</rt></ruby>', meaning: 'Ngoài' },
-          { kana: 'となり', romaji: ['tonari'], rubyHtml: '<ruby>隣<rt>となり</rt></ruby>', meaning: 'Bên cạnh, kế bên' },
-          { kana: 'ちかく', romaji: ['chikaku'], rubyHtml: '<ruby>近く<rt>ちかく</rt></ruby>', meaning: 'Gần' },
-          { kana: 'あいだ', romaji: ['aida'], rubyHtml: '<ruby>間<rt>あいだ</rt></ruby>', meaning: 'Ở giữa' }
-        ]}
-      ]
-    };
-
     let currentAlphabet = 'hiragana';
     let currentVocabSet = 'minna';
+    let currentLevel = 'n5'; // 'n5' hoặc 'n4'
     let currentSelectedLesson = 1;
     let isTestMode = false;
     let isShowFurigana = true;
@@ -862,6 +554,16 @@
     let currentCard = null;
     let streak = 0;
     let isLockInput = false;
+
+    function toPlainRomaji(str) {
+      if (!str) return '';
+      return str
+        .toLowerCase()
+        .replace(/đ/g, 'd')
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, '');
+    }
 
     let failedCardKanas = new Set();
     let firstTrySuccessKanas = new Set();
@@ -878,6 +580,7 @@
     const cardVocab = document.getElementById('card-vocab');
     
     const levelN5 = document.getElementById('level-n5');
+    const levelN4 = document.getElementById('level-n4');
     const levelCoTuoi = document.getElementById('level-co-tuoi');
 
     const btnBackFromLevel = document.getElementById('btn-back-from-level');
@@ -887,6 +590,7 @@
     const btnBackToPreviousMenu = document.getElementById('btn-back-to-previous-menu');
 
     const lessonsWrapper = document.getElementById('lessons-wrapper');
+    const lessonViewTitle = document.getElementById('lesson-view-title');
     const topicsWrapper = document.getElementById('topics-wrapper');
     const topicViewTitle = document.getElementById('topic-view-title');
     const selectedTopicsCount = document.getElementById('selected-topics-count');
@@ -909,6 +613,19 @@
     const streakCount = document.getElementById('streak-count');
     const flashcardBox = document.getElementById('flashcard-box');
     const vocabTools = document.getElementById('vocab-tools');
+
+    const customNoteDisplay = document.getElementById('custom-note-display');
+    const customImgView = document.getElementById('custom-img-view');
+    const customSentenceView = document.getElementById('custom-sentence-view');
+    const btnOpenNoteModal = document.getElementById('btn-open-note-modal');
+
+    const modalCustomNote = document.getElementById('modal-custom-note');
+    const modalNoteWordInfo = document.getElementById('modal-note-word-info');
+    const noteSentenceInput = document.getElementById('note-sentence-input');
+    const noteFileInput = document.getElementById('note-file-input');
+    const btnSaveNote = document.getElementById('btn-save-note');
+    const btnDeleteNote = document.getElementById('btn-delete-note');
+    const btnCloseNote = document.getElementById('btn-close-note');
     
     const btnToggleSpeaker = document.getElementById('btn-toggle-speaker');
     const chkToggleFurigana = document.getElementById('chk-toggle-furigana');
@@ -930,10 +647,18 @@
     const btnRestart = document.getElementById('btn-restart');
     const btnModalHome = document.getElementById('btn-modal-home');
 
-    // HÀM PHÁT ÂM THANH (KHÔNG TẮT KHI BẤM NGHE LẠI THỦ CÔNG)
+    function resetInputField() {
+      romajiInput.value = '';
+      romajiInput.focus();
+    }
+
+    function selectAndFocusInputField() {
+      romajiInput.focus();
+      romajiInput.select();
+    }
+
     function speakText(text, forceManual = false) {
-      if (currentAlphabet !== 'vocab') return;
-      if (!forceManual && !isAutoAudioEnabled) return;
+      if (currentAlphabet !== 'vocab' || (!forceManual && !isAutoAudioEnabled)) return;
       if (!('speechSynthesis' in window)) return;
 
       window.speechSynthesis.cancel();
@@ -941,6 +666,10 @@
       const utterance = new SpeechSynthesisUtterance(cleanText);
       utterance.lang = 'ja-JP';
       utterance.rate = 0.95;
+
+      const voices = window.speechSynthesis.getVoices();
+      const jaVoice = voices.find(v => v.lang.includes('ja') || v.lang.includes('JP'));
+      if (jaVoice) utterance.voice = jaVoice;
 
       window.speechSynthesis.speak(utterance);
     }
@@ -958,7 +687,130 @@
       }
     });
 
-    // ĐIỀU HƯỚNG MÀN HÌNH
+    btnOpenNoteModal.addEventListener('click', () => {
+      if (!currentCard) return;
+      modalNoteWordInfo.innerHTML = `Đang thêm ghi chú cho: <b>${currentCard.kana}</b> (${currentCard.meaning})`;
+
+      const storedNote = localStorage.getItem('vocab_note_' + currentCard.kana);
+      if (storedNote) {
+        try {
+          const parsed = JSON.parse(storedNote);
+          noteSentenceInput.value = parsed.sentence || '';
+        } catch(e) {
+          noteSentenceInput.value = '';
+        }
+      } else {
+        noteSentenceInput.value = '';
+      }
+      noteFileInput.value = '';
+
+      modalCustomNote.classList.add('active');
+    });
+
+    btnCloseNote.addEventListener('click', () => {
+      modalCustomNote.classList.remove('active');
+      romajiInput.focus();
+    });
+
+    btnSaveNote.addEventListener('click', () => {
+      if (!currentCard) return;
+
+      const sentenceText = noteSentenceInput.value.trim();
+      const file = noteFileInput.files[0];
+
+      const saveToStorage = (imageDataUrl) => {
+        const noteObj = {
+          sentence: sentenceText,
+          image: imageDataUrl || ''
+        };
+
+        if (!sentenceText && !imageDataUrl) {
+          localStorage.removeItem('vocab_note_' + currentCard.kana);
+        } else {
+          try {
+            localStorage.setItem('vocab_note_' + currentCard.kana, JSON.stringify(noteObj));
+          } catch(e) {
+            alert("Lỗi dung lượng: Bức ảnh bạn tải lên quá lớn để lưu vào trình duyệt. Vui lòng chọn ảnh nhỏ hơn!");
+            return;
+          }
+        }
+
+        modalCustomNote.classList.remove('active');
+        loadCustomNoteDisplay();
+        romajiInput.focus();
+      };
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => saveToStorage(e.target.result);
+        reader.readAsDataURL(file);
+      } else {
+        const existingData = localStorage.getItem('vocab_note_' + currentCard.kana);
+        let existingImg = '';
+        if (existingData) {
+          try {
+            existingImg = JSON.parse(existingData).image || '';
+          } catch(e) {}
+        }
+        saveToStorage(existingImg);
+      }
+    });
+
+    btnDeleteNote.addEventListener('click', () => {
+      if (!currentCard) return;
+      localStorage.removeItem('vocab_note_' + currentCard.kana);
+      modalCustomNote.classList.remove('active');
+      loadCustomNoteDisplay();
+      romajiInput.focus();
+    });
+
+    function loadCustomNoteDisplay() {
+      if (!currentCard) {
+        customNoteDisplay.style.display = 'none';
+        return;
+      }
+
+      const storedNote = localStorage.getItem('vocab_note_' + currentCard.kana);
+      if (storedNote) {
+        try {
+          const parsed = JSON.parse(storedNote);
+          let hasContent = false;
+
+          if (parsed.sentence) {
+            customSentenceView.textContent = `💬 ${parsed.sentence}`;
+            customSentenceView.style.display = 'inline-block';
+            hasContent = true;
+          } else {
+            customSentenceView.style.display = 'none';
+          }
+
+          if (parsed.image) {
+            customImgView.src = parsed.image;
+            customImgView.style.display = 'block';
+            hasContent = true;
+          } else {
+            customImgView.style.display = 'none';
+          }
+
+          if (hasContent) {
+            customNoteDisplay.style.display = 'flex';
+            btnOpenNoteModal.classList.add('active');
+          } else {
+            customNoteDisplay.style.display = 'none';
+            btnOpenNoteModal.classList.remove('active');
+          }
+        } catch(e) {
+          customNoteDisplay.style.display = 'none';
+          btnOpenNoteModal.classList.remove('active');
+        }
+      } else {
+        customNoteDisplay.style.display = 'none';
+        customImgView.style.display = 'none';
+        customSentenceView.style.display = 'none';
+        btnOpenNoteModal.classList.remove('active');
+      }
+    }
+
     cardHiragana.addEventListener('click', () => selectMode('hiragana'));
     cardKatakana.addEventListener('click', () => selectMode('katakana'));
     cardVocab.addEventListener('click', () => {
@@ -974,6 +826,17 @@
 
     levelN5.addEventListener('click', () => {
       currentVocabSet = 'minna';
+      currentLevel = 'n5';
+      lessonViewTitle.textContent = 'Từ vựng N5 - Minna no Nihongo (Bài 1-25)';
+      levelSelectView.style.display = 'none';
+      lessonSelectView.style.display = 'block';
+      renderLessonGrid();
+    });
+
+    levelN4.addEventListener('click', () => {
+      currentVocabSet = 'minna';
+      currentLevel = 'n4';
+      lessonViewTitle.textContent = 'Từ vựng N4 - Minna no Nihongo (Bài 26-50)';
       levelSelectView.style.display = 'none';
       lessonSelectView.style.display = 'block';
       renderLessonGrid();
@@ -1028,9 +891,13 @@
       renderHomeColumns();
     }
 
+    // TẠO LƯỚI TỰ ĐỘNG THEO CẤP ĐỘ N5 (1-25) HOẶC N4 (26-50)
     function renderLessonGrid() {
       lessonsWrapper.innerHTML = '';
-      for (let i = 1; i <= 25; i++) {
+      const startLesson = currentLevel === 'n5' ? 1 : 26;
+      const endLesson = currentLevel === 'n5' ? 25 : 50;
+
+      for (let i = startLesson; i <= endLesson; i++) {
         const isAvailable = !!MINNA_LESSONS_DATA[i];
         const lessonEl = document.createElement('div');
         lessonEl.className = `lesson-card ${isAvailable ? 'active' : 'inactive'}`;
@@ -1050,7 +917,7 @@
           lessonEl.addEventListener('click', () => {
             currentSelectedLesson = i;
             selectedTopicIds = new Set(MINNA_LESSONS_DATA[i].map(t => t.id));
-            topicViewTitle.textContent = `N5 - Bài ${i}`;
+            topicViewTitle.textContent = `${currentLevel.toUpperCase()} - Bài ${i}`;
             
             lessonSelectView.style.display = 'none';
             topicSelectView.style.display = 'block';
@@ -1256,7 +1123,6 @@
       accuracyVal.textContent = `${accuracyPct}%`;
     }
 
-    // TỰ ĐỘNG CHỈNH CỠ CHỮ PHÙ HỢP CÂU DÀI - TỐI ƯU HIỂN THỊ
     function adjustRubyFontSize(text) {
       const len = text.length;
       if (len > 18) {
@@ -1281,8 +1147,8 @@
       const randomIndex = Math.floor(Math.random() * activeDeck.length);
       currentCard = activeDeck[randomIndex];
 
-      const maxLen = Math.max(...currentCard.romaji.map(r => r.replace(/[^a-z0-9]/g, '').length));
-      romajiInput.maxLength = maxLen + 4;
+      const maxLen = Math.max(...currentCard.romaji.map(r => toPlainRomaji(r).length));
+      romajiInput.maxLength = maxLen + 10;
 
       if (currentAlphabet === 'vocab') {
         vocabTools.style.display = 'flex';
@@ -1297,33 +1163,48 @@
           rubyDisplay.innerHTML = currentCard.rubyHtml || currentCard.kana;
           meaningDisplay.textContent = currentCard.meaning || '';
         }
+
+        loadCustomNoteDisplay();
+
       } else {
         vocabTools.style.display = 'none';
         furiganaToggleWrapper.style.display = 'none';
+        customNoteDisplay.style.display = 'none';
         rubyDisplay.style.fontSize = '3.5rem';
         rubyDisplay.innerHTML = currentCard.kana;
         meaningDisplay.textContent = '';
       }
 
-      romajiInput.value = '';
+      resetInputField();
       answerHint.textContent = '';
       hideFeedback();
-      romajiInput.focus();
     }
 
-    // AUTO-CHECK TỰ ĐỘNG TỐC ĐỘ CAO
     romajiInput.addEventListener('input', () => {
+      processInputCheck();
+    });
+
+    function processInputCheck() {
       if (isLockInput || !currentCard) return;
 
-      const userInput = romajiInput.value.trim().toLowerCase();
-      const cleanUser = userInput.replace(/[^a-z0-9]/g, '');
+      const rawInput = romajiInput.value.trim();
+      const cleanUser = toPlainRomaji(rawInput);
 
-      if (!cleanUser) {
+      if (!rawInput && !cleanUser) {
         hideFeedback();
         return;
       }
 
-      const isCorrect = currentCard.romaji.some(r => r.replace(/[^a-z0-9]/g, '') === cleanUser);
+      const cleanCardKanji = currentCard.rubyHtml 
+        ? currentCard.rubyHtml.replace(/<rt>.*?<\/rt>/gi, '').replace(/<[^>]*>/g, '').trim() 
+        : (currentCard.kanji || '');
+
+      const isJapaneseMatch = (currentCard.kana && rawInput === currentCard.kana) || 
+                              (cleanCardKanji && rawInput === cleanCardKanji);
+
+      const isRomajiMatch = currentCard.romaji && currentCard.romaji.some(r => toPlainRomaji(r) === cleanUser);
+
+      const isCorrect = isJapaneseMatch || isRomajiMatch;
 
       if (isCorrect) {
         isLockInput = true;
@@ -1333,7 +1214,10 @@
         }
 
         streak++;
-        activeDeck = activeDeck.filter(card => card.kana !== currentCard.kana);
+        const cardIndex = activeDeck.findIndex(card => card === currentCard);
+        if (cardIndex !== -1) {
+          activeDeck.splice(cardIndex, 1);
+        }
         
         updateStatsUI();
 
@@ -1349,21 +1233,26 @@
         return;
       }
 
-      const maxLen = Math.max(...currentCard.romaji.map(r => r.replace(/[^a-z0-9]/g, '').length));
+      const maxLenRomaji = Math.max(...currentCard.romaji.map(r => toPlainRomaji(r).length));
+      const maxLenKana = currentCard.kana ? currentCard.kana.length : 0;
+      const maxLenKanji = cleanCardKanji ? cleanCardKanji.length : 0;
+      const maxLenJapanese = Math.max(maxLenKana, maxLenKanji);
 
-      if (cleanUser.length >= maxLen) {
+      const isOverRomajiLen = (cleanUser.length > 0 && cleanUser.length >= maxLenRomaji);
+      const isOverJapaneseLen = (cleanUser.length === 0 && rawInput.length > 0 && maxLenJapanese > 0 && rawInput.length >= maxLenJapanese);
+
+      if (isOverRomajiLen || isOverJapaneseLen) {
         failedCardKanas.add(currentCard.kana);
 
         streak = 0;
         updateStatsUI();
         showFeedback('Chưa đúng!', 'incorrect');
-        romajiInput.select();
+        selectAndFocusInputField();
       } else {
         hideFeedback();
       }
-    });
+    }
 
-    // NÚT "XEM ĐÁP ÁN / NGHE LẠI" (LUÔN PHÁT ÂM KHI BẤM)
     function revealAnswer() {
       if (!currentCard) return;
 
@@ -1387,15 +1276,22 @@
       streak = 0;
       updateStatsUI();
 
+      const currentIndex = activeDeck.findIndex(card => card === currentCard);
+      const isAllSameKana = activeDeck.every(card => card.kana === currentCard.kana);
+
       let nextIndex;
-      do {
-        nextIndex = Math.floor(Math.random() * activeDeck.length);
-      } while (activeDeck[nextIndex].kana === currentCard.kana);
+      if (isAllSameKana) {
+        nextIndex = (currentIndex + 1) % activeDeck.length;
+      } else {
+        do {
+          nextIndex = Math.floor(Math.random() * activeDeck.length);
+        } while (activeDeck[nextIndex].kana === currentCard.kana);
+      }
 
       currentCard = activeDeck[nextIndex];
       
-      const maxLen = Math.max(...currentCard.romaji.map(r => r.replace(/[^a-z0-9]/g, '').length));
-      romajiInput.maxLength = maxLen + 4;
+      const maxLen = Math.max(...currentCard.romaji.map(r => toPlainRomaji(r).length));
+      romajiInput.maxLength = maxLen + 10;
 
       if (currentAlphabet === 'vocab') {
         if (isTestMode) {
@@ -1407,16 +1303,21 @@
           rubyDisplay.innerHTML = currentCard.rubyHtml || currentCard.kana;
           meaningDisplay.textContent = currentCard.meaning || '';
         }
+
+        loadCustomNoteDisplay();
+
       } else {
+        vocabTools.style.display = 'none';
+        furiganaToggleWrapper.style.display = 'none';
+        customNoteDisplay.style.display = 'none';
         rubyDisplay.style.fontSize = '3.5rem';
         rubyDisplay.innerHTML = currentCard.kana;
         meaningDisplay.textContent = '';
       }
 
-      romajiInput.value = '';
+      resetInputField();
       answerHint.textContent = '';
       hideFeedback();
-      romajiInput.focus();
     }
 
     function showCompletionModal() {
@@ -1449,6 +1350,19 @@
     btnReveal.addEventListener('click', revealAnswer);
     btnReset.addEventListener('click', resetSession);
     btnRestart.addEventListener('click', resetSession);
+
+    document.addEventListener('keydown', (e) => {
+      if (practiceView.style.display !== 'block') return;
+      if (modalCustomNote.classList.contains('active')) return;
+
+      if (e.key === 'Enter') {
+        if (answerHint.textContent === '') {
+          revealAnswer();
+        } else {
+          skipCard();
+        }
+      }
+    });
   </script>
 </body>
 </html>
