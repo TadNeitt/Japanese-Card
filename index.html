@@ -330,13 +330,13 @@
   <div class="app-container" id="level-select-view">
     <div class="view-header">
       <button class="btn-header-action" id="btn-back-from-level">← Trang chủ</button>
-      <div class="view-title">Chọn cấp độ / Mục học</div>
+      <div class="view-title">Chọn cấp độ</div>
       <div></div>
     </div>
 
     <div class="level-grid">
       <div class="level-card highlight" id="level-co-tuoi">
-        <div class="level-title" style="color: var(--pink-primary);">Lớp cô Tươi</div>
+        <div class="level-title" style="color: var(--pink-primary);">Giao tiếp lớp học</div>
         <div class="level-subtitle">45 câu giao tiếp hàng ngày</div>
       </div>
 
@@ -687,11 +687,17 @@
       }
     });
 
+    // Hàm tạo khóa lưu duy nhất kết hợp cả Kana và Meaning
+function getNoteKey(card) {
+  if (!card) return '';
+  return 'vocab_note_' + card.kana + '_' + (card.meaning || '');
+}
+
     btnOpenNoteModal.addEventListener('click', () => {
       if (!currentCard) return;
       modalNoteWordInfo.innerHTML = `Đang thêm ghi chú cho: <b>${currentCard.kana}</b> (${currentCard.meaning})`;
 
-      const storedNote = localStorage.getItem('vocab_note_' + currentCard.kana);
+      const storedNote = localStorage.getItem(getNoteKey(currentCard));
       if (storedNote) {
         try {
           const parsed = JSON.parse(storedNote);
@@ -712,57 +718,97 @@
       romajiInput.focus();
     });
 
-    btnSaveNote.addEventListener('click', () => {
-      if (!currentCard) return;
+    // Hàm tự động thu nhỏ và nén ảnh trước khi lưu
+function compressImage(file, maxWidth, maxHeight, quality, callback) {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = (e) => {
+    const img = new Image();
+    img.src = e.target.result;
+    img.onload = () => {
+      let width = img.width;
+      let height = img.height;
 
-      const sentenceText = noteSentenceInput.value.trim();
-      const file = noteFileInput.files[0];
-
-      const saveToStorage = (imageDataUrl) => {
-        const noteObj = {
-          sentence: sentenceText,
-          image: imageDataUrl || ''
-        };
-
-        if (!sentenceText && !imageDataUrl) {
-          localStorage.removeItem('vocab_note_' + currentCard.kana);
-        } else {
-          try {
-            localStorage.setItem('vocab_note_' + currentCard.kana, JSON.stringify(noteObj));
-          } catch(e) {
-            alert("Lỗi dung lượng: Bức ảnh bạn tải lên quá lớn để lưu vào trình duyệt. Vui lòng chọn ảnh nhỏ hơn!");
-            return;
-          }
+      // Tính toán lại kích thước sao cho không vượt quá maxWidth / maxHeight
+      if (width > height) {
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
         }
-
-        modalCustomNote.classList.remove('active');
-        loadCustomNoteDisplay();
-        romajiInput.focus();
-      };
-
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => saveToStorage(e.target.result);
-        reader.readAsDataURL(file);
       } else {
-        const existingData = localStorage.getItem('vocab_note_' + currentCard.kana);
-        let existingImg = '';
-        if (existingData) {
-          try {
-            existingImg = JSON.parse(existingData).image || '';
-          } catch(e) {}
+        if (height > maxHeight) {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
         }
-        saveToStorage(existingImg);
       }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Xuất ra chuỗi Base64 đã được nén thành JPG chất lượng vừa đủ
+      const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+      callback(compressedDataUrl);
+    };
+  };
+}
+
+    btnSaveNote.addEventListener('click', () => {
+  if (!currentCard) return;
+
+  const sentenceText = noteSentenceInput.value.trim();
+  const file = noteFileInput.files[0];
+  const noteKey = getNoteKey(currentCard);
+
+  const saveToStorage = (imageDataUrl) => {
+    const noteObj = {
+      sentence: sentenceText,
+      image: imageDataUrl || ''
+    };
+
+    if (!sentenceText && !imageDataUrl) {
+      localStorage.removeItem(noteKey);
+    } else {
+      try {
+        localStorage.setItem(noteKey, JSON.stringify(noteObj));
+      } catch(e) {
+        alert("Lỗi dung lượng: Trình duyệt đã hết bộ nhớ lưu trữ!");
+        return;
+      }
+    }
+
+    modalCustomNote.classList.remove('active');
+    loadCustomNoteDisplay();
+    romajiInput.focus();
+  };
+
+  if (file) {
+    // Tự động nén ảnh trước khi lưu (Sẽ giải thích ở Phần 2)
+    compressImage(file, 400, 400, 0.7, (compressedBase64) => {
+      saveToStorage(compressedBase64);
     });
+  } else {
+    const existingData = localStorage.getItem(noteKey);
+    let existingImg = '';
+    if (existingData) {
+      try {
+        existingImg = JSON.parse(existingData).image || '';
+      } catch(e) {}
+    }
+    saveToStorage(existingImg);
+  }
+});
 
     btnDeleteNote.addEventListener('click', () => {
-      if (!currentCard) return;
-      localStorage.removeItem('vocab_note_' + currentCard.kana);
-      modalCustomNote.classList.remove('active');
-      loadCustomNoteDisplay();
-      romajiInput.focus();
-    });
+  if (!currentCard) return;
+  localStorage.removeItem(getNoteKey(currentCard));
+  modalCustomNote.classList.remove('active');
+  loadCustomNoteDisplay();
+  romajiInput.focus();
+});
 
     function loadCustomNoteDisplay() {
       if (!currentCard) {
@@ -770,7 +816,7 @@
         return;
       }
 
-      const storedNote = localStorage.getItem('vocab_note_' + currentCard.kana);
+      const storedNote = localStorage.getItem(getNoteKey(currentCard));
       if (storedNote) {
         try {
           const parsed = JSON.parse(storedNote);
@@ -1246,7 +1292,7 @@
 
         streak = 0;
         updateStatsUI();
-        showFeedback('Chưa đúng!', 'incorrect');
+        showFeedback('Sai ròi hahahahahah!', 'incorrect');
         selectAndFocusInputField();
       } else {
         hideFeedback();
@@ -1329,7 +1375,7 @@
       if (currentAlphabet === 'hiragana') titleMode = 'Hiragana';
       else if (currentAlphabet === 'katakana') titleMode = 'Katakana';
       else if (currentAlphabet === 'vocab') {
-        titleMode = currentVocabSet === 'co_tuoi' ? 'Lớp cô Tươi' : `Từ vựng Bài ${currentSelectedLesson}`;
+        titleMode = currentVocabSet === 'co_tuoi' ? 'Giao tiếp lớp học' : `Từ vựng Bài ${currentSelectedLesson}`;
       }
 
       modalStatsDesc.innerHTML = `Hoàn thành <b>${sessionTotalCards}</b> mục ${titleMode}!<br>Đúng ngay lần đầu: <b>${accuracyPct}%</b> | Số từ gõ sai: <b>${failedCardKanas.size}</b>`;
