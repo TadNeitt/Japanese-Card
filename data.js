@@ -171,8 +171,8 @@ const MINNA_LESSONS_DATA = {
       { kana: 'それ', romaji: ['sore'], rubyHtml: 'それ', meaning: 'Cái đó (gần người nghe)' },
       { kana: 'あれ', romaji: ['are'], rubyHtml: 'あれ', meaning: 'Cái kia (xa cả hai)' },
       { kana: 'この', romaji: ['kono'], rubyHtml: 'この', meaning: '~ này' },
-      { kana: 'その', romaji: ['sono'], rubyHtml: 'その', meaning: '~ đó' },
-      { kana: 'あの', romaji: ['ano'], rubyHtml: 'あの', meaning: '~ kia' }
+      { kana: 'その', romaji: ['sono'], rubyHtml: 'その', meaning: '~ đó (gần người nghe)' },
+      { kana: 'あの', romaji: ['ano'], rubyHtml: 'あの', meaning: '~ kia (xa cả hai)' }
     ]},
     { id: 'b2_dovat', name: 'B. Đồ vật & Văn phòng phẩm', selected: true, items: [
       { kana: 'ほん', romaji: ['hon'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby>', meaning: 'Sách' },
