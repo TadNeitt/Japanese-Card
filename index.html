@@ -281,6 +281,7 @@
     .btn-skip { flex: 1; background-color: #e2e8f0; color: var(--text-main); }
     .btn-reveal, .btn-reset { flex: 1; background-color: transparent; color: var(--text-muted); border: 1px solid var(--border); }
 
+    /* MODAL CHUNG */
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 100; padding: 20px; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { background: #ffffff; padding: 28px 24px; border-radius: 20px; text-align: center; max-width: 400px; width: 100%; }
@@ -290,6 +291,7 @@
     .btn-restart { background-color: var(--primary); color: white; padding: 12px; }
     .btn-back-home { background-color: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 12px; }
 
+    /* FORM CHỈNH SỬA GHI CHÚ CÁ NHÂN */
     .form-group { text-align: left; margin-bottom: 16px; }
     .form-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
     .form-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; outline: none; font-size: 0.95rem; }
@@ -345,7 +347,6 @@
         <div class="level-subtitle">Sơ cấp 1 (Bài 1 - 25)</div>
       </div>
 
-      <!-- ĐÃ MỞ KHÓA MÀN HÌNH N4 -->
       <div class="level-card" id="level-n4">
         <div class="level-title" style="color: #2563eb;">N4</div>
         <div class="level-subtitle">Sơ cấp 2 (Bài 26 - 50)</div>
@@ -394,7 +395,7 @@
     <div class="topics-list" id="topics-wrapper"></div>
 
     <div class="test-mode-box" id="test-mode-toggle">
-      <div class="test-mode-label">Đủ Tày thì bấm (Test mode)</div>
+      <div class="test-mode-label">📖 Chế độ Học bài (Hiện trước chữ Nhật & Furigana)</div>
       <div class="toggle-switch"></div>
     </div>
 
@@ -539,9 +540,10 @@
   <script>
     let currentAlphabet = 'hiragana';
     let currentVocabSet = 'minna';
-    let currentLevel = 'n5'; // 'n5' hoặc 'n4'
+    let currentLevel = 'n5';
     let currentSelectedLesson = 1;
-    let isTestMode = false;
+
+    let isStudyMode = false;
     let isShowFurigana = true;
     let isAutoAudioEnabled = true;
 
@@ -549,11 +551,17 @@
     let selectedTopicIds = new Set();
     
     let sessionTotalCards = 0;
+    let currentRoundTotal = 0;
     let sessionDeck = [];
     let activeDeck = [];
     let currentCard = null;
     let streak = 0;
     let isLockInput = false;
+
+    // QUẢN LÝ VÒNG LẶP ÔN TỪ SAI
+    let roundMistakes = new Map(); // Lưu từ sai trong vòng hiện tại để chuẩn bị cho vòng sau
+    let roundFailedKanas = new Set(); // Đếm số từ sai của riêng vòng hiện tại (cho Incorrect: 0 / N)
+    let firstTrySuccessKanas = new Set(); // Đếm câu đúng ngay lần đầu trên toàn bài để tính Accuracy
 
     function toPlainRomaji(str) {
       if (!str) return '';
@@ -564,9 +572,6 @@
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-z0-9]/g, '');
     }
-
-    let failedCardKanas = new Set();
-    let firstTrySuccessKanas = new Set();
 
     const modeSelectView = document.getElementById('mode-select-view');
     const levelSelectView = document.getElementById('level-select-view');
@@ -687,11 +692,10 @@
       }
     });
 
-    // Hàm tạo khóa lưu duy nhất kết hợp cả Kana và Meaning
-function getNoteKey(card) {
-  if (!card) return '';
-  return 'vocab_note_' + card.kana + '_' + (card.meaning || '');
-}
+    function getNoteKey(card) {
+      if (!card) return '';
+      return 'vocab_note_' + card.kana + '_' + (card.meaning || '');
+    }
 
     btnOpenNoteModal.addEventListener('click', () => {
       if (!currentCard) return;
@@ -718,97 +722,93 @@ function getNoteKey(card) {
       romajiInput.focus();
     });
 
-    // Hàm tự động thu nhỏ và nén ảnh trước khi lưu
-function compressImage(file, maxWidth, maxHeight, quality, callback) {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = (e) => {
-    const img = new Image();
-    img.src = e.target.result;
-    img.onload = () => {
-      let width = img.width;
-      let height = img.height;
+    function compressImage(file, maxWidth, maxHeight, quality, callback) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
 
-      // Tính toán lại kích thước sao cho không vượt quá maxWidth / maxHeight
-      if (width > height) {
-        if (width > maxWidth) {
-          height = Math.round((height * maxWidth) / width);
-          width = maxWidth;
-        }
-      } else {
-        if (height > maxHeight) {
-          width = Math.round((width * maxHeight) / height);
-          height = maxHeight;
-        }
-      }
+          if (width > height) {
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
 
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
 
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, width, height);
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
 
-      // Xuất ra chuỗi Base64 đã được nén thành JPG chất lượng vừa đủ
-      const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-      callback(compressedDataUrl);
-    };
-  };
-}
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+          callback(compressedDataUrl);
+        };
+      };
+    }
 
     btnSaveNote.addEventListener('click', () => {
-  if (!currentCard) return;
+      if (!currentCard) return;
 
-  const sentenceText = noteSentenceInput.value.trim();
-  const file = noteFileInput.files[0];
-  const noteKey = getNoteKey(currentCard);
+      const sentenceText = noteSentenceInput.value.trim();
+      const file = noteFileInput.files[0];
+      const noteKey = getNoteKey(currentCard);
 
-  const saveToStorage = (imageDataUrl) => {
-    const noteObj = {
-      sentence: sentenceText,
-      image: imageDataUrl || ''
-    };
+      const saveToStorage = (imageDataUrl) => {
+        const noteObj = {
+          sentence: sentenceText,
+          image: imageDataUrl || ''
+        };
 
-    if (!sentenceText && !imageDataUrl) {
-      localStorage.removeItem(noteKey);
-    } else {
-      try {
-        localStorage.setItem(noteKey, JSON.stringify(noteObj));
-      } catch(e) {
-        alert("Lỗi dung lượng: Trình duyệt đã hết bộ nhớ lưu trữ!");
-        return;
+        if (!sentenceText && !imageDataUrl) {
+          localStorage.removeItem(noteKey);
+        } else {
+          try {
+            localStorage.setItem(noteKey, JSON.stringify(noteObj));
+          } catch(e) {
+            alert("Lỗi dung lượng: Trình duyệt đã hết bộ nhớ lưu trữ!");
+            return;
+          }
+        }
+
+        modalCustomNote.classList.remove('active');
+        loadCustomNoteDisplay();
+        romajiInput.focus();
+      };
+
+      if (file) {
+        compressImage(file, 400, 400, 0.7, (compressedBase64) => {
+          saveToStorage(compressedBase64);
+        });
+      } else {
+        const existingData = localStorage.getItem(noteKey);
+        let existingImg = '';
+        if (existingData) {
+          try {
+            existingImg = JSON.parse(existingData).image || '';
+          } catch(e) {}
+        }
+        saveToStorage(existingImg);
       }
-    }
-
-    modalCustomNote.classList.remove('active');
-    loadCustomNoteDisplay();
-    romajiInput.focus();
-  };
-
-  if (file) {
-    // Tự động nén ảnh trước khi lưu (Sẽ giải thích ở Phần 2)
-    compressImage(file, 400, 400, 0.7, (compressedBase64) => {
-      saveToStorage(compressedBase64);
     });
-  } else {
-    const existingData = localStorage.getItem(noteKey);
-    let existingImg = '';
-    if (existingData) {
-      try {
-        existingImg = JSON.parse(existingData).image || '';
-      } catch(e) {}
-    }
-    saveToStorage(existingImg);
-  }
-});
 
     btnDeleteNote.addEventListener('click', () => {
-  if (!currentCard) return;
-  localStorage.removeItem(getNoteKey(currentCard));
-  modalCustomNote.classList.remove('active');
-  loadCustomNoteDisplay();
-  romajiInput.focus();
-});
+      if (!currentCard) return;
+      localStorage.removeItem(getNoteKey(currentCard));
+      modalCustomNote.classList.remove('active');
+      loadCustomNoteDisplay();
+      romajiInput.focus();
+    });
 
     function loadCustomNoteDisplay() {
       if (!currentCard) {
@@ -937,7 +937,6 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
       renderHomeColumns();
     }
 
-    // TẠO LƯỚI TỰ ĐỘNG THEO CẤP ĐỘ N5 (1-25) HOẶC N4 (26-50)
     function renderLessonGrid() {
       lessonsWrapper.innerHTML = '';
       const startLesson = currentLevel === 'n5' ? 1 : 26;
@@ -1013,8 +1012,8 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
     }
 
     testModeToggle.addEventListener('click', () => {
-      isTestMode = !isTestMode;
-      if (isTestMode) {
+      isStudyMode = !isStudyMode;
+      if (isStudyMode) {
         testModeToggle.classList.add('active');
       } else {
         testModeToggle.classList.remove('active');
@@ -1148,9 +1147,12 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
 
     function resetSession() {
       activeDeck = [...sessionDeck];
-      streak = 0;
-      failedCardKanas.clear();
+      sessionTotalCards = sessionDeck.length;
+      currentRoundTotal = sessionTotalCards;
+      roundMistakes.clear();
+      roundFailedKanas.clear();
       firstTrySuccessKanas.clear();
+      streak = 0;
       isLockInput = false;
 
       updateStatsUI();
@@ -1161,7 +1163,7 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
     function updateStatsUI() {
       streakCount.textContent = streak;
       remainingVal.textContent = activeDeck.length;
-      incorrectVal.textContent = `${failedCardKanas.size} / ${sessionTotalCards}`;
+      incorrectVal.textContent = `${roundFailedKanas.size} / ${currentRoundTotal}`;
 
       const accuracyPct = sessionTotalCards > 0 
         ? Math.round((firstTrySuccessKanas.size / sessionTotalCards) * 100) 
@@ -1182,8 +1184,36 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
       }
     }
 
+    // HÀM GHI NHẬN TỪ SAI TRONG VÒNG
+    function registerMistake() {
+      if (!currentCard) return;
+      const key = currentCard.kana + '_' + (currentCard.meaning || '');
+      roundMistakes.set(key, currentCard);
+      roundFailedKanas.add(key);
+      streak = 0;
+      updateStatsUI();
+    }
+
     function nextCard() {
+      // KHI ĐÃ HOÀN THÀNH HẾT ACTIVE DECK TRONG VÒNG
       if (activeDeck.length === 0) {
+        // Nếu trong vòng vừa rồi có từ sai => Bắt đầu vòng ôn tập mới cho những từ sai đó
+        if (roundMistakes.size > 0) {
+          activeDeck = Array.from(roundMistakes.values());
+          currentRoundTotal = activeDeck.length;
+          roundMistakes.clear();
+          roundFailedKanas.clear();
+          
+          updateStatsUI();
+          showFeedback(`🔁 Ôn lại ${currentRoundTotal} từ chưa thuộc!`, 'correct');
+
+          setTimeout(() => {
+            nextCard();
+          }, 1000);
+          return;
+        }
+
+        // Khi không còn từ nào sai nữa (đạt 100% thuộc bài)
         showCompletionModal();
         return;
       }
@@ -1200,7 +1230,7 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
         vocabTools.style.display = 'flex';
         furiganaToggleWrapper.style.display = 'flex';
 
-        if (isTestMode) {
+        if (!isStudyMode) {
           rubyDisplay.style.fontSize = '2.5rem';
           rubyDisplay.innerHTML = `<span style="color: #cbd5e1;">???</span>`;
           meaningDisplay.textContent = currentCard.meaning || '';
@@ -1255,8 +1285,10 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
       if (isCorrect) {
         isLockInput = true;
 
-        if (!failedCardKanas.has(currentCard.kana)) {
-          firstTrySuccessKanas.add(currentCard.kana);
+        const key = currentCard.kana + '_' + (currentCard.meaning || '');
+        // Nếu từ này chưa từng sai ở vòng đầu tiên thì cộng điểm Accuracy
+        if (!roundFailedKanas.has(key) && !roundMistakes.has(key) && currentRoundTotal === sessionTotalCards) {
+          firstTrySuccessKanas.add(key);
         }
 
         streak++;
@@ -1288,10 +1320,7 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
       const isOverJapaneseLen = (cleanUser.length === 0 && rawInput.length > 0 && maxLenJapanese > 0 && rawInput.length >= maxLenJapanese);
 
       if (isOverRomajiLen || isOverJapaneseLen) {
-        failedCardKanas.add(currentCard.kana);
-
-        streak = 0;
-        updateStatsUI();
+        registerMistake();
         showFeedback('Sai ròi hahahahahah!', 'incorrect');
         selectAndFocusInputField();
       } else {
@@ -1302,10 +1331,7 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
     function revealAnswer() {
       if (!currentCard) return;
 
-      failedCardKanas.add(currentCard.kana);
-      streak = 0;
-      updateStatsUI();
-
+      registerMistake();
       answerHint.textContent = `Chữ Nhật: ${currentCard.kana} | Romaji: ${currentCard.romaji.join(' / ')}`;
       
       if (currentAlphabet === 'vocab') {
@@ -1316,11 +1342,16 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
     }
 
     function skipCard() {
-      if (isLockInput || activeDeck.length <= 1) return;
+      if (isLockInput) return;
 
-      failedCardKanas.add(currentCard.kana);
-      streak = 0;
-      updateStatsUI();
+      registerMistake();
+
+      if (activeDeck.length <= 1) {
+        resetInputField();
+        answerHint.textContent = '';
+        hideFeedback();
+        return;
+      }
 
       const currentIndex = activeDeck.findIndex(card => card === currentCard);
       const isAllSameKana = activeDeck.every(card => card.kana === currentCard.kana);
@@ -1340,7 +1371,7 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
       romajiInput.maxLength = maxLen + 10;
 
       if (currentAlphabet === 'vocab') {
-        if (isTestMode) {
+        if (!isStudyMode) {
           rubyDisplay.style.fontSize = '2.5rem';
           rubyDisplay.innerHTML = `<span style="color: #cbd5e1;">???</span>`;
           meaningDisplay.textContent = currentCard.meaning || '';
@@ -1378,7 +1409,7 @@ function compressImage(file, maxWidth, maxHeight, quality, callback) {
         titleMode = currentVocabSet === 'co_tuoi' ? 'Giao tiếp lớp học' : `Từ vựng Bài ${currentSelectedLesson}`;
       }
 
-      modalStatsDesc.innerHTML = `Hoàn thành <b>${sessionTotalCards}</b> mục ${titleMode}!<br>Đúng ngay lần đầu: <b>${accuracyPct}%</b> | Số từ gõ sai: <b>${failedCardKanas.size}</b>`;
+      modalStatsDesc.innerHTML = `Hoàn thành <b>${sessionTotalCards}</b> mục ${titleMode}!<br>Tỷ lệ nhớ ngay lần đầu: <b>${accuracyPct}%</b><br>Bạn đã ôn thuộc toàn bộ các từ của bài! 🎉`;
       modalCompletion.classList.add('active');
     }
 
