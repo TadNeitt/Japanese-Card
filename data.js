@@ -97,7 +97,7 @@ const MINNA_LESSONS_DATA = {
       { kana: 'からきました', romaji: ['karakimashita'], rubyHtml: 'から<ruby>来<rt>き</rt></ruby>ました', meaning: 'Đến từ ～' }
     ]}
   ],
- 2: [
+  2: [
     { id: 'b2_chithi', name: 'A. Chỉ thị từ chỉ đồ vật', selected: true, items: [
       { kana: 'これ', romaji: ['kore'], rubyHtml: 'これ', meaning: 'Cái này (gần người nói)' },
       { kana: 'それ', romaji: ['sore'], rubyHtml: 'それ', meaning: 'Cái đó (gần người nghe)' },
@@ -282,12 +282,12 @@ const MINNA_LESSONS_DATA = {
       { kana: 'いちじ', romaji: ['ichiji'], rubyHtml: '1<ruby>時<rt>じ</rt></ruby>', meaning: '1 giờ' },
       { kana: 'にじ', romaji: ['niji'], rubyHtml: '2<ruby>時<rt>じ</rt></ruby>', meaning: '2 giờ' },
       { kana: 'さんじ', romaji: ['sanji'], rubyHtml: '3<ruby>時<rt>じ</rt></ruby>', meaning: '3 giờ' },
-      { kana: 'よじ', romaji: ['yoji'], rubyHtml: '4<ruby>時<rt>じ</rt></ruby>', meaning: '4 giờ (đặc biệt)' },
+      { kana: 'よじ', romaji: ['yoji'], rubyHtml: '4<ruby>時<rt>じ</rt></ruby>', meaning: '4 giờ' },
       { kana: 'ごじ', romaji: ['goji'], rubyHtml: '5<ruby>時<rt>じ</rt></ruby>', meaning: '5 giờ' },
       { kana: 'ろくじ', romaji: ['rokuji'], rubyHtml: '6<ruby>時<rt>じ</rt></ruby>', meaning: '6 giờ' },
       { kana: 'しちじ', romaji: ['shichiji', 'nanaji'], rubyHtml: '7<ruby>時<rt>じ</rt></ruby>', meaning: '7 giờ' },
       { kana: 'はちじ', romaji: ['hachiji'], rubyHtml: '8<ruby>時<rt>じ</rt></ruby>', meaning: '8 giờ' },
-      { kana: 'くじ', romaji: ['kuji'], rubyHtml: '9<ruby>時<rt>じ</rt></ruby>', meaning: '9 giờ (đặc biệt)' },
+      { kana: 'くじ', romaji: ['kuji'], rubyHtml: '9<ruby>時<rt>じ</rt></ruby>', meaning: '9 giờ' },
       { kana: 'じゅうじ', romaji: ['juuji', 'juji'], rubyHtml: '10<ruby>時<rt>じ</rt></ruby>', meaning: '10 giờ' },
       { kana: 'じゅういちじ', romaji: ['juuichiji'], rubyHtml: '11<ruby>時<rt>じ</rt></ruby>', meaning: '11 giờ' },
       { kana: 'じゅうにじ', romaji: ['juuniji'], rubyHtml: '12<ruby>時<rt>じ</rt></ruby>', meaning: '12 giờ' },
@@ -331,7 +331,8 @@ const MINNA_LESSONS_DATA = {
       { kana: 'バス', romaji: ['basu'], rubyHtml: 'バス', meaning: 'Xe buýt' },
       { kana: 'タクシー', romaji: ['takushi-', 'takushi'], rubyHtml: 'タクシー', meaning: 'Taxi' },
       { kana: 'じてんしゃ', romaji: ['jitensha'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>転<rt>てん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>', meaning: 'Xe đạp' },
-      { kana: 'あるいて', romaji: ['aruite'], rubyHtml: '<ruby>歩<rt>ある</rt></ruby>いて', meaning: 'Đi bộ' }
+      { kana: 'あるいて', romaji: ['aruite'], rubyHtml: '<ruby>歩<rt>ある</rt></ruby>いて', meaning: 'Đi bộ' },
+      { kana: 'バイク', romaji: ['baiku'], rubyHtml: 'バイク', meaning: 'Xe máy' }
     ]},
     { id: 'b5_diadiem_nguoi', name: 'B. Địa điểm & Con người', selected: true, items: [
       { kana: 'がっこう', romaji: ['gakkou', 'gakko'], rubyHtml: '<ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>', meaning: 'Trường học' },
@@ -341,7 +342,8 @@ const MINNA_LESSONS_DATA = {
       { kana: 'ともだち', romaji: ['tomodachi'], rubyHtml: '<ruby>友<rt>とも</rt></ruby><ruby>達<rt>だち</rt></ruby>', meaning: 'Bạn, bạn bè' },
       { kana: 'かれ', romaji: ['kare'], rubyHtml: '<ruby>彼<rt>かれ</rt></ruby>', meaning: 'Anh ấy, bạn trai' },
       { kana: 'かのじょ', romaji: ['kanojo'], rubyHtml: '<ruby>彼<rt>かの</rt></ruby><ruby>女<rt>じょ</rt></ruby>', meaning: 'Chị ấy, bạn gái' },
-      { kana: 'かぞく', romaji: ['kazoku'], rubyHtml: '<ruby>家<rt>か</rt></ruby><ruby>族<rt>ぞく</rt></ruby>', meaning: 'Gia đình' }
+      { kana: 'かぞく', romaji: ['kazoku'], rubyHtml: '<ruby>家<rt>か</rt></ruby><ruby>族<rt>ぞく</rt></ruby>', meaning: 'Gia đình' },
+      { kana: 'ひとりで', romaji: ['hitoride'], rubyHtml: '<ruby>一人<rt>ひとり</rt></ruby>で', meaning: 'Một mình' }
     ]},
     { id: 'b5_thoigian_tuan_thang_nam', name: 'C. Thời gian (Tuần, Tháng, Năm)', selected: true, items: [
       { kana: 'せんしゅう', romaji: ['senshuu'], rubyHtml: '<ruby>先<rt>せん</rt></ruby><ruby>週<rt>しゅう</rt></ruby>', meaning: 'Tuần trước' },
@@ -356,7 +358,9 @@ const MINNA_LESSONS_DATA = {
       { kana: 'がつ', romaji: ['gatsu'], rubyHtml: '～<ruby>月<rt>がつ</rt></ruby>', meaning: 'Tháng ～' },
       { kana: 'なんがつ', romaji: ['nangatsu'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>月<rt>がつ</rt></ruby>', meaning: 'Tháng mấy' },
       { kana: 'いつ', romaji: ['itsu'], rubyHtml: 'いつ', meaning: 'Bao giờ, khi nào' },
-      { kana: 'たんじょうび', romaji: ['tanjoubi'], rubyHtml: '<ruby>誕<rt>たん</rt></ruby><ruby>生<rt>じょう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Sinh nhật' }
+      { kana: 'たんじょうび', romaji: ['tanjoubi'], rubyHtml: '<ruby>誕<rt>たん</rt></ruby><ruby>生<rt>じょう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Sinh nhật' },
+      { kana: 'ねん', romaji: ['nen'], rubyHtml: '<ruby>年<rt>ねん</rt></ruby>', meaning: 'Năm' },
+      { kana: 'なんねん', romaji: ['nannen'], rubyHtml: '<ruby>何年<rt>なんねん</rt></ruby>', meaning: 'Mấy năm / Năm mấy' },
     ]},
     { id: 'b5_ngay_thang', name: 'D. Ngày trong tháng', selected: true, items: [
       { kana: 'ついたち', romaji: ['tsuitachi'], rubyHtml: '<ruby>一日<rt>ついたち</rt></ruby>', meaning: 'Ngày mồng 1' },
@@ -388,7 +392,7 @@ const MINNA_LESSONS_DATA = {
     { id: 'b6_dongtu', name: 'A. Động từ hành động', selected: true, items: [
       { kana: 'たべます', romaji: ['tabemasu'], rubyHtml: '<ruby>食<rt>た</rt></ruby>べます', meaning: 'Ăn' },
       { kana: 'のみます', romaji: ['nomimasu'], rubyHtml: '<ruby>飲<rt>の</rt></ruby>みます', meaning: 'Uống' },
-      { kana: 'すいます', romaji: ['suimasu'], rubyHtml: '<ruby>吸<rt>す</rt></ruby>みます', meaning: 'Hút [thuốc lá]' },
+      { kana: 'すいます', romaji: ['suimasu'], rubyHtml: '<ruby>吸<rt>す</rt></ruby>います', meaning: 'Hút [thuốc lá]' },
       { kana: 'みます', romaji: ['mimasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>ます', meaning: 'Xem, nhìn, trông' },
       { kana: 'ききます', romaji: ['kikimasu'], rubyHtml: '<ruby>聞<rt>き</rt></ruby>きます', meaning: 'Nghe' },
       { kana: 'よみます', romaji: ['yomimasu'], rubyHtml: '<ruby>読<rt>よ</rt></ruby>みます', meaning: 'Đọc' },
@@ -415,16 +419,15 @@ const MINNA_LESSONS_DATA = {
       { kana: 'ぎゅうにゅう', romaji: ['gyuunyuu', 'miruku'], rubyHtml: '<ruby>牛<rt>ぎゅう</rt></ruby><ruby>乳<rt>にゅう</rt></ruby>（ミルク）', meaning: 'Sữa bò' },
       { kana: 'ジュース', romaji: ['ju-su', 'jusu'], rubyHtml: 'ジュース', meaning: 'Nước hoa quả' },
       { kana: 'ビール', romaji: ['bi-ru', 'biru'], rubyHtml: 'ビール', meaning: 'Bia' },
-      { kana: 'おさけ', romaji: ['osake', 'sake'], rubyHtml: 'お<ruby>酒<rt>さけ</rt></ruby>', meaning: 'Rượu, rượu sake' }
+      { kana: 'おさけ', romaji: ['osake'], rubyHtml: 'お<ruby>酒<rt>さけ</rt></ruby>', meaning: 'Rượu, rượu sake' }
     ]},
     { id: 'b6_dovat_diadiem', name: 'C. Đồ vật, Giải trí & Nơi chốn', selected: true, items: [
       { kana: 'ビデオ', romaji: ['bideo'], rubyHtml: 'ビデオ', meaning: 'Video, băng video' },
-      { kana: 'えいが', romaji: ['eiga'], rubyHtml: '<ruby>映<rt>えい</rt></ruby><ruby>画<rt>が</rt></ruby>', meaning: 'Phim, điện ảnh' },
-      { kana: 'CD', romaji: ['shi-di-', 'cd', 'shidi'], rubyHtml: 'CD', meaning: 'Đĩa CD' },
       { kana: 'てがみ', romaji: ['tegami'], rubyHtml: '<ruby>手<rt>て</rt></ruby><ruby>紙<rt>がみ</rt></ruby>', meaning: 'Thư' },
       { kana: 'レポート', romaji: ['repo-to', 'repoto'], rubyHtml: 'レポート', meaning: 'Báo cáo' },
       { kana: 'しゃしん', romaji: ['shashin'], rubyHtml: '<ruby>写<rt>しゃ</rt></ruby><ruby>真<rt>しん</rt></ruby>', meaning: 'Ảnh' },
       { kana: 'みせ', romaji: ['mise'], rubyHtml: '<ruby>店<rt>みせ</rt></ruby>', meaning: 'Cửa hàng, tiệm' },
+      { kana: 'こうえん', romaji: ['kouen', 'kooen'], rubyHtml: '<ruby>公園<rt>こうえん</rt></ruby>', meaning: 'Công viên' },
       { kana: 'レストラン', romaji: ['resutoran'], rubyHtml: 'レストラン', meaning: 'Nhà hàng' },
       { kana: 'にわ', romaji: ['niwa'], rubyHtml: '<ruby>庭<rt>にわ</rt></ruby>', meaning: 'Vườn' },
       { kana: 'しゅくだい', romaji: ['shukudai'], rubyHtml: '<ruby>宿<rt>しゅく</rt></ruby><ruby>題<rt>だい</rt></ruby>', meaning: 'Bài tập về nhà' },
@@ -469,6 +472,9 @@ const MINNA_LESSONS_DATA = {
       { kana: 'ファクス', romaji: ['fakusu', 'fax'], rubyHtml: 'ファクス', meaning: 'Máy fax' },
       { kana: 'ワープロ', romaji: ['wa-puro', 'wapuro'], rubyHtml: 'ワープロ', meaning: 'Máy đánh chữ' },
       { kana: 'パソコン', romaji: ['pasokon'], rubyHtml: 'パソコン', meaning: 'Máy tính cá nhân' },
+      { kana: 'ケータイ', romaji: ['ke-tai', 'keitai'], rubyHtml: 'ケータイ', meaning: 'Điện thoại di động' },
+      { kana: 'メール', romaji: ['me-ru', 'meru'], rubyHtml: 'メール', meaning: 'Thư điện tử, e-mail' },
+      { kana: 'ねんがじょう', romaji: ['nengajou', 'nengajoo'], rubyHtml: '<ruby>年<rt>ねん</rt></ruby><ruby>賀<rt>が</rt></ruby><ruby>状<rt>じょう</rt></ruby>', meaning: 'Thiệp chúc mừng năm mới' },
       { kana: 'パンチ', romaji: ['panchi'], rubyHtml: 'パンチ', meaning: 'Cái đục lỗ' },
       { kana: 'ホッチキス', romaji: ['hotchikisu', 'hocchikisu'], rubyHtml: 'ホッチキス', meaning: 'Cái dập ghim' },
       { kana: 'セロテープ', romaji: ['serote-pu', 'serotepu'], rubyHtml: 'セロテープ', meaning: 'Băng dính' },
@@ -492,13 +498,14 @@ const MINNA_LESSONS_DATA = {
       { kana: 'ヨーロッパ', romaji: ['yo-roppa', 'yoroppa'], rubyHtml: 'ヨーロッパ', meaning: 'Châu Âu' }
     ]},
     { id: 'b7_trangtu_giaotiep', name: 'D. Trạng từ & Giao tiếp', selected: true, items: [
-      { kana: 'これから', romaji: ['korekara'], rubyHtml: 'これから', meaning: 'Từ bây giờ' },
-      { kana: 'もう', romaji: ['mou'], rubyHtml: 'もう', meaning: 'Đã, rồi' },
-      { kana: 'まだ', romaji: ['mada'], rubyHtml: 'まだ', meaning: 'Vẫn còn, vẫn chưa' },
-      { kana: 'ごめんなさい', romaji: ['gomennasai'], rubyHtml: 'ごめんなさい', meaning: 'Xin lỗi' },
-      { kana: 'いらっしゃい', romaji: ['irasshai'], rubyHtml: 'いらっしゃい', meaning: 'Xin mời vào' },
-      { kana: 'いっていきます', romaji: ['ittekimasu'], rubyHtml: '<ruby>行<rt>い</rt></ruby>ってきます', meaning: 'Tôi đi đây' },
-      { kana: 'しつれいします', romaji: ['shitsureishimasu'], rubyHtml: '<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>します', meaning: 'Xin thất lễ' }
+     { kana: 'すてきですね', romaji: ['suteki desu ne'], rubyHtml: '<ruby>素<rt>す</rt></ruby><ruby>敵<rt>てき</rt></ruby>ですね', meaning: '[~] hay nhỉ, đẹp nhỉ' },
+{ kana: 'いらっしゃい', romaji: ['irasshai'], rubyHtml: 'いらっしゃい', meaning: 'Chào mừng anh/chị đã đến chơi' },
+{ kana: 'どうぞ おあがりください', romaji: ['douzo oagarikudasai', 'dozo oagarikudasai'], rubyHtml: 'どうぞ お<ruby>上<rt>あ</rt></ruby>がりください', meaning: 'Mời anh/chị vào nhà' },
+{ kana: 'しつれいします', romaji: ['shitsureishimasu'], rubyHtml: '<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>します', meaning: 'Xin thất lễ (Thất Lễ)' },
+{ kana: 'いかがですか', romaji: ['ikaga desu ka'], rubyHtml: 'いかがですか', meaning: 'Anh/chị dùng [~] có được không?' },
+{ kana: 'いただきます', romaji: ['itadakimasu'], rubyHtml: '<ruby>頂<rt>いただ</rt></ruby>きます', meaning: 'Xin nhận (nói trước khi ăn), Chúc ăn ngon miệng' },
+{ kana: 'ごちそうさまでした', romaji: ['gochisousamadeshita', 'gochisousama'], rubyHtml: 'ご<ruby>馳<rt>ち</rt></ruby><ruby>走<rt>そう</rt></ruby>さまでした', meaning: 'Cảm ơn vì bữa ăn ngon' },
+{ kana: 'スペイン', romaji: ['supein'], rubyHtml: 'スペイン', meaning: 'Tây Ban Nha' }
     ]}
   ],
   8: [
@@ -515,7 +522,7 @@ const MINNA_LESSONS_DATA = {
       { kana: 'すてき', romaji: ['suteki'], rubyHtml: 'すてき', meaning: 'Tuyệt vời, đẹp mắt' }
     ]},
     { id: 'b8_i', name: 'B. Tính từ đuôi い', selected: true, items: [
-      { kana: 'みにくい', romaji: ['minikui'], rubyHtml: 'みにくい', meaning: 'Xấu' },
+      { kana: 'みにくい', romaji: ['minikui'], rubyHtml: 'みにくい', meaning: 'Xấu ngoại hình, khó xem' },
       { kana: 'いそがしい', romaji: ['isogashii'], rubyHtml: '<ruby>忙<rt>いそが</rt></ruby>しい', meaning: 'Bận rộn' },
       { kana: 'おおきい', romaji: ['ookii'], rubyHtml: '<ruby>大<rt>おお</rt></ruby>きい', meaning: 'To, lớn' },
       { kana: 'ちいさい', romaji: ['chiisai'], rubyHtml: '<ruby>小<rt>ちい</rt></ruby>さい', meaning: 'Nhỏ, bé' },
@@ -525,16 +532,14 @@ const MINNA_LESSONS_DATA = {
       { kana: 'わるい', romaji: ['warui'], rubyHtml: '<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Xấu, tồi' },
       { kana: 'あつい', romaji: ['atsui'], rubyHtml: '<ruby>熱<rt>あつ</rt></ruby>い', meaning: 'Nóng (đồ vật/nước)' },
       { kana: 'つめたい', romaji: ['tsumetai'], rubyHtml: '<ruby>冷<rt>つめ</rt></ruby>たい', meaning: 'Lạnh (đồ vật/cảm giác)' },
-      { kana: 'あつい', romaji: ['atsui'], rubyHtml: '<ruby>暑<rt>あつ</rt></ruby>い', meaning: 'Nóng (thời tiết)' },
       { kana: 'さむい', romaji: ['samui'], rubyHtml: '<ruby>寒<rt>さむ</rt></ruby>い', meaning: 'Lạnh (thời tiết)' },
       { kana: 'むずかしい', romaji: ['muzukashii'], rubyHtml: '<ruby>難<rt>むずか</rt></ruby>しい', meaning: 'Khó' },
       { kana: 'やさしい', romaji: ['yasashii'], rubyHtml: 'やさしい', meaning: 'Dễ' },
       { kana: 'きびしい', romaji: ['kibishii'], rubyHtml: 'きびしい', meaning: 'Nghiêm khắc' },
       { kana: 'やさしい', romaji: ['yasashii'], rubyHtml: '<ruby>優<rt>やさ</rt></ruby>しい', meaning: 'Dịu dàng, hiền từ' },
-      { kana: 'たかい', romaji: ['takai'], rubyHtml: '<ruby>高<rt>たか</rt></ruby>い', meaning: 'Đắt' },
+      { kana: 'たかい', romaji: ['takai'], rubyHtml: '<ruby>高<rt>たか</rt></ruby>い', meaning: 'Đắt, cao' },
       { kana: 'やすい', romaji: ['yasui'], rubyHtml: '<ruby>安<rt>やす</rt></ruby>い', meaning: 'Rẻ' },
       { kana: 'ひくい', romaji: ['hikui'], rubyHtml: '<ruby>低<rt>ひく</rt></ruby>い', meaning: 'Thấp' },
-      { kana: 'たかい', romaji: ['takai'], rubyHtml: '<ruby>高<rt>たか</rt></ruby>い', meaning: 'Cao' },
       { kana: 'おもしろい', romaji: ['omoshiroi'], rubyHtml: 'おもしろい', meaning: 'Thú vị' },
       { kana: 'おいしい', romaji: ['oishii'], rubyHtml: 'おいしい', meaning: 'Ngon' },
       { kana: 'たのしい', romaji: ['tanoshii'], rubyHtml: '<ruby>楽<rt>たの</rt></ruby>しい', meaning: 'Vui vẻ' },
@@ -550,7 +555,6 @@ const MINNA_LESSONS_DATA = {
       { kana: 'たべもの', romaji: ['tabemono'], rubyHtml: '<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>', meaning: 'Thức ăn, đồ ăn' },
       { kana: 'ところ', romaji: ['tokoro'], rubyHtml: '<ruby>所<rt>ところ</rt></ruby>', meaning: 'Chỗ, nơi' },
       { kana: 'りょう', romaji: ['ryou'], rubyHtml: '<ruby>寮<rt>りょう</rt></ruby>', meaning: 'Ký túc xá' },
-      { kana: 'べんきょう', romaji: ['benkyou'], rubyHtml: '<ruby>勉<rt>べん</rt></ruby><ruby>強<rt>きょう</rt></ruby>', meaning: 'Học tập' },
       { kana: 'せいかつ', romaji: ['seikatsu'], rubyHtml: '<ruby>生<rt>せい</rt></ruby><ruby>活<rt>かつ</rt></ruby>', meaning: 'Cuộc sống' },
       { kana: 'おしごと', romaji: ['oshigoto', 'shigoto'], rubyHtml: 'お<ruby>仕<rt>し</rt></ruby><ruby>事<rt>ごと</rt></ruby>', meaning: 'Công việc' }
     ]},
@@ -560,9 +564,20 @@ const MINNA_LESSONS_DATA = {
       { kana: 'どれ', romaji: ['dore'], rubyHtml: 'どれ', meaning: 'Cái nào' }
     ]},
     { id: 'b8_photu_tunoi', name: 'E. Phó từ & Từ nối', selected: true, items: [
+      { kana: 'とても', romaji: ['totemo'], rubyHtml: 'とても', meaning: 'Rất, lắm' },
       { kana: 'あまり', romaji: ['amari'], rubyHtml: 'あまり～', meaning: 'Không... lắm (dùng với thể phủ định)' },
       { kana: 'そして', romaji: ['soshite'], rubyHtml: 'そして', meaning: 'Và, sau đó' },
       { kana: 'が', romaji: ['ga'], rubyHtml: '～が、～', meaning: '..., nhưng ...' }
+    ]},
+     {id: 'b8_Kaiwa', name: 'F. Kaiwa', selected: true, items: [
+      { kana: 'おげんきですか', romaji: ['ogenki desu ka', 'o genki desu ka'], rubyHtml: 'お<ruby>元気<rt>げんき</rt></ruby>ですか', meaning: 'Anh/Chị có khỏe không?' },
+      { kana: 'そうですね', romaji: ['sou desu ne', 'soudesune'], rubyHtml: 'そうですね', meaning: 'Thế à./Để tôi xem.' },
+      { kana: 'もう いっぱい いかがですか', romaji: ['mou ippai ikaga desu ka'], rubyHtml: 'もう <ruby>一杯<rt>いっぱい</rt></ruby> いかがですか', meaning: 'Anh/Chị dùng thêm một chén/ly nữa nhé?' },
+      { kana: 'いいえ、けっこうです', romaji: ['iie, kekkou desu', 'iie kekkou desu'], rubyHtml: 'いいえ、けっこうです', meaning: 'Không, đủ rồi ạ.' },
+      { kana: 'もう ですね', romaji: ['mou desu ne'], rubyHtml: 'もう です［ね］', meaning: 'Đã ~ rồi nhỉ./Đã ~ rồi, đúng không?' },
+      { kana: 'そろそろ しつれいします', romaji: ['sorosoro shitsureishimasu'], rubyHtml: 'そろそろ <ruby>失礼<rt>しつれい</rt></ruby>します', meaning: 'Sắp đến lúc tôi phải xin phép rồi./Đã đến lúc tôi phải về.' },
+      { kana: 'いいえ', romaji: ['iie'], rubyHtml: 'いいえ', meaning: 'Không có gì./Không sao cả.' },
+      { kana: 'また いらっしゃってください', romaji: ['mata irasshatte kudasai'], rubyHtml: 'また いらっしゃってください', meaning: 'Lần sau anh/chị lại đến chơi nhé.' },
     ]}
   ],
   9: [
@@ -580,6 +595,7 @@ const MINNA_LESSONS_DATA = {
       { kana: 'スポーツ', romaji: ['supo-tsu', 'supotsu'], rubyHtml: 'スポーツ', meaning: 'Thể thao' },
       { kana: 'やきゅう', romaji: ['yakyuu'], rubyHtml: '<ruby>野<rt>や</rt></ruby><ruby>球<rt>きゅう</rt></ruby>', meaning: 'Bóng chày' },
       { kana: 'ダンス', romaji: ['dansu'], rubyHtml: 'ダンス', meaning: 'Nhảy, khiêu vũ' },
+      { kana: 'りょこう', romaji: ['ryokou', 'ryoko'], rubyHtml: '<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby>', meaning: 'Du lịch' },
       { kana: 'おんがく', romaji: ['ongaku'], rubyHtml: '<ruby>音<rt>おん</rt></ruby><ruby>楽<rt>がく</rt></ruby>', meaning: 'Âm nhạc' },
       { kana: 'うた', romaji: ['uta'], rubyHtml: '<ruby>歌<rt>うた</rt></ruby>', meaning: 'Bài hát' },
       { kana: 'クラシック', romaji: ['kurasshiku'], rubyHtml: 'クラシック', meaning: 'Nhạc cổ điển' },
@@ -599,6 +615,7 @@ const MINNA_LESSONS_DATA = {
       { kana: 'チケット', romaji: ['chiketto'], rubyHtml: 'チケット', meaning: 'Vé (xem hòa nhạc, xem phim)' },
       { kana: 'じかん', romaji: ['jikan'], rubyHtml: '<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>', meaning: 'Thời gian' },
       { kana: 'ようじ', romaji: ['youji'], rubyHtml: '<ruby>用<rt>よう</rt></ruby><ruby>事<rt>じ</rt></ruby>', meaning: 'Việc bận, công chuyện' },
+      { kana: 'アルバイト', romaji: ['arubaito'], rubyHtml: 'アルバイト', meaning: 'Việc làm thêm' },
       { kana: 'やくそく', romaji: ['yakusoku'], rubyHtml: '<ruby>約<rt>やく</rt></ruby><ruby>束<rt>そく</rt></ruby>', meaning: 'Cuộc hẹn, lời hứa' }
     ]},
     { id: 'b9_giadinh', name: 'D. Xưng hô Gia đình', selected: true, items: [
@@ -617,9 +634,9 @@ const MINNA_LESSONS_DATA = {
       { kana: 'はやく', romaji: ['hayaku'], rubyHtml: '<ruby>早<rt>はや</rt></ruby>く / <ruby>速<rt>はや</rt></ruby>く', meaning: 'Sớm, nhanh' },
       { kana: 'から', romaji: ['kara'], rubyHtml: '～から', meaning: 'Vì ~' },
       { kana: 'どうして', romaji: ['doushite'], rubyHtml: 'どうして', meaning: 'Tại sao' },
-      { kana: 'ざんねんですね', romaji: ['zannendesune'], rubyHtml: '<ruby>残<rt>ざん</rt></ruby><ruby>念<rt>ねん</rt></ruby>ですね', meaning: 'Thật đáng tiếc nhỉ / Buồn nhỉ' },
-      { kana: 'すみません', romaji: ['sumimasen'], rubyHtml: 'すみません', meaning: 'Xin lỗi' },
-      { kana: 'もしもし', romaji: ['moshimoshi'], rubyHtml: 'もしもし', meaning: 'A-lô' },
+      { kana: 'かしてください', romaji: ['kashite kudasai', 'kashitekudasai'], rubyHtml: '<ruby>貸<rt>か</rt></ruby>してください', meaning: 'Xin hãy cho tôi mượn' },
+      { kana: 'いいですよ', romaji: ['ii desu yo', 'iidesuyo'], rubyHtml: 'いいですよ', meaning: 'Được chứ / Được đấy ạ' },
+      { kana: 'ざんねんですが', romaji: ['zannen desu ga', 'zannendesuga'], rubyHtml: '<ruby>残念<rt>ざんねん</rt></ruby>ですが', meaning: 'Tiếc thật nhưng... / Rất tiếc nhưng mà...' },
       { kana: 'ああ', romaji: ['aa'], rubyHtml: 'ああ', meaning: 'A (khi đã nhận ra / gặp đúng người)' },
       { kana: 'いっしょにいかがですか', romaji: ['isshoniikagadesuka'], rubyHtml: 'いっしょにいかがですか', meaning: 'Anh/chị cùng ~ với chúng tôi được không?' },
       { kana: 'ちょっと', romaji: ['chotto'], rubyHtml: '～はちょっと…', meaning: '[~ thì] có lẽ không được rồi' },
