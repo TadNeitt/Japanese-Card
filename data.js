@@ -1,2681 +1,4673 @@
 // ==========================================
-// FILE DỮ LIỆU TỪ VỰNG & BẢNG CHỮ CÁI (data.js)
+// DỮ LIỆU TỪ VỰNG & BẢNG CHỮ CÁI
 // ==========================================
+// Thứ tự: Hiragana → Katakana → bài 1 đến bài 50.
+// Mỗi từ nằm trực tiếp trong items của đúng chủ đề và đúng bài.
+// Thêm từ: thêm một dòng { kana, romaji, rubyHtml, meaning } trong items.
+// Xóa từ: xóa dòng tương ứng. Giữ dấu phẩy giữa các mục.
+// id và reviewTopicId liên kết tiến độ ôn tập; giữ nguyên khi chỉ sửa nội dung.
 
+// ==========================================
+// BẢNG CHỮ HIRAGANA
+// ==========================================
 const HIRAGANA_GROUPS = [
-  { id: 'a', name: 'A', selected: true, items: [{ kana: 'あ', romaji: ['a'] }, { kana: 'い', romaji: ['i'] }, { kana: 'う', romaji: ['u'] }, { kana: 'え', romaji: ['e'] }, { kana: 'お', romaji: ['o'] }] },
-  { id: 'ka', name: 'Ka', selected: true, items: [{ kana: 'か', romaji: ['ka'] }, { kana: 'き', romaji: ['ki'] }, { kana: 'く', romaji: ['ku'] }, { kana: 'け', romaji: ['ke'] }, { kana: 'こ', romaji: ['ko'] }] },
-  { id: 'sa', name: 'Sa', selected: false, items: [{ kana: 'さ', romaji: ['sa'] }, { kana: 'し', romaji: ['shi', 'si'] }, { kana: 'す', romaji: ['su'] }, { kana: 'せ', romaji: ['se'] }, { kana: 'そ', romaji: ['so'] }] },
-  { id: 'ta', name: 'Ta', selected: false, items: [{ kana: 'た', romaji: ['ta'] }, { kana: 'ち', romaji: ['chi', 'ti'] }, { kana: 'つ', romaji: ['tsu', 'tu'] }, { kana: 'て', romaji: ['te'] }, { kana: 'と', romaji: ['to'] }] },
-  { id: 'na', name: 'Na', selected: false, items: [{ kana: 'な', romaji: ['na'] }, { kana: 'に', romaji: ['ni'] }, { kana: 'ぬ', romaji: ['nu'] }, { kana: 'ね', romaji: ['ne'] }, { kana: 'の', romaji: ['no'] }] },
-  { id: 'ha', name: 'Ha', selected: false, items: [{ kana: 'は', romaji: ['ha'] }, { kana: 'ひ', romaji: ['hi'] }, { kana: 'ふ', romaji: ['fu', 'hu'] }, { kana: 'へ', romaji: ['he'] }, { kana: 'ほ', romaji: ['ho'] }] },
-  { id: 'ma', name: 'Ma', selected: false, items: [{ kana: 'ま', romaji: ['ma'] }, { kana: 'み', romaji: ['mi'] }, { kana: 'む', romaji: ['mu'] }, { kana: 'め', romaji: ['me'] }, { kana: 'も', romaji: ['mo'] }] },
-  { id: 'ya', name: 'Ya', selected: false, items: [{ kana: 'や', romaji: ['ya'] }, { kana: 'ゆ', romaji: ['yu'] }, { kana: 'よ', romaji: ['yo'] }] },
-  { id: 'ra', name: 'Ra', selected: false, items: [{ kana: 'ら', romaji: ['ra'] }, { kana: 'り', romaji: ['ri'] }, { kana: 'る', romaji: ['ru'] }, { kana: 'れ', romaji: ['re'] }, { kana: 'ろ', romaji: ['ro'] }] },
-  { id: 'wa', name: 'Wa/N', selected: false, items: [{ kana: 'わ', romaji: ['wa'] }, { kana: 'を', romaji: ['wo', 'o'] }, { kana: 'ん', romaji: ['n'] }] },
-  { id: 'ga', name: 'Ga', selected: false, items: [{ kana: 'が', romaji: ['ga'] }, { kana: 'ぎ', romaji: ['gi'] }, { kana: 'ぐ', romaji: ['gu'] }, { kana: 'げ', romaji: ['ge'] }, { kana: 'ご', romaji: ['go'] }] },
-  { id: 'za', name: 'Za', selected: false, items: [{ kana: 'ざ', romaji: ['za'] }, { kana: 'じ', romaji: ['ji', 'zi'] }, { kana: 'ず', romaji: ['zu'] }, { kana: 'ぜ', romaji: ['ze'] }, { kana: 'ぞ', romaji: ['zo'] }] },
-  { id: 'da', name: 'Da', selected: false, items: [{ kana: 'だ', romaji: ['da'] }, { kana: 'ぢ', romaji: ['ji', 'di'] }, { kana: 'づ', romaji: ['zu', 'du'] }, { kana: 'で', romaji: ['de'] }, { kana: 'ど', romaji: ['do'] }] },
-  { id: 'ba', name: 'Ba', selected: false, items: [{ kana: 'ば', romaji: ['ba'] }, { kana: 'び', romaji: ['bi'] }, { kana: 'ぶ', romaji: ['bu'] }, { kana: 'べ', romaji: ['be'] }, { kana: 'ぼ', romaji: ['bo'] }] },
-  { id: 'pa', name: 'Pa', selected: false, items: [{ kana: 'ぱ', romaji: ['pa'] }, { kana: 'ぴ', romaji: ['pi'] }, { kana: 'ぷ', romaji: ['pu'] }, { kana: 'ぺ', romaji: ['pe'] }, { kana: 'ぽ', romaji: ['po'] }] }
+  {
+    id: "a",
+    name: "A",
+    selected: true,
+    items: [
+      { kana: "あ", romaji: ["a"] },
+      { kana: "い", romaji: ["i"] },
+      { kana: "う", romaji: ["u"] },
+      { kana: "え", romaji: ["e"] },
+      { kana: "お", romaji: ["o"] },
+    ],
+  },
+  {
+    id: "ka",
+    name: "Ka",
+    selected: true,
+    items: [
+      { kana: "か", romaji: ["ka"] },
+      { kana: "き", romaji: ["ki"] },
+      { kana: "く", romaji: ["ku"] },
+      { kana: "け", romaji: ["ke"] },
+      { kana: "こ", romaji: ["ko"] },
+    ],
+  },
+  {
+    id: "sa",
+    name: "Sa",
+    selected: false,
+    items: [
+      { kana: "さ", romaji: ["sa"] },
+      { kana: "し", romaji: ["shi","si"] },
+      { kana: "す", romaji: ["su"] },
+      { kana: "せ", romaji: ["se"] },
+      { kana: "そ", romaji: ["so"] },
+    ],
+  },
+  {
+    id: "ta",
+    name: "Ta",
+    selected: false,
+    items: [
+      { kana: "た", romaji: ["ta"] },
+      { kana: "ち", romaji: ["chi","ti"] },
+      { kana: "つ", romaji: ["tsu","tu"] },
+      { kana: "て", romaji: ["te"] },
+      { kana: "と", romaji: ["to"] },
+    ],
+  },
+  {
+    id: "na",
+    name: "Na",
+    selected: false,
+    items: [
+      { kana: "な", romaji: ["na"] },
+      { kana: "に", romaji: ["ni"] },
+      { kana: "ぬ", romaji: ["nu"] },
+      { kana: "ね", romaji: ["ne"] },
+      { kana: "の", romaji: ["no"] },
+    ],
+  },
+  {
+    id: "ha",
+    name: "Ha",
+    selected: false,
+    items: [
+      { kana: "は", romaji: ["ha"] },
+      { kana: "ひ", romaji: ["hi"] },
+      { kana: "ふ", romaji: ["fu","hu"] },
+      { kana: "へ", romaji: ["he"] },
+      { kana: "ほ", romaji: ["ho"] },
+    ],
+  },
+  {
+    id: "ma",
+    name: "Ma",
+    selected: false,
+    items: [
+      { kana: "ま", romaji: ["ma"] },
+      { kana: "み", romaji: ["mi"] },
+      { kana: "む", romaji: ["mu"] },
+      { kana: "め", romaji: ["me"] },
+      { kana: "も", romaji: ["mo"] },
+    ],
+  },
+  {
+    id: "ya",
+    name: "Ya",
+    selected: false,
+    items: [
+      { kana: "や", romaji: ["ya"] },
+      { kana: "ゆ", romaji: ["yu"] },
+      { kana: "よ", romaji: ["yo"] },
+    ],
+  },
+  {
+    id: "ra",
+    name: "Ra",
+    selected: false,
+    items: [
+      { kana: "ら", romaji: ["ra"] },
+      { kana: "り", romaji: ["ri"] },
+      { kana: "る", romaji: ["ru"] },
+      { kana: "れ", romaji: ["re"] },
+      { kana: "ろ", romaji: ["ro"] },
+    ],
+  },
+  {
+    id: "wa",
+    name: "Wa/N",
+    selected: false,
+    items: [
+      { kana: "わ", romaji: ["wa"] },
+      { kana: "を", romaji: ["wo","o"] },
+      { kana: "ん", romaji: ["n"] },
+    ],
+  },
+  {
+    id: "ga",
+    name: "Ga",
+    selected: false,
+    items: [
+      { kana: "が", romaji: ["ga"] },
+      { kana: "ぎ", romaji: ["gi"] },
+      { kana: "ぐ", romaji: ["gu"] },
+      { kana: "げ", romaji: ["ge"] },
+      { kana: "ご", romaji: ["go"] },
+    ],
+  },
+  {
+    id: "za",
+    name: "Za",
+    selected: false,
+    items: [
+      { kana: "ざ", romaji: ["za"] },
+      { kana: "じ", romaji: ["ji","zi"] },
+      { kana: "ず", romaji: ["zu"] },
+      { kana: "ぜ", romaji: ["ze"] },
+      { kana: "ぞ", romaji: ["zo"] },
+    ],
+  },
+  {
+    id: "da",
+    name: "Da",
+    selected: false,
+    items: [
+      { kana: "だ", romaji: ["da"] },
+      { kana: "ぢ", romaji: ["ji","di"] },
+      { kana: "づ", romaji: ["zu","du"] },
+      { kana: "で", romaji: ["de"] },
+      { kana: "ど", romaji: ["do"] },
+    ],
+  },
+  {
+    id: "ba",
+    name: "Ba",
+    selected: false,
+    items: [
+      { kana: "ば", romaji: ["ba"] },
+      { kana: "び", romaji: ["bi"] },
+      { kana: "ぶ", romaji: ["bu"] },
+      { kana: "べ", romaji: ["be"] },
+      { kana: "ぼ", romaji: ["bo"] },
+    ],
+  },
+  {
+    id: "pa",
+    name: "Pa",
+    selected: false,
+    items: [
+      { kana: "ぱ", romaji: ["pa"] },
+      { kana: "ぴ", romaji: ["pi"] },
+      { kana: "ぷ", romaji: ["pu"] },
+      { kana: "ぺ", romaji: ["pe"] },
+      { kana: "ぽ", romaji: ["po"] },
+    ],
+  },
 ];
 
+// ==========================================
+// BẢNG CHỮ KATAKANA
+// ==========================================
 const KATAKANA_GROUPS = [
-  { id: 'a', name: 'A', selected: true, items: [{ kana: 'ア', romaji: ['a'] }, { kana: 'イ', romaji: ['i'] }, { kana: 'ウ', romaji: ['u'] }, { kana: 'エ', romaji: ['e'] }, { kana: 'オ', romaji: ['o'] }] },
-  { id: 'ka', name: 'Ka', selected: true, items: [{ kana: 'カ', romaji: ['ka'] }, { kana: 'キ', romaji: ['ki'] }, { kana: 'ク', romaji: ['ku'] }, { kana: 'ケ', romaji: ['ke'] }, { kana: 'コ', romaji: ['ko'] }] },
-  { id: 'sa', name: 'Sa', selected: false, items: [{ kana: 'サ', romaji: ['sa'] }, { kana: 'シ', romaji: ['shi', 'si'] }, { kana: 'ス', romaji: ['su'] }, { kana: 'セ', romaji: ['se'] }, { kana: 'ソ', romaji: ['so'] }] },
-  { id: 'ta', name: 'Ta', selected: false, items: [{ kana: 'タ', romaji: ['ta'] }, { kana: 'チ', romaji: ['chi', 'ti'] }, { kana: 'ツ', romaji: ['tsu', 'tu'] }, { kana: 'テ', romaji: ['te'] }, { kana: 'ト', romaji: ['to'] }] },
-  { id: 'na', name: 'Na', selected: false, items: [{ kana: 'ナ', romaji: ['na'] }, { kana: 'ニ', romaji: ['ni'] }, { kana: 'ヌ', romaji: ['nu'] }, { kana: 'ネ', romaji: ['ne'] }, { kana: 'ノ', romaji: ['no'] }] },
-  { id: 'ha', name: 'Ha', selected: false, items: [{ kana: 'ハ', romaji: ['ha'] }, { kana: 'ヒ', romaji: ['hi'] }, { kana: 'フ', romaji: ['fu', 'hu'] }, { kana: 'ヘ', romaji: ['he'] }, { kana: 'ホ', romaji: ['ho'] }] },
-  { id: 'ma', name: 'Ma', selected: false, items: [{ kana: 'マ', romaji: ['ma'] }, { kana: 'ミ', romaji: ['mi'] }, { kana: 'ム', romaji: ['mu'] }, { kana: 'メ', romaji: ['me'] }, { kana: 'モ', romaji: ['mo'] }] },
-  { id: 'ya', name: 'Ya', selected: false, items: [{ kana: 'ヤ', romaji: ['ya'] }, { kana: 'ユ', romaji: ['yu'] }, { kana: 'ヨ', romaji: ['yo'] }] },
-  { id: 'ra', name: 'Ra', selected: false, items: [{ kana: 'ラ', romaji: ['ra'] }, { kana: 'リ', romaji: ['ri'] }, { kana: 'ル', romaji: ['ru'] }, { kana: 'レ', romaji: ['re'] }, { kana: 'ロ', romaji: ['ro'] }] },
-  { id: 'wa', name: 'Wa/N', selected: false, items: [{ kana: 'ワ', romaji: ['wa'] }, { kana: 'ヲ', romaji: ['wo', 'o'] }, { kana: 'ン', romaji: ['n'] }] },
-  { id: 'ga', name: 'Ga', selected: false, items: [{ kana: 'ガ', romaji: ['ga'] }, { kana: 'ギ', romaji: ['gi'] }, { kana: 'グ', romaji: ['gu'] }, { kana: 'ゲ', romaji: ['ge'] }, { kana: 'ゴ', romaji: ['go'] }] },
-  { id: 'za', name: 'Za', selected: false, items: [{ kana: 'ザ', romaji: ['za'] }, { kana: 'ジ', romaji: ['ji', 'zi'] }, { kana: 'ズ', romaji: ['zu'] }, { kana: 'ゼ', romaji: ['ze'] }, { kana: 'ゾ', romaji: ['zo'] }] },
-  { id: 'da', name: 'Da', selected: false, items: [{ kana: 'ダ', romaji: ['da'] }, { kana: 'ヂ', romaji: ['ji', 'di'] }, { kana: 'ヅ', romaji: ['zu', 'du'] }, { kana: 'デ', romaji: ['de'] }, { kana: 'ド', romaji: ['do'] }] },
-  { id: 'ba', name: 'Ba', selected: false, items: [{ kana: 'バ', romaji: ['ba'] }, { kana: 'ビ', romaji: ['bi'] }, { kana: 'ブ', romaji: ['bu'] }, { kana: 'ベ', romaji: ['be'] }, { kana: 'ボ', romaji: ['bo'] }] },
-  { id: 'pa', name: 'Pa', selected: false, items: [{ kana: 'パ', romaji: ['pa'] }, { kana: 'ピ', romaji: ['pi'] }, { kana: 'プ', romaji: ['pu'] }, { kana: 'ペ', romaji: ['pe'] }, { kana: 'ポ', romaji: ['po'] }] }
+  {
+    id: "a",
+    name: "A",
+    selected: true,
+    items: [
+      { kana: "ア", romaji: ["a"] },
+      { kana: "イ", romaji: ["i"] },
+      { kana: "ウ", romaji: ["u"] },
+      { kana: "エ", romaji: ["e"] },
+      { kana: "オ", romaji: ["o"] },
+    ],
+  },
+  {
+    id: "ka",
+    name: "Ka",
+    selected: true,
+    items: [
+      { kana: "カ", romaji: ["ka"] },
+      { kana: "キ", romaji: ["ki"] },
+      { kana: "ク", romaji: ["ku"] },
+      { kana: "ケ", romaji: ["ke"] },
+      { kana: "コ", romaji: ["ko"] },
+    ],
+  },
+  {
+    id: "sa",
+    name: "Sa",
+    selected: false,
+    items: [
+      { kana: "サ", romaji: ["sa"] },
+      { kana: "シ", romaji: ["shi","si"] },
+      { kana: "ス", romaji: ["su"] },
+      { kana: "セ", romaji: ["se"] },
+      { kana: "ソ", romaji: ["so"] },
+    ],
+  },
+  {
+    id: "ta",
+    name: "Ta",
+    selected: false,
+    items: [
+      { kana: "タ", romaji: ["ta"] },
+      { kana: "チ", romaji: ["chi","ti"] },
+      { kana: "ツ", romaji: ["tsu","tu"] },
+      { kana: "テ", romaji: ["te"] },
+      { kana: "ト", romaji: ["to"] },
+    ],
+  },
+  {
+    id: "na",
+    name: "Na",
+    selected: false,
+    items: [
+      { kana: "ナ", romaji: ["na"] },
+      { kana: "ニ", romaji: ["ni"] },
+      { kana: "ヌ", romaji: ["nu"] },
+      { kana: "ネ", romaji: ["ne"] },
+      { kana: "ノ", romaji: ["no"] },
+    ],
+  },
+  {
+    id: "ha",
+    name: "Ha",
+    selected: false,
+    items: [
+      { kana: "ハ", romaji: ["ha"] },
+      { kana: "ヒ", romaji: ["hi"] },
+      { kana: "フ", romaji: ["fu","hu"] },
+      { kana: "ヘ", romaji: ["he"] },
+      { kana: "ホ", romaji: ["ho"] },
+    ],
+  },
+  {
+    id: "ma",
+    name: "Ma",
+    selected: false,
+    items: [
+      { kana: "マ", romaji: ["ma"] },
+      { kana: "ミ", romaji: ["mi"] },
+      { kana: "ム", romaji: ["mu"] },
+      { kana: "メ", romaji: ["me"] },
+      { kana: "モ", romaji: ["mo"] },
+    ],
+  },
+  {
+    id: "ya",
+    name: "Ya",
+    selected: false,
+    items: [
+      { kana: "ヤ", romaji: ["ya"] },
+      { kana: "ユ", romaji: ["yu"] },
+      { kana: "ヨ", romaji: ["yo"] },
+    ],
+  },
+  {
+    id: "ra",
+    name: "Ra",
+    selected: false,
+    items: [
+      { kana: "ラ", romaji: ["ra"] },
+      { kana: "リ", romaji: ["ri"] },
+      { kana: "ル", romaji: ["ru"] },
+      { kana: "レ", romaji: ["re"] },
+      { kana: "ロ", romaji: ["ro"] },
+    ],
+  },
+  {
+    id: "wa",
+    name: "Wa/N",
+    selected: false,
+    items: [
+      { kana: "ワ", romaji: ["wa"] },
+      { kana: "ヲ", romaji: ["wo","o"] },
+      { kana: "ン", romaji: ["n"] },
+    ],
+  },
+  {
+    id: "ga",
+    name: "Ga",
+    selected: false,
+    items: [
+      { kana: "ガ", romaji: ["ga"] },
+      { kana: "ギ", romaji: ["gi"] },
+      { kana: "グ", romaji: ["gu"] },
+      { kana: "ゲ", romaji: ["ge"] },
+      { kana: "ゴ", romaji: ["go"] },
+    ],
+  },
+  {
+    id: "za",
+    name: "Za",
+    selected: false,
+    items: [
+      { kana: "ザ", romaji: ["za"] },
+      { kana: "ジ", romaji: ["ji","zi"] },
+      { kana: "ズ", romaji: ["zu"] },
+      { kana: "ゼ", romaji: ["ze"] },
+      { kana: "ゾ", romaji: ["zo"] },
+    ],
+  },
+  {
+    id: "da",
+    name: "Da",
+    selected: false,
+    items: [
+      { kana: "ダ", romaji: ["da"] },
+      { kana: "ヂ", romaji: ["ji","di"] },
+      { kana: "ヅ", romaji: ["zu","du"] },
+      { kana: "デ", romaji: ["de"] },
+      { kana: "ド", romaji: ["do"] },
+    ],
+  },
+  {
+    id: "ba",
+    name: "Ba",
+    selected: false,
+    items: [
+      { kana: "バ", romaji: ["ba"] },
+      { kana: "ビ", romaji: ["bi"] },
+      { kana: "ブ", romaji: ["bu"] },
+      { kana: "ベ", romaji: ["be"] },
+      { kana: "ボ", romaji: ["bo"] },
+    ],
+  },
+  {
+    id: "pa",
+    name: "Pa",
+    selected: false,
+    items: [
+      { kana: "パ", romaji: ["pa"] },
+      { kana: "ピ", romaji: ["pi"] },
+      { kana: "プ", romaji: ["pu"] },
+      { kana: "ペ", romaji: ["pe"] },
+      { kana: "ポ", romaji: ["po"] },
+    ],
+  },
 ];
 
+// ==========================================
+// TỪ VỰNG MINNA NO NIHONGO — BÀI 1 ĐẾN 50
+// ==========================================
 const MINNA_LESSONS_DATA = {
+
+  // ========================================
+  // BÀI 1
+  // ========================================
   1: [
-    { id: 'b1_xungho', name: 'A. Cách xưng hô & Đại từ', selected: true, items: [
-      { kana: 'わたし', romaji: ['watashi'], rubyHtml: '<ruby>私<rt>わたし</rt></ruby>', meaning: 'Tôi' },
-      { kana: 'わたしたち', romaji: ['watashitachi'], rubyHtml: '<ruby>私<rt>わたし</rt></ruby>たち', meaning: 'Chúng tôi' },
-      { kana: 'あなた', romaji: ['anata'], rubyHtml: 'あなた', meaning: 'Anh/chị, ông/bà, bạn' },
-      { kana: 'あのひと', romaji: ['anohito'], rubyHtml: 'あの<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người kia' },
-      { kana: 'あのかた', romaji: ['anokata'], rubyHtml: 'あの<ruby>方<rt>かた</rt></ruby>', meaning: 'Vị kia (lịch sự của あのひと)' },
-      { kana: 'みなさん', romaji: ['minasan'], rubyHtml: 'みなさん', meaning: 'Các bạn, mọi người' },
-      { kana: 'さん', romaji: ['san'], rubyHtml: 'さん', meaning: 'Anh ～, Chị ～, Ông ～, Bà ～' },
-      { kana: 'ちゃん', romaji: ['chan'], rubyHtml: 'ちゃん', meaning: 'Bé (dùng cho nữ hoặc trẻ con nói chung)' },
-      { kana: 'くん', romaji: ['kun'], rubyHtml: 'くん', meaning: 'Bé (dùng cho nam hoặc gọi thân mật)' },
-      { kana: 'だれ', romaji: ['dare'], rubyHtml: '<ruby>誰<rt>だれ</rt></ruby>', meaning: 'Ai' },
-      { kana: 'どなた', romaji: ['donata'], rubyHtml: 'どなた', meaning: 'Vị nào (lịch sự của だれ)' }
-    ]},
-    { id: 'b1_nghenghiep', name: 'B. Nghề nghiệp & Tuổi tác', selected: true, items: [
-      { kana: 'せんせい', romaji: ['sensei'], rubyHtml: '<ruby>先<rt>せん</rt></ruby><ruby>生<rt>せい</rt></ruby>', meaning: 'Thầy/cô giáo' },
-      { kana: 'きょうし', romaji: ['kyoushi'], rubyHtml: '<ruby>教<rt>きょう</rt></ruby><ruby>師<rt>し</rt></ruby>', meaning: 'Giáo viên (dùng chỉ nghề nghiệp)' },
-      { kana: 'がくせい', romaji: ['gakusei'], rubyHtml: '<ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>', meaning: 'Học sinh, sinh viên' },
-      { kana: 'かいしゃいん', romaji: ['kaishain'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>社<rt>しゃ</rt></ruby><ruby>員<rt>いん</rt></ruby>', meaning: 'Nhân viên công ty' },
-      { kana: 'しゃいん', romaji: ['shain'], rubyHtml: '<ruby>社<rt>しゃ</rt></ruby><ruby>員<rt>いん</rt></ruby>', meaning: 'Nhân viên công ty ...' },
-      { kana: 'ぎんこういん', romaji: ['ginkouin', 'ginkoin'], rubyHtml: '<ruby>銀<rt>ぎん</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>員<rt>いん</rt></ruby>', meaning: 'Nhân viên ngân hàng' },
-      { kana: 'いしゃ', romaji: ['isha'], rubyHtml: '<ruby>医<rt>い</rt></ruby><ruby>者<rt>しゃ</rt></ruby>', meaning: 'Bác sĩ' },
-      { kana: 'けんきゅうしゃ', romaji: ['kenkyuusha'], rubyHtml: '<ruby>研<rt>けん</rt></ruby><ruby>究<rt>きゅう</rt></ruby><ruby>者<rt>しゃ</rt></ruby>', meaning: 'Nhà nghiên cứu' },
-      { kana: 'エンジニア', romaji: ['enjinia'], rubyHtml: 'エンジニア', meaning: 'Kỹ sư' },
-      { kana: 'さい', romaji: ['sai'], rubyHtml: '<ruby>歳<rt>さい</rt></ruby>', meaning: '～ Tuổi' },
-      { kana: 'なんさい', romaji: ['nansai'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>歳<rt>さい</rt></ruby>', meaning: 'Mấy tuổi, bao nhiêu tuổi' }
-    ]},
-    { id: 'b1_diadiem', name: 'C. Địa điểm & Cơ sở', selected: true, items: [
-      { kana: 'だいがく', romaji: ['daigaku'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby>', meaning: 'Trường đại học' },
-      { kana: 'びょういん', romaji: ['byouin'], rubyHtml: '<ruby>病<rt>びょう</rt></ruby><ruby>院<rt>いん</rt></ruby>', meaning: 'Bệnh viện' },
-      { kana: 'でんき', romaji: ['denki'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Điện, đèn điện' },
-    ]},
-    { id: 'b1_datnuoc', name: 'D. Đất nước & Ngôn ngữ/Người', selected: true, items: [
-      { kana: 'じん', romaji: ['jin'], rubyHtml: '<ruby>人<rt>じん</rt></ruby>', meaning: 'Người nước ～' },
-      { kana: 'アメリカ', romaji: ['amerika'], rubyHtml: 'アメリカ', meaning: 'Mỹ' },
-      { kana: 'イギリス', romaji: ['igirisu'], rubyHtml: 'イギリス', meaning: 'Anh' },
-      { kana: 'インド', romaji: ['indo'], rubyHtml: 'インド', meaning: 'Ấn Độ' },
-      { kana: 'インドネシア', romaji: ['indoneshia'], rubyHtml: 'インドネシア', meaning: 'Indonesia' },
-      { kana: 'かんこく', romaji: ['kankoku'], rubyHtml: '<ruby>韓<rt>かん</rt></ruby><ruby>国<rt>こく</rt></ruby>', meaning: 'Hàn Quốc' },
-      { kana: 'タイ', romaji: ['tai'], rubyHtml: 'タイ', meaning: 'Thái Lan' },
-      { kana: 'ちゅうごく', romaji: ['chuugoku'], rubyHtml: '<ruby>中<rt>ちゅう</rt></ruby><ruby>国<rt>ごく</rt></ruby>', meaning: 'Trung Quốc' },
-      { kana: 'ドイツ', romaji: ['doitsu'], rubyHtml: 'ドイツ', meaning: 'Đức' },
-      { kana: 'にほん', romaji: ['nihon'], rubyHtml: '<ruby>日本<rt>にほん</rt></ruby>', meaning: 'Nhật Bản' },
-      { kana: 'フランス', romaji: ['furansu'], rubyHtml: 'フランス', meaning: 'Pháp' },
-      { kana: 'ブラジル', romaji: ['burajiru'], rubyHtml: 'ブラジル', meaning: 'Brazil' },
-      { kana: 'ベトナム', romaji: ['betonamu'], rubyHtml: 'ベトナム', meaning: 'Việt Nam' }
-    ]},
-    { id: 'b1_giaotiep', name: 'E. Chào hỏi & Giao tiếp', selected: true, items: [
-      { kana: 'はい', romaji: ['hai'], rubyHtml: 'はい', meaning: 'Vâng, có' },
-      { kana: 'いいえ', romaji: ['iie'], rubyHtml: 'いいえ', meaning: 'Không' },
-      { kana: 'しつれいですが', romaji: ['shitsureidesuga'], rubyHtml: '<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>ですが', meaning: 'Xin lỗi (khi muốn hỏi/nhờ ai việc gì)' },
-      { kana: 'おなまえは', romaji: ['onamaewa'], rubyHtml: 'お<ruby>名<rt>な</rt></ruby><ruby>前<rt>まえ</rt></ruby>は', meaning: 'Tên anh/chị là gì?' },
-      { kana: 'はじめまして', romaji: ['hajimemashite'], rubyHtml: 'はじめまして', meaning: 'Chào lần đầu gặp nhau' },
-      { kana: 'どうぞよろしくおねがいします', romaji: ['douzoyoroshikuonegaishimasu'], rubyHtml: 'どうぞよろしくお<ruby>願<rt>ねが</rt></ruby>いします', meaning: 'Rất hân hạnh được làm quen' },
-      { kana: 'こちらは', romaji: ['kochirawa'], rubyHtml: 'こちらは', meaning: 'Đây là ngài/anh/chị ～' },
-      { kana: 'からきました', romaji: ['karakimashita'], rubyHtml: 'から<ruby>来<rt>き</rt></ruby>ました', meaning: 'Đến từ ～' }
-    ]}
+    // A. Cách xưng hô & Đại từ
+    {
+      id: "b1_xungho",
+      name: "A. Cách xưng hô & Đại từ",
+      selected: true,
+      items: [
+        { kana: "わたし", romaji: ["watashi"], rubyHtml: "<ruby>私<rt>わたし</rt></ruby>", meaning: "Tôi" },
+        { kana: "わたしたち", romaji: ["watashitachi"], rubyHtml: "<ruby>私<rt>わたし</rt></ruby>たち", meaning: "Chúng tôi" },
+        { kana: "あなた", romaji: ["anata"], rubyHtml: "あなた", meaning: "Anh/chị, ông/bà, bạn" },
+        { kana: "あのひと", romaji: ["anohito"], rubyHtml: "あの<ruby>人<rt>ひと</rt></ruby>", meaning: "Người kia" },
+        { kana: "あのかた", romaji: ["anokata"], rubyHtml: "あの<ruby>方<rt>かた</rt></ruby>", meaning: "Vị kia (lịch sự của あのひと)" },
+        { kana: "みなさん", romaji: ["minasan"], rubyHtml: "みなさん", meaning: "Các bạn, mọi người" },
+        { kana: "さん", romaji: ["san"], rubyHtml: "さん", meaning: "Anh ～, Chị ～, Ông ～, Bà ～" },
+        { kana: "ちゃん", romaji: ["chan"], rubyHtml: "ちゃん", meaning: "Bé (dùng cho nữ hoặc trẻ con nói chung)" },
+        { kana: "くん", romaji: ["kun"], rubyHtml: "くん", meaning: "Bé (dùng cho nam hoặc gọi thân mật)" },
+        { kana: "だれ", romaji: ["dare"], rubyHtml: "<ruby>誰<rt>だれ</rt></ruby>", meaning: "Ai" },
+        { kana: "どなた", romaji: ["donata"], rubyHtml: "どなた", meaning: "Vị nào (lịch sự của だれ)" },
+      ],
+    },
+
+    // B. Nghề nghiệp & Tuổi tác
+    {
+      id: "b1_nghenghiep",
+      name: "B. Nghề nghiệp & Tuổi tác",
+      selected: true,
+      items: [
+        { kana: "せんせい", romaji: ["sensei"], rubyHtml: "<ruby>先<rt>せん</rt></ruby><ruby>生<rt>せい</rt></ruby>", meaning: "Thầy/cô giáo" },
+        { kana: "きょうし", romaji: ["kyoushi"], rubyHtml: "<ruby>教<rt>きょう</rt></ruby><ruby>師<rt>し</rt></ruby>", meaning: "Giáo viên (dùng chỉ nghề nghiệp)" },
+        { kana: "がくせい", romaji: ["gakusei"], rubyHtml: "<ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>", meaning: "Học sinh, sinh viên" },
+        { kana: "かいしゃいん", romaji: ["kaishain"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>社<rt>しゃ</rt></ruby><ruby>員<rt>いん</rt></ruby>", meaning: "Nhân viên công ty" },
+        { kana: "しゃいん", romaji: ["shain"], rubyHtml: "<ruby>社<rt>しゃ</rt></ruby><ruby>員<rt>いん</rt></ruby>", meaning: "Nhân viên công ty ..." },
+        { kana: "ぎんこういん", romaji: ["ginkouin","ginkoin"], rubyHtml: "<ruby>銀<rt>ぎん</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>員<rt>いん</rt></ruby>", meaning: "Nhân viên ngân hàng" },
+        { kana: "いしゃ", romaji: ["isha"], rubyHtml: "<ruby>医<rt>い</rt></ruby><ruby>者<rt>しゃ</rt></ruby>", meaning: "Bác sĩ" },
+        { kana: "けんきゅうしゃ", romaji: ["kenkyuusha"], rubyHtml: "<ruby>研<rt>けん</rt></ruby><ruby>究<rt>きゅう</rt></ruby><ruby>者<rt>しゃ</rt></ruby>", meaning: "Nhà nghiên cứu" },
+        { kana: "エンジニア", romaji: ["enjinia"], rubyHtml: "エンジニア", meaning: "Kỹ sư" },
+        { kana: "さい", romaji: ["sai"], rubyHtml: "<ruby>歳<rt>さい</rt></ruby>", meaning: "～ Tuổi" },
+        { kana: "なんさい", romaji: ["nansai"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>歳<rt>さい</rt></ruby>", meaning: "Mấy tuổi, bao nhiêu tuổi" },
+      ],
+    },
+
+    // C. Địa điểm & Cơ sở
+    {
+      id: "b1_diadiem",
+      name: "C. Địa điểm & Cơ sở",
+      selected: true,
+      items: [
+        { kana: "だいがく", romaji: ["daigaku"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby>", meaning: "Trường đại học" },
+        { kana: "びょういん", romaji: ["byouin"], rubyHtml: "<ruby>病<rt>びょう</rt></ruby><ruby>院<rt>いん</rt></ruby>", meaning: "Bệnh viện" },
+        { kana: "でんき", romaji: ["denki"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Điện, đèn điện" },
+      ],
+    },
+
+    // D. Đất nước & Ngôn ngữ/Người
+    {
+      id: "b1_datnuoc",
+      name: "D. Đất nước & Ngôn ngữ/Người",
+      selected: true,
+      items: [
+        { kana: "じん", romaji: ["jin"], rubyHtml: "<ruby>人<rt>じん</rt></ruby>", meaning: "Người nước ～" },
+        { kana: "アメリカ", romaji: ["amerika"], rubyHtml: "アメリカ", meaning: "Mỹ" },
+        { kana: "イギリス", romaji: ["igirisu"], rubyHtml: "イギリス", meaning: "Anh" },
+        { kana: "インド", romaji: ["indo"], rubyHtml: "インド", meaning: "Ấn Độ" },
+        { kana: "インドネシア", romaji: ["indoneshia"], rubyHtml: "インドネシア", meaning: "Indonesia" },
+        { kana: "かんこく", romaji: ["kankoku"], rubyHtml: "<ruby>韓<rt>かん</rt></ruby><ruby>国<rt>こく</rt></ruby>", meaning: "Hàn Quốc" },
+        { kana: "タイ", romaji: ["tai"], rubyHtml: "タイ", meaning: "Thái Lan" },
+        { kana: "ちゅうごく", romaji: ["chuugoku"], rubyHtml: "<ruby>中<rt>ちゅう</rt></ruby><ruby>国<rt>ごく</rt></ruby>", meaning: "Trung Quốc" },
+        { kana: "ドイツ", romaji: ["doitsu"], rubyHtml: "ドイツ", meaning: "Đức" },
+        { kana: "にほん", romaji: ["nihon"], rubyHtml: "<ruby>日本<rt>にほん</rt></ruby>", meaning: "Nhật Bản" },
+        { kana: "フランス", romaji: ["furansu"], rubyHtml: "フランス", meaning: "Pháp" },
+        { kana: "ブラジル", romaji: ["burajiru"], rubyHtml: "ブラジル", meaning: "Brazil" },
+        { kana: "ベトナム", romaji: ["betonamu"], rubyHtml: "ベトナム", meaning: "Việt Nam" },
+      ],
+    },
+
+    // E. Chào hỏi & Giao tiếp
+    {
+      id: "b1_giaotiep",
+      name: "E. Chào hỏi & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "はい", romaji: ["hai"], rubyHtml: "はい", meaning: "Vâng, có" },
+        { kana: "いいえ", romaji: ["iie"], rubyHtml: "いいえ", meaning: "Không" },
+        { kana: "しつれいですが", romaji: ["shitsureidesuga"], rubyHtml: "<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>ですが", meaning: "Xin lỗi (khi muốn hỏi/nhờ ai việc gì)" },
+        { kana: "おなまえは", romaji: ["onamaewa"], rubyHtml: "お<ruby>名<rt>な</rt></ruby><ruby>前<rt>まえ</rt></ruby>は", meaning: "Tên anh/chị là gì?" },
+        { kana: "はじめまして", romaji: ["hajimemashite"], rubyHtml: "はじめまして", meaning: "Chào lần đầu gặp nhau" },
+        { kana: "どうぞよろしくおねがいします", romaji: ["douzoyoroshikuonegaishimasu"], rubyHtml: "どうぞよろしくお<ruby>願<rt>ねが</rt></ruby>いします", meaning: "Rất hân hạnh được làm quen" },
+        { kana: "こちらは", romaji: ["kochirawa"], rubyHtml: "こちらは", meaning: "Đây là ngài/anh/chị ～" },
+        { kana: "からきました", romaji: ["karakimashita"], rubyHtml: "から<ruby>来<rt>き</rt></ruby>ました", meaning: "Đến từ ～" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 2
+  // ========================================
   2: [
-    { id: 'b2_chithi', name: 'A. Chỉ thị từ chỉ đồ vật', selected: true, items: [
-      { kana: 'これ', romaji: ['kore'], rubyHtml: 'これ', meaning: 'Cái này (gần người nói)' },
-      { kana: 'それ', romaji: ['sore'], rubyHtml: 'それ', meaning: 'Cái đó (gần người nghe)' },
-      { kana: 'あれ', romaji: ['are'], rubyHtml: 'あれ', meaning: 'Cái kia (xa cả hai)' },
-      { kana: 'この', romaji: ['kono'], rubyHtml: 'この', meaning: '~ này' },
-      { kana: 'その', romaji: ['sono'], rubyHtml: 'その', meaning: '~ đó (gần người nghe)' },
-      { kana: 'あの', romaji: ['ano'], rubyHtml: 'あの', meaning: '~ kia (xa cả hai)' }
-    ]},
-    { id: 'b2_dovat', name: 'B. Đồ vật & Văn phòng phẩm', selected: true, items: [
-      { kana: 'ほん', romaji: ['hon'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby>', meaning: 'Sách' },
-      { kana: 'じしょ', romaji: ['jisho'], rubyHtml: '<ruby>辞<rt>じ</rt></ruby><ruby>書<rt>しょ</rt></ruby>', meaning: 'Từ điển' },
-      { kana: 'ざっし', romaji: ['zasshi'], rubyHtml: '<ruby>雑<rt>ざっ</rt></ruby><ruby>誌<rt>し</rt></ruby>', meaning: 'Tạp chí' },
-      { kana: 'しんぶん', romaji: ['shinbun'], rubyHtml: '<ruby>新<rt>しん</rt></ruby><ruby>聞<rt>ぶん</rt></ruby>', meaning: 'Tờ báo' },
-      { kana: 'ノート', romaji: ['no-to', 'noto'], rubyHtml: 'ノート', meaning: 'Vở' },
-      { kana: 'てちょう', romaji: ['techou'], rubyHtml: '<ruby>手<rt>て</rt></ruby><ruby>帳<rt>ちょう</rt></ruby>', meaning: 'Sổ tay' },
-      { kana: 'めいし', romaji: ['meishi'], rubyHtml: '<ruby>名<rt>めい</rt></ruby><ruby>刺<rt>し</rt></ruby>', meaning: 'Danh thiếp' },
-      { kana: 'カード', romaji: ['ka-do', 'kado'], rubyHtml: 'カード', meaning: 'Thẻ, cạc' },
-      { kana: 'テレホンカード', romaji: ['terehonka-do', 'terehonkado'], rubyHtml: 'テレホンカード', meaning: 'Thẻ điện thoại' },
-      { kana: 'えんぴつ', romaji: ['enpitsu'], rubyHtml: '<ruby>鉛<rt>えん</rt></ruby><ruby>筆<rt>ぴつ</rt></ruby>', meaning: 'Bút chì' },
-      { kana: 'ボールペン', romaji: ['bo-rupen', 'borupen'], rubyHtml: 'ボールペン', meaning: 'Bút bi' },
-      { kana: 'シャープペンシル', romaji: ['sha-pupenshiru', 'shapupenshiru'], rubyHtml: 'シャープペンシル', meaning: 'Bút chì bấm' },
-      { kana: 'かぎ', romaji: ['kagi'], rubyHtml: 'かぎ', meaning: 'Chìa khóa' },
-      { kana: 'とけい', romaji: ['tokei'], rubyHtml: '<ruby>時計<rt>とけい</rt></ruby>', meaning: 'Đồng hồ' },
-      { kana: 'かさ', romaji: ['kasa'], rubyHtml: '<ruby>傘<rt>かさ</rt></ruby>', meaning: 'Ô, dù' },
-      { kana: 'かばん', romaji: ['kaban'], rubyHtml: 'かばん', meaning: 'Cặp sách, túi xách' },
-      { kana: 'つくえ', romaji: ['tsukue'], rubyHtml: '<ruby>机<rt>つくえ</rt></ruby>', meaning: 'Bàn' },
-      { kana: 'いす', romaji: ['isu'], rubyHtml: 'いす', meaning: 'Ghế' },
-      { kana: 'おみやげ', romaji: ['omiyage', 'miyage'], rubyHtml: 'お<ruby>土産<rt>みやげ</rt></ruby>', meaning: 'Quà (mua khi đi xa về hoặc mang đi thăm)' },
+    // A. Chỉ thị từ chỉ đồ vật
+    {
+      id: "b2_chithi",
+      name: "A. Chỉ thị từ chỉ đồ vật",
+      selected: true,
+      items: [
+        { kana: "これ", romaji: ["kore"], rubyHtml: "これ", meaning: "Cái này (gần người nói)" },
+        { kana: "それ", romaji: ["sore"], rubyHtml: "それ", meaning: "Cái đó (gần người nghe)" },
+        { kana: "あれ", romaji: ["are"], rubyHtml: "あれ", meaning: "Cái kia (xa cả hai)" },
+        { kana: "この", romaji: ["kono"], rubyHtml: "この", meaning: "~ này" },
+        { kana: "その", romaji: ["sono"], rubyHtml: "その", meaning: "~ đó (gần người nghe)" },
+        { kana: "あの", romaji: ["ano"], rubyHtml: "あの", meaning: "~ kia (xa cả hai)" },
+      ],
+    },
 
-    ]},
-    { id: 'b2_thietbi', name: 'C. Thiết bị & Đồ dùng khác', selected: true, items: [
-      { kana: 'テープ', romaji: ['te-pu', 'tepu'], rubyHtml: 'テープ', meaning: 'Băng [cát-xét]' },
-      { kana: 'テープレコーダー', romaji: ['te-pureko-da-', 'tepurekoda'], rubyHtml: 'テープレコーダー', meaning: 'Máy ghi âm' },
-      { kana: 'テレビ', romaji: ['terebi'], rubyHtml: 'テレビ', meaning: 'Tivi' },
-      { kana: 'ラジオ', romaji: ['rajio'], rubyHtml: 'ラジオ', meaning: 'Đài Radio' },
-      { kana: 'カメラ', romaji: ['kamera'], rubyHtml: 'カメラ', meaning: 'Máy ảnh' },
-      { kana: 'コンピュータ', romaji: ['konpyu-ta', 'konpyuta'], rubyHtml: 'コンピュータ', meaning: 'Máy vi tính' },
-      { kana: 'くるま', romaji: ['kuruma'], rubyHtml: '<ruby>車<rt>くるま</rt></ruby>', meaning: 'Ô tô, xe hơi' },
-      { kana: 'チョコレート', romaji: ['chokore-to', 'chokoreto'], rubyHtml: 'チョコレート', meaning: 'Sô-cô-la' },
-      { kana: 'コーヒー', romaji: ['ko-hi-', 'kohi'], rubyHtml: 'コーヒー', meaning: 'Cà phê' }
-    ]},
-    { id: 'b2_ngonngu', name: 'D. Ngôn ngữ & Từ để hỏi', selected: true, items: [
-      { kana: 'えいご', romaji: ['eigo'], rubyHtml: '<ruby>英<rt>えい</rt></ruby><ruby>語<rt>ご</rt></ruby>', meaning: 'Tiếng Anh' },
-      { kana: 'にほんご', romaji: ['nihongo'], rubyHtml: '<ruby>日本<rt>にほん</rt></ruby><ruby>語<rt>ご</rt></ruby>', meaning: 'Tiếng Nhật' },
-      { kana: '~ご', romaji: ['go'], rubyHtml: '～<ruby>語<rt>ご</rt></ruby>', meaning: 'Tiếng ~' },
-      { kana: 'なん', romaji: ['nan', 'nani'], rubyHtml: '<ruby>何<rt>なん</rt></ruby>', meaning: 'Cái gì' }
-    ]},
-    { id: 'b2_giaotiep', name: 'E. Giao tiếp & Hội thoại', selected: true, items: [
-      { kana: 'そう', romaji: ['sou'], rubyHtml: 'そう', meaning: 'Đúng vậy' },
-      { kana: 'ちがいます', romaji: ['chigaimasu'], rubyHtml: '<ruby>違<rt>ちが</rt></ruby>います', meaning: 'Nhầm rồi, không phải' },
-      { kana: 'そうですか', romaji: ['soudesuka'], rubyHtml: 'そうですか', meaning: 'Thế à?' },
-      { kana: 'あのう', romaji: ['anou'], rubyHtml: 'あのう', meaning: 'À... (thể hiện sự do dự)' },
-      { kana: 'ほんのきもちです', romaji: ['honnokimochidesu'], rubyHtml: 'ほんの<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ちです', meaning: 'Đây là chút lòng thành của tôi' },
-      { kana: 'どうぞ', romaji: ['douzo'], rubyHtml: 'どうぞ', meaning: 'Xin mời' },
-      { kana: 'どうも', romaji: ['doumo'], rubyHtml: 'どうも', meaning: 'Cảm ơn' },
-      { kana: 'ありがとう ございます', romaji: ['arigatougozaimasu'], rubyHtml: 'ありがとうございます', meaning: 'Cảm ơn nhiều' },
-      { kana: 'これからおせわになります', romaji: ['korekaraosewaninarimasu'], rubyHtml: 'これからお<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>になります', meaning: 'Từ nay mong được anh/chị giúp đỡ' },
-      { kana: 'こちらこそ よろしく', romaji: ['kochirakosoyoroshikuonegaishimasu'], rubyHtml: 'こちらこそ よろしくおねがいします', meaning: 'Chính tôi mới mong được anh/chị giúp đỡ' }
-    ]}
+    // B. Đồ vật & Văn phòng phẩm
+    {
+      id: "b2_dovat",
+      name: "B. Đồ vật & Văn phòng phẩm",
+      selected: true,
+      items: [
+        { kana: "ほん", romaji: ["hon"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby>", meaning: "Sách" },
+        { kana: "じしょ", romaji: ["jisho"], rubyHtml: "<ruby>辞<rt>じ</rt></ruby><ruby>書<rt>しょ</rt></ruby>", meaning: "Từ điển" },
+        { kana: "ざっし", romaji: ["zasshi"], rubyHtml: "<ruby>雑<rt>ざっ</rt></ruby><ruby>誌<rt>し</rt></ruby>", meaning: "Tạp chí" },
+        { kana: "しんぶん", romaji: ["shinbun"], rubyHtml: "<ruby>新<rt>しん</rt></ruby><ruby>聞<rt>ぶん</rt></ruby>", meaning: "Tờ báo" },
+        { kana: "ノート", romaji: ["no-to","noto"], rubyHtml: "ノート", meaning: "Vở" },
+        { kana: "てちょう", romaji: ["techou"], rubyHtml: "<ruby>手<rt>て</rt></ruby><ruby>帳<rt>ちょう</rt></ruby>", meaning: "Sổ tay" },
+        { kana: "めいし", romaji: ["meishi"], rubyHtml: "<ruby>名<rt>めい</rt></ruby><ruby>刺<rt>し</rt></ruby>", meaning: "Danh thiếp" },
+        { kana: "カード", romaji: ["ka-do","kado"], rubyHtml: "カード", meaning: "Thẻ, cạc" },
+        { kana: "テレホンカード", romaji: ["terehonka-do","terehonkado"], rubyHtml: "テレホンカード", meaning: "Thẻ điện thoại" },
+        { kana: "えんぴつ", romaji: ["enpitsu"], rubyHtml: "<ruby>鉛<rt>えん</rt></ruby><ruby>筆<rt>ぴつ</rt></ruby>", meaning: "Bút chì" },
+        { kana: "ボールペン", romaji: ["bo-rupen","borupen"], rubyHtml: "ボールペン", meaning: "Bút bi" },
+        { kana: "シャープペンシル", romaji: ["sha-pupenshiru","shapupenshiru"], rubyHtml: "シャープペンシル", meaning: "Bút chì bấm" },
+        { kana: "かぎ", romaji: ["kagi"], rubyHtml: "かぎ", meaning: "Chìa khóa" },
+        { kana: "とけい", romaji: ["tokei"], rubyHtml: "<ruby>時計<rt>とけい</rt></ruby>", meaning: "Đồng hồ" },
+        { kana: "かさ", romaji: ["kasa"], rubyHtml: "<ruby>傘<rt>かさ</rt></ruby>", meaning: "Ô, dù" },
+        { kana: "かばん", romaji: ["kaban"], rubyHtml: "かばん", meaning: "Cặp sách, túi xách" },
+        { kana: "つくえ", romaji: ["tsukue"], rubyHtml: "<ruby>机<rt>つくえ</rt></ruby>", meaning: "Bàn" },
+        { kana: "いす", romaji: ["isu"], rubyHtml: "いす", meaning: "Ghế" },
+        { kana: "おみやげ", romaji: ["omiyage","miyage"], rubyHtml: "お<ruby>土産<rt>みやげ</rt></ruby>", meaning: "Quà (mua khi đi xa về hoặc mang đi thăm)" },
+      ],
+    },
+
+    // C. Thiết bị & Đồ dùng khác
+    {
+      id: "b2_thietbi",
+      name: "C. Thiết bị & Đồ dùng khác",
+      selected: true,
+      items: [
+        { kana: "テープ", romaji: ["te-pu","tepu"], rubyHtml: "テープ", meaning: "Băng [cát-xét]" },
+        { kana: "テープレコーダー", romaji: ["te-pureko-da-","tepurekoda"], rubyHtml: "テープレコーダー", meaning: "Máy ghi âm" },
+        { kana: "テレビ", romaji: ["terebi"], rubyHtml: "テレビ", meaning: "Tivi" },
+        { kana: "ラジオ", romaji: ["rajio"], rubyHtml: "ラジオ", meaning: "Đài Radio" },
+        { kana: "カメラ", romaji: ["kamera"], rubyHtml: "カメラ", meaning: "Máy ảnh" },
+        { kana: "コンピュータ", romaji: ["konpyu-ta","konpyuta"], rubyHtml: "コンピュータ", meaning: "Máy vi tính" },
+        { kana: "くるま", romaji: ["kuruma"], rubyHtml: "<ruby>車<rt>くるま</rt></ruby>", meaning: "Ô tô, xe hơi" },
+        { kana: "チョコレート", romaji: ["chokore-to","chokoreto"], rubyHtml: "チョコレート", meaning: "Sô-cô-la" },
+        { kana: "コーヒー", romaji: ["ko-hi-","kohi"], rubyHtml: "コーヒー", meaning: "Cà phê" },
+      ],
+    },
+
+    // D. Ngôn ngữ & Từ để hỏi
+    {
+      id: "b2_ngonngu",
+      name: "D. Ngôn ngữ & Từ để hỏi",
+      selected: true,
+      items: [
+        { kana: "えいご", romaji: ["eigo"], rubyHtml: "<ruby>英<rt>えい</rt></ruby><ruby>語<rt>ご</rt></ruby>", meaning: "Tiếng Anh" },
+        { kana: "にほんご", romaji: ["nihongo"], rubyHtml: "<ruby>日本<rt>にほん</rt></ruby><ruby>語<rt>ご</rt></ruby>", meaning: "Tiếng Nhật" },
+        { kana: "~ご", romaji: ["go"], rubyHtml: "～<ruby>語<rt>ご</rt></ruby>", meaning: "Tiếng ~" },
+        { kana: "なん", romaji: ["nan","nani"], rubyHtml: "<ruby>何<rt>なん</rt></ruby>", meaning: "Cái gì" },
+      ],
+    },
+
+    // E. Giao tiếp & Hội thoại
+    {
+      id: "b2_giaotiep",
+      name: "E. Giao tiếp & Hội thoại",
+      selected: true,
+      items: [
+        { kana: "そう", romaji: ["sou"], rubyHtml: "そう", meaning: "Đúng vậy" },
+        { kana: "ちがいます", romaji: ["chigaimasu"], rubyHtml: "<ruby>違<rt>ちが</rt></ruby>います", meaning: "Nhầm rồi, không phải" },
+        { kana: "そうですか", romaji: ["soudesuka"], rubyHtml: "そうですか", meaning: "Thế à?" },
+        { kana: "あのう", romaji: ["anou"], rubyHtml: "あのう", meaning: "À... (thể hiện sự do dự)" },
+        { kana: "ほんのきもちです", romaji: ["honnokimochidesu"], rubyHtml: "ほんの<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ちです", meaning: "Đây là chút lòng thành của tôi" },
+        { kana: "どうぞ", romaji: ["douzo"], rubyHtml: "どうぞ", meaning: "Xin mời" },
+        { kana: "どうも", romaji: ["doumo"], rubyHtml: "どうも", meaning: "Cảm ơn" },
+        { kana: "ありがとう ございます", romaji: ["arigatougozaimasu"], rubyHtml: "ありがとうございます", meaning: "Cảm ơn nhiều" },
+        { kana: "これからおせわになります", romaji: ["korekaraosewaninarimasu"], rubyHtml: "これからお<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>になります", meaning: "Từ nay mong được anh/chị giúp đỡ" },
+        { kana: "こちらこそ よろしく", romaji: ["kochirakosoyoroshikuonegaishimasu"], rubyHtml: "こちらこそ よろしくおねがいします", meaning: "Chính tôi mới mong được anh/chị giúp đỡ" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 3
+  // ========================================
   3: [
-    { id: 'b3_chithi', name: 'A. Chỉ thị từ chỉ nơi chốn & Phương hướng', selected: true, items: [
-      { kana: 'ここ', romaji: ['koko'], rubyHtml: 'ここ', meaning: 'Chỗ này, đây' },
-      { kana: 'そこ', romaji: ['soko'], rubyHtml: 'そこ', meaning: 'Chỗ đó, đó' },
-      { kana: 'あそこ', romaji: ['asoko'], rubyHtml: 'あそこ', meaning: 'Chỗ kia, kia' },
-      { kana: 'どこ', romaji: ['doko'], rubyHtml: 'どこ', meaning: 'Chỗ nào, đâu' },
-      { kana: 'こちら', romaji: ['kochira'], rubyHtml: 'こちら', meaning: 'Phía này, đằng này (lịch sự của ここ)' },
-      { kana: 'そちら', romaji: ['sochira'], rubyHtml: 'そちら', meaning: 'Phía đó, đằng đó (lịch sự của そこ)' },
-      { kana: 'あちら', romaji: ['achira'], rubyHtml: 'あちら', meaning: 'Phía kia, đằng kia (lịch sự của あそこ)' },
-      { kana: 'どちら', romaji: ['dochira'], rubyHtml: 'どちら', meaning: 'Phía nào, đằng nào (lịch sự của どこ)' }
-    ]},
-    { id: 'b3_noichon', name: 'B. Nơi chốn & Cơ sở vật chất', selected: true, items: [
-      { kana: 'きょうしつ', romaji: ['kyoushitsu'], rubyHtml: '<ruby>教<rt>きょう</rt></ruby><ruby>室<rt>しつ</rt></ruby>', meaning: 'Lớp học, phòng học' },
-      { kana: 'しょくどう', romaji: ['shokudou'], rubyHtml: '<ruby>食<rt>しょく</rt></ruby><ruby>堂<rt>どう</rt></ruby>', meaning: 'Nhà ăn' },
-      { kana: 'じむしょ', romaji: ['jimusho'], rubyHtml: '<ruby>事<rt>じ</rt></ruby><ruby>務<rt>む</rt></ruby><ruby>所<rt>しょ</rt></ruby>', meaning: 'Văn phòng' },
-      { kana: 'かいぎしつ', romaji: ['kaigishitsu'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>議<rt>ぎ</rt></ruby><ruby>室<rt>しつ</rt></ruby>', meaning: 'Phòng họp' },
-      { kana: 'うけつけ', romaji: ['uketsuke'], rubyHtml: '<ruby>受<rt>うけ</rt></ruby><ruby>付<rt>つけ</rt></ruby>', meaning: 'Bộ phận tiếp tân, lễ tân' },
-      { kana: 'ロビー', romaji: ['robi-', 'robi'], rubyHtml: 'ロビー', meaning: 'Hành lang, đại sảnh' },
-      { kana: 'へや', romaji: ['heya'], rubyHtml: '<ruby>部屋<rt>へや</rt></ruby>', meaning: 'Căn phòng' },
-      { kana: 'トイレ', romaji: ['toire', 'otearai'], rubyHtml: 'トイレ（お<ruby>手<rt>て</rt></ruby><ruby>洗<rt>あら</rt></ruby>い）', meaning: 'Nhà vệ sinh, phòng vệ sinh' },
-      { kana: 'かいだん', romaji: ['kaidan'], rubyHtml: '<ruby>階<rt>かい</rt></ruby><ruby>段<rt>だん</rt></ruby>', meaning: 'Cầu thang' },
-      { kana: 'エレベーター', romaji: ['erebe-ta-', 'erebeta'], rubyHtml: 'エレベーター', meaning: 'Thang máy' },
-      { kana: 'エスカレーター', romaji: ['esukare-ta-', 'esukareta'], rubyHtml: 'エスカレーター', meaning: 'Thang cuốn' },
-      { kana: 'おくに', romaji: ['okuni'], rubyHtml: 'お<ruby>国<rt>くに</rt></ruby>', meaning: 'Đất nước' },
-      { kana: 'かいしゃ', romaji: ['kaisha'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>社<rt>しゃ</rt></ruby>', meaning: 'Công ty' },
-      { kana: 'うち', romaji: ['uchi'], rubyHtml: 'うち', meaning: 'Nhà' }
-    ]},
-    { id: 'b3_dovat_doluong', name: 'C. Đồ vật, Tầng & Số đếm', selected: true, items: [
-      { kana: 'でんわ', romaji: ['denwa'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>', meaning: 'Máy điện thoại, điện thoại' },
-      { kana: 'くつ', romaji: ['kutsu'], rubyHtml: '<ruby>靴<rt>くつ</rt></ruby>', meaning: 'Giày' },
-      { kana: 'ネクタイ', romaji: ['nekutai'], rubyHtml: 'ネクタイ', meaning: 'Cà vạt' },
-      { kana: 'ワイン', romaji: ['wain'], rubyHtml: 'ワイン', meaning: 'Rượu vang' },
-      { kana: 'たばこ', romaji: ['tabako'], rubyHtml: 'たばこ', meaning: 'Thuốc lá' },
-      { kana: 'うりば', romaji: ['uriba'], rubyHtml: '<ruby>売<rt>う</rt></ruby>り<ruby>場<rt>ば</rt></ruby>', meaning: 'Quầy bán hàng' },
-      { kana: 'ちか', romaji: ['chika'], rubyHtml: '<ruby>地<rt>ち</rt></ruby><ruby>下<rt>か</rt></ruby>', meaning: 'Tầng hầm, dưới mặt đất' },
-      { kana: 'かい', romaji: ['kai', 'gai'], rubyHtml: '～<ruby>階<rt>かい</rt></ruby>', meaning: 'Tầng thứ ～' },
-      { kana: 'なんがい', romaji: ['nangai', 'nankai'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>階<rt>がい</rt></ruby>', meaning: 'Tầng mấy' },
-      { kana: 'えん', romaji: ['en'], rubyHtml: '～<ruby>円<rt>えん</rt></ruby>', meaning: 'Yên' },
-      { kana: 'いくら', romaji: ['ikura'], rubyHtml: 'いくら', meaning: 'Bao nhiêu tiền' },
-      { kana: 'ひゃく', romaji: ['hyaku'], rubyHtml: '<ruby>百<rt>ひゃく</rt></ruby>', meaning: 'Trăm' },
-      { kana: 'せん', romaji: ['sen'], rubyHtml: '<ruby>千<rt>せん</rt></ruby>', meaning: 'Nghìn' },
-      { kana: 'まん', romaji: ['man'], rubyHtml: '<ruby>万<rt>まん</rt></ruby>', meaning: 'Mười nghìn, vạn' },
-      { kana: 'じどうはんばいき', romaji: ['jidouhanbaiki'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>動<rt>どう</rt></ruby><ruby>販<rt>はん</rt></ruby><ruby>売<rt>ばい</rt></ruby><ruby>機<rt>き</rt></ruby>', meaning: 'Máy bán tự động' },
-    ]},
-    { id: 'b3_giaotiep', name: 'D. Giao tiếp & Tên riêng', selected: true, items: [
-      { kana: 'すみません', romaji: ['sumimasen'], rubyHtml: 'すみません', meaning: 'Xin lỗi' },
-      { kana: 'でございます', romaji: ['degozaimasu'], rubyHtml: '～でございます', meaning: 'Lịch sự của 「です」' },
-      { kana: 'みせてください', romaji: ['misetekudasai'], rubyHtml: '<ruby>見<rt>み</rt></ruby>せてください', meaning: 'Cho tôi xem [~]' },
-      { kana: 'じゃ', romaji: ['ja'], rubyHtml: 'じゃ', meaning: 'Thế thì, vậy thì' },
-      { kana: 'ください', romaji: ['kudasai'], rubyHtml: 'ください', meaning: 'Xin hãy, Please , Cho tôi [~]' },
-      { kana: 'しんおおさか', romaji: ['shinoosaka', 'shinosaka'], rubyHtml: '<ruby>新<rt>しん</rt></ruby><ruby>大<rt>おお</rt></ruby><ruby>阪<rt>さか</rt></ruby>', meaning: 'Ga Shin-Osaka' },
-      { kana: 'イタリア', romaji: ['itaria'], rubyHtml: 'イタリア', meaning: 'Ý' },
-      { kana: 'スイス', romaji: ['suisu'], rubyHtml: 'スイス', meaning: 'Thụy Sĩ' },
-      { kana: 'いらっしゃいませ', romaji: ['irasshaimase'], rubyHtml: 'いらっしゃいませ', meaning: 'Xin mời quý khách vào, chào mừng quý khách' }
-    ]}
+    // A. Chỉ thị từ chỉ nơi chốn & Phương hướng
+    {
+      id: "b3_chithi",
+      name: "A. Chỉ thị từ chỉ nơi chốn & Phương hướng",
+      selected: true,
+      items: [
+        { kana: "ここ", romaji: ["koko"], rubyHtml: "ここ", meaning: "Chỗ này, đây" },
+        { kana: "そこ", romaji: ["soko"], rubyHtml: "そこ", meaning: "Chỗ đó, đó" },
+        { kana: "あそこ", romaji: ["asoko"], rubyHtml: "あそこ", meaning: "Chỗ kia, kia" },
+        { kana: "どこ", romaji: ["doko"], rubyHtml: "どこ", meaning: "Chỗ nào, đâu" },
+        { kana: "こちら", romaji: ["kochira"], rubyHtml: "こちら", meaning: "Phía này, đằng này (lịch sự của ここ)" },
+        { kana: "そちら", romaji: ["sochira"], rubyHtml: "そちら", meaning: "Phía đó, đằng đó (lịch sự của そこ)" },
+        { kana: "あちら", romaji: ["achira"], rubyHtml: "あちら", meaning: "Phía kia, đằng kia (lịch sự của あそこ)" },
+        { kana: "どちら", romaji: ["dochira"], rubyHtml: "どちら", meaning: "Phía nào, đằng nào (lịch sự của どこ)" },
+      ],
+    },
+
+    // B. Nơi chốn & Cơ sở vật chất
+    {
+      id: "b3_noichon",
+      name: "B. Nơi chốn & Cơ sở vật chất",
+      selected: true,
+      items: [
+        { kana: "きょうしつ", romaji: ["kyoushitsu"], rubyHtml: "<ruby>教<rt>きょう</rt></ruby><ruby>室<rt>しつ</rt></ruby>", meaning: "Lớp học, phòng học" },
+        { kana: "しょくどう", romaji: ["shokudou"], rubyHtml: "<ruby>食<rt>しょく</rt></ruby><ruby>堂<rt>どう</rt></ruby>", meaning: "Nhà ăn" },
+        { kana: "じむしょ", romaji: ["jimusho"], rubyHtml: "<ruby>事<rt>じ</rt></ruby><ruby>務<rt>む</rt></ruby><ruby>所<rt>しょ</rt></ruby>", meaning: "Văn phòng" },
+        { kana: "かいぎしつ", romaji: ["kaigishitsu"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>議<rt>ぎ</rt></ruby><ruby>室<rt>しつ</rt></ruby>", meaning: "Phòng họp" },
+        { kana: "うけつけ", romaji: ["uketsuke"], rubyHtml: "<ruby>受<rt>うけ</rt></ruby><ruby>付<rt>つけ</rt></ruby>", meaning: "Bộ phận tiếp tân, lễ tân" },
+        { kana: "ロビー", romaji: ["robi-","robi"], rubyHtml: "ロビー", meaning: "Hành lang, đại sảnh" },
+        { kana: "へや", romaji: ["heya"], rubyHtml: "<ruby>部屋<rt>へや</rt></ruby>", meaning: "Căn phòng" },
+        { kana: "トイレ", romaji: ["toire","otearai"], rubyHtml: "トイレ（お<ruby>手<rt>て</rt></ruby><ruby>洗<rt>あら</rt></ruby>い）", meaning: "Nhà vệ sinh, phòng vệ sinh" },
+        { kana: "かいだん", romaji: ["kaidan"], rubyHtml: "<ruby>階<rt>かい</rt></ruby><ruby>段<rt>だん</rt></ruby>", meaning: "Cầu thang" },
+        { kana: "エレベーター", romaji: ["erebe-ta-","erebeta"], rubyHtml: "エレベーター", meaning: "Thang máy" },
+        { kana: "エスカレーター", romaji: ["esukare-ta-","esukareta"], rubyHtml: "エスカレーター", meaning: "Thang cuốn" },
+        { kana: "おくに", romaji: ["okuni"], rubyHtml: "お<ruby>国<rt>くに</rt></ruby>", meaning: "Đất nước" },
+        { kana: "かいしゃ", romaji: ["kaisha"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>社<rt>しゃ</rt></ruby>", meaning: "Công ty" },
+        { kana: "うち", romaji: ["uchi"], rubyHtml: "うち", meaning: "Nhà" },
+      ],
+    },
+
+    // C. Đồ vật, Tầng & Số đếm
+    {
+      id: "b3_dovat_doluong",
+      name: "C. Đồ vật, Tầng & Số đếm",
+      selected: true,
+      items: [
+        { kana: "でんわ", romaji: ["denwa"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>", meaning: "Máy điện thoại, điện thoại" },
+        { kana: "くつ", romaji: ["kutsu"], rubyHtml: "<ruby>靴<rt>くつ</rt></ruby>", meaning: "Giày" },
+        { kana: "ネクタイ", romaji: ["nekutai"], rubyHtml: "ネクタイ", meaning: "Cà vạt" },
+        { kana: "ワイン", romaji: ["wain"], rubyHtml: "ワイン", meaning: "Rượu vang" },
+        { kana: "たばこ", romaji: ["tabako"], rubyHtml: "たばこ", meaning: "Thuốc lá" },
+        { kana: "うりば", romaji: ["uriba"], rubyHtml: "<ruby>売<rt>う</rt></ruby>り<ruby>場<rt>ば</rt></ruby>", meaning: "Quầy bán hàng" },
+        { kana: "ちか", romaji: ["chika"], rubyHtml: "<ruby>地<rt>ち</rt></ruby><ruby>下<rt>か</rt></ruby>", meaning: "Tầng hầm, dưới mặt đất" },
+        { kana: "かい", romaji: ["kai","gai"], rubyHtml: "～<ruby>階<rt>かい</rt></ruby>", meaning: "Tầng thứ ～" },
+        { kana: "なんがい", romaji: ["nangai","nankai"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>階<rt>がい</rt></ruby>", meaning: "Tầng mấy" },
+        { kana: "えん", romaji: ["en"], rubyHtml: "～<ruby>円<rt>えん</rt></ruby>", meaning: "Yên" },
+        { kana: "いくら", romaji: ["ikura"], rubyHtml: "いくら", meaning: "Bao nhiêu tiền" },
+        { kana: "ひゃく", romaji: ["hyaku"], rubyHtml: "<ruby>百<rt>ひゃく</rt></ruby>", meaning: "Trăm" },
+        { kana: "せん", romaji: ["sen"], rubyHtml: "<ruby>千<rt>せん</rt></ruby>", meaning: "Nghìn" },
+        { kana: "まん", romaji: ["man"], rubyHtml: "<ruby>万<rt>まん</rt></ruby>", meaning: "Mười nghìn, vạn" },
+        { kana: "じどうはんばいき", romaji: ["jidouhanbaiki"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>動<rt>どう</rt></ruby><ruby>販<rt>はん</rt></ruby><ruby>売<rt>ばい</rt></ruby><ruby>機<rt>き</rt></ruby>", meaning: "Máy bán tự động" },
+      ],
+    },
+
+    // D. Giao tiếp & Tên riêng
+    {
+      id: "b3_giaotiep",
+      name: "D. Giao tiếp & Tên riêng",
+      selected: true,
+      items: [
+        { kana: "すみません", romaji: ["sumimasen"], rubyHtml: "すみません", meaning: "Xin lỗi" },
+        { kana: "でございます", romaji: ["degozaimasu"], rubyHtml: "～でございます", meaning: "Lịch sự của 「です」" },
+        { kana: "みせてください", romaji: ["misetekudasai"], rubyHtml: "<ruby>見<rt>み</rt></ruby>せてください", meaning: "Cho tôi xem [~]" },
+        { kana: "じゃ", romaji: ["ja"], rubyHtml: "じゃ", meaning: "Thế thì, vậy thì" },
+        { kana: "ください", romaji: ["kudasai"], rubyHtml: "ください", meaning: "Xin hãy, Please , Cho tôi [~]" },
+        { kana: "しんおおさか", romaji: ["shinoosaka","shinosaka"], rubyHtml: "<ruby>新<rt>しん</rt></ruby><ruby>大<rt>おお</rt></ruby><ruby>阪<rt>さか</rt></ruby>", meaning: "Ga Shin-Osaka" },
+        { kana: "イタリア", romaji: ["itaria"], rubyHtml: "イタリア", meaning: "Ý" },
+        { kana: "スイス", romaji: ["suisu"], rubyHtml: "スイス", meaning: "Thụy Sĩ" },
+        { kana: "いらっしゃいませ", romaji: ["irasshaimase"], rubyHtml: "いらっしゃいませ", meaning: "Xin mời quý khách vào, chào mừng quý khách" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 4
+  // ========================================
   4: [
-    { id: 'b4_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'おきます', romaji: ['okimasu'], rubyHtml: '<ruby>起<rt>お</rt></ruby>きます', meaning: 'Thức dậy' },
-      { kana: 'ねます', romaji: ['nemasu'], rubyHtml: '<ruby>寝<rt>ね</rt></ruby>ます', meaning: 'Ngủ, đi ngủ' },
-      { kana: 'はたらきます', romaji: ['hatarakimasu'], rubyHtml: '<ruby>働<rt>はたら</rt></ruby>きます', meaning: 'Làm việc' },
-      { kana: 'やすみます', romaji: ['yasumimasu'], rubyHtml: '<ruby>休<rt>やす</rt></ruby>みます', meaning: 'Nghỉ, nghỉ ngơi' },
-      { kana: 'べんきょうします', romaji: ['benkyoushimasu', 'benkyoshimasu'], rubyHtml: '<ruby>勉<rt>べん</rt></ruby><ruby>強<rt>きょう</rt></ruby>します', meaning: 'Học tập' },
-      { kana: 'おわります', romaji: ['owarimasu'], rubyHtml: '<ruby>終<rt>お</rt></ruby>わります', meaning: 'Kết thúc, xong' }
-    ]},
-    { id: 'b4_diadiem', name: 'B. Địa điểm & Cơ sở', selected: true, items: [
-      { kana: 'デパート', romaji: ['depa-to', 'depato'], rubyHtml: 'デパート', meaning: 'Cửa hàng bách hóa' },
-      { kana: 'ぎんこう', romaji: ['ginkou', 'ginko'], rubyHtml: '<ruby>銀<rt>ぎん</rt></ruby><ruby>行<rt>こう</rt></ruby>', meaning: 'Ngân hàng' },
-      { kana: 'ゆうびんきょく', romaji: ['yuubinkyoku'], rubyHtml: '<ruby>郵<rt>ゆう</rt></ruby><ruby>便<rt>びん</rt></ruby><ruby>局<rt>きょく</rt></ruby>', meaning: 'Bưu điện' },
-      { kana: 'としょかん', romaji: ['toshokan'], rubyHtml: '<ruby>図<rt>と</rt></ruby><ruby>書<rt>しょ</rt></ruby><ruby>館<rt>かん</rt></ruby>', meaning: 'Thư viện' },
-      { kana: 'びじゅつかん', romaji: ['bijutsukan'], rubyHtml: '<ruby>美<rt>び</rt></ruby><ruby>術<rt>じゅつ</rt></ruby><ruby>館<rt>かん</rt></ruby>', meaning: 'Bảo tàng mỹ thuật' }
-    ]},
-    { id: 'b4_sukien', name: 'C. Sự kiện & Danh từ khác', selected: true, items: [
-      { kana: 'しけん', romaji: ['shiken'], rubyHtml: '<ruby>試<rt>し</rt></ruby><ruby>験<rt>けん</rt></ruby>', meaning: 'Kỳ thi, kiểm tra' },
-      { kana: 'かいぎ', romaji: ['kaigi'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>議<rt>ぎ</rt></ruby>', meaning: 'Cuộc họp, hội nghị' },
-      { kana: 'えいが', romaji: ['eiga'], rubyHtml: '<ruby>映<rt>えい</rt></ruby><ruby>画<rt>が</rt></ruby>', meaning: 'Phim, điện ảnh' }
-    ]},
-    { id: 'b4_dienthoai_giaotiep', name: 'D. Số điện thoại & Xưng hô', selected: true, items: [
-      { kana: 'ばんごう', romaji: ['bangou', 'bango'], rubyHtml: '<ruby>番<rt>ばん</rt></ruby><ruby>号<rt>ごう</rt></ruby>', meaning: 'Số (số thứ tự, mã số)' },
-      { kana: 'でんわばんごう', romaji: ['denwabangou', 'denwabango'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby><ruby>番<rt>ばん</rt></ruby><ruby>号<rt>ごう</rt></ruby>', meaning: 'Số điện thoại' },
-      { kana: 'なんばん', romaji: ['nanban'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>番<rt>ばん</rt></ruby>', meaning: 'Số mấy, số bao nhiêu' },
-      { kana: 'そちら', romaji: ['sochira'], rubyHtml: 'そちら', meaning: 'Phía ông/bà, đằng ấy, chỗ các bạn' }
-    ]},
-    { id: 'b4_thoigian_chung', name: 'E. Khái niệm thời gian', selected: true, items: [
-      { kana: 'いま', romaji: ['ima'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>', meaning: 'Bây giờ' },
-      { kana: 'ごぜん', romaji: ['gozen'], rubyHtml: '<ruby>午<rt>ご</rt></ruby><ruby>前<rt>ぜん</rt></ruby>', meaning: 'Sáng (AM)' },
-      { kana: 'ごご', romaji: ['gogo'], rubyHtml: '<ruby>午<rt>ご</rt></ruby><ruby>後<rt>ご</rt></ruby>', meaning: 'Chiều (PM)' },
-      { kana: '～から', romaji: ['kara', '~kara'], rubyHtml: '～から', meaning: 'Từ ~' },
-      { kana: '～まで', romaji: ['made', '~made'], rubyHtml: '～まで', meaning: 'Đến ~' },
-      { kana: '～と～', romaji: ['to', '~to~'], rubyHtml: '～と～', meaning: 'Và / Với' }
-    ]},
-    { id: 'b4_buoi_ngay', name: 'F. Buổi trong ngày & Ngày', selected: true, items: [
-      { kana: 'あさ', romaji: ['asa'], rubyHtml: '<ruby>朝<rt>あさ</rt></ruby>', meaning: 'Buổi sáng' },
-      { kana: 'ひる', romaji: ['hiru'], rubyHtml: '<ruby>昼<rt>ひる</rt></ruby>', meaning: 'Buổi trưa' },
-      { kana: 'ばん', romaji: ['ban'], rubyHtml: '<ruby>晩<rt>ばん</rt></ruby>', meaning: 'Buổi tối' },
-      { kana: 'よる', romaji: ['yoru'], rubyHtml: '<ruby>夜<rt>よる</rt></ruby>', meaning: 'Buổi tối / Đêm' },
-      { kana: 'おととい', romaji: ['ototoi'], rubyHtml: 'おととい', meaning: 'Hôm kia' },
-      { kana: 'きのう', romaji: ['kinou', 'kino'], rubyHtml: 'きのう', meaning: 'Hôm qua' },
-      { kana: 'きょう', romaji: ['kyou', 'kyo'], rubyHtml: '<ruby>今日<rt>きょう</rt></ruby>', meaning: 'Hôm nay' },
-      { kana: 'あした', romaji: ['ashita'], rubyHtml: '<ruby>明日<rt>あした</rt></ruby>', meaning: 'Ngày mai' },
-      { kana: 'あさって', romaji: ['asatte'], rubyHtml: 'あさって', meaning: 'Ngày mốt' },
-      { kana: 'けさ', romaji: ['kesa'], rubyHtml: '<ruby>今朝<rt>けさ</rt></ruby>', meaning: 'Sáng nay' },
-      { kana: 'こんばん', romaji: ['konban'], rubyHtml: '<ruby>今<rt>こん</rt></ruby><ruby>晩<rt>ばん</rt></ruby>', meaning: 'Tối nay' },
-      { kana: 'ゆうべ', romaji: ['yuube', 'yube'], rubyHtml: 'ゆうべ', meaning: 'Tối qua' },
-      { kana: 'やすみ', romaji: ['yasumi'], rubyHtml: '<ruby>休<rt>やす</rt></ruby>み', meaning: 'Ngày nghỉ, sự nghỉ ngơi' },
-      { kana: 'ひるやすみ', romaji: ['hiruyasumi'], rubyHtml: '<ruby>昼<rt>ひる</rt></ruby><ruby>休<rt>やす</rt></ruby>み', meaning: 'Nghỉ trưa' },
-      { kana: 'まいあさ', romaji: ['maiasa'], rubyHtml: '<ruby>毎<rt>まい</rt></ruby><ruby>朝<rt>あさ</rt></ruby>', meaning: 'Mỗi sáng' },
-      { kana: 'まいばん', romaji: ['maiban'], rubyHtml: '<ruby>毎<rt>まい</rt></ruby><ruby>晩<rt>ばん</rt></ruby>', meaning: 'Mỗi tối' },
-      { kana: 'まいにち', romaji: ['mainichi'], rubyHtml: '<ruby>毎<rt>まい</rt></ruby><ruby>日<rt>にち</rt></ruby>', meaning: 'Mỗi ngày' }
-    ]},
-    { id: 'b4_thutrongtuan', name: 'G. Các thứ trong tuần', selected: true, items: [
-      { kana: 'げつようび', romaji: ['getsuyoubi', 'getsuyobi'], rubyHtml: '<ruby>月<rt>げつ</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ 2' },
-      { kana: 'かようび', romaji: ['kayoubi', 'kayobi'], rubyHtml: '<ruby>火<rt>か</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ 3' },
-      { kana: 'すいようび', romaji: ['suiyoubi', 'suiyobi'], rubyHtml: '<ruby>水<rt>すい</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ 4' },
-      { kana: 'もくようび', romaji: ['mokuyoubi', 'mokuyobi'], rubyHtml: '<ruby>木<rt>もく</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ 5' },
-      { kana: 'きんようび', romaji: ['kinyoubi', 'kinyobi'], rubyHtml: '<ruby>金<rt>きん</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ 6' },
-      { kana: 'どようび', romaji: ['doyoubi', 'doyobi'], rubyHtml: '<ruby>土<rt>ど</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ 7' },
-      { kana: 'にちようび', romaji: ['nichiyoubi', 'nichiyobi'], rubyHtml: '<ruby>日<rt>にち</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Chủ nhật' },
-      { kana: 'なんようび', romaji: ['nanyoubi', 'nanyobi'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Thứ mấy' }
-    ]},
-    { id: 'b4_dem_gio', name: 'H. Cách đếm giờ', selected: true, items: [
-      { kana: 'いちじ', romaji: ['ichiji'], rubyHtml: '1<ruby>時<rt>じ</rt></ruby>', meaning: '1 giờ' },
-      { kana: 'にじ', romaji: ['niji'], rubyHtml: '2<ruby>時<rt>じ</rt></ruby>', meaning: '2 giờ' },
-      { kana: 'さんじ', romaji: ['sanji'], rubyHtml: '3<ruby>時<rt>じ</rt></ruby>', meaning: '3 giờ' },
-      { kana: 'よじ', romaji: ['yoji'], rubyHtml: '4<ruby>時<rt>じ</rt></ruby>', meaning: '4 giờ' },
-      { kana: 'ごじ', romaji: ['goji'], rubyHtml: '5<ruby>時<rt>じ</rt></ruby>', meaning: '5 giờ' },
-      { kana: 'ろくじ', romaji: ['rokuji'], rubyHtml: '6<ruby>時<rt>じ</rt></ruby>', meaning: '6 giờ' },
-      { kana: 'しちじ', romaji: ['shichiji', 'nanaji'], rubyHtml: '7<ruby>時<rt>じ</rt></ruby>', meaning: '7 giờ' },
-      { kana: 'はちじ', romaji: ['hachiji'], rubyHtml: '8<ruby>時<rt>じ</rt></ruby>', meaning: '8 giờ' },
-      { kana: 'くじ', romaji: ['kuji'], rubyHtml: '9<ruby>時<rt>じ</rt></ruby>', meaning: '9 giờ' },
-      { kana: 'じゅうじ', romaji: ['juuji', 'juji'], rubyHtml: '10<ruby>時<rt>じ</rt></ruby>', meaning: '10 giờ' },
-      { kana: 'じゅういちじ', romaji: ['juuichiji'], rubyHtml: '11<ruby>時<rt>じ</rt></ruby>', meaning: '11 giờ' },
-      { kana: 'じゅうにじ', romaji: ['juuniji'], rubyHtml: '12<ruby>時<rt>じ</rt></ruby>', meaning: '12 giờ' },
-      { kana: 'なんじ', romaji: ['nanji'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby>', meaning: 'Mấy giờ' }
-    ]},
-    { id: 'b4_dem_phut', name: 'I. Cách đếm phút', selected: true, items: [
-      { kana: 'いっぷん', romaji: ['ippun'], rubyHtml: '1<ruby>分<rt>ぷん</rt></ruby>', meaning: '1 phút' },
-      { kana: 'にふん', romaji: ['nifun'], rubyHtml: '2<ruby>分<rt>ふん</rt></ruby>', meaning: '2 phút' },
-      { kana: 'さんぷん', romaji: ['sanpun'], rubyHtml: '3<ruby>分<rt>ぷん</rt></ruby>', meaning: '3 phút' },
-      { kana: 'よんぷん', romaji: ['yonpun'], rubyHtml: '4<ruby>分<rt>ぷん</rt></ruby>', meaning: '4 phút' },
-      { kana: 'ごふん', romaji: ['gofun'], rubyHtml: '5<ruby>分<rt>ふん</rt></ruby>', meaning: '5 phút' },
-      { kana: 'ろっぷん', romaji: ['roppun'], rubyHtml: '6<ruby>分<rt>ぷん</rt></ruby>', meaning: '6 phút' },
-      { kana: 'ななふん', romaji: ['nanafun', 'shichifun'], rubyHtml: '7<ruby>分<rt>ふん</rt></ruby>', meaning: '7 phút' },
-      { kana: 'はっぷん', romaji: ['happun', 'hachifun'], rubyHtml: '8<ruby>分<rt>ぷん</rt></ruby>', meaning: '8 phút' },
-      { kana: 'きゅうふん', romaji: ['kyuufun', 'kyufun'], rubyHtml: '9<ruby>分<rt>ふん</rt></ruby>', meaning: '9 phút' },
-      { kana: 'じゅっぷん', romaji: ['juppun', 'jippun'], rubyHtml: '10<ruby>分<rt>ぷん</rt></ruby>', meaning: '10 phút' },
-      { kana: 'じゅうごふん', romaji: ['juugofun'], rubyHtml: '15<ruby>分<rt>ふん</rt></ruby>', meaning: '15 phút' },
-      { kana: 'さんじゅっぷん', romaji: ['sanjuppun', 'sanjippun'], rubyHtml: '30<ruby>分<rt>ぷん</rt></ruby>', meaning: '30 phút' },
-      { kana: 'はん', romaji: ['han'], rubyHtml: '<ruby>半<rt>はん</rt></ruby>', meaning: 'Rưỡi, nửa (ví dụ: 8 giờ rưỡi)' },
-      { kana: 'なんぷん', romaji: ['nanpun', 'nanfun'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>分<rt>ぷん</rt></ruby>', meaning: 'Mấy phút' }
-    ]},
-    { id: 'b4_diadanh_giaotiep', name: 'J. Địa danh & Giao tiếp', selected: true, items: [
-      { kana: 'ニューヨーク', romaji: ['nyu-yo-ku', 'nyuuyooku', 'newyork'], rubyHtml: 'ニューヨーク', meaning: 'New York' },
-      { kana: 'ペキン', romaji: ['pekin'], rubyHtml: 'ペキン', meaning: 'Bắc Kinh' },
-      { kana: 'バンコク', romaji: ['bankoku'], rubyHtml: 'バンコク', meaning: 'Bangkok' },
-      { kana: 'ロンドン', romaji: ['rondon'], rubyHtml: 'ロンドン', meaning: 'Luân Đôn' },
-      { kana: 'ロサンゼルス', romaji: ['rosanjerusu'], rubyHtml: 'ロサンゼルス', meaning: 'Los Angeles' },
-      { kana: 'たいへんですね', romaji: ['taihendesune'], rubyHtml: '<ruby>大<rt>たい</rt></ruby><ruby>変<rt>へん</rt></ruby>ですね', meaning: 'Vất vả nhỉ, cực nhỉ' }
-    ]}
+    // A. Động từ
+    {
+      id: "b4_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "おきます", romaji: ["okimasu"], rubyHtml: "<ruby>起<rt>お</rt></ruby>きます", meaning: "Thức dậy" },
+        { kana: "ねます", romaji: ["nemasu"], rubyHtml: "<ruby>寝<rt>ね</rt></ruby>ます", meaning: "Ngủ, đi ngủ" },
+        { kana: "はたらきます", romaji: ["hatarakimasu"], rubyHtml: "<ruby>働<rt>はたら</rt></ruby>きます", meaning: "Làm việc" },
+        { kana: "やすみます", romaji: ["yasumimasu"], rubyHtml: "<ruby>休<rt>やす</rt></ruby>みます", meaning: "Nghỉ, nghỉ ngơi" },
+        { kana: "べんきょうします", romaji: ["benkyoushimasu","benkyoshimasu"], rubyHtml: "<ruby>勉<rt>べん</rt></ruby><ruby>強<rt>きょう</rt></ruby>します", meaning: "Học tập" },
+        { kana: "おわります", romaji: ["owarimasu"], rubyHtml: "<ruby>終<rt>お</rt></ruby>わります", meaning: "Kết thúc, xong" },
+      ],
+    },
+
+    // B. Địa điểm & Cơ sở
+    {
+      id: "b4_diadiem",
+      name: "B. Địa điểm & Cơ sở",
+      selected: true,
+      items: [
+        { kana: "デパート", romaji: ["depa-to","depato"], rubyHtml: "デパート", meaning: "Cửa hàng bách hóa" },
+        { kana: "ぎんこう", romaji: ["ginkou","ginko"], rubyHtml: "<ruby>銀<rt>ぎん</rt></ruby><ruby>行<rt>こう</rt></ruby>", meaning: "Ngân hàng" },
+        { kana: "ゆうびんきょく", romaji: ["yuubinkyoku"], rubyHtml: "<ruby>郵<rt>ゆう</rt></ruby><ruby>便<rt>びん</rt></ruby><ruby>局<rt>きょく</rt></ruby>", meaning: "Bưu điện" },
+        { kana: "としょかん", romaji: ["toshokan"], rubyHtml: "<ruby>図<rt>と</rt></ruby><ruby>書<rt>しょ</rt></ruby><ruby>館<rt>かん</rt></ruby>", meaning: "Thư viện" },
+        { kana: "びじゅつかん", romaji: ["bijutsukan"], rubyHtml: "<ruby>美<rt>び</rt></ruby><ruby>術<rt>じゅつ</rt></ruby><ruby>館<rt>かん</rt></ruby>", meaning: "Bảo tàng mỹ thuật" },
+      ],
+    },
+
+    // C. Sự kiện & Danh từ khác
+    {
+      id: "b4_sukien",
+      name: "C. Sự kiện & Danh từ khác",
+      selected: true,
+      items: [
+        { kana: "しけん", romaji: ["shiken"], rubyHtml: "<ruby>試<rt>し</rt></ruby><ruby>験<rt>けん</rt></ruby>", meaning: "Kỳ thi, kiểm tra" },
+        { kana: "かいぎ", romaji: ["kaigi"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>議<rt>ぎ</rt></ruby>", meaning: "Cuộc họp, hội nghị" },
+        { kana: "えいが", romaji: ["eiga"], rubyHtml: "<ruby>映<rt>えい</rt></ruby><ruby>画<rt>が</rt></ruby>", meaning: "Phim, điện ảnh" },
+      ],
+    },
+
+    // D. Số điện thoại & Xưng hô
+    {
+      id: "b4_dienthoai_giaotiep",
+      name: "D. Số điện thoại & Xưng hô",
+      selected: true,
+      items: [
+        { kana: "ばんごう", romaji: ["bangou","bango"], rubyHtml: "<ruby>番<rt>ばん</rt></ruby><ruby>号<rt>ごう</rt></ruby>", meaning: "Số (số thứ tự, mã số)" },
+        { kana: "でんわばんごう", romaji: ["denwabangou","denwabango"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby><ruby>番<rt>ばん</rt></ruby><ruby>号<rt>ごう</rt></ruby>", meaning: "Số điện thoại" },
+        { kana: "なんばん", romaji: ["nanban"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>番<rt>ばん</rt></ruby>", meaning: "Số mấy, số bao nhiêu" },
+        { kana: "そちら", romaji: ["sochira"], rubyHtml: "そちら", meaning: "Phía ông/bà, đằng ấy, chỗ các bạn" },
+      ],
+    },
+
+    // E. Khái niệm thời gian
+    {
+      id: "b4_thoigian_chung",
+      name: "E. Khái niệm thời gian",
+      selected: true,
+      items: [
+        { kana: "いま", romaji: ["ima"], rubyHtml: "<ruby>今<rt>いま</rt></ruby>", meaning: "Bây giờ" },
+        { kana: "ごぜん", romaji: ["gozen"], rubyHtml: "<ruby>午<rt>ご</rt></ruby><ruby>前<rt>ぜん</rt></ruby>", meaning: "Sáng (AM)" },
+        { kana: "ごご", romaji: ["gogo"], rubyHtml: "<ruby>午<rt>ご</rt></ruby><ruby>後<rt>ご</rt></ruby>", meaning: "Chiều (PM)" },
+        { kana: "～から", romaji: ["kara","~kara"], rubyHtml: "～から", meaning: "Từ ~" },
+        { kana: "～まで", romaji: ["made","~made"], rubyHtml: "～まで", meaning: "Đến ~" },
+        { kana: "～と～", romaji: ["to","~to~"], rubyHtml: "～と～", meaning: "Và / Với" },
+      ],
+    },
+
+    // F. Buổi trong ngày & Ngày
+    {
+      id: "b4_buoi_ngay",
+      name: "F. Buổi trong ngày & Ngày",
+      selected: true,
+      items: [
+        { kana: "あさ", romaji: ["asa"], rubyHtml: "<ruby>朝<rt>あさ</rt></ruby>", meaning: "Buổi sáng" },
+        { kana: "ひる", romaji: ["hiru"], rubyHtml: "<ruby>昼<rt>ひる</rt></ruby>", meaning: "Buổi trưa" },
+        { kana: "ばん", romaji: ["ban"], rubyHtml: "<ruby>晩<rt>ばん</rt></ruby>", meaning: "Buổi tối" },
+        { kana: "よる", romaji: ["yoru"], rubyHtml: "<ruby>夜<rt>よる</rt></ruby>", meaning: "Buổi tối / Đêm" },
+        { kana: "おととい", romaji: ["ototoi"], rubyHtml: "おととい", meaning: "Hôm kia" },
+        { kana: "きのう", romaji: ["kinou","kino"], rubyHtml: "きのう", meaning: "Hôm qua" },
+        { kana: "きょう", romaji: ["kyou","kyo"], rubyHtml: "<ruby>今日<rt>きょう</rt></ruby>", meaning: "Hôm nay" },
+        { kana: "あした", romaji: ["ashita"], rubyHtml: "<ruby>明日<rt>あした</rt></ruby>", meaning: "Ngày mai" },
+        { kana: "あさって", romaji: ["asatte"], rubyHtml: "あさって", meaning: "Ngày mốt" },
+        { kana: "けさ", romaji: ["kesa"], rubyHtml: "<ruby>今朝<rt>けさ</rt></ruby>", meaning: "Sáng nay" },
+        { kana: "こんばん", romaji: ["konban"], rubyHtml: "<ruby>今<rt>こん</rt></ruby><ruby>晩<rt>ばん</rt></ruby>", meaning: "Tối nay" },
+        { kana: "ゆうべ", romaji: ["yuube","yube"], rubyHtml: "ゆうべ", meaning: "Tối qua" },
+        { kana: "やすみ", romaji: ["yasumi"], rubyHtml: "<ruby>休<rt>やす</rt></ruby>み", meaning: "Ngày nghỉ, sự nghỉ ngơi" },
+        { kana: "ひるやすみ", romaji: ["hiruyasumi"], rubyHtml: "<ruby>昼<rt>ひる</rt></ruby><ruby>休<rt>やす</rt></ruby>み", meaning: "Nghỉ trưa" },
+        { kana: "まいあさ", romaji: ["maiasa"], rubyHtml: "<ruby>毎<rt>まい</rt></ruby><ruby>朝<rt>あさ</rt></ruby>", meaning: "Mỗi sáng" },
+        { kana: "まいばん", romaji: ["maiban"], rubyHtml: "<ruby>毎<rt>まい</rt></ruby><ruby>晩<rt>ばん</rt></ruby>", meaning: "Mỗi tối" },
+        { kana: "まいにち", romaji: ["mainichi"], rubyHtml: "<ruby>毎<rt>まい</rt></ruby><ruby>日<rt>にち</rt></ruby>", meaning: "Mỗi ngày" },
+      ],
+    },
+
+    // G. Các thứ trong tuần
+    {
+      id: "b4_thutrongtuan",
+      name: "G. Các thứ trong tuần",
+      selected: true,
+      items: [
+        { kana: "げつようび", romaji: ["getsuyoubi","getsuyobi"], rubyHtml: "<ruby>月<rt>げつ</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ 2" },
+        { kana: "かようび", romaji: ["kayoubi","kayobi"], rubyHtml: "<ruby>火<rt>か</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ 3" },
+        { kana: "すいようび", romaji: ["suiyoubi","suiyobi"], rubyHtml: "<ruby>水<rt>すい</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ 4" },
+        { kana: "もくようび", romaji: ["mokuyoubi","mokuyobi"], rubyHtml: "<ruby>木<rt>もく</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ 5" },
+        { kana: "きんようび", romaji: ["kinyoubi","kinyobi"], rubyHtml: "<ruby>金<rt>きん</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ 6" },
+        { kana: "どようび", romaji: ["doyoubi","doyobi"], rubyHtml: "<ruby>土<rt>ど</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ 7" },
+        { kana: "にちようび", romaji: ["nichiyoubi","nichiyobi"], rubyHtml: "<ruby>日<rt>にち</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Chủ nhật" },
+        { kana: "なんようび", romaji: ["nanyoubi","nanyobi"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Thứ mấy" },
+      ],
+    },
+
+    // H. Cách đếm giờ
+    {
+      id: "b4_dem_gio",
+      name: "H. Cách đếm giờ",
+      selected: true,
+      items: [
+        { kana: "いちじ", romaji: ["ichiji"], rubyHtml: "1<ruby>時<rt>じ</rt></ruby>", meaning: "1 giờ" },
+        { kana: "にじ", romaji: ["niji"], rubyHtml: "2<ruby>時<rt>じ</rt></ruby>", meaning: "2 giờ" },
+        { kana: "さんじ", romaji: ["sanji"], rubyHtml: "3<ruby>時<rt>じ</rt></ruby>", meaning: "3 giờ" },
+        { kana: "よじ", romaji: ["yoji"], rubyHtml: "4<ruby>時<rt>じ</rt></ruby>", meaning: "4 giờ" },
+        { kana: "ごじ", romaji: ["goji"], rubyHtml: "5<ruby>時<rt>じ</rt></ruby>", meaning: "5 giờ" },
+        { kana: "ろくじ", romaji: ["rokuji"], rubyHtml: "6<ruby>時<rt>じ</rt></ruby>", meaning: "6 giờ" },
+        { kana: "しちじ", romaji: ["shichiji","nanaji"], rubyHtml: "7<ruby>時<rt>じ</rt></ruby>", meaning: "7 giờ" },
+        { kana: "はちじ", romaji: ["hachiji"], rubyHtml: "8<ruby>時<rt>じ</rt></ruby>", meaning: "8 giờ" },
+        { kana: "くじ", romaji: ["kuji"], rubyHtml: "9<ruby>時<rt>じ</rt></ruby>", meaning: "9 giờ" },
+        { kana: "じゅうじ", romaji: ["juuji","juji"], rubyHtml: "10<ruby>時<rt>じ</rt></ruby>", meaning: "10 giờ" },
+        { kana: "じゅういちじ", romaji: ["juuichiji"], rubyHtml: "11<ruby>時<rt>じ</rt></ruby>", meaning: "11 giờ" },
+        { kana: "じゅうにじ", romaji: ["juuniji"], rubyHtml: "12<ruby>時<rt>じ</rt></ruby>", meaning: "12 giờ" },
+        { kana: "なんじ", romaji: ["nanji"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>時<rt>じ</rt></ruby>", meaning: "Mấy giờ" },
+      ],
+    },
+
+    // I. Cách đếm phút
+    {
+      id: "b4_dem_phut",
+      name: "I. Cách đếm phút",
+      selected: true,
+      items: [
+        { kana: "いっぷん", romaji: ["ippun"], rubyHtml: "1<ruby>分<rt>ぷん</rt></ruby>", meaning: "1 phút" },
+        { kana: "にふん", romaji: ["nifun"], rubyHtml: "2<ruby>分<rt>ふん</rt></ruby>", meaning: "2 phút" },
+        { kana: "さんぷん", romaji: ["sanpun"], rubyHtml: "3<ruby>分<rt>ぷん</rt></ruby>", meaning: "3 phút" },
+        { kana: "よんぷん", romaji: ["yonpun"], rubyHtml: "4<ruby>分<rt>ぷん</rt></ruby>", meaning: "4 phút" },
+        { kana: "ごふん", romaji: ["gofun"], rubyHtml: "5<ruby>分<rt>ふん</rt></ruby>", meaning: "5 phút" },
+        { kana: "ろっぷん", romaji: ["roppun"], rubyHtml: "6<ruby>分<rt>ぷん</rt></ruby>", meaning: "6 phút" },
+        { kana: "ななふん", romaji: ["nanafun","shichifun"], rubyHtml: "7<ruby>分<rt>ふん</rt></ruby>", meaning: "7 phút" },
+        { kana: "はっぷん", romaji: ["happun","hachifun"], rubyHtml: "8<ruby>分<rt>ぷん</rt></ruby>", meaning: "8 phút" },
+        { kana: "きゅうふん", romaji: ["kyuufun","kyufun"], rubyHtml: "9<ruby>分<rt>ふん</rt></ruby>", meaning: "9 phút" },
+        { kana: "じゅっぷん", romaji: ["juppun","jippun"], rubyHtml: "10<ruby>分<rt>ぷん</rt></ruby>", meaning: "10 phút" },
+        { kana: "じゅうごふん", romaji: ["juugofun"], rubyHtml: "15<ruby>分<rt>ふん</rt></ruby>", meaning: "15 phút" },
+        { kana: "さんじゅっぷん", romaji: ["sanjuppun","sanjippun"], rubyHtml: "30<ruby>分<rt>ぷん</rt></ruby>", meaning: "30 phút" },
+        { kana: "はん", romaji: ["han"], rubyHtml: "<ruby>半<rt>はん</rt></ruby>", meaning: "Rưỡi, nửa (ví dụ: 8 giờ rưỡi)" },
+        { kana: "なんぷん", romaji: ["nanpun","nanfun"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>分<rt>ぷん</rt></ruby>", meaning: "Mấy phút" },
+      ],
+    },
+
+    // J. Địa danh & Giao tiếp
+    {
+      id: "b4_diadanh_giaotiep",
+      name: "J. Địa danh & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "ニューヨーク", romaji: ["nyu-yo-ku","nyuuyooku","newyork"], rubyHtml: "ニューヨーク", meaning: "New York" },
+        { kana: "ペキン", romaji: ["pekin"], rubyHtml: "ペキン", meaning: "Bắc Kinh" },
+        { kana: "バンコク", romaji: ["bankoku"], rubyHtml: "バンコク", meaning: "Bangkok" },
+        { kana: "ロンドン", romaji: ["rondon"], rubyHtml: "ロンドン", meaning: "Luân Đôn" },
+        { kana: "ロサンゼルス", romaji: ["rosanjerusu"], rubyHtml: "ロサンゼルス", meaning: "Los Angeles" },
+        { kana: "たいへんですね", romaji: ["taihendesune"], rubyHtml: "<ruby>大<rt>たい</rt></ruby><ruby>変<rt>へん</rt></ruby>ですね", meaning: "Vất vả nhỉ, cực nhỉ" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 5
+  // ========================================
   5: [
-    { id: 'b5_dongtu_phuongtien', name: 'A. Động từ & Phương tiện di chuyển', selected: true, items: [
-      { kana: 'いきます', romaji: ['ikimasu'], rubyHtml: '<ruby>行<rt>い</rt></ruby>きます', meaning: 'Đi' },
-      { kana: 'きます', romaji: ['kimasu'], rubyHtml: '<ruby>来<rt>き</rt></ruby>ます', meaning: 'Đến' },
-      { kana: 'かえります', romaji: ['kaerimasu'], rubyHtml: '<ruby>帰<rt>かえ</rt></ruby>ります', meaning: 'Về' },
-      { kana: 'ひこうき', romaji: ['hikouki'], rubyHtml: '<ruby>飛<rt>ひ</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>機<rt>き</rt></ruby>', meaning: 'Máy bay' },
-      { kana: 'ふね', romaji: ['fune'], rubyHtml: '<ruby>船<rt>ふね</rt></ruby>', meaning: 'Thuyền, tàu thủy' },
-      { kana: 'でんしゃ', romaji: ['densha'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>', meaning: 'Xe điện, tàu điện' },
-      { kana: 'ちかてつ', romaji: ['chikatetsu'], rubyHtml: '<ruby>地<rt>ち</rt></ruby><ruby>下<rt>か</rt></ruby><ruby>鉄<rt>てつ</rt></ruby>', meaning: 'Tàu điện ngầm' },
-      { kana: 'しんかんせん', romaji: ['shinkansen'], rubyHtml: '<ruby>新<rt>しん</rt></ruby><ruby>幹<rt>かん</rt></ruby><ruby>線<rt>せん</rt></ruby>', meaning: 'Tàu siêu tốc Shinkansen' },
-      { kana: 'バス', romaji: ['basu'], rubyHtml: 'バス', meaning: 'Xe buýt' },
-      { kana: 'タクシー', romaji: ['takushi-', 'takushi'], rubyHtml: 'タクシー', meaning: 'Taxi' },
-      { kana: 'じてんしゃ', romaji: ['jitensha'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>転<rt>てん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>', meaning: 'Xe đạp' },
-      { kana: 'あるいて', romaji: ['aruite'], rubyHtml: '<ruby>歩<rt>ある</rt></ruby>いて', meaning: 'Đi bộ' },
-      { kana: 'バイク', romaji: ['baiku'], rubyHtml: 'バイク', meaning: 'Xe máy' }
-    ]},
-    { id: 'b5_diadiem_nguoi', name: 'B. Địa điểm & Con người', selected: true, items: [
-      { kana: 'がっこう', romaji: ['gakkou', 'gakko'], rubyHtml: '<ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>', meaning: 'Trường học' },
-      { kana: 'スーパー', romaji: ['su-pa-', 'supa'], rubyHtml: 'スーパー', meaning: 'Siêu thị' },
-      { kana: 'えき', romaji: ['eki'], rubyHtml: '<ruby>駅<rt>えき</rt></ruby>', meaning: 'Ga, nhà ga' },
-      { kana: 'ひと', romaji: ['hito'], rubyHtml: '<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người' },
-      { kana: 'ともだち', romaji: ['tomodachi'], rubyHtml: '<ruby>友<rt>とも</rt></ruby><ruby>達<rt>だち</rt></ruby>', meaning: 'Bạn, bạn bè' },
-      { kana: 'かれ', romaji: ['kare'], rubyHtml: '<ruby>彼<rt>かれ</rt></ruby>', meaning: 'Anh ấy, bạn trai' },
-      { kana: 'かのじょ', romaji: ['kanojo'], rubyHtml: '<ruby>彼<rt>かの</rt></ruby><ruby>女<rt>じょ</rt></ruby>', meaning: 'Chị ấy, bạn gái' },
-      { kana: 'かぞく', romaji: ['kazoku'], rubyHtml: '<ruby>家<rt>か</rt></ruby><ruby>族<rt>ぞく</rt></ruby>', meaning: 'Gia đình' },
-      { kana: 'ひとりで', romaji: ['hitoride'], rubyHtml: '<ruby>一人<rt>ひとり</rt></ruby>で', meaning: 'Một mình' }
-    ]},
-    { id: 'b5_thoigian_tuan_thang_nam', name: 'C. Thời gian (Tuần, Tháng, Năm)', selected: true, items: [
-      { kana: 'せんしゅう', romaji: ['senshuu'], rubyHtml: '<ruby>先<rt>せん</rt></ruby><ruby>週<rt>しゅう</rt></ruby>', meaning: 'Tuần trước' },
-      { kana: 'こんしゅう', romaji: ['konshuu'], rubyHtml: '<ruby>今<rt>こん</rt></ruby><ruby>週<rt>しゅう</rt></ruby>', meaning: 'Tuần này' },
-      { kana: 'らいしゅう', romaji: ['raishuu'], rubyHtml: '<ruby>来<rt>らい</rt></ruby><ruby>週<rt>しゅう</rt></ruby>', meaning: 'Tuần sau' },
-      { kana: 'せんげつ', romaji: ['sengetsu'], rubyHtml: '<ruby>先<rt>せん</rt></ruby><ruby>月<rt>げつ</rt></ruby>', meaning: 'Tháng trước' },
-      { kana: 'こんげつ', romaji: ['kongetsu'], rubyHtml: '<ruby>今<rt>こん</rt></ruby><ruby>月<rt>げつ</rt></ruby>', meaning: 'Tháng này' },
-      { kana: 'らいげつ', romaji: ['raigetsu'], rubyHtml: '<ruby>来<rt>らい</rt></ruby><ruby>月<rt>げつ</rt></ruby>', meaning: 'Tháng sau' },
-      { kana: 'きょねん', romaji: ['kyonen'], rubyHtml: '<ruby>去<rt>きょ</rt></ruby><ruby>年<rt>ねん</rt></ruby>', meaning: 'Năm ngoái' },
-      { kana: 'ことし', romaji: ['kotoshi'], rubyHtml: '<ruby>今年<rt>ことし</rt></ruby>', meaning: 'Năm nay' },
-      { kana: 'らいねん', romaji: ['rainen'], rubyHtml: '<ruby>来<rt>らい</rt></ruby><ruby>年<rt>ねん</rt></ruby>', meaning: 'Năm sau' },
-      { kana: 'がつ', romaji: ['gatsu'], rubyHtml: '～<ruby>月<rt>がつ</rt></ruby>', meaning: 'Tháng ～' },
-      { kana: 'なんがつ', romaji: ['nangatsu'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>月<rt>がつ</rt></ruby>', meaning: 'Tháng mấy' },
-      { kana: 'いつ', romaji: ['itsu'], rubyHtml: 'いつ', meaning: 'Bao giờ, khi nào' },
-      { kana: 'たんじょうび', romaji: ['tanjoubi'], rubyHtml: '<ruby>誕<rt>たん</rt></ruby><ruby>生<rt>じょう</rt></ruby><ruby>日<rt>び</rt></ruby>', meaning: 'Sinh nhật' },
-      { kana: 'ねん', romaji: ['nen'], rubyHtml: '<ruby>年<rt>ねん</rt></ruby>', meaning: 'Năm' },
-      { kana: 'なんねん', romaji: ['nannen'], rubyHtml: '<ruby>何年<rt>なんねん</rt></ruby>', meaning: 'Mấy năm / Năm mấy' },
-    ]},
-    { id: 'b5_ngay_thang', name: 'D. Ngày trong tháng', selected: true, items: [
-      { kana: 'ついたち', romaji: ['tsuitachi'], rubyHtml: '<ruby>一日<rt>ついたち</rt></ruby>', meaning: 'Ngày mồng 1' },
-      { kana: 'ふつか', romaji: ['futsuka'], rubyHtml: '<ruby>二日<rt>ふつか</rt></ruby>', meaning: 'Ngày mồng 2, 2 ngày' },
-      { kana: 'みっか', romaji: ['mikka'], rubyHtml: '<ruby>三<rt>みっ</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 3, 3 ngày' },
-      { kana: 'よっか', romaji: ['yokka'], rubyHtml: '<ruby>四<rt>よっ</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 4, 4 ngày' },
-      { kana: 'いつか', romaji: ['itsuka'], rubyHtml: '<ruby>五<rt>いつ</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 5, 5 ngày' },
-      { kana: 'むいか', romaji: ['muika'], rubyHtml: '<ruby>六<rt>むい</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 6, 6 ngày' },
-      { kana: 'なのか', romaji: ['nanoka'], rubyHtml: '<ruby>七<rt>なの</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 7, 7 ngày' },
-      { kana: 'ようか', romaji: ['youka'], rubyHtml: '<ruby>八<rt>よう</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 8, 8 ngày' },
-      { kana: 'ここのか', romaji: ['kokonoka'], rubyHtml: '<ruby>九<rt>ここの</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 9, 9 ngày' },
-      { kana: 'とおか', romaji: ['tooka'], rubyHtml: '<ruby>十<rt>とお</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày mồng 10, 10 ngày' },
-      { kana: 'じゅうよっか', romaji: ['juuyokka'], rubyHtml: '<ruby>十<rt>じゅう</rt></ruby><ruby>四<rt>よっ</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày 14, 14 ngày' },
-      { kana: 'はつか', romaji: ['hatsuka'], rubyHtml: '<ruby>二十日<rt>はつか</rt></ruby>', meaning: 'Ngày 20, 20 ngày' },
-      { kana: 'にじゅうよっか', romaji: ['nijuuyokka'], rubyHtml: '<ruby>二<rt>に</rt></ruby><ruby>十<rt>じゅう</rt></ruby><ruby>四<rt>よっ</rt></ruby><ruby>日<rt>か</rt></ruby>', meaning: 'Ngày 24, 24 ngày' },
-      { kana: 'にち', romaji: ['nichi'], rubyHtml: '～<ruby>日<rt>にち</rt></ruby>', meaning: 'Ngày ～, ～ ngày' },
-      { kana: 'なんにち', romaji: ['nannichi'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>日<rt>にち</rt></ruby>', meaning: 'Ngày mấy, mấy ngày' }
-    ]},
-    { id: 'b5_nhaga_tau_giaotiep', name: 'E. Ga tàu, Loại tàu & Giao tiếp', selected: true, items: [
-      { kana: 'ばんせん', romaji: ['bansen'], rubyHtml: '～<ruby>番<rt>ばん</rt></ruby><ruby>線<rt>せん</rt></ruby>', meaning: 'Sân ga số ～' },
-      { kana: 'ふつう', romaji: ['futsuu'], rubyHtml: '<ruby>普<rt>ふ</rt></ruby><ruby>通<rt>つう</rt></ruby>', meaning: 'Tàu thường (dừng cả ở các ga lẻ)' },
-      { kana: 'きゅうこう', romaji: ['kyuukou'], rubyHtml: '<ruby>急<rt>きゅう</rt></ruby><ruby>行<rt>こう</rt></ruby>', meaning: 'Tàu tốc hành' },
-      { kana: 'とっきゅう', romaji: ['tokkyuu'], rubyHtml: '<ruby>特<rt>とっ</rt></ruby><ruby>急<rt>きゅう</rt></ruby>', meaning: 'Tàu tốc hành đặc biệt' },
-      { kana: 'つぎの', romaji: ['tsugino'], rubyHtml: '<ruby>次<rt>つぎ</rt></ruby>の', meaning: 'Tiếp theo' },
-      { kana: 'どういたしまして', romaji: ['douitashimashite'], rubyHtml: 'どういたしまして', meaning: 'Không có chi' }
-    ]}
+    // A. Động từ & Phương tiện di chuyển
+    {
+      id: "b5_dongtu_phuongtien",
+      name: "A. Động từ & Phương tiện di chuyển",
+      selected: true,
+      items: [
+        { kana: "いきます", romaji: ["ikimasu"], rubyHtml: "<ruby>行<rt>い</rt></ruby>きます", meaning: "Đi" },
+        { kana: "きます", romaji: ["kimasu"], rubyHtml: "<ruby>来<rt>き</rt></ruby>ます", meaning: "Đến" },
+        { kana: "かえります", romaji: ["kaerimasu"], rubyHtml: "<ruby>帰<rt>かえ</rt></ruby>ります", meaning: "Về" },
+        { kana: "ひこうき", romaji: ["hikouki"], rubyHtml: "<ruby>飛<rt>ひ</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>機<rt>き</rt></ruby>", meaning: "Máy bay" },
+        { kana: "ふね", romaji: ["fune"], rubyHtml: "<ruby>船<rt>ふね</rt></ruby>", meaning: "Thuyền, tàu thủy" },
+        { kana: "でんしゃ", romaji: ["densha"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>", meaning: "Xe điện, tàu điện" },
+        { kana: "ちかてつ", romaji: ["chikatetsu"], rubyHtml: "<ruby>地<rt>ち</rt></ruby><ruby>下<rt>か</rt></ruby><ruby>鉄<rt>てつ</rt></ruby>", meaning: "Tàu điện ngầm" },
+        { kana: "しんかんせん", romaji: ["shinkansen"], rubyHtml: "<ruby>新<rt>しん</rt></ruby><ruby>幹<rt>かん</rt></ruby><ruby>線<rt>せん</rt></ruby>", meaning: "Tàu siêu tốc Shinkansen" },
+        { kana: "バス", romaji: ["basu"], rubyHtml: "バス", meaning: "Xe buýt" },
+        { kana: "タクシー", romaji: ["takushi-","takushi"], rubyHtml: "タクシー", meaning: "Taxi" },
+        { kana: "じてんしゃ", romaji: ["jitensha"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>転<rt>てん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>", meaning: "Xe đạp" },
+        { kana: "あるいて", romaji: ["aruite"], rubyHtml: "<ruby>歩<rt>ある</rt></ruby>いて", meaning: "Đi bộ" },
+        { kana: "バイク", romaji: ["baiku"], rubyHtml: "バイク", meaning: "Xe máy" },
+      ],
+    },
+
+    // B. Địa điểm & Con người
+    {
+      id: "b5_diadiem_nguoi",
+      name: "B. Địa điểm & Con người",
+      selected: true,
+      items: [
+        { kana: "がっこう", romaji: ["gakkou","gakko"], rubyHtml: "<ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>", meaning: "Trường học" },
+        { kana: "スーパー", romaji: ["su-pa-","supa"], rubyHtml: "スーパー", meaning: "Siêu thị" },
+        { kana: "えき", romaji: ["eki"], rubyHtml: "<ruby>駅<rt>えき</rt></ruby>", meaning: "Ga, nhà ga" },
+        { kana: "ひと", romaji: ["hito"], rubyHtml: "<ruby>人<rt>ひと</rt></ruby>", meaning: "Người" },
+        { kana: "ともだち", romaji: ["tomodachi"], rubyHtml: "<ruby>友<rt>とも</rt></ruby><ruby>達<rt>だち</rt></ruby>", meaning: "Bạn, bạn bè" },
+        { kana: "かれ", romaji: ["kare"], rubyHtml: "<ruby>彼<rt>かれ</rt></ruby>", meaning: "Anh ấy, bạn trai" },
+        { kana: "かのじょ", romaji: ["kanojo"], rubyHtml: "<ruby>彼<rt>かの</rt></ruby><ruby>女<rt>じょ</rt></ruby>", meaning: "Chị ấy, bạn gái" },
+        { kana: "かぞく", romaji: ["kazoku"], rubyHtml: "<ruby>家<rt>か</rt></ruby><ruby>族<rt>ぞく</rt></ruby>", meaning: "Gia đình" },
+        { kana: "ひとりで", romaji: ["hitoride"], rubyHtml: "<ruby>一人<rt>ひとり</rt></ruby>で", meaning: "Một mình" },
+      ],
+    },
+
+    // C. Thời gian (Tuần, Tháng, Năm)
+    {
+      id: "b5_thoigian_tuan_thang_nam",
+      name: "C. Thời gian (Tuần, Tháng, Năm)",
+      selected: true,
+      items: [
+        { kana: "せんしゅう", romaji: ["senshuu"], rubyHtml: "<ruby>先<rt>せん</rt></ruby><ruby>週<rt>しゅう</rt></ruby>", meaning: "Tuần trước" },
+        { kana: "こんしゅう", romaji: ["konshuu"], rubyHtml: "<ruby>今<rt>こん</rt></ruby><ruby>週<rt>しゅう</rt></ruby>", meaning: "Tuần này" },
+        { kana: "らいしゅう", romaji: ["raishuu"], rubyHtml: "<ruby>来<rt>らい</rt></ruby><ruby>週<rt>しゅう</rt></ruby>", meaning: "Tuần sau" },
+        { kana: "せんげつ", romaji: ["sengetsu"], rubyHtml: "<ruby>先<rt>せん</rt></ruby><ruby>月<rt>げつ</rt></ruby>", meaning: "Tháng trước" },
+        { kana: "こんげつ", romaji: ["kongetsu"], rubyHtml: "<ruby>今<rt>こん</rt></ruby><ruby>月<rt>げつ</rt></ruby>", meaning: "Tháng này" },
+        { kana: "らいげつ", romaji: ["raigetsu"], rubyHtml: "<ruby>来<rt>らい</rt></ruby><ruby>月<rt>げつ</rt></ruby>", meaning: "Tháng sau" },
+        { kana: "きょねん", romaji: ["kyonen"], rubyHtml: "<ruby>去<rt>きょ</rt></ruby><ruby>年<rt>ねん</rt></ruby>", meaning: "Năm ngoái" },
+        { kana: "ことし", romaji: ["kotoshi"], rubyHtml: "<ruby>今年<rt>ことし</rt></ruby>", meaning: "Năm nay" },
+        { kana: "らいねん", romaji: ["rainen"], rubyHtml: "<ruby>来<rt>らい</rt></ruby><ruby>年<rt>ねん</rt></ruby>", meaning: "Năm sau" },
+        { kana: "がつ", romaji: ["gatsu"], rubyHtml: "～<ruby>月<rt>がつ</rt></ruby>", meaning: "Tháng ～" },
+        { kana: "なんがつ", romaji: ["nangatsu"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>月<rt>がつ</rt></ruby>", meaning: "Tháng mấy" },
+        { kana: "いつ", romaji: ["itsu"], rubyHtml: "いつ", meaning: "Bao giờ, khi nào" },
+        { kana: "たんじょうび", romaji: ["tanjoubi"], rubyHtml: "<ruby>誕<rt>たん</rt></ruby><ruby>生<rt>じょう</rt></ruby><ruby>日<rt>び</rt></ruby>", meaning: "Sinh nhật" },
+        { kana: "ねん", romaji: ["nen"], rubyHtml: "<ruby>年<rt>ねん</rt></ruby>", meaning: "Năm" },
+        { kana: "なんねん", romaji: ["nannen"], rubyHtml: "<ruby>何年<rt>なんねん</rt></ruby>", meaning: "Mấy năm / Năm mấy" },
+      ],
+    },
+
+    // D. Ngày trong tháng
+    {
+      id: "b5_ngay_thang",
+      name: "D. Ngày trong tháng",
+      selected: true,
+      items: [
+        { kana: "ついたち", romaji: ["tsuitachi"], rubyHtml: "<ruby>一日<rt>ついたち</rt></ruby>", meaning: "Ngày mồng 1" },
+        { kana: "ふつか", romaji: ["futsuka"], rubyHtml: "<ruby>二日<rt>ふつか</rt></ruby>", meaning: "Ngày mồng 2, 2 ngày" },
+        { kana: "みっか", romaji: ["mikka"], rubyHtml: "<ruby>三<rt>みっ</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 3, 3 ngày" },
+        { kana: "よっか", romaji: ["yokka"], rubyHtml: "<ruby>四<rt>よっ</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 4, 4 ngày" },
+        { kana: "いつか", romaji: ["itsuka"], rubyHtml: "<ruby>五<rt>いつ</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 5, 5 ngày" },
+        { kana: "むいか", romaji: ["muika"], rubyHtml: "<ruby>六<rt>むい</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 6, 6 ngày" },
+        { kana: "なのか", romaji: ["nanoka"], rubyHtml: "<ruby>七<rt>なの</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 7, 7 ngày" },
+        { kana: "ようか", romaji: ["youka"], rubyHtml: "<ruby>八<rt>よう</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 8, 8 ngày" },
+        { kana: "ここのか", romaji: ["kokonoka"], rubyHtml: "<ruby>九<rt>ここの</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 9, 9 ngày" },
+        { kana: "とおか", romaji: ["tooka"], rubyHtml: "<ruby>十<rt>とお</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày mồng 10, 10 ngày" },
+        { kana: "じゅうよっか", romaji: ["juuyokka"], rubyHtml: "<ruby>十<rt>じゅう</rt></ruby><ruby>四<rt>よっ</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày 14, 14 ngày" },
+        { kana: "はつか", romaji: ["hatsuka"], rubyHtml: "<ruby>二十日<rt>はつか</rt></ruby>", meaning: "Ngày 20, 20 ngày" },
+        { kana: "にじゅうよっか", romaji: ["nijuuyokka"], rubyHtml: "<ruby>二<rt>に</rt></ruby><ruby>十<rt>じゅう</rt></ruby><ruby>四<rt>よっ</rt></ruby><ruby>日<rt>か</rt></ruby>", meaning: "Ngày 24, 24 ngày" },
+        { kana: "にち", romaji: ["nichi"], rubyHtml: "～<ruby>日<rt>にち</rt></ruby>", meaning: "Ngày ～, ～ ngày" },
+        { kana: "なんにち", romaji: ["nannichi"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>日<rt>にち</rt></ruby>", meaning: "Ngày mấy, mấy ngày" },
+      ],
+    },
+
+    // E. Ga tàu, Loại tàu & Giao tiếp
+    {
+      id: "b5_nhaga_tau_giaotiep",
+      name: "E. Ga tàu, Loại tàu & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "ばんせん", romaji: ["bansen"], rubyHtml: "～<ruby>番<rt>ばん</rt></ruby><ruby>線<rt>せん</rt></ruby>", meaning: "Sân ga số ～" },
+        { kana: "ふつう", romaji: ["futsuu"], rubyHtml: "<ruby>普<rt>ふ</rt></ruby><ruby>通<rt>つう</rt></ruby>", meaning: "Tàu thường (dừng cả ở các ga lẻ)" },
+        { kana: "きゅうこう", romaji: ["kyuukou"], rubyHtml: "<ruby>急<rt>きゅう</rt></ruby><ruby>行<rt>こう</rt></ruby>", meaning: "Tàu tốc hành" },
+        { kana: "とっきゅう", romaji: ["tokkyuu"], rubyHtml: "<ruby>特<rt>とっ</rt></ruby><ruby>急<rt>きゅう</rt></ruby>", meaning: "Tàu tốc hành đặc biệt" },
+        { kana: "つぎの", romaji: ["tsugino"], rubyHtml: "<ruby>次<rt>つぎ</rt></ruby>の", meaning: "Tiếp theo" },
+        { kana: "どういたしまして", romaji: ["douitashimashite"], rubyHtml: "どういたしまして", meaning: "Không có chi" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 6
+  // ========================================
   6: [
-    { id: 'b6_dongtu', name: 'A. Động từ hành động', selected: true, items: [
-      { kana: 'たべます', romaji: ['tabemasu'], rubyHtml: '<ruby>食<rt>た</rt></ruby>べます', meaning: 'Ăn' },
-      { kana: 'のみます', romaji: ['nomimasu'], rubyHtml: '<ruby>飲<rt>の</rt></ruby>みます', meaning: 'Uống' },
-      { kana: 'すいます', romaji: ['suimasu'], rubyHtml: '<ruby>吸<rt>す</rt></ruby>います', meaning: 'Hút [thuốc lá]' },
-      { kana: 'みます', romaji: ['mimasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>ます', meaning: 'Xem, nhìn, trông' },
-      { kana: 'ききます', romaji: ['kikimasu'], rubyHtml: '<ruby>聞<rt>き</rt></ruby>きます', meaning: 'Nghe' },
-      { kana: 'よみます', romaji: ['yomimasu'], rubyHtml: '<ruby>読<rt>よ</rt></ruby>みます', meaning: 'Đọc' },
-      { kana: 'かきます', romaji: ['kakimasu'], rubyHtml: '<ruby>書<rt>か</rt></ruby>きます', meaning: 'Viết, vẽ' },
-      { kana: 'かいます', romaji: ['kaimasu'], rubyHtml: '<ruby>買<rt>か</rt></ruby>います', meaning: 'Mua' },
-      { kana: 'とります', romaji: ['torimasu'], rubyHtml: '<ruby>撮<rt>と</rt></ruby>ります', meaning: 'Chụp [ảnh]' },
-      { kana: 'します', romaji: ['shimasu'], rubyHtml: 'します', meaning: 'Làm' },
-      { kana: 'あいます', romaji: ['aimasu'], rubyHtml: '<ruby>会<rt>あ</rt></ruby>います', meaning: 'Gặp [bạn]' }
-    ]},
-    { id: 'b6_doan_douong', name: 'B. Bữa ăn, Thức ăn & Đồ uống', selected: true, items: [
-      { kana: 'ごはん', romaji: ['gohan'], rubyHtml: 'ご<ruby>飯<rt>はん</rt></ruby>', meaning: 'Cơm, bữa ăn' },
-      { kana: 'あさごはん', romaji: ['asagohan'], rubyHtml: '<ruby>朝<rt>あさ</rt></ruby>ごはん', meaning: 'Cơm sáng' },
-      { kana: 'ひるごはん', romaji: ['hirugohan'], rubyHtml: '<ruby>昼<rt>ひる</rt></ruby>ごはん', meaning: 'Cơm trưa' },
-      { kana: 'ばんごはん', romaji: ['bangohan'], rubyHtml: '<ruby>晩<rt>ばん</rt></ruby>ごはん', meaning: 'Cơm tối' },
-      { kana: 'パン', romaji: ['pan'], rubyHtml: 'パン', meaning: 'Bánh mì' },
-      { kana: 'たまご', romaji: ['tamago'], rubyHtml: '<ruby>卵<rt>たまご</rt></ruby>', meaning: 'Trứng' },
-      { kana: 'にく', romaji: ['niku'], rubyHtml: '<ruby>肉<rt>にく</rt></ruby>', meaning: 'Thịt' },
-      { kana: 'さかな', romaji: ['sakana'], rubyHtml: '<ruby>魚<rt>さかな</rt></ruby>', meaning: 'Cá' },
-      { kana: 'やさい', romaji: ['yasai'], rubyHtml: '<ruby>野<rt>や</rt></ruby><ruby>菜<rt>さい</rt></ruby>', meaning: 'Rau' },
-      { kana: 'くだもの', romaji: ['kudamono'], rubyHtml: '<ruby>果物<rt>くだもの</rt></ruby>', meaning: 'Hoa quả, trái cây' },
-      { kana: 'みず', romaji: ['mizu'], rubyHtml: '<ruby>水<rt>みず</rt></ruby>', meaning: 'Nước' },
-      { kana: 'おちゃ', romaji: ['ocha'], rubyHtml: 'お<ruby>茶<rt>ちゃ</rt></ruby>', meaning: 'Trà (nói chung)' },
-      { kana: 'こうちゃ', romaji: ['koucha', 'kocha'], rubyHtml: '<ruby>紅<rt>こう</rt></ruby><ruby>茶<rt>ちゃ</rt></ruby>', meaning: 'Trà đen' },
-      { kana: 'ぎゅうにゅう', romaji: ['gyuunyuu', 'miruku'], rubyHtml: '<ruby>牛<rt>ぎゅう</rt></ruby><ruby>乳<rt>にゅう</rt></ruby>（ミルク）', meaning: 'Sữa bò' },
-      { kana: 'ジュース', romaji: ['ju-su', 'jusu'], rubyHtml: 'ジュース', meaning: 'Nước hoa quả' },
-      { kana: 'ビール', romaji: ['bi-ru', 'biru'], rubyHtml: 'ビール', meaning: 'Bia' },
-      { kana: 'おさけ', romaji: ['osake'], rubyHtml: 'お<ruby>酒<rt>さけ</rt></ruby>', meaning: 'Rượu, rượu sake' }
-    ]},
-    { id: 'b6_dovat_diadiem', name: 'C. Đồ vật, Giải trí & Nơi chốn', selected: true, items: [
-      { kana: 'ビデオ', romaji: ['bideo'], rubyHtml: 'ビデオ', meaning: 'Video, băng video' },
-      { kana: 'てがみ', romaji: ['tegami'], rubyHtml: '<ruby>手<rt>て</rt></ruby><ruby>紙<rt>がみ</rt></ruby>', meaning: 'Thư' },
-      { kana: 'レポート', romaji: ['repo-to', 'repoto'], rubyHtml: 'レポート', meaning: 'Báo cáo' },
-      { kana: 'しゃしん', romaji: ['shashin'], rubyHtml: '<ruby>写<rt>しゃ</rt></ruby><ruby>真<rt>しん</rt></ruby>', meaning: 'Ảnh' },
-      { kana: 'みせ', romaji: ['mise'], rubyHtml: '<ruby>店<rt>みせ</rt></ruby>', meaning: 'Cửa hàng, tiệm' },
-      { kana: 'こうえん', romaji: ['kouen', 'kooen'], rubyHtml: '<ruby>公園<rt>こうえん</rt></ruby>', meaning: 'Công viên' },
-      { kana: 'レストラン', romaji: ['resutoran'], rubyHtml: 'レストラン', meaning: 'Nhà hàng' },
-      { kana: 'にわ', romaji: ['niwa'], rubyHtml: '<ruby>庭<rt>にわ</rt></ruby>', meaning: 'Vườn' },
-      { kana: 'しゅくだい', romaji: ['shukudai'], rubyHtml: '<ruby>宿<rt>しゅく</rt></ruby><ruby>題<rt>だい</rt></ruby>', meaning: 'Bài tập về nhà' },
-      { kana: 'テニス', romaji: ['tenisu'], rubyHtml: 'テニス', meaning: 'Quần vợt' },
-      { kana: 'サッカー', romaji: ['sakka-'], rubyHtml: 'サッカー', meaning: 'Bóng đá' },
-      { kana: 'おはなみ', romaji: ['ohanami', 'hanami'], rubyHtml: 'お<ruby>花<rt>はな</rt></ruby><ruby>見<rt>み</rt></ruby>', meaning: 'Việc ngắm hoa anh đào' }
-    ]},
-    { id: 'b6_trangtu_giaotiep', name: 'D. Từ để hỏi, Trạng từ & Giao tiếp', selected: true, items: [
-      { kana: 'なに', romaji: ['nani', 'nan'], rubyHtml: '<ruby>何<rt>なに</rt></ruby>', meaning: 'Cái gì, gì' },
-      { kana: 'いっしょに', romaji: ['isshoni'], rubyHtml: '<ruby>一<rt>いっ</rt></ruby><ruby>緒<rt>しょ</rt></ruby>に', meaning: 'Cùng, cùng nhau' },
-      { kana: 'ちょっと', romaji: ['chotto'], rubyHtml: 'ちょっと', meaning: 'Một chút' },
-      { kana: 'いつも', romaji: ['itsumo'], rubyHtml: 'いつも', meaning: 'Luôn luôn, lúc nào cũng' },
-      { kana: 'ときどき', romaji: ['tokidoki'], rubyHtml: '<ruby>時<rt>とき</rt></ruby><ruby>々<rt>どき</rt></ruby>', meaning: 'Thỉnh thoảng' },
-      { kana: 'それから', romaji: ['sorekara'], rubyHtml: 'それから', meaning: 'Sau đó, tiếp theo' },
-      { kana: 'ええ', romaji: ['ee'], rubyHtml: 'ええ', meaning: 'Vâng, được (thân mật)' },
-      { kana: 'いいですね', romaji: ['iidesune'], rubyHtml: 'いいですね', meaning: 'Được đấy nhỉ / Hay quá' },
-      { kana: 'わかりました', romaji: ['wakarimashita'], rubyHtml: 'わかりました', meaning: 'Tôi hiểu rồi / Vâng ạ' },
-      { kana: 'なんですか', romaji: ['nandesuka'], rubyHtml: '<ruby>何<rt>なん</rt></ruby>ですか', meaning: 'Có gì đấy ạ? / Cái gì vậy?' },
-      { kana: 'じゃ、また', romaji: ['jamata', 'jamataashita'], rubyHtml: 'じゃ、また', meaning: 'Hẹn gặp lại [ngày mai]' },
-      { kana: 'メキシコ', romaji: ['mekishiko'], rubyHtml: 'メキシコ', meaning: 'Mexico' }
-    ]}
+    // A. Động từ hành động
+    {
+      id: "b6_dongtu",
+      name: "A. Động từ hành động",
+      selected: true,
+      items: [
+        { kana: "たべます", romaji: ["tabemasu"], rubyHtml: "<ruby>食<rt>た</rt></ruby>べます", meaning: "Ăn" },
+        { kana: "のみます", romaji: ["nomimasu"], rubyHtml: "<ruby>飲<rt>の</rt></ruby>みます", meaning: "Uống" },
+        { kana: "すいます", romaji: ["suimasu"], rubyHtml: "<ruby>吸<rt>す</rt></ruby>います", meaning: "Hút [thuốc lá]" },
+        { kana: "みます", romaji: ["mimasu"], rubyHtml: "<ruby>見<rt>み</rt></ruby>ます", meaning: "Xem, nhìn, trông" },
+        { kana: "ききます", romaji: ["kikimasu"], rubyHtml: "<ruby>聞<rt>き</rt></ruby>きます", meaning: "Nghe" },
+        { kana: "よみます", romaji: ["yomimasu"], rubyHtml: "<ruby>読<rt>よ</rt></ruby>みます", meaning: "Đọc" },
+        { kana: "かきます", romaji: ["kakimasu"], rubyHtml: "<ruby>書<rt>か</rt></ruby>きます", meaning: "Viết, vẽ" },
+        { kana: "かいます", romaji: ["kaimasu"], rubyHtml: "<ruby>買<rt>か</rt></ruby>います", meaning: "Mua" },
+        { kana: "とります", romaji: ["torimasu"], rubyHtml: "<ruby>撮<rt>と</rt></ruby>ります", meaning: "Chụp [ảnh]" },
+        { kana: "します", romaji: ["shimasu"], rubyHtml: "します", meaning: "Làm" },
+        { kana: "あいます", romaji: ["aimasu"], rubyHtml: "<ruby>会<rt>あ</rt></ruby>います", meaning: "Gặp [bạn]" },
+      ],
+    },
+
+    // B. Bữa ăn, Thức ăn & Đồ uống
+    {
+      id: "b6_doan_douong",
+      name: "B. Bữa ăn, Thức ăn & Đồ uống",
+      selected: true,
+      items: [
+        { kana: "ごはん", romaji: ["gohan"], rubyHtml: "ご<ruby>飯<rt>はん</rt></ruby>", meaning: "Cơm, bữa ăn" },
+        { kana: "あさごはん", romaji: ["asagohan"], rubyHtml: "<ruby>朝<rt>あさ</rt></ruby>ごはん", meaning: "Cơm sáng" },
+        { kana: "ひるごはん", romaji: ["hirugohan"], rubyHtml: "<ruby>昼<rt>ひる</rt></ruby>ごはん", meaning: "Cơm trưa" },
+        { kana: "ばんごはん", romaji: ["bangohan"], rubyHtml: "<ruby>晩<rt>ばん</rt></ruby>ごはん", meaning: "Cơm tối" },
+        { kana: "パン", romaji: ["pan"], rubyHtml: "パン", meaning: "Bánh mì" },
+        { kana: "たまご", romaji: ["tamago"], rubyHtml: "<ruby>卵<rt>たまご</rt></ruby>", meaning: "Trứng" },
+        { kana: "にく", romaji: ["niku"], rubyHtml: "<ruby>肉<rt>にく</rt></ruby>", meaning: "Thịt" },
+        { kana: "さかな", romaji: ["sakana"], rubyHtml: "<ruby>魚<rt>さかな</rt></ruby>", meaning: "Cá" },
+        { kana: "やさい", romaji: ["yasai"], rubyHtml: "<ruby>野<rt>や</rt></ruby><ruby>菜<rt>さい</rt></ruby>", meaning: "Rau" },
+        { kana: "くだもの", romaji: ["kudamono"], rubyHtml: "<ruby>果物<rt>くだもの</rt></ruby>", meaning: "Hoa quả, trái cây" },
+        { kana: "みず", romaji: ["mizu"], rubyHtml: "<ruby>水<rt>みず</rt></ruby>", meaning: "Nước" },
+        { kana: "おちゃ", romaji: ["ocha"], rubyHtml: "お<ruby>茶<rt>ちゃ</rt></ruby>", meaning: "Trà (nói chung)" },
+        { kana: "こうちゃ", romaji: ["koucha","kocha"], rubyHtml: "<ruby>紅<rt>こう</rt></ruby><ruby>茶<rt>ちゃ</rt></ruby>", meaning: "Trà đen" },
+        { kana: "ぎゅうにゅう", romaji: ["gyuunyuu","miruku"], rubyHtml: "<ruby>牛<rt>ぎゅう</rt></ruby><ruby>乳<rt>にゅう</rt></ruby>（ミルク）", meaning: "Sữa bò" },
+        { kana: "ジュース", romaji: ["ju-su","jusu"], rubyHtml: "ジュース", meaning: "Nước hoa quả" },
+        { kana: "ビール", romaji: ["bi-ru","biru"], rubyHtml: "ビール", meaning: "Bia" },
+        { kana: "おさけ", romaji: ["osake"], rubyHtml: "お<ruby>酒<rt>さけ</rt></ruby>", meaning: "Rượu, rượu sake" },
+      ],
+    },
+
+    // C. Đồ vật, Giải trí & Nơi chốn
+    {
+      id: "b6_dovat_diadiem",
+      name: "C. Đồ vật, Giải trí & Nơi chốn",
+      selected: true,
+      items: [
+        { kana: "ビデオ", romaji: ["bideo"], rubyHtml: "ビデオ", meaning: "Video, băng video" },
+        { kana: "てがみ", romaji: ["tegami"], rubyHtml: "<ruby>手<rt>て</rt></ruby><ruby>紙<rt>がみ</rt></ruby>", meaning: "Thư" },
+        { kana: "レポート", romaji: ["repo-to","repoto"], rubyHtml: "レポート", meaning: "Báo cáo" },
+        { kana: "しゃしん", romaji: ["shashin"], rubyHtml: "<ruby>写<rt>しゃ</rt></ruby><ruby>真<rt>しん</rt></ruby>", meaning: "Ảnh" },
+        { kana: "みせ", romaji: ["mise"], rubyHtml: "<ruby>店<rt>みせ</rt></ruby>", meaning: "Cửa hàng, tiệm" },
+        { kana: "こうえん", romaji: ["kouen","kooen"], rubyHtml: "<ruby>公園<rt>こうえん</rt></ruby>", meaning: "Công viên" },
+        { kana: "レストラン", romaji: ["resutoran"], rubyHtml: "レストラン", meaning: "Nhà hàng" },
+        { kana: "にわ", romaji: ["niwa"], rubyHtml: "<ruby>庭<rt>にわ</rt></ruby>", meaning: "Vườn" },
+        { kana: "しゅくだい", romaji: ["shukudai"], rubyHtml: "<ruby>宿<rt>しゅく</rt></ruby><ruby>題<rt>だい</rt></ruby>", meaning: "Bài tập về nhà" },
+        { kana: "テニス", romaji: ["tenisu"], rubyHtml: "テニス", meaning: "Quần vợt" },
+        { kana: "サッカー", romaji: ["sakka-"], rubyHtml: "サッカー", meaning: "Bóng đá" },
+        { kana: "おはなみ", romaji: ["ohanami","hanami"], rubyHtml: "お<ruby>花<rt>はな</rt></ruby><ruby>見<rt>み</rt></ruby>", meaning: "Việc ngắm hoa anh đào" },
+      ],
+    },
+
+    // D. Từ để hỏi, Trạng từ & Giao tiếp
+    {
+      id: "b6_trangtu_giaotiep",
+      name: "D. Từ để hỏi, Trạng từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "なに", romaji: ["nani","nan"], rubyHtml: "<ruby>何<rt>なに</rt></ruby>", meaning: "Cái gì, gì" },
+        { kana: "いっしょに", romaji: ["isshoni"], rubyHtml: "<ruby>一<rt>いっ</rt></ruby><ruby>緒<rt>しょ</rt></ruby>に", meaning: "Cùng, cùng nhau" },
+        { kana: "ちょっと", romaji: ["chotto"], rubyHtml: "ちょっと", meaning: "Một chút" },
+        { kana: "いつも", romaji: ["itsumo"], rubyHtml: "いつも", meaning: "Luôn luôn, lúc nào cũng" },
+        { kana: "ときどき", romaji: ["tokidoki"], rubyHtml: "<ruby>時<rt>とき</rt></ruby><ruby>々<rt>どき</rt></ruby>", meaning: "Thỉnh thoảng" },
+        { kana: "それから", romaji: ["sorekara"], rubyHtml: "それから", meaning: "Sau đó, tiếp theo" },
+        { kana: "ええ", romaji: ["ee"], rubyHtml: "ええ", meaning: "Vâng, được (thân mật)" },
+        { kana: "いいですね", romaji: ["iidesune"], rubyHtml: "いいですね", meaning: "Được đấy nhỉ / Hay quá" },
+        { kana: "わかりました", romaji: ["wakarimashita"], rubyHtml: "わかりました", meaning: "Tôi hiểu rồi / Vâng ạ" },
+        { kana: "なんですか", romaji: ["nandesuka"], rubyHtml: "<ruby>何<rt>なん</rt></ruby>ですか", meaning: "Có gì đấy ạ? / Cái gì vậy?" },
+        { kana: "じゃ、また", romaji: ["jamata","jamataashita"], rubyHtml: "じゃ、また", meaning: "Hẹn gặp lại [ngày mai]" },
+        { kana: "メキシコ", romaji: ["mekishiko"], rubyHtml: "メキシコ", meaning: "Mexico" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 7
+  // ========================================
   7: [
-    { id: 'b7_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'きります', romaji: ['kirimasu', 'kiru'], rubyHtml: '<ruby>切<rt>き</rt></ruby>ります', meaning: 'Cắt' },
-      { kana: 'おくります', romaji: ['okurimasu', 'okuru'], rubyHtml: '<ruby>送<rt>おく</rt></ruby>ります', meaning: 'Gửi' },
-      { kana: 'あげます', romaji: ['agemasu', 'ageru'], rubyHtml: 'あげます', meaning: 'Cho, tặng' },
-      { kana: 'もらいます', romaji: ['moraimasu', 'morau'], rubyHtml: 'もらいます', meaning: 'Nhận' },
-      { kana: 'かします', romaji: ['kashimasu', 'kasu'], rubyHtml: '<ruby>貸<rt>か</rt></ruby>します', meaning: 'Cho mượn' },
-      { kana: 'かります', romaji: ['karimasu', 'kariru'], rubyHtml: '<ruby>借<rt>か</rt></ruby>ります', meaning: 'Mượn' },
-      { kana: 'かけます', romaji: ['kakemasu', 'kakeru'], rubyHtml: 'かけます', meaning: 'Gọi [điện thoại] / Đeo, mang' },
-      { kana: 'ならいます', romaji: ['naraimasu', 'narau'], rubyHtml: '<ruby>習<rt>なら</rt></ruby>います', meaning: 'Học (từ ai đó)' },
-      { kana: 'おしえます', romaji: ['oshiemasu', 'oshieru'], rubyHtml: '<ruby>教<rt>おし</rt></ruby>えます', meaning: 'Dạy, dạy học' }
-    ]},
-    { id: 'b7_dungcu_dovat', name: 'B. Dụng cụ & Đồ vật', selected: true, items: [
-      { kana: 'て', romaji: ['te'], rubyHtml: '<ruby>手<rt>て</rt></ruby>', meaning: 'Tay' },
-      { kana: 'はし', romaji: ['hashi'], rubyHtml: 'はし', meaning: 'Đũa / Cầu' },
-      { kana: 'スプーン', romaji: ['supu-n', 'supun'], rubyHtml: 'スプーン', meaning: 'Muỗng, thìa' },
-      { kana: 'ナイフ', romaji: ['naifu'], rubyHtml: 'ナイフ', meaning: 'Con dao' },
-      { kana: 'フォーク', romaji: ['fo-ku', 'foku'], rubyHtml: 'フォーク', meaning: 'Nĩa, dĩa' },
-      { kana: 'はさみ', romaji: ['hasami'], rubyHtml: 'はさみ', meaning: 'Cái kéo' },
-      { kana: 'ファクス', romaji: ['fakusu', 'fax'], rubyHtml: 'ファクス', meaning: 'Máy fax' },
-      { kana: 'ワープロ', romaji: ['wa-puro', 'wapuro'], rubyHtml: 'ワープロ', meaning: 'Máy đánh chữ' },
-      { kana: 'パソコン', romaji: ['pasokon'], rubyHtml: 'パソコン', meaning: 'Máy tính cá nhân' },
-      { kana: 'ケータイ', romaji: ['ke-tai', 'keitai'], rubyHtml: 'ケータイ', meaning: 'Điện thoại di động' },
-      { kana: 'メール', romaji: ['me-ru', 'meru'], rubyHtml: 'メール', meaning: 'Thư điện tử, e-mail' },
-      { kana: 'ねんがじょう', romaji: ['nengajou', 'nengajoo'], rubyHtml: '<ruby>年<rt>ねん</rt></ruby><ruby>賀<rt>が</rt></ruby><ruby>状<rt>じょう</rt></ruby>', meaning: 'Thiệp chúc mừng năm mới' },
-      { kana: 'パンチ', romaji: ['panchi'], rubyHtml: 'パンチ', meaning: 'Cái đục lỗ' },
-      { kana: 'ホッチキス', romaji: ['hotchikisu', 'hocchikisu'], rubyHtml: 'ホッチキス', meaning: 'Cái dập ghim' },
-      { kana: 'セロテープ', romaji: ['serote-pu', 'serotepu'], rubyHtml: 'セロテープ', meaning: 'Băng dính' },
-      { kana: 'けしゴム', romaji: ['keshigomu'], rubyHtml: 'けしゴム', meaning: 'Cục tẩy' },
-      { kana: 'かみ', romaji: ['kami'], rubyHtml: 'かみ', meaning: 'Giấy / Tóc' },
-      { kana: 'はな', romaji: ['hana'], rubyHtml: '<ruby>花<rt>はな</rt></ruby>', meaning: 'Hoa' },
-      { kana: 'シャツ', romaji: ['shatsu'], rubyHtml: 'シャツ', meaning: 'Áo sơ mi' },
-      { kana: 'プレゼント', romaji: ['purezento'], rubyHtml: 'プレゼント', meaning: 'Quà tặng' },
-      { kana: 'にもつ', romaji: ['nimotsu'], rubyHtml: '<ruby>荷<rt>に</rt></ruby><ruby>物<rt>もつ</rt></ruby>', meaning: 'Hàng hóa, hành lý' },
-      { kana: 'おかね', romaji: ['okane', 'kane'], rubyHtml: 'お<ruby>金<rt>かね</rt></ruby>', meaning: 'Tiền' },
-      { kana: 'きっぷ', romaji: ['kippu'], rubyHtml: '<ruby>切符<rt>きっぷ</rt></ruby>', meaning: 'Vé (tàu, xe)' }
-    ]},
-    { id: 'b7_giadinh_quatang', name: 'C. Gia đình, Sự kiện & Quà tặng', selected: true, items: [
-      { kana: 'クリスマス', romaji: ['kurisumasu'], rubyHtml: 'クリスマス', meaning: 'Lễ Giáng sinh' },
-      { kana: 'ちち', romaji: ['chichi'], rubyHtml: '<ruby>父<rt>ちち</rt></ruby>', meaning: 'Cha (mình)' },
-      { kana: 'はは', romaji: ['haha'], rubyHtml: '<ruby>母<rt>はは</rt></ruby>', meaning: 'Mẹ (mình)' },
-      { kana: 'おとうさん', romaji: ['otousan', 'otosan'], rubyHtml: 'お<ruby>父<rt>とう</rt></ruby>さん', meaning: 'Cha (người khác)' },
-      { kana: 'おかあさん', romaji: ['okaasan', 'okasan'], rubyHtml: 'お<ruby>母<rt>かあ</rt></ruby>さん', meaning: 'Mẹ (người khác)' },
-      { kana: 'りょこう', romaji: ['ryokou', 'ryoko'], rubyHtml: '<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby>', meaning: 'Du lịch' },
-      { kana: 'おみやげ', romaji: ['omiyage'], rubyHtml: 'お<ruby>土産<rt>みやげ</rt></ruby>', meaning: 'Quà lưu niệm' },
-      { kana: 'ヨーロッパ', romaji: ['yo-roppa', 'yoroppa'], rubyHtml: 'ヨーロッパ', meaning: 'Châu Âu' }
-    ]},
-    { id: 'b7_trangtu_giaotiep', name: 'D. Trạng từ & Giao tiếp', selected: true, items: [
-     { kana: 'すてきですね', romaji: ['suteki desu ne'], rubyHtml: '<ruby>素<rt>す</rt></ruby><ruby>敵<rt>てき</rt></ruby>ですね', meaning: '[~] hay nhỉ, đẹp nhỉ' },
-{ kana: 'いらっしゃい', romaji: ['irasshai'], rubyHtml: 'いらっしゃい', meaning: 'Chào mừng anh/chị đã đến chơi' },
-{ kana: 'どうぞ おあがりください', romaji: ['douzo oagarikudasai', 'dozo oagarikudasai'], rubyHtml: 'どうぞ お<ruby>上<rt>あ</rt></ruby>がりください', meaning: 'Mời anh/chị vào nhà' },
-{ kana: 'しつれいします', romaji: ['shitsureishimasu'], rubyHtml: '<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>します', meaning: 'Xin thất lễ (Thất Lễ)' },
-{ kana: 'いかがですか', romaji: ['ikaga desu ka'], rubyHtml: 'いかがですか', meaning: 'Anh/chị dùng [~] có được không?' },
-{ kana: 'いただきます', romaji: ['itadakimasu'], rubyHtml: '<ruby>頂<rt>いただ</rt></ruby>きます', meaning: 'Xin nhận (nói trước khi ăn), Chúc ăn ngon miệng' },
-{ kana: 'ごちそうさまでした', romaji: ['gochisousamadeshita', 'gochisousama'], rubyHtml: 'ご<ruby>馳<rt>ち</rt></ruby><ruby>走<rt>そう</rt></ruby>さまでした', meaning: 'Cảm ơn vì bữa ăn ngon' },
-{ kana: 'スペイン', romaji: ['supein'], rubyHtml: 'スペイン', meaning: 'Tây Ban Nha' }
-    ]}
+    // A. Động từ
+    {
+      id: "b7_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "きります", romaji: ["kirimasu","kiru"], rubyHtml: "<ruby>切<rt>き</rt></ruby>ります", meaning: "Cắt" },
+        { kana: "おくります", romaji: ["okurimasu","okuru"], rubyHtml: "<ruby>送<rt>おく</rt></ruby>ります", meaning: "Gửi" },
+        { kana: "あげます", romaji: ["agemasu","ageru"], rubyHtml: "あげます", meaning: "Cho, tặng" },
+        { kana: "もらいます", romaji: ["moraimasu","morau"], rubyHtml: "もらいます", meaning: "Nhận" },
+        { kana: "かします", romaji: ["kashimasu","kasu"], rubyHtml: "<ruby>貸<rt>か</rt></ruby>します", meaning: "Cho mượn" },
+        { kana: "かります", romaji: ["karimasu","kariru"], rubyHtml: "<ruby>借<rt>か</rt></ruby>ります", meaning: "Mượn" },
+        { kana: "かけます", romaji: ["kakemasu","kakeru"], rubyHtml: "かけます", meaning: "Gọi [điện thoại] / Đeo, mang" },
+        { kana: "ならいます", romaji: ["naraimasu","narau"], rubyHtml: "<ruby>習<rt>なら</rt></ruby>います", meaning: "Học (từ ai đó)" },
+        { kana: "おしえます", romaji: ["oshiemasu","oshieru"], rubyHtml: "<ruby>教<rt>おし</rt></ruby>えます", meaning: "Dạy, dạy học" },
+      ],
+    },
+
+    // B. Dụng cụ & Đồ vật
+    {
+      id: "b7_dungcu_dovat",
+      name: "B. Dụng cụ & Đồ vật",
+      selected: true,
+      items: [
+        { kana: "て", romaji: ["te"], rubyHtml: "<ruby>手<rt>て</rt></ruby>", meaning: "Tay" },
+        { kana: "はし", romaji: ["hashi"], rubyHtml: "はし", meaning: "Đũa / Cầu" },
+        { kana: "スプーン", romaji: ["supu-n","supun"], rubyHtml: "スプーン", meaning: "Muỗng, thìa" },
+        { kana: "ナイフ", romaji: ["naifu"], rubyHtml: "ナイフ", meaning: "Con dao" },
+        { kana: "フォーク", romaji: ["fo-ku","foku"], rubyHtml: "フォーク", meaning: "Nĩa, dĩa" },
+        { kana: "はさみ", romaji: ["hasami"], rubyHtml: "はさみ", meaning: "Cái kéo" },
+        { kana: "ファクス", romaji: ["fakusu","fax"], rubyHtml: "ファクス", meaning: "Máy fax" },
+        { kana: "ワープロ", romaji: ["wa-puro","wapuro"], rubyHtml: "ワープロ", meaning: "Máy đánh chữ" },
+        { kana: "パソコン", romaji: ["pasokon"], rubyHtml: "パソコン", meaning: "Máy tính cá nhân" },
+        { kana: "ケータイ", romaji: ["ke-tai","keitai"], rubyHtml: "ケータイ", meaning: "Điện thoại di động" },
+        { kana: "メール", romaji: ["me-ru","meru"], rubyHtml: "メール", meaning: "Thư điện tử, e-mail" },
+        { kana: "ねんがじょう", romaji: ["nengajou","nengajoo"], rubyHtml: "<ruby>年<rt>ねん</rt></ruby><ruby>賀<rt>が</rt></ruby><ruby>状<rt>じょう</rt></ruby>", meaning: "Thiệp chúc mừng năm mới" },
+        { kana: "パンチ", romaji: ["panchi"], rubyHtml: "パンチ", meaning: "Cái đục lỗ" },
+        { kana: "ホッチキス", romaji: ["hotchikisu","hocchikisu"], rubyHtml: "ホッチキス", meaning: "Cái dập ghim" },
+        { kana: "セロテープ", romaji: ["serote-pu","serotepu"], rubyHtml: "セロテープ", meaning: "Băng dính" },
+        { kana: "けしゴム", romaji: ["keshigomu"], rubyHtml: "けしゴム", meaning: "Cục tẩy" },
+        { kana: "かみ", romaji: ["kami"], rubyHtml: "かみ", meaning: "Giấy / Tóc" },
+        { kana: "はな", romaji: ["hana"], rubyHtml: "<ruby>花<rt>はな</rt></ruby>", meaning: "Hoa" },
+        { kana: "シャツ", romaji: ["shatsu"], rubyHtml: "シャツ", meaning: "Áo sơ mi" },
+        { kana: "プレゼント", romaji: ["purezento"], rubyHtml: "プレゼント", meaning: "Quà tặng" },
+        { kana: "にもつ", romaji: ["nimotsu"], rubyHtml: "<ruby>荷<rt>に</rt></ruby><ruby>物<rt>もつ</rt></ruby>", meaning: "Hàng hóa, hành lý" },
+        { kana: "おかね", romaji: ["okane","kane"], rubyHtml: "お<ruby>金<rt>かね</rt></ruby>", meaning: "Tiền" },
+        { kana: "きっぷ", romaji: ["kippu"], rubyHtml: "<ruby>切符<rt>きっぷ</rt></ruby>", meaning: "Vé (tàu, xe)" },
+      ],
+    },
+
+    // C. Gia đình, Sự kiện & Quà tặng
+    {
+      id: "b7_giadinh_quatang",
+      name: "C. Gia đình, Sự kiện & Quà tặng",
+      selected: true,
+      items: [
+        { kana: "クリスマス", romaji: ["kurisumasu"], rubyHtml: "クリスマス", meaning: "Lễ Giáng sinh" },
+        { kana: "ちち", romaji: ["chichi"], rubyHtml: "<ruby>父<rt>ちち</rt></ruby>", meaning: "Cha (mình)" },
+        { kana: "はは", romaji: ["haha"], rubyHtml: "<ruby>母<rt>はは</rt></ruby>", meaning: "Mẹ (mình)" },
+        { kana: "おとうさん", romaji: ["otousan","otosan"], rubyHtml: "お<ruby>父<rt>とう</rt></ruby>さん", meaning: "Cha (người khác)" },
+        { kana: "おかあさん", romaji: ["okaasan","okasan"], rubyHtml: "お<ruby>母<rt>かあ</rt></ruby>さん", meaning: "Mẹ (người khác)" },
+        { kana: "りょこう", romaji: ["ryokou","ryoko"], rubyHtml: "<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby>", meaning: "Du lịch" },
+        { kana: "おみやげ", romaji: ["omiyage"], rubyHtml: "お<ruby>土産<rt>みやげ</rt></ruby>", meaning: "Quà lưu niệm" },
+        { kana: "ヨーロッパ", romaji: ["yo-roppa","yoroppa"], rubyHtml: "ヨーロッパ", meaning: "Châu Âu" },
+      ],
+    },
+
+    // D. Trạng từ & Giao tiếp
+    {
+      id: "b7_trangtu_giaotiep",
+      name: "D. Trạng từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "すてきですね", romaji: ["suteki desu ne"], rubyHtml: "<ruby>素<rt>す</rt></ruby><ruby>敵<rt>てき</rt></ruby>ですね", meaning: "[~] hay nhỉ, đẹp nhỉ" },
+        { kana: "いらっしゃい", romaji: ["irasshai"], rubyHtml: "いらっしゃい", meaning: "Chào mừng anh/chị đã đến chơi" },
+        { kana: "どうぞ おあがりください", romaji: ["douzo oagarikudasai","dozo oagarikudasai"], rubyHtml: "どうぞ お<ruby>上<rt>あ</rt></ruby>がりください", meaning: "Mời anh/chị vào nhà" },
+        { kana: "しつれいします", romaji: ["shitsureishimasu"], rubyHtml: "<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>します", meaning: "Xin thất lễ (Thất Lễ)" },
+        { kana: "いかがですか", romaji: ["ikaga desu ka"], rubyHtml: "いかがですか", meaning: "Anh/chị dùng [~] có được không?" },
+        { kana: "いただきます", romaji: ["itadakimasu"], rubyHtml: "<ruby>頂<rt>いただ</rt></ruby>きます", meaning: "Xin nhận (nói trước khi ăn), Chúc ăn ngon miệng" },
+        { kana: "ごちそうさまでした", romaji: ["gochisousamadeshita","gochisousama"], rubyHtml: "ご<ruby>馳<rt>ち</rt></ruby><ruby>走<rt>そう</rt></ruby>さまでした", meaning: "Cảm ơn vì bữa ăn ngon" },
+        { kana: "スペイン", romaji: ["supein"], rubyHtml: "スペイン", meaning: "Tây Ban Nha" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 8
+  // ========================================
   8: [
-    { id: 'b8_na', name: 'A. Tính từ đuôi な', selected: true, items: [
-      { kana: 'ハンサム', romaji: ['hansamu'], rubyHtml: 'ハンサム', meaning: 'Đẹp trai' },
-      { kana: 'きれい', romaji: ['kirei'], rubyHtml: 'きれい', meaning: 'Đẹp, sạch sẽ' },
-      { kana: 'しずか', romaji: ['shizuka'], rubyHtml: '<ruby>静<rt>しず</rt></ruby>か', meaning: 'Yên tĩnh' },
-      { kana: 'にぎやか', romaji: ['nigiyaka'], rubyHtml: 'にぎやか', meaning: 'Nhộn nhịp, náo nhiệt' },
-      { kana: 'ゆうめい', romaji: ['yuumei'], rubyHtml: '<ruby>有<rt>ゆう</rt></ruby><ruby>名<rt>めい</rt></ruby>', meaning: 'Nổi tiếng' },
-      { kana: 'しんせつ', romaji: ['shinsetsu'], rubyHtml: '<ruby>親<rt>しん</rt></ruby><ruby>切<rt>せつ</rt></ruby>', meaning: 'Tử tế, tốt bụng' },
-      { kana: 'げんき', romaji: ['genki'], rubyHtml: '<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Khỏe mạnh' },
-      { kana: 'ひま', romaji: ['hima'], rubyHtml: '<ruby>暇<rt>ひま</rt></ruby>', meaning: 'Rảnh rỗi' },
-      { kana: 'べんり', romaji: ['benri'], rubyHtml: '<ruby>便<rt>べん</rt></ruby><ruby>利<rt>り</rt></ruby>', meaning: 'Tiện lợi' },
-      { kana: 'すてき', romaji: ['suteki'], rubyHtml: 'すてき', meaning: 'Tuyệt vời, đẹp mắt' }
-    ]},
-    { id: 'b8_i', name: 'B. Tính từ đuôi い', selected: true, items: [
-      { kana: 'みにくい', romaji: ['minikui'], rubyHtml: 'みにくい', meaning: 'Xấu ngoại hình, khó xem' },
-      { kana: 'いそがしい', romaji: ['isogashii'], rubyHtml: '<ruby>忙<rt>いそが</rt></ruby>しい', meaning: 'Bận rộn' },
-      { kana: 'おおきい', romaji: ['ookii'], rubyHtml: '<ruby>大<rt>おお</rt></ruby>きい', meaning: 'To, lớn' },
-      { kana: 'ちいさい', romaji: ['chiisai'], rubyHtml: '<ruby>小<rt>ちい</rt></ruby>さい', meaning: 'Nhỏ, bé' },
-      { kana: 'あたらしい', romaji: ['atarashii'], rubyHtml: '<ruby>新<rt>あたら</rt></ruby>しい', meaning: 'Mới' },
-      { kana: 'ふるい', romaji: ['furui'], rubyHtml: '<ruby>古<rt>ふる</rt></ruby>い', meaning: 'Cũ' },
-      { kana: 'いい', romaji: ['ii', 'yoi'], rubyHtml: 'いい', meaning: 'Tốt' },
-      { kana: 'わるい', romaji: ['warui'], rubyHtml: '<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Xấu, tồi' },
-      { kana: 'あつい', romaji: ['atsui'], rubyHtml: '<ruby>熱<rt>あつ</rt></ruby>い', meaning: 'Nóng (đồ vật/nước)' },
-      { kana: 'つめたい', romaji: ['tsumetai'], rubyHtml: '<ruby>冷<rt>つめ</rt></ruby>たい', meaning: 'Lạnh (đồ vật/cảm giác)' },
-      { kana: 'さむい', romaji: ['samui'], rubyHtml: '<ruby>寒<rt>さむ</rt></ruby>い', meaning: 'Lạnh (thời tiết)' },
-      { kana: 'むずかしい', romaji: ['muzukashii'], rubyHtml: '<ruby>難<rt>むずか</rt></ruby>しい', meaning: 'Khó' },
-      { kana: 'やさしい', romaji: ['yasashii'], rubyHtml: 'やさしい', meaning: 'Dễ' },
-      { kana: 'きびしい', romaji: ['kibishii'], rubyHtml: 'きびしい', meaning: 'Nghiêm khắc' },
-      { kana: 'やさしい', romaji: ['yasashii'], rubyHtml: '<ruby>優<rt>やさ</rt></ruby>しい', meaning: 'Dịu dàng, hiền từ' },
-      { kana: 'たかい', romaji: ['takai'], rubyHtml: '<ruby>高<rt>たか</rt></ruby>い', meaning: 'Đắt, cao' },
-      { kana: 'やすい', romaji: ['yasui'], rubyHtml: '<ruby>安<rt>やす</rt></ruby>い', meaning: 'Rẻ' },
-      { kana: 'ひくい', romaji: ['hikui'], rubyHtml: '<ruby>低<rt>ひく</rt></ruby>い', meaning: 'Thấp' },
-      { kana: 'おもしろい', romaji: ['omoshiroi'], rubyHtml: 'おもしろい', meaning: 'Thú vị' },
-      { kana: 'おいしい', romaji: ['oishii'], rubyHtml: 'おいしい', meaning: 'Ngon' },
-      { kana: 'たのしい', romaji: ['tanoshii'], rubyHtml: '<ruby>楽<rt>たの</rt></ruby>しい', meaning: 'Vui vẻ' },
-      { kana: 'しろい', romaji: ['shiroi'], rubyHtml: '<ruby>白<rt>しろ</rt></ruby>い', meaning: 'Trắng' },
-      { kana: 'くろい', romaji: ['kuroi'], rubyHtml: '<ruby>黒<rt>くろ</rt></ruby>い', meaning: 'Đen' },
-      { kana: 'あかい', romaji: ['akai'], rubyHtml: '<ruby>赤<rt>あか</rt></ruby>い', meaning: 'Đỏ' },
-      { kana: 'あおい', romaji: ['aoi'], rubyHtml: '<ruby>青<rt>あお</rt></ruby>い', meaning: 'Xanh' }
-    ]},
-    { id: 'b8_danhtu', name: 'C. Danh từ', selected: true, items: [
-      { kana: 'さくら', romaji: ['sakura'], rubyHtml: '<ruby>桜<rt>さくら</rt></ruby>', meaning: 'Hoa anh đào' },
-      { kana: 'やま', romaji: ['yama'], rubyHtml: '<ruby>山<rt>やま</rt></ruby>', meaning: 'Núi' },
-      { kana: 'まち', romaji: ['machi'], rubyHtml: '<ruby>町<rt>まち</rt></ruby>', meaning: 'Thành phố, thị trấn' },
-      { kana: 'たべもの', romaji: ['tabemono'], rubyHtml: '<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>', meaning: 'Thức ăn, đồ ăn' },
-      { kana: 'ところ', romaji: ['tokoro'], rubyHtml: '<ruby>所<rt>ところ</rt></ruby>', meaning: 'Chỗ, nơi' },
-      { kana: 'りょう', romaji: ['ryou'], rubyHtml: '<ruby>寮<rt>りょう</rt></ruby>', meaning: 'Ký túc xá' },
-      { kana: 'せいかつ', romaji: ['seikatsu'], rubyHtml: '<ruby>生<rt>せい</rt></ruby><ruby>活<rt>かつ</rt></ruby>', meaning: 'Cuộc sống' },
-      { kana: 'おしごと', romaji: ['oshigoto', 'shigoto'], rubyHtml: 'お<ruby>仕<rt>し</rt></ruby><ruby>事<rt>ごと</rt></ruby>', meaning: 'Công việc' }
-    ]},
-    { id: 'b8_cauhoi', name: 'D. Từ để hỏi', selected: true, items: [
-      { kana: 'どう', romaji: ['dou'], rubyHtml: 'どう', meaning: 'Như thế nào' },
-      { kana: 'どんな', romaji: ['donna'], rubyHtml: 'どんな', meaning: 'Như thế nào, ~ nào' },
-      { kana: 'どれ', romaji: ['dore'], rubyHtml: 'どれ', meaning: 'Cái nào' }
-    ]},
-    { id: 'b8_photu_tunoi', name: 'E. Phó từ & Từ nối', selected: true, items: [
-      { kana: 'とても', romaji: ['totemo'], rubyHtml: 'とても', meaning: 'Rất, lắm' },
-      { kana: 'あまり', romaji: ['amari'], rubyHtml: 'あまり～', meaning: 'Không... lắm (dùng với thể phủ định)' },
-      { kana: 'そして', romaji: ['soshite'], rubyHtml: 'そして', meaning: 'Và, sau đó' },
-      { kana: 'が', romaji: ['ga'], rubyHtml: '～が、～', meaning: '..., nhưng ...' }
-    ]},
-     {id: 'b8_Kaiwa', name: 'F. Kaiwa', selected: true, items: [
-      { kana: 'おげんきですか', romaji: ['ogenki desu ka', 'o genki desu ka'], rubyHtml: 'お<ruby>元気<rt>げんき</rt></ruby>ですか', meaning: 'Anh/Chị có khỏe không?' },
-      { kana: 'そうですね', romaji: ['sou desu ne', 'soudesune'], rubyHtml: 'そうですね', meaning: 'Thế à./Để tôi xem.' },
-      { kana: 'もう いっぱい いかがですか', romaji: ['mou ippai ikaga desu ka'], rubyHtml: 'もう <ruby>一杯<rt>いっぱい</rt></ruby> いかがですか', meaning: 'Anh/Chị dùng thêm một chén/ly nữa nhé?' },
-      { kana: 'いいえ、けっこうです', romaji: ['iie, kekkou desu', 'iie kekkou desu'], rubyHtml: 'いいえ、けっこうです', meaning: 'Không, đủ rồi ạ.' },
-      { kana: 'もう ですね', romaji: ['mou desu ne'], rubyHtml: 'もう です［ね］', meaning: 'Đã ~ rồi nhỉ./Đã ~ rồi, đúng không?' },
-      { kana: 'そろそろ しつれいします', romaji: ['sorosoro shitsureishimasu'], rubyHtml: 'そろそろ <ruby>失礼<rt>しつれい</rt></ruby>します', meaning: 'Sắp đến lúc tôi phải xin phép rồi./Đã đến lúc tôi phải về.' },
-      { kana: 'いいえ', romaji: ['iie'], rubyHtml: 'いいえ', meaning: 'Không có gì./Không sao cả.' },
-      { kana: 'また いらっしゃってください', romaji: ['mata irasshatte kudasai'], rubyHtml: 'また いらっしゃってください', meaning: 'Lần sau anh/chị lại đến chơi nhé.' },
-    ]}
+    // A. Tính từ đuôi な
+    {
+      id: "b8_na",
+      name: "A. Tính từ đuôi な",
+      selected: true,
+      items: [
+        { kana: "ハンサム", romaji: ["hansamu"], rubyHtml: "ハンサム", meaning: "Đẹp trai" },
+        { kana: "きれい", romaji: ["kirei"], rubyHtml: "きれい", meaning: "Đẹp, sạch sẽ" },
+        { kana: "しずか", romaji: ["shizuka"], rubyHtml: "<ruby>静<rt>しず</rt></ruby>か", meaning: "Yên tĩnh" },
+        { kana: "にぎやか", romaji: ["nigiyaka"], rubyHtml: "にぎやか", meaning: "Nhộn nhịp, náo nhiệt" },
+        { kana: "ゆうめい", romaji: ["yuumei"], rubyHtml: "<ruby>有<rt>ゆう</rt></ruby><ruby>名<rt>めい</rt></ruby>", meaning: "Nổi tiếng" },
+        { kana: "しんせつ", romaji: ["shinsetsu"], rubyHtml: "<ruby>親<rt>しん</rt></ruby><ruby>切<rt>せつ</rt></ruby>", meaning: "Tử tế, tốt bụng" },
+        { kana: "げんき", romaji: ["genki"], rubyHtml: "<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Khỏe mạnh" },
+        { kana: "ひま", romaji: ["hima"], rubyHtml: "<ruby>暇<rt>ひま</rt></ruby>", meaning: "Rảnh rỗi" },
+        { kana: "べんり", romaji: ["benri"], rubyHtml: "<ruby>便<rt>べん</rt></ruby><ruby>利<rt>り</rt></ruby>", meaning: "Tiện lợi" },
+        { kana: "すてき", romaji: ["suteki"], rubyHtml: "すてき", meaning: "Tuyệt vời, đẹp mắt" },
+      ],
+    },
+
+    // B. Tính từ đuôi い
+    {
+      id: "b8_i",
+      name: "B. Tính từ đuôi い",
+      selected: true,
+      items: [
+        { kana: "みにくい", romaji: ["minikui"], rubyHtml: "みにくい", meaning: "Xấu ngoại hình, khó xem" },
+        { kana: "いそがしい", romaji: ["isogashii"], rubyHtml: "<ruby>忙<rt>いそが</rt></ruby>しい", meaning: "Bận rộn" },
+        { kana: "おおきい", romaji: ["ookii"], rubyHtml: "<ruby>大<rt>おお</rt></ruby>きい", meaning: "To, lớn" },
+        { kana: "ちいさい", romaji: ["chiisai"], rubyHtml: "<ruby>小<rt>ちい</rt></ruby>さい", meaning: "Nhỏ, bé" },
+        { kana: "あたらしい", romaji: ["atarashii"], rubyHtml: "<ruby>新<rt>あたら</rt></ruby>しい", meaning: "Mới" },
+        { kana: "ふるい", romaji: ["furui"], rubyHtml: "<ruby>古<rt>ふる</rt></ruby>い", meaning: "Cũ" },
+        { kana: "いい", romaji: ["ii","yoi"], rubyHtml: "いい", meaning: "Tốt" },
+        { kana: "わるい", romaji: ["warui"], rubyHtml: "<ruby>悪<rt>わる</rt></ruby>い", meaning: "Xấu, tồi" },
+        { kana: "あつい", romaji: ["atsui"], rubyHtml: "<ruby>熱<rt>あつ</rt></ruby>い", meaning: "Nóng (đồ vật/nước)" },
+        { kana: "つめたい", romaji: ["tsumetai"], rubyHtml: "<ruby>冷<rt>つめ</rt></ruby>たい", meaning: "Lạnh (đồ vật/cảm giác)" },
+        { kana: "さむい", romaji: ["samui"], rubyHtml: "<ruby>寒<rt>さむ</rt></ruby>い", meaning: "Lạnh (thời tiết)" },
+        { kana: "むずかしい", romaji: ["muzukashii"], rubyHtml: "<ruby>難<rt>むずか</rt></ruby>しい", meaning: "Khó" },
+        { kana: "やさしい", romaji: ["yasashii"], rubyHtml: "やさしい", meaning: "Dễ" },
+        { kana: "きびしい", romaji: ["kibishii"], rubyHtml: "きびしい", meaning: "Nghiêm khắc" },
+        { kana: "やさしい", romaji: ["yasashii"], rubyHtml: "<ruby>優<rt>やさ</rt></ruby>しい", meaning: "Dịu dàng, hiền từ" },
+        { kana: "たかい", romaji: ["takai"], rubyHtml: "<ruby>高<rt>たか</rt></ruby>い", meaning: "Đắt, cao" },
+        { kana: "やすい", romaji: ["yasui"], rubyHtml: "<ruby>安<rt>やす</rt></ruby>い", meaning: "Rẻ" },
+        { kana: "ひくい", romaji: ["hikui"], rubyHtml: "<ruby>低<rt>ひく</rt></ruby>い", meaning: "Thấp" },
+        { kana: "おもしろい", romaji: ["omoshiroi"], rubyHtml: "おもしろい", meaning: "Thú vị" },
+        { kana: "おいしい", romaji: ["oishii"], rubyHtml: "おいしい", meaning: "Ngon" },
+        { kana: "たのしい", romaji: ["tanoshii"], rubyHtml: "<ruby>楽<rt>たの</rt></ruby>しい", meaning: "Vui vẻ" },
+        { kana: "しろい", romaji: ["shiroi"], rubyHtml: "<ruby>白<rt>しろ</rt></ruby>い", meaning: "Trắng" },
+        { kana: "くろい", romaji: ["kuroi"], rubyHtml: "<ruby>黒<rt>くろ</rt></ruby>い", meaning: "Đen" },
+        { kana: "あかい", romaji: ["akai"], rubyHtml: "<ruby>赤<rt>あか</rt></ruby>い", meaning: "Đỏ" },
+        { kana: "あおい", romaji: ["aoi"], rubyHtml: "<ruby>青<rt>あお</rt></ruby>い", meaning: "Xanh" },
+      ],
+    },
+
+    // C. Danh từ
+    {
+      id: "b8_danhtu",
+      name: "C. Danh từ",
+      selected: true,
+      items: [
+        { kana: "さくら", romaji: ["sakura"], rubyHtml: "<ruby>桜<rt>さくら</rt></ruby>", meaning: "Hoa anh đào" },
+        { kana: "やま", romaji: ["yama"], rubyHtml: "<ruby>山<rt>やま</rt></ruby>", meaning: "Núi" },
+        { kana: "まち", romaji: ["machi"], rubyHtml: "<ruby>町<rt>まち</rt></ruby>", meaning: "Thành phố, thị trấn" },
+        { kana: "たべもの", romaji: ["tabemono"], rubyHtml: "<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>", meaning: "Thức ăn, đồ ăn" },
+        { kana: "ところ", romaji: ["tokoro"], rubyHtml: "<ruby>所<rt>ところ</rt></ruby>", meaning: "Chỗ, nơi" },
+        { kana: "りょう", romaji: ["ryou"], rubyHtml: "<ruby>寮<rt>りょう</rt></ruby>", meaning: "Ký túc xá" },
+        { kana: "せいかつ", romaji: ["seikatsu"], rubyHtml: "<ruby>生<rt>せい</rt></ruby><ruby>活<rt>かつ</rt></ruby>", meaning: "Cuộc sống" },
+        { kana: "おしごと", romaji: ["oshigoto","shigoto"], rubyHtml: "お<ruby>仕<rt>し</rt></ruby><ruby>事<rt>ごと</rt></ruby>", meaning: "Công việc" },
+      ],
+    },
+
+    // D. Từ để hỏi
+    {
+      id: "b8_cauhoi",
+      name: "D. Từ để hỏi",
+      selected: true,
+      items: [
+        { kana: "どう", romaji: ["dou"], rubyHtml: "どう", meaning: "Như thế nào" },
+        { kana: "どんな", romaji: ["donna"], rubyHtml: "どんな", meaning: "Như thế nào, ~ nào" },
+        { kana: "どれ", romaji: ["dore"], rubyHtml: "どれ", meaning: "Cái nào" },
+      ],
+    },
+
+    // E. Phó từ & Từ nối
+    {
+      id: "b8_photu_tunoi",
+      name: "E. Phó từ & Từ nối",
+      selected: true,
+      items: [
+        { kana: "とても", romaji: ["totemo"], rubyHtml: "とても", meaning: "Rất, lắm" },
+        { kana: "あまり", romaji: ["amari"], rubyHtml: "あまり～", meaning: "Không... lắm (dùng với thể phủ định)" },
+        { kana: "そして", romaji: ["soshite"], rubyHtml: "そして", meaning: "Và, sau đó" },
+        { kana: "が", romaji: ["ga"], rubyHtml: "～が、～", meaning: "..., nhưng ..." },
+      ],
+    },
+
+    // F. Kaiwa
+    {
+      id: "b8_Kaiwa",
+      name: "F. Kaiwa",
+      selected: true,
+      items: [
+        { kana: "おげんきですか", romaji: ["ogenki desu ka","o genki desu ka"], rubyHtml: "お<ruby>元気<rt>げんき</rt></ruby>ですか", meaning: "Anh/Chị có khỏe không?" },
+        { kana: "そうですね", romaji: ["sou desu ne","soudesune"], rubyHtml: "そうですね", meaning: "Thế à./Để tôi xem." },
+        { kana: "もう いっぱい いかがですか", romaji: ["mou ippai ikaga desu ka"], rubyHtml: "もう <ruby>一杯<rt>いっぱい</rt></ruby> いかがですか", meaning: "Anh/Chị dùng thêm một chén/ly nữa nhé?" },
+        { kana: "いいえ、けっこうです", romaji: ["iie, kekkou desu","iie kekkou desu"], rubyHtml: "いいえ、けっこうです", meaning: "Không, đủ rồi ạ." },
+        { kana: "もう ですね", romaji: ["mou desu ne"], rubyHtml: "もう です［ね］", meaning: "Đã ~ rồi nhỉ./Đã ~ rồi, đúng không?" },
+        { kana: "そろそろ しつれいします", romaji: ["sorosoro shitsureishimasu"], rubyHtml: "そろそろ <ruby>失礼<rt>しつれい</rt></ruby>します", meaning: "Sắp đến lúc tôi phải xin phép rồi./Đã đến lúc tôi phải về." },
+        { kana: "いいえ", romaji: ["iie"], rubyHtml: "いいえ", meaning: "Không có gì./Không sao cả." },
+        { kana: "また いらっしゃってください", romaji: ["mata irasshatte kudasai"], rubyHtml: "また いらっしゃってください", meaning: "Lần sau anh/chị lại đến chơi nhé." },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 9
+  // ========================================
   9: [
-    { id: 'b9_dongtu_sothich', name: 'A. Động từ & Tính từ sở thích/khả năng', selected: true, items: [
-      { kana: 'わかります', romaji: ['wakarimasu'], rubyHtml: '<ruby>分<rt>わ</rt></ruby>かります', meaning: 'Hiểu, nắm được' },
-      { kana: 'あります', romaji: ['arimasu'], rubyHtml: 'あります', meaning: 'Có (sở hữu)' },
-      { kana: 'すき', romaji: ['suki'], rubyHtml: '<ruby>好<rt>す</rt></ruby>き', meaning: 'Thích' },
-      { kana: 'きらい', romaji: ['kirai'], rubyHtml: '<ruby>嫌<rt>きら</rt></ruby>い', meaning: 'Ghét, không thích' },
-      { kana: 'じょうず', romaji: ['jouzu'], rubyHtml: '<ruby>上<rt>じょう</rt></ruby><ruby>手<rt>ず</rt></ruby>', meaning: 'Giỏi, khéo' },
-      { kana: 'へた', romaji: ['heta'], rubyHtml: '<ruby>下手<rt>へた</rt></ruby>', meaning: 'Kém' },
-      { kana: 'りょうり', romaji: ['ryouri'], rubyHtml: '<ruby>料<rt>りょう</rt></ruby><ruby>理<rt>り</rt></ruby>', meaning: 'Món ăn, việc nấu ăn' }
-    ]},
-    { id: 'b9_thethao_giaitri', name: 'B. Thể thao, Giải trí & Âm nhạc', selected: true, items: [
-      { kana: 'のみもの', romaji: ['nomimono'], rubyHtml: '<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>', meaning: 'Đồ uống' },
-      { kana: 'スポーツ', romaji: ['supo-tsu', 'supotsu'], rubyHtml: 'スポーツ', meaning: 'Thể thao' },
-      { kana: 'やきゅう', romaji: ['yakyuu'], rubyHtml: '<ruby>野<rt>や</rt></ruby><ruby>球<rt>きゅう</rt></ruby>', meaning: 'Bóng chày' },
-      { kana: 'ダンス', romaji: ['dansu'], rubyHtml: 'ダンス', meaning: 'Nhảy, khiêu vũ' },
-      { kana: 'りょこう', romaji: ['ryokou', 'ryoko'], rubyHtml: '<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby>', meaning: 'Du lịch' },
-      { kana: 'おんがく', romaji: ['ongaku'], rubyHtml: '<ruby>音<rt>おん</rt></ruby><ruby>楽<rt>がく</rt></ruby>', meaning: 'Âm nhạc' },
-      { kana: 'うた', romaji: ['uta'], rubyHtml: '<ruby>歌<rt>うた</rt></ruby>', meaning: 'Bài hát' },
-      { kana: 'クラシック', romaji: ['kurasshiku'], rubyHtml: 'クラシック', meaning: 'Nhạc cổ điển' },
-      { kana: 'ジャズ', romaji: ['jazu'], rubyHtml: 'ジャズ', meaning: 'Nhạc jazz' },
-      { kana: 'コンサート', romaji: ['konsa-to', 'konsato'], rubyHtml: 'コンサート', meaning: 'Buổi hòa nhạc' },
-      { kana: 'カラオケ', romaji: ['karaoke'], rubyHtml: 'カラオケ', meaning: 'Karaoke' },
-      { kana: 'かぶき', romaji: ['kabuki'], rubyHtml: '<ruby>歌<rt>か</rt></ruby><ruby>舞<rt>ぶ</rt></ruby><ruby>伎<rt>き</rt></ruby>', meaning: 'Kịch Kabuki truyền thống' }
-    ]},
-    { id: 'b9_chu_dovat_thoigian', name: 'C. Chữ viết, Đồ vật & Thời gian', selected: true, items: [
-      { kana: 'え', romaji: ['e'], rubyHtml: '<ruby>絵<rt>え</rt></ruby>', meaning: 'Tranh, hội họa' },
-      { kana: 'じ', romaji: ['ji'], rubyHtml: '<ruby>字<rt>じ</rt></ruby>', meaning: 'Chữ' },
-      { kana: 'かんじ', romaji: ['kanji'], rubyHtml: '<ruby>漢<rt>かん</rt></ruby><ruby>字<rt>じ</rt></ruby>', meaning: 'Chữ Hán' },
-      { kana: 'ひらがな', romaji: ['hiragana'], rubyHtml: 'ひらがな', meaning: 'Chữ Hiragana' },
-      { kana: 'かたかな', romaji: ['katakana'], rubyHtml: 'かたかな', meaning: 'Chữ Katakana' },
-      { kana: 'ローマじ', romaji: ['ro-maji', 'romaji'], rubyHtml: 'ローマ<ruby>字<rt>じ</rt></ruby>', meaning: 'Chữ La Mã' },
-      { kana: 'こまかいおかね', romaji: ['komakaiokane'], rubyHtml: '<ruby>細<rt>こま</rt></ruby>かいお<ruby>金<rt>かね</rt></ruby>', meaning: 'Tiền lẻ' },
-      { kana: 'チケット', romaji: ['chiketto'], rubyHtml: 'チケット', meaning: 'Vé (xem hòa nhạc, xem phim)' },
-      { kana: 'じかん', romaji: ['jikan'], rubyHtml: '<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>', meaning: 'Thời gian' },
-      { kana: 'ようじ', romaji: ['youji'], rubyHtml: '<ruby>用<rt>よう</rt></ruby><ruby>事<rt>じ</rt></ruby>', meaning: 'Việc bận, công chuyện' },
-      { kana: 'アルバイト', romaji: ['arubaito'], rubyHtml: 'アルバイト', meaning: 'Việc làm thêm' },
-      { kana: 'やくそく', romaji: ['yakusoku'], rubyHtml: '<ruby>約<rt>やく</rt></ruby><ruby>束<rt>そく</rt></ruby>', meaning: 'Cuộc hẹn, lời hứa' }
-    ]},
-    { id: 'b9_giadinh', name: 'D. Xưng hô Gia đình', selected: true, items: [
-      { kana: 'ごしゅじん', romaji: ['goshujin'], rubyHtml: 'ご<ruby>主<rt>しゅ</rt></ruby><ruby>人<rt>じん</rt></ruby>', meaning: 'Chồng (người khác)' },
-      { kana: 'おっと', romaji: ['otto', 'shujin'], rubyHtml: '<ruby>夫<rt>おっと</rt></ruby> / <ruby>主<rt>しゅ</rt></ruby><ruby>人<rt>じん</rt></ruby>', meaning: 'Chồng (mình)' },
-      { kana: 'おくさん', romaji: ['okusan'], rubyHtml: '<ruby>奥<rt>おく</rt></ruby>さん', meaning: 'Vợ (người khác)' },
-      { kana: 'つま', romaji: ['tsuma', 'kanai'], rubyHtml: '<ruby>妻<rt>つま</rt></ruby> / <ruby>家<rt>か</rt></ruby><ruby>内<rt>ない</rt></ruby>', meaning: 'Vợ (mình)' },
-      { kana: 'こども', romaji: ['kodomo'], rubyHtml: '<ruby>子<rt>こ</rt></ruby>ども', meaning: 'Con cái' }
-    ]},
-    { id: 'b9_trangtu_giaotiep', name: 'E. Trạng từ chỉ mức độ & Giao tiếp', selected: true, items: [
-      { kana: 'よく', romaji: ['yoku'], rubyHtml: 'よく', meaning: 'Tốt, rõ (chỉ mức độ)' },
-      { kana: 'だいたい', romaji: ['daitai'], rubyHtml: 'だいたい', meaning: 'Đại khái, đại thể' },
-      { kana: 'たくさん', romaji: ['takusan'], rubyHtml: 'たくさん', meaning: 'Nhiều' },
-      { kana: 'すこし', romaji: ['sukoshi'], rubyHtml: '<ruby>少<rt>すこ</rt></ruby>し', meaning: 'Ít, một ít' },
-      { kana: 'ぜんぜん', romaji: ['zenzen'], rubyHtml: '<ruby>全<rt>ぜん</rt></ruby><ruby>然<rt>ぜん</rt></ruby>', meaning: 'Hoàn toàn ~ không' },
-      { kana: 'はやく', romaji: ['hayaku'], rubyHtml: '<ruby>早<rt>はや</rt></ruby>く / <ruby>速<rt>はや</rt></ruby>く', meaning: 'Sớm, nhanh' },
-      { kana: 'から', romaji: ['kara'], rubyHtml: '～から', meaning: 'Vì ~' },
-      { kana: 'どうして', romaji: ['doushite'], rubyHtml: 'どうして', meaning: 'Tại sao' },
-      { kana: 'かしてください', romaji: ['kashite kudasai', 'kashitekudasai'], rubyHtml: '<ruby>貸<rt>か</rt></ruby>してください', meaning: 'Xin hãy cho tôi mượn' },
-      { kana: 'いいですよ', romaji: ['ii desu yo', 'iidesuyo'], rubyHtml: 'いいですよ', meaning: 'Được chứ / Được đấy ạ' },
-      { kana: 'ざんねんですが', romaji: ['zannen desu ga', 'zannendesuga'], rubyHtml: '<ruby>残念<rt>ざんねん</rt></ruby>ですが', meaning: 'Tiếc thật nhưng... / Rất tiếc nhưng mà...' },
-      { kana: 'ああ', romaji: ['aa'], rubyHtml: 'ああ', meaning: 'A (khi đã nhận ra / gặp đúng người)' },
-      { kana: 'いっしょにいかがですか', romaji: ['isshoniikagadesuka'], rubyHtml: 'いっしょにいかがですか', meaning: 'Anh/chị cùng ~ với chúng tôi được không?' },
-      { kana: 'ちょっと', romaji: ['chotto'], rubyHtml: '～はちょっと…', meaning: '[~ thì] có lẽ không được rồi' },
-      { kana: 'だめですか', romaji: ['damedesuka'], rubyHtml: 'だめですか', meaning: 'Không được à?' },
-      { kana: 'またこんどおねがいします', romaji: ['matakondoonegaishimasu'], rubyHtml: 'また<ruby>今<rt>こん</rt></ruby><ruby>度<rt>ど</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします', meaning: 'Hẹn lần sau' }
-    ]}
+    // A. Động từ & Tính từ sở thích/khả năng
+    {
+      id: "b9_dongtu_sothich",
+      name: "A. Động từ & Tính từ sở thích/khả năng",
+      selected: true,
+      items: [
+        { kana: "わかります", romaji: ["wakarimasu"], rubyHtml: "<ruby>分<rt>わ</rt></ruby>かります", meaning: "Hiểu, nắm được" },
+        { kana: "あります", romaji: ["arimasu"], rubyHtml: "あります", meaning: "Có (sở hữu)" },
+        { kana: "すき", romaji: ["suki"], rubyHtml: "<ruby>好<rt>す</rt></ruby>き", meaning: "Thích" },
+        { kana: "きらい", romaji: ["kirai"], rubyHtml: "<ruby>嫌<rt>きら</rt></ruby>い", meaning: "Ghét, không thích" },
+        { kana: "じょうず", romaji: ["jouzu"], rubyHtml: "<ruby>上<rt>じょう</rt></ruby><ruby>手<rt>ず</rt></ruby>", meaning: "Giỏi, khéo" },
+        { kana: "へた", romaji: ["heta"], rubyHtml: "<ruby>下手<rt>へた</rt></ruby>", meaning: "Kém" },
+        { kana: "りょうり", romaji: ["ryouri"], rubyHtml: "<ruby>料<rt>りょう</rt></ruby><ruby>理<rt>り</rt></ruby>", meaning: "Món ăn, việc nấu ăn" },
+      ],
+    },
+
+    // B. Thể thao, Giải trí & Âm nhạc
+    {
+      id: "b9_thethao_giaitri",
+      name: "B. Thể thao, Giải trí & Âm nhạc",
+      selected: true,
+      items: [
+        { kana: "のみもの", romaji: ["nomimono"], rubyHtml: "<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>", meaning: "Đồ uống" },
+        { kana: "スポーツ", romaji: ["supo-tsu","supotsu"], rubyHtml: "スポーツ", meaning: "Thể thao" },
+        { kana: "やきゅう", romaji: ["yakyuu"], rubyHtml: "<ruby>野<rt>や</rt></ruby><ruby>球<rt>きゅう</rt></ruby>", meaning: "Bóng chày" },
+        { kana: "ダンス", romaji: ["dansu"], rubyHtml: "ダンス", meaning: "Nhảy, khiêu vũ" },
+        { kana: "りょこう", romaji: ["ryokou","ryoko"], rubyHtml: "<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby>", meaning: "Du lịch" },
+        { kana: "おんがく", romaji: ["ongaku"], rubyHtml: "<ruby>音<rt>おん</rt></ruby><ruby>楽<rt>がく</rt></ruby>", meaning: "Âm nhạc" },
+        { kana: "うた", romaji: ["uta"], rubyHtml: "<ruby>歌<rt>うた</rt></ruby>", meaning: "Bài hát" },
+        { kana: "クラシック", romaji: ["kurasshiku"], rubyHtml: "クラシック", meaning: "Nhạc cổ điển" },
+        { kana: "ジャズ", romaji: ["jazu"], rubyHtml: "ジャズ", meaning: "Nhạc jazz" },
+        { kana: "コンサート", romaji: ["konsa-to","konsato"], rubyHtml: "コンサート", meaning: "Buổi hòa nhạc" },
+        { kana: "カラオケ", romaji: ["karaoke"], rubyHtml: "カラオケ", meaning: "Karaoke" },
+        { kana: "かぶき", romaji: ["kabuki"], rubyHtml: "<ruby>歌<rt>か</rt></ruby><ruby>舞<rt>ぶ</rt></ruby><ruby>伎<rt>き</rt></ruby>", meaning: "Kịch Kabuki truyền thống" },
+      ],
+    },
+
+    // C. Chữ viết, Đồ vật & Thời gian
+    {
+      id: "b9_chu_dovat_thoigian",
+      name: "C. Chữ viết, Đồ vật & Thời gian",
+      selected: true,
+      items: [
+        { kana: "え", romaji: ["e"], rubyHtml: "<ruby>絵<rt>え</rt></ruby>", meaning: "Tranh, hội họa" },
+        { kana: "じ", romaji: ["ji"], rubyHtml: "<ruby>字<rt>じ</rt></ruby>", meaning: "Chữ" },
+        { kana: "かんじ", romaji: ["kanji"], rubyHtml: "<ruby>漢<rt>かん</rt></ruby><ruby>字<rt>じ</rt></ruby>", meaning: "Chữ Hán" },
+        { kana: "ひらがな", romaji: ["hiragana"], rubyHtml: "ひらがな", meaning: "Chữ Hiragana" },
+        { kana: "かたかな", romaji: ["katakana"], rubyHtml: "かたかな", meaning: "Chữ Katakana" },
+        { kana: "ローマじ", romaji: ["ro-maji","romaji"], rubyHtml: "ローマ<ruby>字<rt>じ</rt></ruby>", meaning: "Chữ La Mã" },
+        { kana: "こまかいおかね", romaji: ["komakaiokane"], rubyHtml: "<ruby>細<rt>こま</rt></ruby>かいお<ruby>金<rt>かね</rt></ruby>", meaning: "Tiền lẻ" },
+        { kana: "チケット", romaji: ["chiketto"], rubyHtml: "チケット", meaning: "Vé (xem hòa nhạc, xem phim)" },
+        { kana: "じかん", romaji: ["jikan"], rubyHtml: "<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>", meaning: "Thời gian" },
+        { kana: "ようじ", romaji: ["youji"], rubyHtml: "<ruby>用<rt>よう</rt></ruby><ruby>事<rt>じ</rt></ruby>", meaning: "Việc bận, công chuyện" },
+        { kana: "アルバイト", romaji: ["arubaito"], rubyHtml: "アルバイト", meaning: "Việc làm thêm" },
+        { kana: "やくそく", romaji: ["yakusoku"], rubyHtml: "<ruby>約<rt>やく</rt></ruby><ruby>束<rt>そく</rt></ruby>", meaning: "Cuộc hẹn, lời hứa" },
+      ],
+    },
+
+    // D. Xưng hô Gia đình
+    {
+      id: "b9_giadinh",
+      name: "D. Xưng hô Gia đình",
+      selected: true,
+      items: [
+        { kana: "ごしゅじん", romaji: ["goshujin"], rubyHtml: "ご<ruby>主<rt>しゅ</rt></ruby><ruby>人<rt>じん</rt></ruby>", meaning: "Chồng (người khác)" },
+        { kana: "おっと", romaji: ["otto","shujin"], rubyHtml: "<ruby>夫<rt>おっと</rt></ruby> / <ruby>主<rt>しゅ</rt></ruby><ruby>人<rt>じん</rt></ruby>", meaning: "Chồng (mình)" },
+        { kana: "おくさん", romaji: ["okusan"], rubyHtml: "<ruby>奥<rt>おく</rt></ruby>さん", meaning: "Vợ (người khác)" },
+        { kana: "つま", romaji: ["tsuma","kanai"], rubyHtml: "<ruby>妻<rt>つま</rt></ruby> / <ruby>家<rt>か</rt></ruby><ruby>内<rt>ない</rt></ruby>", meaning: "Vợ (mình)" },
+        { kana: "こども", romaji: ["kodomo"], rubyHtml: "<ruby>子<rt>こ</rt></ruby>ども", meaning: "Con cái" },
+      ],
+    },
+
+    // E. Trạng từ chỉ mức độ & Giao tiếp
+    {
+      id: "b9_trangtu_giaotiep",
+      name: "E. Trạng từ chỉ mức độ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "よく", romaji: ["yoku"], rubyHtml: "よく", meaning: "Tốt, rõ (chỉ mức độ)" },
+        { kana: "だいたい", romaji: ["daitai"], rubyHtml: "だいたい", meaning: "Đại khái, đại thể" },
+        { kana: "たくさん", romaji: ["takusan"], rubyHtml: "たくさん", meaning: "Nhiều" },
+        { kana: "すこし", romaji: ["sukoshi"], rubyHtml: "<ruby>少<rt>すこ</rt></ruby>し", meaning: "Ít, một ít" },
+        { kana: "ぜんぜん", romaji: ["zenzen"], rubyHtml: "<ruby>全<rt>ぜん</rt></ruby><ruby>然<rt>ぜん</rt></ruby>", meaning: "Hoàn toàn ~ không" },
+        { kana: "はやく", romaji: ["hayaku"], rubyHtml: "<ruby>早<rt>はや</rt></ruby>く / <ruby>速<rt>はや</rt></ruby>く", meaning: "Sớm, nhanh" },
+        { kana: "から", romaji: ["kara"], rubyHtml: "～から", meaning: "Vì ~" },
+        { kana: "どうして", romaji: ["doushite"], rubyHtml: "どうして", meaning: "Tại sao" },
+        { kana: "かしてください", romaji: ["kashite kudasai","kashitekudasai"], rubyHtml: "<ruby>貸<rt>か</rt></ruby>してください", meaning: "Xin hãy cho tôi mượn" },
+        { kana: "いいですよ", romaji: ["ii desu yo","iidesuyo"], rubyHtml: "いいですよ", meaning: "Được chứ / Được đấy ạ" },
+        { kana: "ざんねんですが", romaji: ["zannen desu ga","zannendesuga"], rubyHtml: "<ruby>残念<rt>ざんねん</rt></ruby>ですが", meaning: "Tiếc thật nhưng... / Rất tiếc nhưng mà..." },
+        { kana: "ああ", romaji: ["aa"], rubyHtml: "ああ", meaning: "A (khi đã nhận ra / gặp đúng người)" },
+        { kana: "いっしょにいかがですか", romaji: ["isshoniikagadesuka"], rubyHtml: "いっしょにいかがですか", meaning: "Anh/chị cùng ~ với chúng tôi được không?" },
+        { kana: "ちょっと", romaji: ["chotto"], rubyHtml: "～はちょっと…", meaning: "[~ thì] có lẽ không được rồi" },
+        { kana: "だめですか", romaji: ["damedesuka"], rubyHtml: "だめですか", meaning: "Không được à?" },
+        { kana: "またこんどおねがいします", romaji: ["matakondoonegaishimasu"], rubyHtml: "また<ruby>今<rt>こん</rt></ruby><ruby>度<rt>ど</rt></ruby>お<ruby>願<rt>ねが</rt></ruby>いします", meaning: "Hẹn lần sau" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 10
+  // ========================================
   10: [
-    { id: 'b10_tontai', name: 'A. Động từ tồn tại, Người & Động vật', selected: true, items: [
-      { kana: 'います', romaji: ['imasu'], rubyHtml: 'います', meaning: 'Có, ở (dùng cho người và động vật)' },
-      { kana: 'あります', romaji: ['arimasu'], rubyHtml: 'あります', meaning: 'Có (dùng cho đồ vật)' },
-      { kana: 'いろいろ', romaji: ['iroiro'], rubyHtml: 'いろいろ', meaning: 'Nhiều, đa dạng' },
-      { kana: 'おとこのひと', romaji: ['otokonohito'], rubyHtml: '<ruby>男<rt>おとこ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người đàn ông' },
-      { kana: 'おんなのひと', romaji: ['onnanohito'], rubyHtml: '<ruby>女<rt>おんな</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>', meaning: 'Người phụ nữ, người đàn bà' },
-      { kana: 'おとこのこ', romaji: ['otokonoko'], rubyHtml: '<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>', meaning: 'Cậu con trai, bé trai' },
-      { kana: 'おんなのこ', romaji: ['onnanoko'], rubyHtml: '<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>', meaning: 'Cô con gái, bé gái' },
-      { kana: 'いぬ', romaji: ['inu'], rubyHtml: '<ruby>犬<rt>いぬ</rt></ruby>', meaning: 'Con chó' },
-      { kana: 'ねこ', romaji: ['neko'], rubyHtml: '<ruby>猫<rt>ねこ</rt></ruby>', meaning: 'Con mèo' },
-      { kana: 'き', romaji: ['ki'], rubyHtml: '<ruby>木<rt>き</rt></ruby>', meaning: 'Cây, gỗ' },
-      { kana: 'もの', romaji: ['mono'], rubyHtml: '<ruby>物<rt>もの</rt></ruby>', meaning: 'Vật, đồ vật' }
-    ]},
-    { id: 'b10_dovat', name: 'B. Đồ vật & Thiết bị trong nhà', selected: true, items: [
-      { kana: 'フィルム', romaji: ['firumu'], rubyHtml: 'フィルム', meaning: 'Cuộn phim' },
-      { kana: 'でんち', romaji: ['denchi'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>池<rt>ち</rt></ruby>', meaning: 'Pin' },
-      { kana: 'はこ', romaji: ['hako'], rubyHtml: '<ruby>箱<rt>はこ</rt></ruby>', meaning: 'Cái hộp' },
-      { kana: 'スイッチ', romaji: ['suitchi'], rubyHtml: 'スイッチ', meaning: 'Công tắc' },
-      { kana: 'れいぞうこ', romaji: ['reizouko', 'reizoko'], rubyHtml: '<ruby>冷<rt>れい</rt></ruby><ruby>蔵<rt>ぞう</rt></ruby><ruby>庫<rt>こ</rt></ruby>', meaning: 'Tủ lạnh' },
-      { kana: 'テーブル', romaji: ['te-buru', 'teburu'], rubyHtml: 'テーブル', meaning: 'Cái bàn' },
-      { kana: 'ベッド', romaji: ['beddo'], rubyHtml: 'ベッド', meaning: 'Cái giường' },
-      { kana: 'たな', romaji: ['tana'], rubyHtml: '<ruby>棚<rt>たな</rt></ruby>', meaning: 'Giá sách, kệ' },
-      { kana: 'ドア', romaji: ['doa'], rubyHtml: 'ドア', meaning: 'Cửa ra vào' },
-      { kana: 'まど', romaji: ['mado'], rubyHtml: '<ruby>窓<rt>まど</rt></ruby>', meaning: 'Cửa sổ' },
-      { kana: 'ポスト', romaji: ['posuto'], rubyHtml: 'ポスト', meaning: 'Hòm thư, hộp thư' }
-    ]},
-    { id: 'b10_diadiem', name: 'C. Địa điểm & Công trình', selected: true, items: [
-      { kana: 'ビル', romaji: ['biru'], rubyHtml: 'ビル', meaning: 'Tòa nhà cao tầng' },
-      { kana: 'こうえん', romaji: ['kouen', 'koen'], rubyHtml: '<ruby>公<rt>こう</rt></ruby><ruby>園<rt>えん</rt></ruby>', meaning: 'Công viên' },
-      { kana: 'きっさてん', romaji: ['kissaten'], rubyHtml: '<ruby>喫<rt>きっ</rt></ruby><ruby>茶<rt>さ</rt></ruby><ruby>店<rt>てん</rt></ruby>', meaning: 'Quán cà phê, quán giải khát' },
-      { kana: 'ほんや', romaji: ['honya'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby><ruby>屋<rt>や</rt></ruby>', meaning: 'Hiệu sách' },
-      { kana: 'や', romaji: ['ya'], rubyHtml: '～<ruby>屋<rt>や</rt></ruby>', meaning: 'Cửa hàng ～, hiệu ～' },
-      { kana: 'のりば', romaji: ['noriba'], rubyHtml: '<ruby>乗<rt>の</rt></ruby>り<ruby>場<rt>ば</rt></ruby>', meaning: 'Bến xe, điểm lên xuống xe' },
-      { kana: 'けん', romaji: ['ken'], rubyHtml: '～<ruby>県<rt>けん</rt></ruby>', meaning: 'Tỉnh ～' }
-    ]},
-    { id: 'b10_vitri', name: 'D. Vị trí & Phương hướng', selected: true, items: [
-      { kana: 'うえ', romaji: ['ue'], rubyHtml: '<ruby>上<rt>うえ</rt></ruby>', meaning: 'Trên' },
-      { kana: 'した', romaji: ['shita'], rubyHtml: '<ruby>下<rt>した</rt></ruby>', meaning: 'Dưới' },
-      { kana: 'まえ', romaji: ['mae'], rubyHtml: '<ruby>前<rt>まえ</rt></ruby>', meaning: 'Trước' },
-      { kana: 'うしろ', romaji: ['ushiro'], rubyHtml: '<ruby>後<rt>うし</rt></ruby>ろ', meaning: 'Sau' },
-      { kana: 'みぎ', romaji: ['migi'], rubyHtml: '<ruby>右<rt>みぎ</rt></ruby>', meaning: 'Phải' },
-      { kana: 'ひだり', romaji: ['hidari'], rubyHtml: '<ruby>左<rt>ひだり</rt></ruby>', meaning: 'Trái' },
-      { kana: 'なか', romaji: ['naka'], rubyHtml: '<ruby>中<rt>なか</rt></ruby>', meaning: 'Trong, giữa' },
-      { kana: 'そと', romaji: ['soto'], rubyHtml: '<ruby>外<rt>そと</rt></ruby>', meaning: 'Ngoài' },
-      { kana: 'となり', romaji: ['tonari'], rubyHtml: '<ruby>隣<rt>となり</rt></ruby>', meaning: 'Bên cạnh' },
-      { kana: 'ちかく', romaji: ['chikaku'], rubyHtml: '<ruby>近<rt>ちか</rt></ruby>く', meaning: 'Gần' },
-      { kana: 'あいだ', romaji: ['aida'], rubyHtml: '<ruby>間<rt>あいだ</rt></ruby>', meaning: 'Ở giữa' }
-    ]},
-    { id: 'b10_trotu_khac', name: 'E. Trợ từ & Cụm từ bổ trợ', selected: true, items: [
-      { kana: 'やなど', romaji: ['yanado', 'ya', 'nado'], rubyHtml: '～や～［など］', meaning: '～ và ～, [v.v.]' },
-      { kana: 'いちばん', romaji: ['ichiban'], rubyHtml: 'いちばん～', meaning: '～ nhất' },
-      { kana: 'だんめ', romaji: ['danme'], rubyHtml: '～<ruby>段<rt>だん</rt></ruby><ruby>目<rt>め</rt></ruby>', meaning: 'Tầng thứ ～, giá thứ ～' },
-      { kana: 'すみません', romaji: ['sumimasen'], rubyHtml: 'すみません', meaning: 'Xin lỗi' },
-      { kana: 'チリソース', romaji: ['chiriso-su', 'chirisosu'], rubyHtml: 'チリソース', meaning: 'Tương ớt (chili sauce)' }
-    ]}
+    // A. Động từ tồn tại, Người & Động vật
+    {
+      id: "b10_tontai",
+      name: "A. Động từ tồn tại, Người & Động vật",
+      selected: true,
+      items: [
+        { kana: "います", romaji: ["imasu"], rubyHtml: "います", meaning: "Có, ở (dùng cho người và động vật)" },
+        { kana: "あります", romaji: ["arimasu"], rubyHtml: "あります", meaning: "Có (dùng cho đồ vật)" },
+        { kana: "いろいろ", romaji: ["iroiro"], rubyHtml: "いろいろ", meaning: "Nhiều, đa dạng" },
+        { kana: "おとこのひと", romaji: ["otokonohito"], rubyHtml: "<ruby>男<rt>おとこ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>", meaning: "Người đàn ông" },
+        { kana: "おんなのひと", romaji: ["onnanohito"], rubyHtml: "<ruby>女<rt>おんな</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>", meaning: "Người phụ nữ, người đàn bà" },
+        { kana: "おとこのこ", romaji: ["otokonoko"], rubyHtml: "<ruby>男<rt>おとこ</rt></ruby>の<ruby>子<rt>こ</rt></ruby>", meaning: "Cậu con trai, bé trai" },
+        { kana: "おんなのこ", romaji: ["onnanoko"], rubyHtml: "<ruby>女<rt>おんな</rt></ruby>の<ruby>子<rt>こ</rt></ruby>", meaning: "Cô con gái, bé gái" },
+        { kana: "いぬ", romaji: ["inu"], rubyHtml: "<ruby>犬<rt>いぬ</rt></ruby>", meaning: "Con chó" },
+        { kana: "ねこ", romaji: ["neko"], rubyHtml: "<ruby>猫<rt>ねこ</rt></ruby>", meaning: "Con mèo" },
+        { kana: "き", romaji: ["ki"], rubyHtml: "<ruby>木<rt>き</rt></ruby>", meaning: "Cây, gỗ" },
+        { kana: "もの", romaji: ["mono"], rubyHtml: "<ruby>物<rt>もの</rt></ruby>", meaning: "Vật, đồ vật" },
+        { kana: "パンダ", romaji: ["panda"], rubyHtml: "パンダ", meaning: "Gấu trúc", reviewTopicId: "b10_bosung_sach_tap1" },
+        { kana: "ぞう", romaji: ["zou"], rubyHtml: "<ruby>象<rt>ぞう</rt></ruby>", meaning: "Voi", reviewTopicId: "b10_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Đồ vật & Thiết bị trong nhà
+    {
+      id: "b10_dovat",
+      name: "B. Đồ vật & Thiết bị trong nhà",
+      selected: true,
+      items: [
+        { kana: "フィルム", romaji: ["firumu"], rubyHtml: "フィルム", meaning: "Cuộn phim" },
+        { kana: "でんち", romaji: ["denchi"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>池<rt>ち</rt></ruby>", meaning: "Pin" },
+        { kana: "はこ", romaji: ["hako"], rubyHtml: "<ruby>箱<rt>はこ</rt></ruby>", meaning: "Cái hộp" },
+        { kana: "スイッチ", romaji: ["suitchi"], rubyHtml: "スイッチ", meaning: "Công tắc" },
+        { kana: "れいぞうこ", romaji: ["reizouko","reizoko"], rubyHtml: "<ruby>冷<rt>れい</rt></ruby><ruby>蔵<rt>ぞう</rt></ruby><ruby>庫<rt>こ</rt></ruby>", meaning: "Tủ lạnh" },
+        { kana: "テーブル", romaji: ["te-buru","teburu"], rubyHtml: "テーブル", meaning: "Cái bàn" },
+        { kana: "ベッド", romaji: ["beddo"], rubyHtml: "ベッド", meaning: "Cái giường" },
+        { kana: "たな", romaji: ["tana"], rubyHtml: "<ruby>棚<rt>たな</rt></ruby>", meaning: "Giá sách, kệ" },
+        { kana: "ドア", romaji: ["doa"], rubyHtml: "ドア", meaning: "Cửa ra vào" },
+        { kana: "まど", romaji: ["mado"], rubyHtml: "<ruby>窓<rt>まど</rt></ruby>", meaning: "Cửa sổ" },
+        { kana: "ポスト", romaji: ["posuto"], rubyHtml: "ポスト", meaning: "Hòm thư, hộp thư" },
+        { kana: "ATM", romaji: ["atm"], rubyHtml: "ATM", meaning: "Máy rút tiền tự động", reviewTopicId: "b10_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Địa điểm & Công trình
+    {
+      id: "b10_diadiem",
+      name: "C. Địa điểm & Công trình",
+      selected: true,
+      items: [
+        { kana: "ビル", romaji: ["biru"], rubyHtml: "ビル", meaning: "Tòa nhà cao tầng" },
+        { kana: "こうえん", romaji: ["kouen","koen"], rubyHtml: "<ruby>公<rt>こう</rt></ruby><ruby>園<rt>えん</rt></ruby>", meaning: "Công viên" },
+        { kana: "きっさてん", romaji: ["kissaten"], rubyHtml: "<ruby>喫<rt>きっ</rt></ruby><ruby>茶<rt>さ</rt></ruby><ruby>店<rt>てん</rt></ruby>", meaning: "Quán cà phê, quán giải khát" },
+        { kana: "ほんや", romaji: ["honya"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby><ruby>屋<rt>や</rt></ruby>", meaning: "Hiệu sách" },
+        { kana: "や", romaji: ["ya"], rubyHtml: "～<ruby>屋<rt>や</rt></ruby>", meaning: "Cửa hàng ～, hiệu ～" },
+        { kana: "のりば", romaji: ["noriba"], rubyHtml: "<ruby>乗<rt>の</rt></ruby>り<ruby>場<rt>ば</rt></ruby>", meaning: "Bến xe, điểm lên xuống xe" },
+        { kana: "けん", romaji: ["ken"], rubyHtml: "～<ruby>県<rt>けん</rt></ruby>", meaning: "Tỉnh ～" },
+        { kana: "コンビニ", romaji: ["konbini"], rubyHtml: "コンビニ", meaning: "Cửa hàng tiện lợi", reviewTopicId: "b10_bosung_sach_tap1" },
+      ],
+    },
+
+    // D. Vị trí & Phương hướng
+    {
+      id: "b10_vitri",
+      name: "D. Vị trí & Phương hướng",
+      selected: true,
+      items: [
+        { kana: "うえ", romaji: ["ue"], rubyHtml: "<ruby>上<rt>うえ</rt></ruby>", meaning: "Trên" },
+        { kana: "した", romaji: ["shita"], rubyHtml: "<ruby>下<rt>した</rt></ruby>", meaning: "Dưới" },
+        { kana: "まえ", romaji: ["mae"], rubyHtml: "<ruby>前<rt>まえ</rt></ruby>", meaning: "Trước" },
+        { kana: "うしろ", romaji: ["ushiro"], rubyHtml: "<ruby>後<rt>うし</rt></ruby>ろ", meaning: "Sau" },
+        { kana: "みぎ", romaji: ["migi"], rubyHtml: "<ruby>右<rt>みぎ</rt></ruby>", meaning: "Phải" },
+        { kana: "ひだり", romaji: ["hidari"], rubyHtml: "<ruby>左<rt>ひだり</rt></ruby>", meaning: "Trái" },
+        { kana: "なか", romaji: ["naka"], rubyHtml: "<ruby>中<rt>なか</rt></ruby>", meaning: "Trong, giữa" },
+        { kana: "そと", romaji: ["soto"], rubyHtml: "<ruby>外<rt>そと</rt></ruby>", meaning: "Ngoài" },
+        { kana: "となり", romaji: ["tonari"], rubyHtml: "<ruby>隣<rt>となり</rt></ruby>", meaning: "Bên cạnh" },
+        { kana: "ちかく", romaji: ["chikaku"], rubyHtml: "<ruby>近<rt>ちか</rt></ruby>く", meaning: "Gần" },
+        { kana: "あいだ", romaji: ["aida"], rubyHtml: "<ruby>間<rt>あいだ</rt></ruby>", meaning: "Ở giữa" },
+        { kana: "コーナー", romaji: ["koonaa"], rubyHtml: "コーナー", meaning: "Góc, khu vực", reviewTopicId: "b10_bosung_sach_tap1" },
+        { kana: "いちばんした", romaji: ["ichibanshita"], rubyHtml: "<ruby>一番下<rt>いちばんした</rt></ruby>", meaning: "Ở dưới cùng", reviewTopicId: "b10_bosung_sach_tap1" },
+      ],
+    },
+
+    // E. Trợ từ & Cụm từ bổ trợ
+    {
+      id: "b10_trotu_khac",
+      name: "E. Trợ từ & Cụm từ bổ trợ",
+      selected: true,
+      items: [
+        { kana: "やなど", romaji: ["yanado","ya","nado"], rubyHtml: "～や～［など］", meaning: "～ và ～, [v.v.]" },
+        { kana: "いちばん", romaji: ["ichiban"], rubyHtml: "いちばん～", meaning: "～ nhất" },
+        { kana: "だんめ", romaji: ["danme"], rubyHtml: "～<ruby>段<rt>だん</rt></ruby><ruby>目<rt>め</rt></ruby>", meaning: "Tầng thứ ～, giá thứ ～" },
+      ],
+    },
+
+    // F. Thực phẩm & Gia vị
+    {
+      id: "b10_thucpham",
+      name: "F. Thực phẩm & Gia vị",
+      selected: true,
+      items: [
+        { kana: "ナンプラー", romaji: ["nanpuraa"], rubyHtml: "ナンプラー", meaning: "Nước mắm", reviewTopicId: "b10_bosung_sach_tap1" },
+        { kana: "チリソース", romaji: ["chiriso-su","chirisosu"], rubyHtml: "チリソース", meaning: "Tương ớt (chili sauce)", reviewTopicId: "b10_trotu_khac" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 11
+  // ========================================
   11: [
-    { id: 'b11_dongtu_sodem', name: 'A. Động từ & Số đếm đồ vật (ひとつ〜とお)', selected: true, items: [
-      { kana: 'います', romaji: ['imasu'], rubyHtml: 'います', meaning: 'Có, ở (người, động vật / có con)' },
-      { kana: 'かかります', romaji: ['kakarimasu'], rubyHtml: 'かかります', meaning: 'Mất, tốn (thời gian, tiền bạc)' },
-      { kana: 'やすみます', romaji: ['yasumimasu'], rubyHtml: '<ruby>休<rt>やす</rt></ruby>みます', meaning: 'Nghỉ, nghỉ ngơi (nghỉ học / nghỉ làm)' },
-      { kana: 'ひとつ', romaji: ['hitotsu'], rubyHtml: 'ひとつ', meaning: '1 cái (đồ vật)' },
-      { kana: 'ふたつ', romaji: ['futatsu'], rubyHtml: 'ふたつ', meaning: '2 cái' },
-      { kana: 'みっつ', romaji: ['mittsu'], rubyHtml: 'みっつ', meaning: '3 cái' },
-      { kana: 'よっつ', romaji: ['yottsu'], rubyHtml: 'よっつ', meaning: '4 cái' },
-      { kana: 'いつつ', romaji: ['itsutsu'], rubyHtml: 'いつつ', meaning: '5 cái' },
-      { kana: 'むっつ', romaji: ['muttsu'], rubyHtml: 'むっつ', meaning: '6 cái' },
-      { kana: 'ななつ', romaji: ['nanatsu'], rubyHtml: 'ななつ', meaning: '7 cái' },
-      { kana: 'やっつ', romaji: ['yattsu'], rubyHtml: 'やっつ', meaning: '8 cái' },
-      { kana: 'ここのつ', romaji: ['kokonotsu'], rubyHtml: 'ここのつ', meaning: '9 cái' },
-      { kana: 'とお', romaji: ['too'], rubyHtml: 'とお', meaning: '10 cái' },
-      { kana: 'いくつ', romaji: ['ikutsu'], rubyHtml: 'いくつ', meaning: 'Bao nhiêu cái' }
-    ]},
-    { id: 'b11_demnguoi_demvat', name: 'B. Đếm người & Đơn vị trợ số từ', selected: true, items: [
-      { kana: 'ひとり', romaji: ['hitori'], rubyHtml: '<ruby>一<rt>ひと</rt></ruby><ruby>人<rt>り</rt></ruby>', meaning: '1 người' },
-      { kana: 'ふたり', romaji: ['futari'], rubyHtml: '<ruby>二<rt>ふた</rt></ruby><ruby>人<rt>り</rt></ruby>', meaning: '2 người' },
-      { kana: 'にん', romaji: ['nin'], rubyHtml: '～<ruby>人<rt>にん</rt></ruby>', meaning: '～ người' },
-      { kana: 'だい', romaji: ['dai'], rubyHtml: '～<ruby>台<rt>だい</rt></ruby>', meaning: '～ cái, chiếc (máy móc, xe cộ)' },
-      { kana: 'まい', romaji: ['mai'], rubyHtml: '～<ruby>枚<rt>まい</rt></ruby>', meaning: '～ tờ, tấm (vật mỏng như áo, giấy...)' },
-      { kana: 'かい', romaji: ['kai'], rubyHtml: '～<ruby>回<rt>かい</rt></ruby>', meaning: '～ lần' },
-      { kana: 'さつ', romaji: ['satsu'], rubyHtml: '～<ruby>冊<rt>さつ</rt></ruby>', meaning: '～ Quyển, cuốn (sách, vở)' },
-      { kana: 'ほん', romaji: ['hon', 'pon', 'bon'], rubyHtml: '～<ruby>本<rt>ほん</rt></ruby>', meaning: '～ Cái, cây, chai (vật tròn dài)' },
-      { kana: 'はい', romaji: ['hai', 'pai', 'bai'], rubyHtml: '～<ruby>杯<rt>はい</rt></ruby>', meaning: '～ Ly, cốc, chén' },
-      { kana: 'ひき', romaji: ['hiki', 'piki', 'biki'], rubyHtml: '～<ruby>匹<rt>ひき</rt></ruby>', meaning: '～ Con (động vật nhỏ)' },
-      { kana: 'そく', romaji: ['soku', 'zoku'], rubyHtml: '～<ruby>足<rt>そく</rt></ruby>', meaning: '～ Đôi (giày, tất)' },
-      { kana: 'どのくらい', romaji: ['donokurai'], rubyHtml: 'どのくらい', meaning: 'Khoảng bao lâu / Bao nhiêu' },
-      { kana: 'ぜんぶで', romaji: ['zenbude'], rubyHtml: '<ruby>全<rt>ぜん</rt></ruby><ruby>部<rt>ぶ</rt></ruby>で', meaning: 'Tổng cộng' }
-    ]},
-    { id: 'b11_doan_thucpham', name: 'C. Đồ ăn & Trái cây', selected: true, items: [
-      { kana: 'りんご', romaji: ['ringo'], rubyHtml: 'りんご', meaning: 'Quả táo' },
-      { kana: 'みかん', romaji: ['mikan'], rubyHtml: 'みかん', meaning: 'Quả quýt' },
-      { kana: 'サンドイッチ', romaji: ['sandoitchi'], rubyHtml: 'サンドイッチ', meaning: 'Bánh sandwich' },
-      { kana: 'カレー', romaji: ['kare-', 'kare', 'kareraisu'], rubyHtml: 'カレー（ライス）', meaning: '(Cơm) cà ri' },
-      { kana: 'アイスクリーム', romaji: ['aisukuri-mu', 'aisukurimu'], rubyHtml: 'アイスクリーム', meaning: 'Kem' }
-    ]},
-    { id: 'b11_buudien', name: 'D. Thư từ & Dịch vụ bưu điện', selected: true, items: [
-      { kana: 'きって', romaji: ['kitte'], rubyHtml: '<ruby>切手<rt>きって</rt></ruby>', meaning: 'Tem' },
-      { kana: 'はがき', romaji: ['hagaki'], rubyHtml: '<ruby>葉<rt>は</rt></ruby><ruby>書<rt>がき</rt></ruby>', meaning: 'Bưu thiếp' },
-      { kana: 'ふうとう', romaji: ['fuutou', 'futo'], rubyHtml: '<ruby>封<rt>ふう</rt></ruby><ruby>筒<rt>とう</rt></ruby>', meaning: 'Phong bì' },
-      { kana: 'そくたつ', romaji: ['sokutatsu'], rubyHtml: '<ruby>速<rt>そく</rt></ruby><ruby>達<rt>たつ</rt></ruby>', meaning: 'Chuyển phát nhanh' },
-      { kana: 'かきとめ', romaji: ['kakitome'], rubyHtml: '<ruby>書留<rt>かきとめ</rt></ruby>', meaning: 'Gửi bảo đảm' }
-    ]}
+    // A. Động từ & Số đếm đồ vật (ひとつ〜とお)
+    {
+      id: "b11_dongtu_sodem",
+      name: "A. Động từ & Số đếm đồ vật (ひとつ〜とお)",
+      selected: true,
+      items: [
+        { kana: "います", romaji: ["imasu"], rubyHtml: "います", meaning: "Có, ở (người, động vật / có con)" },
+        { kana: "かかります", romaji: ["kakarimasu"], rubyHtml: "かかります", meaning: "Mất, tốn (thời gian, tiền bạc)" },
+        { kana: "やすみます", romaji: ["yasumimasu"], rubyHtml: "<ruby>休<rt>やす</rt></ruby>みます", meaning: "Nghỉ, nghỉ ngơi (nghỉ học / nghỉ làm)" },
+        { kana: "ひとつ", romaji: ["hitotsu"], rubyHtml: "ひとつ", meaning: "1 cái (đồ vật)" },
+        { kana: "ふたつ", romaji: ["futatsu"], rubyHtml: "ふたつ", meaning: "2 cái" },
+        { kana: "みっつ", romaji: ["mittsu"], rubyHtml: "みっつ", meaning: "3 cái" },
+        { kana: "よっつ", romaji: ["yottsu"], rubyHtml: "よっつ", meaning: "4 cái" },
+        { kana: "いつつ", romaji: ["itsutsu"], rubyHtml: "いつつ", meaning: "5 cái" },
+        { kana: "むっつ", romaji: ["muttsu"], rubyHtml: "むっつ", meaning: "6 cái" },
+        { kana: "ななつ", romaji: ["nanatsu"], rubyHtml: "ななつ", meaning: "7 cái" },
+        { kana: "やっつ", romaji: ["yattsu"], rubyHtml: "やっつ", meaning: "8 cái" },
+        { kana: "ここのつ", romaji: ["kokonotsu"], rubyHtml: "ここのつ", meaning: "9 cái" },
+        { kana: "とお", romaji: ["too"], rubyHtml: "とお", meaning: "10 cái" },
+        { kana: "いくつ", romaji: ["ikutsu"], rubyHtml: "いくつ", meaning: "Bao nhiêu cái" },
+      ],
+    },
+
+    // B. Đếm người & Đơn vị trợ số từ
+    {
+      id: "b11_demnguoi_demvat",
+      name: "B. Đếm người & Đơn vị trợ số từ",
+      selected: true,
+      items: [
+        { kana: "ひとり", romaji: ["hitori"], rubyHtml: "<ruby>一<rt>ひと</rt></ruby><ruby>人<rt>り</rt></ruby>", meaning: "1 người" },
+        { kana: "ふたり", romaji: ["futari"], rubyHtml: "<ruby>二<rt>ふた</rt></ruby><ruby>人<rt>り</rt></ruby>", meaning: "2 người" },
+        { kana: "にん", romaji: ["nin"], rubyHtml: "～<ruby>人<rt>にん</rt></ruby>", meaning: "～ người" },
+        { kana: "だい", romaji: ["dai"], rubyHtml: "～<ruby>台<rt>だい</rt></ruby>", meaning: "～ cái, chiếc (máy móc, xe cộ)" },
+        { kana: "まい", romaji: ["mai"], rubyHtml: "～<ruby>枚<rt>まい</rt></ruby>", meaning: "～ tờ, tấm (vật mỏng như áo, giấy...)" },
+        { kana: "かい", romaji: ["kai"], rubyHtml: "～<ruby>回<rt>かい</rt></ruby>", meaning: "～ lần" },
+        { kana: "さつ", romaji: ["satsu"], rubyHtml: "～<ruby>冊<rt>さつ</rt></ruby>", meaning: "～ Quyển, cuốn (sách, vở)" },
+        { kana: "ほん", romaji: ["hon","pon","bon"], rubyHtml: "～<ruby>本<rt>ほん</rt></ruby>", meaning: "～ Cái, cây, chai (vật tròn dài)" },
+        { kana: "はい", romaji: ["hai","pai","bai"], rubyHtml: "～<ruby>杯<rt>はい</rt></ruby>", meaning: "～ Ly, cốc, chén" },
+        { kana: "ひき", romaji: ["hiki","piki","biki"], rubyHtml: "～<ruby>匹<rt>ひき</rt></ruby>", meaning: "～ Con (động vật nhỏ)" },
+        { kana: "そく", romaji: ["soku","zoku"], rubyHtml: "～<ruby>足<rt>そく</rt></ruby>", meaning: "～ Đôi (giày, tất)" },
+        { kana: "どのくらい", romaji: ["donokurai"], rubyHtml: "どのくらい", meaning: "Khoảng bao lâu / Bao nhiêu" },
+        { kana: "ぜんぶで", romaji: ["zenbude"], rubyHtml: "<ruby>全<rt>ぜん</rt></ruby><ruby>部<rt>ぶ</rt></ruby>で", meaning: "Tổng cộng" },
+        { kana: "じかん", romaji: ["jikan"], rubyHtml: "<ruby>時間<rt>じかん</rt></ruby>", meaning: "~ tiếng, giờ (khoảng thời gian)", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "しゅうかん", romaji: ["shuukan"], rubyHtml: "<ruby>週間<rt>しゅうかん</rt></ruby>", meaning: "~ tuần", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "かげつ", romaji: ["kagetsu"], rubyHtml: "<ruby>か月<rt>かげつ</rt></ruby>", meaning: "~ tháng", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "ねん", romaji: ["nen"], rubyHtml: "<ruby>年<rt>ねん</rt></ruby>", meaning: "~ năm", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "ぐらい", romaji: ["gurai"], rubyHtml: "ぐらい", meaning: "Khoảng ~", reviewTopicId: "b11_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Đồ ăn & Trái cây
+    {
+      id: "b11_doan_thucpham",
+      name: "C. Đồ ăn & Trái cây",
+      selected: true,
+      items: [
+        { kana: "りんご", romaji: ["ringo"], rubyHtml: "りんご", meaning: "Quả táo" },
+        { kana: "みかん", romaji: ["mikan"], rubyHtml: "みかん", meaning: "Quả quýt" },
+        { kana: "サンドイッチ", romaji: ["sandoitchi"], rubyHtml: "サンドイッチ", meaning: "Bánh sandwich" },
+        { kana: "カレー", romaji: ["kare-","kare","kareraisu"], rubyHtml: "カレー（ライス）", meaning: "(Cơm) cà ri" },
+        { kana: "アイスクリーム", romaji: ["aisukuri-mu","aisukurimu"], rubyHtml: "アイスクリーム", meaning: "Kem" },
+      ],
+    },
+
+    // D. Thư từ & Dịch vụ bưu điện
+    {
+      id: "b11_buudien",
+      name: "D. Thư từ & Dịch vụ bưu điện",
+      selected: true,
+      items: [
+        { kana: "きって", romaji: ["kitte"], rubyHtml: "<ruby>切手<rt>きって</rt></ruby>", meaning: "Tem" },
+        { kana: "はがき", romaji: ["hagaki"], rubyHtml: "<ruby>葉<rt>は</rt></ruby><ruby>書<rt>がき</rt></ruby>", meaning: "Bưu thiếp" },
+        { kana: "ふうとう", romaji: ["fuutou","futo"], rubyHtml: "<ruby>封<rt>ふう</rt></ruby><ruby>筒<rt>とう</rt></ruby>", meaning: "Phong bì" },
+        { kana: "そくたつ", romaji: ["sokutatsu"], rubyHtml: "<ruby>速<rt>そく</rt></ruby><ruby>達<rt>たつ</rt></ruby>", meaning: "Chuyển phát nhanh" },
+        { kana: "かきとめ", romaji: ["kakitome"], rubyHtml: "<ruby>書留<rt>かきとめ</rt></ruby>", meaning: "Gửi bảo đảm" },
+        { kana: "ふなびん", romaji: ["funabin"], rubyHtml: "<ruby>船便<rt>ふなびん</rt></ruby>", meaning: "Gửi bằng đường biển", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "こうくうびん", romaji: ["koukuubin"], rubyHtml: "<ruby>航空便<rt>こうくうびん</rt></ruby>", meaning: "Gửi bằng đường hàng không", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "エアメール", romaji: ["eameeru"], rubyHtml: "エアメール", meaning: "Thư gửi bằng đường hàng không", reviewTopicId: "b11_bosung_sach_tap1" },
+      ],
+    },
+
+    // E. Gia đình & Người thân
+    {
+      id: "b11_giadinh",
+      name: "E. Gia đình & Người thân",
+      selected: true,
+      items: [
+        { kana: "りょうしん", romaji: ["ryoushin"], rubyHtml: "<ruby>両親<rt>りょうしん</rt></ruby>", meaning: "Bố mẹ", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "きょうだい", romaji: ["kyoudai"], rubyHtml: "<ruby>兄弟<rt>きょうだい</rt></ruby>", meaning: "Anh chị em", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "あに", romaji: ["ani"], rubyHtml: "<ruby>兄<rt>あに</rt></ruby>", meaning: "Anh trai của mình", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "おにいさん", romaji: ["oniisan"], rubyHtml: "<ruby>お兄さん<rt>おにいさん</rt></ruby>", meaning: "Anh trai của người khác", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "あね", romaji: ["ane"], rubyHtml: "<ruby>姉<rt>あね</rt></ruby>", meaning: "Chị gái của mình", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "おねえさん", romaji: ["oneesan"], rubyHtml: "<ruby>お姉さん<rt>おねえさん</rt></ruby>", meaning: "Chị gái của người khác", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "おとうと", romaji: ["otouto"], rubyHtml: "<ruby>弟<rt>おとうと</rt></ruby>", meaning: "Em trai của mình", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "おとうとさん", romaji: ["otoutosan"], rubyHtml: "<ruby>弟さん<rt>おとうとさん</rt></ruby>", meaning: "Em trai của người khác", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "いもうと", romaji: ["imouto"], rubyHtml: "<ruby>妹<rt>いもうと</rt></ruby>", meaning: "Em gái của mình", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "いもうとさん", romaji: ["imoutosan"], rubyHtml: "<ruby>妹さん<rt>いもうとさん</rt></ruby>", meaning: "Em gái của người khác", reviewTopicId: "b11_bosung_sach_tap1" },
+      ],
+    },
+
+    // F. Học tập, Quốc gia & Địa danh
+    {
+      id: "b11_hoctap_quocgia",
+      name: "F. Học tập, Quốc gia & Địa danh",
+      selected: true,
+      items: [
+        { kana: "がいこく", romaji: ["gaikoku"], rubyHtml: "<ruby>外国<rt>がいこく</rt></ruby>", meaning: "Nước ngoài", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "りゅうがくせい", romaji: ["ryuugakusei"], rubyHtml: "<ruby>留学生<rt>りゅうがくせい</rt></ruby>", meaning: "Lưu học sinh", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "クラス", romaji: ["kurasu"], rubyHtml: "クラス", meaning: "Lớp học", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "オーストラリア", romaji: ["oosutoraria"], rubyHtml: "オーストラリア", meaning: "Úc", reviewTopicId: "b11_bosung_sach_tap1" },
+      ],
+    },
+
+    // G. Từ bổ trợ & Giao tiếp
+    {
+      id: "b11_giaotiep",
+      name: "G. Từ bổ trợ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "みんな", romaji: ["minna"], rubyHtml: "みんな", meaning: "Tất cả, mọi người", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "だけ", romaji: ["dake"], rubyHtml: "だけ", meaning: "Chỉ ~", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "かしこまりました", romaji: ["kashikomarimashita"], rubyHtml: "かしこまりました", meaning: "Tôi đã rõ rồi ạ", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "いいおてんきですね", romaji: ["iiotenkidesune"], rubyHtml: "<ruby>いいお天気ですね<rt>いいおてんきですね</rt></ruby>", meaning: "Trời đẹp nhỉ", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "おでかけですか", romaji: ["odekakedesuka"], rubyHtml: "<ruby>お出かけですか<rt>おでかけですか</rt></ruby>", meaning: "Anh/chị đi ra ngoài đấy à?", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "ちょっとまで", romaji: ["chottomade"], rubyHtml: "ちょっと～まで", meaning: "Tôi đi ~ một chút", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "いってらっしゃい", romaji: ["itterasshai"], rubyHtml: "<ruby>行ってらっしゃい<rt>いってらっしゃい</rt></ruby>", meaning: "Anh/chị đi nhé rồi về", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "いってきます", romaji: ["ittekimasu"], rubyHtml: "<ruby>行ってきます<rt>いってきます</rt></ruby>", meaning: "Tôi đi đây rồi sẽ về", reviewTopicId: "b11_bosung_sach_tap1" },
+        { kana: "おねがいします", romaji: ["onegaishimasu"], rubyHtml: "<ruby>お願いします<rt>おねがいします</rt></ruby>", meaning: "Nhờ anh/chị", reviewTopicId: "b11_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 12
+  // ========================================
   12: [
-    { id: 'b12_tinhtu', name: 'A. Tính từ', selected: true, items: [
-      { kana: 'かんたん', romaji: ['kantan'], rubyHtml: '<ruby>簡<rt>かん</rt></ruby><ruby>単<rt>たん</rt></ruby>', meaning: 'Đơn giản, dễ' },
-      { kana: 'ちかい', romaji: ['chikai'], rubyHtml: '<ruby>近<rt>ちか</rt></ruby>い', meaning: 'Gần' },
-      { kana: 'とおい', romaji: ['tooi', 'toi'], rubyHtml: '<ruby>遠<rt>とお</rt></ruby>い', meaning: 'Xa' },
-      { kana: 'はやい', romaji: ['hayai'], rubyHtml: '<ruby>速<rt>はや</rt></ruby>い / <ruby>早<rt>はや</rt></ruby>い', meaning: 'Nhanh, sớm' },
-      { kana: 'おそい', romaji: ['osoi'], rubyHtml: '<ruby>遅<rt>おそ</rt></ruby>い', meaning: 'Chậm, muộn' },
-      { kana: 'おおい', romaji: ['ooi', 'oi'], rubyHtml: '<ruby>多<rt>おお</rt></ruby>い', meaning: 'Nhiều [người]' },
-      { kana: 'すくない', romaji: ['sukunai'], rubyHtml: '<ruby>少<rt>すく</rt></ruby>ない', meaning: 'Ít [người]' },
-      { kana: 'あたたかい', romaji: ['atatakai'], rubyHtml: '<ruby>温<rt>あたた</rt></ruby>かい / <ruby>暖<rt>あたた</rt></ruby>かい', meaning: 'Ấm, ấm áp' },
-      { kana: 'すずしい', romaji: ['suzushii'], rubyHtml: '<ruby>涼<rt>すず</rt></ruby>しい', meaning: 'Mát, mát mẻ' },
-      { kana: 'あまい', romaji: ['amai'], rubyHtml: '<ruby>甘<rt>あま</rt></ruby>い', meaning: 'Ngọt' },
-      { kana: 'からい', romaji: ['karai'], rubyHtml: '<ruby>辛<rt>から</rt></ruby>い', meaning: 'Cay' },
-      { kana: 'おもい', romaji: ['omoi'], rubyHtml: '<ruby>重<rt>おも</rt></ruby>い', meaning: 'Nặng' },
-      { kana: 'かるい', romaji: ['karui'], rubyHtml: '<ruby>軽<rt>かる</rt></ruby>い', meaning: 'Nhẹ' },
-      { kana: 'いい', romaji: ['ii', 'yoi'], rubyHtml: 'いい', meaning: 'Thích, chọn, dùng [cà phê]' }
-    ]},
-    { id: 'b12_mua_thoitiet', name: 'B. Mùa & Thời tiết', selected: true, items: [
-      { kana: 'きせつ', romaji: ['kisetsu'], rubyHtml: '<ruby>季<rt>き</rt></ruby><ruby>節<rt>せつ</rt></ruby>', meaning: 'Mùa' },
-      { kana: 'はる', romaji: ['haru'], rubyHtml: '<ruby>春<rt>はる</rt></ruby>', meaning: 'Mùa xuân' },
-      { kana: 'なつ', romaji: ['natsu'], rubyHtml: '<ruby>夏<rt>なつ</rt></ruby>', meaning: 'Mùa hè' },
-      { kana: 'あき', romaji: ['aki'], rubyHtml: '<ruby>秋<rt>あき</rt></ruby>', meaning: 'Mùa thu' },
-      { kana: 'ふゆ', romaji: ['fuyu'], rubyHtml: '<ruby>冬<rt>ふゆ</rt></ruby>', meaning: 'Mùa đông' },
-      { kana: 'てんき', romaji: ['tenki'], rubyHtml: '<ruby>天<rt>てん</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Thời tiết' },
-      { kana: 'あめ', romaji: ['ame'], rubyHtml: '<ruby>雨<rt>あめ</rt></ruby>', meaning: 'Mưa' },
-      { kana: 'ゆき', romaji: ['yuki'], rubyHtml: '<ruby>雪<rt>ゆき</rt></ruby>', meaning: 'Tuyết' },
-      { kana: 'くもり', romaji: ['kumori'], rubyHtml: '<ruby>曇<rt>くも</rt></ruby>り', meaning: 'Có mây, âm u' }
-    ]},
-    { id: 'b12_diadiem_sukien', name: 'C. Địa điểm, Sự kiện & Văn hóa', selected: true, items: [
-      { kana: 'ホテル', romaji: ['hoteru'], rubyHtml: 'ホテル', meaning: 'Khách sạn' },
-      { kana: 'くうこう', romaji: ['kuukou', 'kuko'], rubyHtml: '<ruby>空<rt>くう</rt></ruby><ruby>港<rt>こう</rt></ruby>', meaning: 'Sân bay' },
-      { kana: 'うみ', romaji: ['umi'], rubyHtml: '<ruby>海<rt>うみ</rt></ruby>', meaning: 'Biển, đại dương' },
-      { kana: 'せかい', romaji: ['sekai'], rubyHtml: '<ruby>世<rt>せ</rt></ruby><ruby>界<rt>かい</rt></ruby>', meaning: 'Thế giới' },
-      { kana: 'パーティー', romaji: ['pa-ti-', 'pati'], rubyHtml: 'パーティー', meaning: 'Buổi tiệc' },
-      { kana: 'おまつり', romaji: ['omatsuri', 'matsuri'], rubyHtml: 'お<ruby>祭<rt>まつ</rt></ruby>り', meaning: 'Lễ hội' },
-      { kana: 'しけん', romaji: ['shiken'], rubyHtml: '<ruby>試<rt>し</rt></ruby><ruby>験<rt>けん</rt></ruby>', meaning: 'Kỳ thi, bài thi' },
-      { kana: 'いけばな', romaji: ['ikebana'], rubyHtml: '<ruby>生<rt>い</rt></ruby>け<ruby>花<rt>ばな</rt></ruby>', meaning: 'Nghệ thuật cắm hoa' },
-      { kana: 'もみじ', romaji: ['momiji'], rubyHtml: '<ruby>紅葉<rt>もみじ</rt></ruby>', meaning: 'Lá đỏ' }
-    ]},
-    { id: 'b12_monan', name: 'D. Món ăn Nhật Bản', selected: true, items: [
-      { kana: 'すきやき', romaji: ['sukiyaki'], rubyHtml: 'すき<ruby>焼<rt>や</rt></ruby>き', meaning: 'Món Sukiyaki (thịt bò nấu rau)' },
-      { kana: 'さしみ', romaji: ['sashimi'], rubyHtml: '<ruby>刺<rt>さし</rt></ruby><ruby>身<rt>み</rt></ruby>', meaning: 'Món Sashimi (gỏi cá sống)' },
-      { kana: 'おすし', romaji: ['osushi', 'sushi'], rubyHtml: 'おすし', meaning: 'Món Sushi' },
-      { kana: 'てんぷら', romaji: ['tenpura'], rubyHtml: 'てんぷら', meaning: 'Món Tempura' }
-    ]},
-    { id: 'b12_sosanh_giaotiep', name: 'E. Từ so sánh & Giao tiếp', selected: true, items: [
-      { kana: 'どちら', romaji: ['dochira'], rubyHtml: 'どちら', meaning: 'Cái nào (trong 2 cái)' },
-      { kana: 'はじめて', romaji: ['hajimete'], rubyHtml: '<ruby>初<rt>はじ</rt></ruby>めて', meaning: 'Lần đầu tiên' },
-      { kana: 'どちらも', romaji: ['dochiramo'], rubyHtml: 'どちらも', meaning: 'Cả hai' },
-      { kana: 'ずっと', romaji: ['zutto'], rubyHtml: 'ずっと', meaning: '(Hơn) hẳn (nhấn mạnh so sánh)' },
-      { kana: 'ただいま', romaji: ['tadaima'], rubyHtml: 'ただいま', meaning: 'Tôi đã về đây' },
-      { kana: 'おかえりなさい', romaji: ['okaerinasai'], rubyHtml: 'お<ruby>帰<rt>かえ</rt></ruby>りなさい', meaning: 'Anh/Chị đã về đấy à' },
-      { kana: 'すごいですね', romaji: ['sugoidesune'], rubyHtml: 'すごいですね', meaning: 'Ghê quá nhỉ / Hay quá nhỉ' },
-      { kana: 'でも', romaji: ['demo'], rubyHtml: 'でも', meaning: 'Nhưng' },
-      { kana: 'つかれました', romaji: ['tsukaremashita'], rubyHtml: '<ruby>疲<rt>つか</rt></ruby>れました', meaning: 'Tôi mệt rồi' },
-      { kana: 'ホンコン', romaji: ['honkon'], rubyHtml: 'ホンコン', meaning: 'Hồng Kông' },
-      { kana: 'シンガポール', romaji: ['shingapo-ru', 'shingaporu'], rubyHtml: 'シンガポール', meaning: 'Singapore' }
-    ]}
+    // A. Tính từ
+    {
+      id: "b12_tinhtu",
+      name: "A. Tính từ",
+      selected: true,
+      items: [
+        { kana: "かんたん", romaji: ["kantan"], rubyHtml: "<ruby>簡<rt>かん</rt></ruby><ruby>単<rt>たん</rt></ruby>", meaning: "Đơn giản, dễ" },
+        { kana: "ちかい", romaji: ["chikai"], rubyHtml: "<ruby>近<rt>ちか</rt></ruby>い", meaning: "Gần" },
+        { kana: "とおい", romaji: ["tooi","toi"], rubyHtml: "<ruby>遠<rt>とお</rt></ruby>い", meaning: "Xa" },
+        { kana: "はやい", romaji: ["hayai"], rubyHtml: "<ruby>速<rt>はや</rt></ruby>い / <ruby>早<rt>はや</rt></ruby>い", meaning: "Nhanh, sớm" },
+        { kana: "おそい", romaji: ["osoi"], rubyHtml: "<ruby>遅<rt>おそ</rt></ruby>い", meaning: "Chậm, muộn" },
+        { kana: "おおい", romaji: ["ooi","oi"], rubyHtml: "<ruby>多<rt>おお</rt></ruby>い", meaning: "Nhiều [người]" },
+        { kana: "すくない", romaji: ["sukunai"], rubyHtml: "<ruby>少<rt>すく</rt></ruby>ない", meaning: "Ít [người]" },
+        { kana: "あたたかい", romaji: ["atatakai"], rubyHtml: "<ruby>温<rt>あたた</rt></ruby>かい / <ruby>暖<rt>あたた</rt></ruby>かい", meaning: "Ấm, ấm áp" },
+        { kana: "すずしい", romaji: ["suzushii"], rubyHtml: "<ruby>涼<rt>すず</rt></ruby>しい", meaning: "Mát, mát mẻ" },
+        { kana: "あまい", romaji: ["amai"], rubyHtml: "<ruby>甘<rt>あま</rt></ruby>い", meaning: "Ngọt" },
+        { kana: "からい", romaji: ["karai"], rubyHtml: "<ruby>辛<rt>から</rt></ruby>い", meaning: "Cay" },
+        { kana: "おもい", romaji: ["omoi"], rubyHtml: "<ruby>重<rt>おも</rt></ruby>い", meaning: "Nặng" },
+        { kana: "かるい", romaji: ["karui"], rubyHtml: "<ruby>軽<rt>かる</rt></ruby>い", meaning: "Nhẹ" },
+        { kana: "いい", romaji: ["ii","yoi"], rubyHtml: "いい", meaning: "Thích, chọn, dùng [cà phê]" },
+      ],
+    },
+
+    // B. Mùa & Thời tiết
+    {
+      id: "b12_mua_thoitiet",
+      name: "B. Mùa & Thời tiết",
+      selected: true,
+      items: [
+        { kana: "きせつ", romaji: ["kisetsu"], rubyHtml: "<ruby>季<rt>き</rt></ruby><ruby>節<rt>せつ</rt></ruby>", meaning: "Mùa" },
+        { kana: "はる", romaji: ["haru"], rubyHtml: "<ruby>春<rt>はる</rt></ruby>", meaning: "Mùa xuân" },
+        { kana: "なつ", romaji: ["natsu"], rubyHtml: "<ruby>夏<rt>なつ</rt></ruby>", meaning: "Mùa hè" },
+        { kana: "あき", romaji: ["aki"], rubyHtml: "<ruby>秋<rt>あき</rt></ruby>", meaning: "Mùa thu" },
+        { kana: "ふゆ", romaji: ["fuyu"], rubyHtml: "<ruby>冬<rt>ふゆ</rt></ruby>", meaning: "Mùa đông" },
+        { kana: "てんき", romaji: ["tenki"], rubyHtml: "<ruby>天<rt>てん</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Thời tiết" },
+        { kana: "あめ", romaji: ["ame"], rubyHtml: "<ruby>雨<rt>あめ</rt></ruby>", meaning: "Mưa" },
+        { kana: "ゆき", romaji: ["yuki"], rubyHtml: "<ruby>雪<rt>ゆき</rt></ruby>", meaning: "Tuyết" },
+        { kana: "くもり", romaji: ["kumori"], rubyHtml: "<ruby>曇<rt>くも</rt></ruby>り", meaning: "Có mây, âm u" },
+      ],
+    },
+
+    // C. Địa điểm, Sự kiện & Văn hóa
+    {
+      id: "b12_diadiem_sukien",
+      name: "C. Địa điểm, Sự kiện & Văn hóa",
+      selected: true,
+      items: [
+        { kana: "ホテル", romaji: ["hoteru"], rubyHtml: "ホテル", meaning: "Khách sạn" },
+        { kana: "くうこう", romaji: ["kuukou","kuko"], rubyHtml: "<ruby>空<rt>くう</rt></ruby><ruby>港<rt>こう</rt></ruby>", meaning: "Sân bay" },
+        { kana: "うみ", romaji: ["umi"], rubyHtml: "<ruby>海<rt>うみ</rt></ruby>", meaning: "Biển, đại dương" },
+        { kana: "せかい", romaji: ["sekai"], rubyHtml: "<ruby>世<rt>せ</rt></ruby><ruby>界<rt>かい</rt></ruby>", meaning: "Thế giới" },
+        { kana: "パーティー", romaji: ["pa-ti-","pati"], rubyHtml: "パーティー", meaning: "Buổi tiệc" },
+        { kana: "おまつり", romaji: ["omatsuri","matsuri"], rubyHtml: "お<ruby>祭<rt>まつ</rt></ruby>り", meaning: "Lễ hội" },
+        { kana: "しけん", romaji: ["shiken"], rubyHtml: "<ruby>試<rt>し</rt></ruby><ruby>験<rt>けん</rt></ruby>", meaning: "Kỳ thi, bài thi" },
+        { kana: "いけばな", romaji: ["ikebana"], rubyHtml: "<ruby>生<rt>い</rt></ruby>け<ruby>花<rt>ばな</rt></ruby>", meaning: "Nghệ thuật cắm hoa" },
+        { kana: "もみじ", romaji: ["momiji"], rubyHtml: "<ruby>紅葉<rt>もみじ</rt></ruby>", meaning: "Lá đỏ" },
+        { kana: "ぎおんまつり", romaji: ["gionmatsuri"], rubyHtml: "<ruby>祇園祭<rt>ぎおんまつり</rt></ruby>", meaning: "Lễ hội Gion ở Kyoto", reviewTopicId: "b12_bosung_sach_tap1" },
+      ],
+    },
+
+    // D. Món ăn Nhật Bản & Thực phẩm
+    {
+      id: "b12_monan",
+      name: "D. Món ăn Nhật Bản & Thực phẩm",
+      selected: true,
+      items: [
+        { kana: "すきやき", romaji: ["sukiyaki"], rubyHtml: "すき<ruby>焼<rt>や</rt></ruby>き", meaning: "Món Sukiyaki (thịt bò nấu rau)" },
+        { kana: "さしみ", romaji: ["sashimi"], rubyHtml: "<ruby>刺<rt>さし</rt></ruby><ruby>身<rt>み</rt></ruby>", meaning: "Món Sashimi (gỏi cá sống)" },
+        { kana: "おすし", romaji: ["osushi","sushi"], rubyHtml: "おすし", meaning: "Món Sushi" },
+        { kana: "てんぷら", romaji: ["tenpura"], rubyHtml: "てんぷら", meaning: "Món Tempura" },
+        { kana: "ぶたにく", romaji: ["butaniku"], rubyHtml: "<ruby>豚肉<rt>ぶたにく</rt></ruby>", meaning: "Thịt heo, thịt lợn", reviewTopicId: "b12_bosung_sach_tap1" },
+        { kana: "とりにく", romaji: ["toriniku"], rubyHtml: "<ruby>とり肉<rt>とりにく</rt></ruby>", meaning: "Thịt gà", reviewTopicId: "b12_bosung_sach_tap1" },
+        { kana: "ぎゅうにく", romaji: ["gyuuniku"], rubyHtml: "<ruby>牛肉<rt>ぎゅうにく</rt></ruby>", meaning: "Thịt bò", reviewTopicId: "b12_bosung_sach_tap1" },
+        { kana: "レモン", romaji: ["remon"], rubyHtml: "レモン", meaning: "Chanh", reviewTopicId: "b12_bosung_sach_tap1" },
+      ],
+    },
+
+    // E. Từ so sánh & Giao tiếp
+    {
+      id: "b12_sosanh_giaotiep",
+      name: "E. Từ so sánh & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "どちら", romaji: ["dochira"], rubyHtml: "どちら", meaning: "Cái nào (trong 2 cái)" },
+        { kana: "はじめて", romaji: ["hajimete"], rubyHtml: "<ruby>初<rt>はじ</rt></ruby>めて", meaning: "Lần đầu tiên" },
+        { kana: "どちらも", romaji: ["dochiramo"], rubyHtml: "どちらも", meaning: "Cả hai" },
+        { kana: "ずっと", romaji: ["zutto"], rubyHtml: "ずっと", meaning: "(Hơn) hẳn (nhấn mạnh so sánh)" },
+        { kana: "ただいま", romaji: ["tadaima"], rubyHtml: "ただいま", meaning: "Tôi đã về đây" },
+        { kana: "おかえりなさい", romaji: ["okaerinasai"], rubyHtml: "お<ruby>帰<rt>かえ</rt></ruby>りなさい", meaning: "Anh/Chị đã về đấy à" },
+        { kana: "すごいですね", romaji: ["sugoidesune"], rubyHtml: "すごいですね", meaning: "Ghê quá nhỉ / Hay quá nhỉ" },
+        { kana: "でも", romaji: ["demo"], rubyHtml: "でも", meaning: "Nhưng" },
+        { kana: "つかれました", romaji: ["tsukaremashita"], rubyHtml: "<ruby>疲<rt>つか</rt></ruby>れました", meaning: "Tôi mệt rồi" },
+        { kana: "ホンコン", romaji: ["honkon"], rubyHtml: "ホンコン", meaning: "Hồng Kông" },
+        { kana: "シンガポール", romaji: ["shingapo-ru","shingaporu"], rubyHtml: "シンガポール", meaning: "Singapore" },
+        { kana: "いちばん", romaji: ["ichiban"], rubyHtml: "<ruby>一番<rt>いちばん</rt></ruby>", meaning: "Nhất", reviewTopicId: "b12_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 13
+  // ========================================
   13: [
-    { id: 'b13_dongtu', name: 'A. Động từ hành động', selected: true, items: [
-      { kana: 'あそびます', romaji: ['asobimasu'], rubyHtml: '<ruby>遊<rt>あそ</rt></ruby>びます', meaning: 'Chơi' },
-      { kana: 'およぎます', romaji: ['oyogimasu'], rubyHtml: '<ruby>泳<rt>およ</rt></ruby>ぎます', meaning: 'Bơi' },
-      { kana: 'むかえます', romaji: ['mukaemasu'], rubyHtml: '<ruby>迎<rt>むか</rt></ruby>えます', meaning: 'Đón' },
-      { kana: 'つかれます', romaji: ['tsukaremasu'], rubyHtml: '<ruby>疲<rt>つか</rt></ruby>れます', meaning: 'Mệt' },
-      { kana: 'だします', romaji: ['dashimasu'], rubyHtml: '<ruby>出<rt>だ</rt></ruby>します', meaning: 'Gửi [thư]' },
-      { kana: 'はいります', romaji: ['hairimasu'], rubyHtml: '<ruby>入<rt>はい</rt></ruby>ります', meaning: 'Vào [quán giải khát]' },
-      { kana: 'でます', romaji: ['demasu'], rubyHtml: '<ruby>出<rt>で</rt></ruby>ます', meaning: 'Ra, ra khỏi [quán giải khát]' },
-      { kana: 'けっこんします', romaji: ['kekkonshimasu'], rubyHtml: '<ruby>結<rt>けっ</rt></ruby><ruby>婚<rt>こん</rt></ruby>します', meaning: 'Kết hôn, cưới' },
-      { kana: 'かいものします', romaji: ['kaimonoshimasu'], rubyHtml: '<ruby>買<rt>かい</rt></ruby>い<ruby>物<rt>もの</rt></ruby>します', meaning: 'Mua hàng, mua sắm' },
-      { kana: 'しょくじします', romaji: ['shokujishimasu'], rubyHtml: '<ruby>食<rt>しょく</rt></ruby><ruby>事<rt>じ</rt></ruby>します', meaning: 'Ăn cơm, dùng bữa' },
-      { kana: 'さんぽします', romaji: ['sanposhimasu'], rubyHtml: '<ruby>散<rt>さん</rt></ruby><ruby>歩<rt>ぽ</rt></ruby>します', meaning: 'Đi dạo [ở công viên]' }
-    ]},
-    { id: 'b13_tinhtu', name: 'B. Tính từ & Mong muốn', selected: true, items: [
-      { kana: 'たいへん', romaji: ['taihen'], rubyHtml: '<ruby>大<rt>たい</rt></ruby><ruby>変<rt>へん</rt></ruby>', meaning: 'Vất vả, khó khăn' },
-      { kana: 'ほしい', romaji: ['hoshii'], rubyHtml: '<ruby>欲<rt>ほ</rt></ruby>しい', meaning: 'Muốn có' },
-      { kana: 'さびしい', romaji: ['sabishii'], rubyHtml: '<ruby>寂<rt>さび</rt></ruby>しい', meaning: 'Buồn, cô đơn' },
-      { kana: 'ひろい', romaji: ['hiroi'], rubyHtml: '<ruby>広<rt>ひろ</rt></ruby>い', meaning: 'Rộng' },
-      { kana: 'せまい', romaji: ['semai'], rubyHtml: '<ruby>狭<rt>せま</rt></ruby>い', meaning: 'Chật, hẹp' }
-    ]},
-    { id: 'b13_diadiem_linhvuc', name: 'C. Địa điểm & Lĩnh vực', selected: true, items: [
-      { kana: 'しやくしょ', romaji: ['shiyakusho'], rubyHtml: '<ruby>市<rt>し</rt></ruby><ruby>役<rt>やく</rt></ruby><ruby>所<rt>しょ</rt></ruby>', meaning: 'Văn phòng hành chính quận/thành phố' },
-      { kana: 'プール', romaji: ['pu-ru', 'puru'], rubyHtml: 'プール', meaning: 'Bể bơi' },
-      { kana: 'かわ', romaji: ['kawa'], rubyHtml: '<ruby>川<rt>かわ</rt></ruby>', meaning: 'Sông' },
-      { kana: 'けいざい', romaji: ['keizai'], rubyHtml: '<ruby>経<rt>けい</rt></ruby><ruby>済<rt>ざい</rt></ruby>', meaning: 'Kinh tế' },
-      { kana: 'びじゅつ', romaji: ['bijutsu'], rubyHtml: '<ruby>美<rt>び</rt></ruby><ruby>術<rt>じゅつ</rt></ruby>', meaning: 'Mỹ thuật' }
-    ]},
-    { id: 'b13_hoatdong_thoigian', name: 'D. Hoạt động, Thời gian & Từ định hướng', selected: true, items: [
-      { kana: 'つり', romaji: ['tsuri'], rubyHtml: '<ruby>釣<rt>つ</rt></ruby>り', meaning: 'Việc câu cá' },
-      { kana: 'スキー', romaji: ['suki-', 'suki'], rubyHtml: 'スキー', meaning: 'Việc trượt tuyết' },
-      { kana: 'かいぎ', romaji: ['kaigi'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>議<rt>ぎ</rt></ruby>', meaning: 'Cuộc họp, hội nghị' },
-      { kana: 'とうろく', romaji: ['touroku', 'toroku'], rubyHtml: '<ruby>登<rt>とう</rt></ruby><ruby>録<rt>ろく</rt></ruby>', meaning: 'Việc đăng ký' },
-      { kana: 'しゅうまつ', romaji: ['shuumatsu', 'shumatsu'], rubyHtml: '<ruby>週<rt>しゅう</rt></ruby><ruby>末<rt>まつ</rt></ruby>', meaning: 'Cuối tuần' },
-      { kana: 'ごろ', romaji: ['goro'], rubyHtml: '～ごろ', meaning: 'Khoảng ～ (dùng cho thời gian)' },
-      { kana: 'なにか', romaji: ['nanika'], rubyHtml: '<ruby>何<rt>なに</rt></ruby>か', meaning: 'Cái gì đó' },
-      { kana: 'どこか', romaji: ['dokoka'], rubyHtml: 'どこか', meaning: 'Đâu đó, chỗ nào đó' }
-    ]},
-    { id: 'b13_giaotiep_nhahang', name: 'E. Cảm giác, Nhà hàng & Giao tiếp', selected: true, items: [
-      { kana: 'おなかがすきました', romaji: ['onakagasukimashita'], rubyHtml: 'おなかがすきました', meaning: '(Tôi) đói rồi' },
-      { kana: 'おなかがいっぱいです', romaji: ['onakagaippaidesu'], rubyHtml: 'おなかがいっぱいです', meaning: '(Tôi) no rồi' },
-      { kana: 'のどがかわきました', romaji: ['nodogakawakimashita'], rubyHtml: 'のどがかわきました', meaning: '(Tôi) khát nước rồi' },
-      { kana: 'そうですね', romaji: ['soudesune', 'sodesune'], rubyHtml: 'そうですね', meaning: 'Đúng thế / Để xem nào' },
-      { kana: 'ロシア', romaji: ['roshia'], rubyHtml: 'ロシア', meaning: 'Nước Nga' },
-      { kana: 'そうしましょう', romaji: ['soushimashou', 'soshimasho'], rubyHtml: 'そうしましょう', meaning: 'Nhất trí / Cùng làm thế nhé' },
-      { kana: 'ていしょく', romaji: ['teishoku'], rubyHtml: '<ruby>定<rt>てい</rt></ruby><ruby>食<rt>しょく</rt></ruby>', meaning: 'Cơm suất, cơm phần' },
-      { kana: 'ごちゅうもんは', romaji: ['gochuumonwa', 'gochumonwa'], rubyHtml: 'ご<ruby>注<rt>ちゅう</rt></ruby><ruby>文<rt>もん</rt></ruby>は', meaning: 'Mời anh/chị gọi món' },
-      { kana: 'ぎゅうどん', romaji: ['gyuudon', 'gyudon'], rubyHtml: '<ruby>牛<rt>ぎゅう</rt></ruby>どん', meaning: 'Món cơm thịt bò' },
-      { kana: 'しょうしょうおまちください', romaji: ['shoushouomachikudasai', 'shoshoomachikudasai'], rubyHtml: '<ruby>少<rt>しょう</rt></ruby><ruby>々<rt>しょう</rt></ruby>お<ruby>待<rt>ま</rt></ruby>ちください', meaning: 'Xin vui lòng đợi một chút' },
-      { kana: 'べつべつに', romaji: ['betsubetsuni'], rubyHtml: '<ruby>別<rt>べつ</rt></ruby><ruby>々<rt>べつ</rt></ruby>に', meaning: 'Riêng ra, để riêng' }
-    ]}
+    // A. Động từ hành động
+    {
+      id: "b13_dongtu",
+      name: "A. Động từ hành động",
+      selected: true,
+      items: [
+        { kana: "あそびます", romaji: ["asobimasu"], rubyHtml: "<ruby>遊<rt>あそ</rt></ruby>びます", meaning: "Chơi" },
+        { kana: "およぎます", romaji: ["oyogimasu"], rubyHtml: "<ruby>泳<rt>およ</rt></ruby>ぎます", meaning: "Bơi" },
+        { kana: "むかえます", romaji: ["mukaemasu"], rubyHtml: "<ruby>迎<rt>むか</rt></ruby>えます", meaning: "Đón" },
+        { kana: "つかれます", romaji: ["tsukaremasu"], rubyHtml: "<ruby>疲<rt>つか</rt></ruby>れます", meaning: "Mệt" },
+        { kana: "だします", romaji: ["dashimasu"], rubyHtml: "<ruby>出<rt>だ</rt></ruby>します", meaning: "Gửi [thư]" },
+        { kana: "はいります", romaji: ["hairimasu"], rubyHtml: "<ruby>入<rt>はい</rt></ruby>ります", meaning: "Vào [quán giải khát]" },
+        { kana: "でます", romaji: ["demasu"], rubyHtml: "<ruby>出<rt>で</rt></ruby>ます", meaning: "Ra, ra khỏi [quán giải khát]" },
+        { kana: "けっこんします", romaji: ["kekkonshimasu"], rubyHtml: "<ruby>結<rt>けっ</rt></ruby><ruby>婚<rt>こん</rt></ruby>します", meaning: "Kết hôn, cưới" },
+        { kana: "かいものします", romaji: ["kaimonoshimasu"], rubyHtml: "<ruby>買<rt>かい</rt></ruby>い<ruby>物<rt>もの</rt></ruby>します", meaning: "Mua hàng, mua sắm" },
+        { kana: "しょくじします", romaji: ["shokujishimasu"], rubyHtml: "<ruby>食<rt>しょく</rt></ruby><ruby>事<rt>じ</rt></ruby>します", meaning: "Ăn cơm, dùng bữa" },
+        { kana: "さんぽします", romaji: ["sanposhimasu"], rubyHtml: "<ruby>散<rt>さん</rt></ruby><ruby>歩<rt>ぽ</rt></ruby>します", meaning: "Đi dạo [ở công viên]" },
+      ],
+    },
+
+    // B. Tính từ & Mong muốn
+    {
+      id: "b13_tinhtu",
+      name: "B. Tính từ & Mong muốn",
+      selected: true,
+      items: [
+        { kana: "たいへん", romaji: ["taihen"], rubyHtml: "<ruby>大<rt>たい</rt></ruby><ruby>変<rt>へん</rt></ruby>", meaning: "Vất vả, khó khăn" },
+        { kana: "ほしい", romaji: ["hoshii"], rubyHtml: "<ruby>欲<rt>ほ</rt></ruby>しい", meaning: "Muốn có" },
+        { kana: "さびしい", romaji: ["sabishii"], rubyHtml: "<ruby>寂<rt>さび</rt></ruby>しい", meaning: "Buồn, cô đơn" },
+        { kana: "ひろい", romaji: ["hiroi"], rubyHtml: "<ruby>広<rt>ひろ</rt></ruby>い", meaning: "Rộng" },
+        { kana: "せまい", romaji: ["semai"], rubyHtml: "<ruby>狭<rt>せま</rt></ruby>い", meaning: "Chật, hẹp" },
+      ],
+    },
+
+    // C. Địa điểm & Lĩnh vực
+    {
+      id: "b13_diadiem_linhvuc",
+      name: "C. Địa điểm & Lĩnh vực",
+      selected: true,
+      items: [
+        { kana: "しやくしょ", romaji: ["shiyakusho"], rubyHtml: "<ruby>市<rt>し</rt></ruby><ruby>役<rt>やく</rt></ruby><ruby>所<rt>しょ</rt></ruby>", meaning: "Văn phòng hành chính quận/thành phố" },
+        { kana: "プール", romaji: ["pu-ru","puru"], rubyHtml: "プール", meaning: "Bể bơi" },
+        { kana: "かわ", romaji: ["kawa"], rubyHtml: "<ruby>川<rt>かわ</rt></ruby>", meaning: "Sông" },
+        { kana: "けいざい", romaji: ["keizai"], rubyHtml: "<ruby>経<rt>けい</rt></ruby><ruby>済<rt>ざい</rt></ruby>", meaning: "Kinh tế" },
+        { kana: "びじゅつ", romaji: ["bijutsu"], rubyHtml: "<ruby>美<rt>び</rt></ruby><ruby>術<rt>じゅつ</rt></ruby>", meaning: "Mỹ thuật" },
+      ],
+    },
+
+    // D. Hoạt động, Thời gian & Từ định hướng
+    {
+      id: "b13_hoatdong_thoigian",
+      name: "D. Hoạt động, Thời gian & Từ định hướng",
+      selected: true,
+      items: [
+        { kana: "つり", romaji: ["tsuri"], rubyHtml: "<ruby>釣<rt>つ</rt></ruby>り", meaning: "Việc câu cá" },
+        { kana: "スキー", romaji: ["suki-","suki"], rubyHtml: "スキー", meaning: "Việc trượt tuyết" },
+        { kana: "かいぎ", romaji: ["kaigi"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>議<rt>ぎ</rt></ruby>", meaning: "Cuộc họp, hội nghị" },
+        { kana: "とうろく", romaji: ["touroku","toroku"], rubyHtml: "<ruby>登<rt>とう</rt></ruby><ruby>録<rt>ろく</rt></ruby>", meaning: "Việc đăng ký" },
+        { kana: "しゅうまつ", romaji: ["shuumatsu","shumatsu"], rubyHtml: "<ruby>週<rt>しゅう</rt></ruby><ruby>末<rt>まつ</rt></ruby>", meaning: "Cuối tuần" },
+        { kana: "ごろ", romaji: ["goro"], rubyHtml: "～ごろ", meaning: "Khoảng ～ (dùng cho thời gian)" },
+        { kana: "なにか", romaji: ["nanika"], rubyHtml: "<ruby>何<rt>なに</rt></ruby>か", meaning: "Cái gì đó" },
+        { kana: "どこか", romaji: ["dokoka"], rubyHtml: "どこか", meaning: "Đâu đó, chỗ nào đó" },
+        { kana: "おしょうがつ", romaji: ["oshougatsu"], rubyHtml: "<ruby>お正月<rt>おしょうがつ</rt></ruby>", meaning: "Tết", reviewTopicId: "b13_bosung_sach_tap1" },
+      ],
+    },
+
+    // E. Cảm giác, Nhà hàng & Giao tiếp
+    {
+      id: "b13_giaotiep_nhahang",
+      name: "E. Cảm giác, Nhà hàng & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "おなかがすきました", romaji: ["onakagasukimashita"], rubyHtml: "おなかがすきました", meaning: "(Tôi) đói rồi" },
+        { kana: "おなかがいっぱいです", romaji: ["onakagaippaidesu"], rubyHtml: "おなかがいっぱいです", meaning: "(Tôi) no rồi" },
+        { kana: "のどがかわきました", romaji: ["nodogakawakimashita"], rubyHtml: "のどがかわきました", meaning: "(Tôi) khát nước rồi" },
+        { kana: "そうですね", romaji: ["soudesune","sodesune"], rubyHtml: "そうですね", meaning: "Đúng thế / Để xem nào" },
+        { kana: "ロシア", romaji: ["roshia"], rubyHtml: "ロシア", meaning: "Nước Nga" },
+        { kana: "そうしましょう", romaji: ["soushimashou","soshimasho"], rubyHtml: "そうしましょう", meaning: "Nhất trí / Cùng làm thế nhé" },
+        { kana: "ていしょく", romaji: ["teishoku"], rubyHtml: "<ruby>定<rt>てい</rt></ruby><ruby>食<rt>しょく</rt></ruby>", meaning: "Cơm suất, cơm phần" },
+        { kana: "ごちゅうもんは", romaji: ["gochuumonwa","gochumonwa"], rubyHtml: "ご<ruby>注<rt>ちゅう</rt></ruby><ruby>文<rt>もん</rt></ruby>は", meaning: "Mời anh/chị gọi món" },
+        { kana: "ぎゅうどん", romaji: ["gyuudon","gyudon"], rubyHtml: "<ruby>牛<rt>ぎゅう</rt></ruby>どん", meaning: "Món cơm thịt bò" },
+        { kana: "しょうしょうおまちください", romaji: ["shoushouomachikudasai","shoshoomachikudasai"], rubyHtml: "<ruby>少<rt>しょう</rt></ruby><ruby>々<rt>しょう</rt></ruby>お<ruby>待<rt>ま</rt></ruby>ちください", meaning: "Xin vui lòng đợi một chút" },
+        { kana: "べつべつに", romaji: ["betsubetsuni"], rubyHtml: "<ruby>別<rt>べつ</rt></ruby><ruby>々<rt>べつ</rt></ruby>に", meaning: "Riêng ra, để riêng" },
+        { kana: "でございます", romaji: ["degozaimasu"], rubyHtml: "でございます", meaning: "Là (cách nói lịch sự của です)", reviewTopicId: "b13_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 14
+  // ========================================
   14: [
-    { id: 'b14_dongtu', name: 'A. Động từ thể て', selected: true, items: [
-      { kana: 'つけます', romaji: ['tsukemasu'], rubyHtml: 'つけます', meaning: 'Bật (điện, máy điều hòa)' },
-      { kana: 'けします', romaji: ['keshimasu'], rubyHtml: '<ruby>消<rt>け</rt></ruby>します', meaning: 'Tắt (điện, máy điều hòa)' },
-      { kana: 'あけます', romaji: ['akemasu'], rubyHtml: '<ruby>開<rt>あ</rt></ruby>けます', meaning: 'Mở (cửa, cửa sổ)' },
-      { kana: 'しめます', romaji: ['shimemasu'], rubyHtml: '<ruby>閉<rt>し</rt></ruby>めます', meaning: 'Đóng (cửa, cửa sổ)' },
-      { kana: 'いそぎます', romaji: ['isogimasu'], rubyHtml: '<ruby>急<rt>いそ</rt></ruby>ぎます', meaning: 'Vội, gấp' },
-      { kana: 'まちます', romaji: ['machimasu'], rubyHtml: '<ruby>待<rt>ま</rt></ruby>ちます', meaning: 'Đợi, chờ' },
-      { kana: 'とめます', romaji: ['tomemasu'], rubyHtml: '<ruby>止<rt>と</rt></ruby>めます', meaning: 'Dừng, đỗ (xe, máy móc)' },
-      { kana: 'まがります', romaji: ['magarimasu'], rubyHtml: '<ruby>曲<rt>ま</rt></ruby>がります', meaning: 'Rẽ, quẹo [phải]' },
-      { kana: 'もちます', romaji: ['mochimasu'], rubyHtml: '<ruby>持<rt>も</rt></ruby>ちます', meaning: 'Mang, cầm' },
-      { kana: 'とります', romaji: ['torimasu'], rubyHtml: '<ruby>取<rt>と</rt></ruby>ります', meaning: 'Lấy (muối)' },
-      { kana: 'てつだいます', romaji: ['tetsudaimasu'], rubyHtml: '<ruby>手<rt>て</rt></ruby><ruby>伝<rt>つだ</rt></ruby>います', meaning: 'Giúp (làm việc)' },
-      { kana: 'よびます', romaji: ['yobimasu'], rubyHtml: '<ruby>呼<rt>よ</rt></ruby>びます', meaning: 'Gọi (taxi, tên)' },
-      { kana: 'はなします', romaji: ['hanashimasu'], rubyHtml: '<ruby>話<rt>はな</rt></ruby>します', meaning: 'Nói, nói chuyện' },
-      { kana: 'みせます', romaji: ['misemasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>せます', meaning: 'Cho xem, trình' },
-      { kana: 'おしえます', romaji: ['oshiemasu'], rubyHtml: '<ruby>教<rt>おし</rt></ruby>えます', meaning: 'Nói, cho biết' },
-      { kana: 'はじめます', romaji: ['hajimemasu'], rubyHtml: '<ruby>始<rt>はじ</rt></ruby>めます', meaning: 'Bắt đầu' },
-      { kana: 'ふります', romaji: ['furimasu'], rubyHtml: '<ruby>降<rt>ふ</rt></ruby>ります', meaning: 'Rơi [mưa, tuyết]' },
-      { kana: 'コピーします', romaji: ['kopi-shimasu', 'kopishimasu'], rubyHtml: 'コピーします', meaning: 'Copy, sao chụp' }
-    ]},
-    { id: 'b14_dovat_thongtin', name: 'B. Đồ vật, Thông tin & Gia vị', selected: true, items: [
-      { kana: 'エアコン', romaji: ['eakon'], rubyHtml: 'エアコン', meaning: 'Máy điều hòa' },
-      { kana: 'パスポート', romaji: ['pasupo-to', 'pasupoto'], rubyHtml: 'パスポート', meaning: 'Hộ chiếu' },
-      { kana: 'なまえ', romaji: ['namae'], rubyHtml: '<ruby>名<rt>な</rt></ruby><ruby>前<rt>まえ</rt></ruby>', meaning: 'Tên' },
-      { kana: 'じゅうしょ', romaji: ['juusho', 'jusho'], rubyHtml: '<ruby>住<rt>じゅう</rt></ruby><ruby>所<rt>しょ</rt></ruby>', meaning: 'Địa chỉ' },
-      { kana: 'ちず', romaji: ['chizu'], rubyHtml: '<ruby>地<rt>ち</rt></ruby><ruby>図<rt>ず</rt></ruby>', meaning: 'Bản đồ' },
-      { kana: 'しお', romaji: ['shio'], rubyHtml: '<ruby>塩<rt>しお</rt></ruby>', meaning: 'Muối' },
-      { kana: 'さとう', romaji: ['satou', 'sato'], rubyHtml: '<ruby>砂<rt>さ</rt></ruby><ruby>糖<rt>とう</rt></ruby>', meaning: 'Đường' },
-      { kana: 'よみかた', romaji: ['yomikata'], rubyHtml: '<ruby>読<rt>よ</rt></ruby>み<ruby>方<rt>かた</rt></ruby>', meaning: 'Cách đọc' },
-      { kana: 'かた', romaji: ['kata'], rubyHtml: '～<ruby>方<rt>かた</rt></ruby>', meaning: 'Cách ～' }
-    ]},
-    { id: 'b14_trangtu_huong', name: 'C. Trạng từ, Phương hướng & Giao tiếp', selected: true, items: [
-      { kana: 'ゆっくり', romaji: ['yukkuri'], rubyHtml: 'ゆっくり', meaning: 'Chậm, thong thả, thoải mái' },
-      { kana: 'すぐ', romaji: ['sugu'], rubyHtml: 'すぐ', meaning: 'Ngay, lập tức' },
-      { kana: 'また', romaji: ['mata'], rubyHtml: 'また', meaning: 'Lại (~đến)' },
-      { kana: 'あとで', romaji: ['atode'], rubyHtml: 'あとで', meaning: 'Sau, để sau' },
-      { kana: 'もうすこし', romaji: ['mousukoshi', 'mosukoshi'], rubyHtml: 'もう<ruby>少<rt>すこ</rt></ruby>し', meaning: 'Thêm một chút nữa' },
-      { kana: 'もう', romaji: ['mou'], rubyHtml: 'もう～', meaning: 'Thêm～' },
-      { kana: 'いいですよ', romaji: ['iidesuyo'], rubyHtml: 'いいですよ', meaning: 'Được chứ / Được ạ' },
-      { kana: 'さあ', romaji: ['saa'], rubyHtml: 'さあ', meaning: 'Nào, thôi (thúc giục, khuyến khích)' },
-      { kana: 'あれ', romaji: ['are'], rubyHtml: 'あれ？', meaning: 'Ô! (cảm thán ngạc nhiên)' },
-      { kana: 'まっすぐ', romaji: ['massugu'], rubyHtml: 'まっすぐ', meaning: 'Thẳng' },
-      { kana: 'おつり', romaji: ['otsuri'], rubyHtml: 'お<ruby>釣<rt>つ</rt></ruby>り', meaning: 'Tiền lẻ, tiền thối lại' },
-      { kana: 'これでおねがいします', romaji: ['koredeonegaishimasu'], rubyHtml: 'これでお<ruby>願<rt>ねが</rt></ruby>いします', meaning: 'Gửi anh/chị tiền này' }
-    ]}
+    // A. Động từ thể て
+    {
+      id: "b14_dongtu",
+      name: "A. Động từ thể て",
+      selected: true,
+      items: [
+        { kana: "つけます", romaji: ["tsukemasu"], rubyHtml: "つけます", meaning: "Bật (điện, máy điều hòa)" },
+        { kana: "けします", romaji: ["keshimasu"], rubyHtml: "<ruby>消<rt>け</rt></ruby>します", meaning: "Tắt (điện, máy điều hòa)" },
+        { kana: "あけます", romaji: ["akemasu"], rubyHtml: "<ruby>開<rt>あ</rt></ruby>けます", meaning: "Mở (cửa, cửa sổ)" },
+        { kana: "しめます", romaji: ["shimemasu"], rubyHtml: "<ruby>閉<rt>し</rt></ruby>めます", meaning: "Đóng (cửa, cửa sổ)" },
+        { kana: "いそぎます", romaji: ["isogimasu"], rubyHtml: "<ruby>急<rt>いそ</rt></ruby>ぎます", meaning: "Vội, gấp" },
+        { kana: "まちます", romaji: ["machimasu"], rubyHtml: "<ruby>待<rt>ま</rt></ruby>ちます", meaning: "Đợi, chờ" },
+        { kana: "とめます", romaji: ["tomemasu"], rubyHtml: "<ruby>止<rt>と</rt></ruby>めます", meaning: "Dừng, đỗ (xe, máy móc)" },
+        { kana: "まがります", romaji: ["magarimasu"], rubyHtml: "<ruby>曲<rt>ま</rt></ruby>がります", meaning: "Rẽ, quẹo [phải]" },
+        { kana: "もちます", romaji: ["mochimasu"], rubyHtml: "<ruby>持<rt>も</rt></ruby>ちます", meaning: "Mang, cầm" },
+        { kana: "とります", romaji: ["torimasu"], rubyHtml: "<ruby>取<rt>と</rt></ruby>ります", meaning: "Lấy (muối)" },
+        { kana: "てつだいます", romaji: ["tetsudaimasu"], rubyHtml: "<ruby>手<rt>て</rt></ruby><ruby>伝<rt>つだ</rt></ruby>います", meaning: "Giúp (làm việc)" },
+        { kana: "よびます", romaji: ["yobimasu"], rubyHtml: "<ruby>呼<rt>よ</rt></ruby>びます", meaning: "Gọi (taxi, tên)" },
+        { kana: "はなします", romaji: ["hanashimasu"], rubyHtml: "<ruby>話<rt>はな</rt></ruby>します", meaning: "Nói, nói chuyện" },
+        { kana: "みせます", romaji: ["misemasu"], rubyHtml: "<ruby>見<rt>み</rt></ruby>せます", meaning: "Cho xem, trình" },
+        { kana: "おしえます", romaji: ["oshiemasu"], rubyHtml: "<ruby>教<rt>おし</rt></ruby>えます", meaning: "Nói, cho biết" },
+        { kana: "はじめます", romaji: ["hajimemasu"], rubyHtml: "<ruby>始<rt>はじ</rt></ruby>めます", meaning: "Bắt đầu" },
+        { kana: "ふります", romaji: ["furimasu"], rubyHtml: "<ruby>降<rt>ふ</rt></ruby>ります", meaning: "Rơi [mưa, tuyết]" },
+        { kana: "コピーします", romaji: ["kopi-shimasu","kopishimasu"], rubyHtml: "コピーします", meaning: "Copy, sao chụp" },
+        { kana: "つかいます", romaji: ["tsukaimasu"], rubyHtml: "<ruby>使います<rt>つかいます</rt></ruby>", meaning: "Dùng, sử dụng", reviewTopicId: "b14_bosung_sach_tap1" },
+        { kana: "すわります", romaji: ["suwarimasu"], rubyHtml: "<ruby>座ります<rt>すわります</rt></ruby>", meaning: "Ngồi", reviewTopicId: "b14_bosung_sach_tap1" },
+        { kana: "たちます", romaji: ["tachimasu"], rubyHtml: "<ruby>立ちます<rt>たちます</rt></ruby>", meaning: "Đứng", reviewTopicId: "b14_bosung_sach_tap1" },
+        { kana: "はいります", romaji: ["hairimasu"], rubyHtml: "<ruby>入ります<rt>はいります</rt></ruby>", meaning: "Vào quán giải khát", reviewTopicId: "b14_bosung_sach_tap1" },
+        { kana: "でます", romaji: ["demasu"], rubyHtml: "<ruby>出ます<rt>でます</rt></ruby>", meaning: "Ra khỏi quán giải khát", reviewTopicId: "b14_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Đồ vật, Thông tin & Gia vị
+    {
+      id: "b14_dovat_thongtin",
+      name: "B. Đồ vật, Thông tin & Gia vị",
+      selected: true,
+      items: [
+        { kana: "エアコン", romaji: ["eakon"], rubyHtml: "エアコン", meaning: "Máy điều hòa" },
+        { kana: "パスポート", romaji: ["pasupo-to","pasupoto"], rubyHtml: "パスポート", meaning: "Hộ chiếu" },
+        { kana: "なまえ", romaji: ["namae"], rubyHtml: "<ruby>名<rt>な</rt></ruby><ruby>前<rt>まえ</rt></ruby>", meaning: "Tên" },
+        { kana: "じゅうしょ", romaji: ["juusho","jusho"], rubyHtml: "<ruby>住<rt>じゅう</rt></ruby><ruby>所<rt>しょ</rt></ruby>", meaning: "Địa chỉ" },
+        { kana: "ちず", romaji: ["chizu"], rubyHtml: "<ruby>地<rt>ち</rt></ruby><ruby>図<rt>ず</rt></ruby>", meaning: "Bản đồ" },
+        { kana: "しお", romaji: ["shio"], rubyHtml: "<ruby>塩<rt>しお</rt></ruby>", meaning: "Muối" },
+        { kana: "さとう", romaji: ["satou","sato"], rubyHtml: "<ruby>砂<rt>さ</rt></ruby><ruby>糖<rt>とう</rt></ruby>", meaning: "Đường" },
+        { kana: "よみかた", romaji: ["yomikata"], rubyHtml: "<ruby>読<rt>よ</rt></ruby>み<ruby>方<rt>かた</rt></ruby>", meaning: "Cách đọc" },
+        { kana: "かた", romaji: ["kata"], rubyHtml: "～<ruby>方<rt>かた</rt></ruby>", meaning: "Cách ～" },
+        { kana: "でんき", romaji: ["denki"], rubyHtml: "<ruby>電気<rt>でんき</rt></ruby>", meaning: "Điện, đèn điện", reviewTopicId: "b14_bosung_sach_tap1" },
+        { kana: "もんだい", romaji: ["mondai"], rubyHtml: "<ruby>問題<rt>もんだい</rt></ruby>", meaning: "Câu hỏi, vấn đề", reviewTopicId: "b14_bosung_sach_tap1" },
+        { kana: "こたえ", romaji: ["kotae"], rubyHtml: "<ruby>答え<rt>こたえ</rt></ruby>", meaning: "Câu trả lời", reviewTopicId: "b14_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Trạng từ, Phương hướng & Giao tiếp
+    {
+      id: "b14_trangtu_huong",
+      name: "C. Trạng từ, Phương hướng & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "ゆっくり", romaji: ["yukkuri"], rubyHtml: "ゆっくり", meaning: "Chậm, thong thả, thoải mái" },
+        { kana: "すぐ", romaji: ["sugu"], rubyHtml: "すぐ", meaning: "Ngay, lập tức" },
+        { kana: "また", romaji: ["mata"], rubyHtml: "また", meaning: "Lại (~đến)" },
+        { kana: "あとで", romaji: ["atode"], rubyHtml: "あとで", meaning: "Sau, để sau" },
+        { kana: "もうすこし", romaji: ["mousukoshi","mosukoshi"], rubyHtml: "もう<ruby>少<rt>すこ</rt></ruby>し", meaning: "Thêm một chút nữa" },
+        { kana: "もう", romaji: ["mou"], rubyHtml: "もう～", meaning: "Thêm～" },
+        { kana: "いいですよ", romaji: ["iidesuyo"], rubyHtml: "いいですよ", meaning: "Được chứ / Được ạ" },
+        { kana: "さあ", romaji: ["saa"], rubyHtml: "さあ", meaning: "Nào, thôi (thúc giục, khuyến khích)" },
+        { kana: "あれ", romaji: ["are"], rubyHtml: "あれ？", meaning: "Ô! (cảm thán ngạc nhiên)" },
+        { kana: "まっすぐ", romaji: ["massugu"], rubyHtml: "まっすぐ", meaning: "Thẳng" },
+        { kana: "おつり", romaji: ["otsuri"], rubyHtml: "お<ruby>釣<rt>つ</rt></ruby>り", meaning: "Tiền lẻ, tiền thối lại" },
+        { kana: "これでおねがいします", romaji: ["koredeonegaishimasu"], rubyHtml: "これでお<ruby>願<rt>ねが</rt></ruby>いします", meaning: "Gửi anh/chị tiền này" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 15
+  // ========================================
   15: [
-    { id: 'b15_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'たちます', romaji: ['tachimasu'], rubyHtml: '<ruby>立<rt>た</rt></ruby>ちます', meaning: 'Đứng' },
-      { kana: 'すわります', romaji: ['suwarimasu'], rubyHtml: '<ruby>座<rt>すわ</rt></ruby>ります', meaning: 'Ngồi' },
-      { kana: 'つかいます', romaji: ['tsukaimasu'], rubyHtml: '<ruby>使<rt>つか</rt></ruby>います', meaning: 'Dùng, sử dụng' },
-      { kana: 'おきます', romaji: ['okimasu'], rubyHtml: '<ruby>置<rt>お</rt></ruby>きます', meaning: 'Đặt, để' },
-      { kana: 'つくります', romaji: ['tsukurimasu'], rubyHtml: '<ruby>作<rt>つく</rt></ruby>ります / <ruby>造<rt>つく</rt></ruby>ります', meaning: 'Làm, chế tạo, sản xuất' },
-      { kana: 'うります', romaji: ['urimasu'], rubyHtml: '<ruby>売<rt>う</rt></ruby>ります', meaning: 'Bán' },
-      { kana: 'しります', romaji: ['shirimasu'], rubyHtml: '<ruby>知<rt>し</rt></ruby>ります', meaning: 'Biết' },
-      { kana: 'すみます', romaji: ['sumimasu'], rubyHtml: '<ruby>住<rt>す</rt></ruby>みます', meaning: 'Sống, ở' },
-      { kana: 'けんきゅうします', romaji: ['kenkyuushimasu', 'kenkyushimasu'], rubyHtml: '<ruby>研<rt>けん</rt></ruby><ruby>究<rt>きゅう</rt></ruby>します', meaning: 'Nghiên cứu' },
-      { kana: 'しっています', romaji: ['shitteimasu'], rubyHtml: '<ruby>知<rt>し</rt></ruby>っています', meaning: 'Biết (đang biết)' },
-      { kana: 'すんでいます', romaji: ['sundeimasu'], rubyHtml: '<ruby>住<rt>す</rt></ruby>んでいます', meaning: 'Sống [ở Osaka]' },
-      { kana: 'おもいだします', romaji: ['omoidashimasu'], rubyHtml: '<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>します', meaning: 'Nhớ lại, hồi tưởng' },
-      { kana: 'いらっしゃいます', romaji: ['irasshaimasu'], rubyHtml: 'いらっしゃいます', meaning: 'Kính trọng của 「います」' }
-    ]},
-    { id: 'b15_tailieu_sanpham', name: 'B. Tài liệu, Sản phẩm & Khái niệm', selected: true, items: [
-      { kana: 'しりょう', romaji: ['shiryou', 'shiryo'], rubyHtml: '<ruby>資<rt>し</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Tài liệu, tư liệu' },
-      { kana: 'カタログ', romaji: ['katarogu'], rubyHtml: 'カタログ', meaning: 'Ca-ta-lô' },
-      { kana: 'じこくひょう', romaji: ['jikokuhyou', 'jikokuhyo'], rubyHtml: '<ruby>時<rt>じ</rt></ruby><ruby>刻<rt>こく</rt></ruby><ruby>表<rt>ひょう</rt></ruby>', meaning: 'Bảng giờ tàu chạy' },
-      { kana: 'ふく', romaji: ['fuku'], rubyHtml: '<ruby>服<rt>ふく</rt></ruby>', meaning: 'Quần áo' },
-      { kana: 'せいひん', romaji: ['seihin'], rubyHtml: '<ruby>製<rt>せい</rt></ruby><ruby>品<rt>ひん</rt></ruby>', meaning: 'Sản phẩm' },
-      { kana: 'ソフト', romaji: ['sofuto'], rubyHtml: 'ソフト', meaning: 'Phần mềm' },
-      { kana: 'せんもん', romaji: ['senmon'], rubyHtml: '<ruby>専<rt>せん</rt></ruby><ruby>門<rt>もん</rt></ruby>', meaning: 'Chuyên môn' }
-    ]},
-    { id: 'b15_nghenghiep_diadiem', name: 'C. Nghề nghiệp, Địa điểm, Con người & Trạng từ', selected: true, items: [
-      { kana: 'はいしゃ', romaji: ['haisha'], rubyHtml: '<ruby>歯<rt>は</rt></ruby><ruby>医<rt>い</rt></ruby><ruby>者<rt>しゃ</rt></ruby>', meaning: 'Nha sĩ, bác sĩ răng' },
-      { kana: 'とこや', romaji: ['tokoya'], rubyHtml: '<ruby>床<rt>とこ</rt></ruby><ruby>屋<rt>や</rt></ruby>', meaning: 'Hiệu cắt tóc' },
-      { kana: 'プレイガイド', romaji: ['pureigaido', 'puraigaido'], rubyHtml: 'プレイガイド', meaning: 'Quầy bán vé (trong nhà hát)' },
-      { kana: 'どくしん', romaji: ['dokushin'], rubyHtml: '<ruby>独<rt>どく</rt></ruby><ruby>身<rt>しん</rt></ruby>', meaning: 'Độc thân' },
-      { kana: 'ごかぞく', romaji: ['gokazoku'], rubyHtml: 'ご<ruby>家<rt>か</rt></ruby><ruby>族<rt>ぞく</rt></ruby>', meaning: 'Gia đình (người khác)' },
-      { kana: 'こうこう', romaji: ['koukou', 'koko'], rubyHtml: '<ruby>高<rt>こう</rt></ruby><ruby>校<rt>こう</rt></ruby>', meaning: 'Trường THPT' },
-      { kana: 'とくに', romaji: ['tokuni'], rubyHtml: '<ruby>特<rt>とく</rt></ruby>に', meaning: 'Đặc biệt' }
-    ]}
+    // A. Động từ
+    {
+      id: "b15_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "たちます", romaji: ["tachimasu"], rubyHtml: "<ruby>立<rt>た</rt></ruby>ちます", meaning: "Đứng" },
+        { kana: "すわります", romaji: ["suwarimasu"], rubyHtml: "<ruby>座<rt>すわ</rt></ruby>ります", meaning: "Ngồi" },
+        { kana: "つかいます", romaji: ["tsukaimasu"], rubyHtml: "<ruby>使<rt>つか</rt></ruby>います", meaning: "Dùng, sử dụng" },
+        { kana: "おきます", romaji: ["okimasu"], rubyHtml: "<ruby>置<rt>お</rt></ruby>きます", meaning: "Đặt, để" },
+        { kana: "つくります", romaji: ["tsukurimasu"], rubyHtml: "<ruby>作<rt>つく</rt></ruby>ります / <ruby>造<rt>つく</rt></ruby>ります", meaning: "Làm, chế tạo, sản xuất" },
+        { kana: "うります", romaji: ["urimasu"], rubyHtml: "<ruby>売<rt>う</rt></ruby>ります", meaning: "Bán" },
+        { kana: "しります", romaji: ["shirimasu"], rubyHtml: "<ruby>知<rt>し</rt></ruby>ります", meaning: "Biết" },
+        { kana: "すみます", romaji: ["sumimasu"], rubyHtml: "<ruby>住<rt>す</rt></ruby>みます", meaning: "Sống, ở" },
+        { kana: "けんきゅうします", romaji: ["kenkyuushimasu","kenkyushimasu"], rubyHtml: "<ruby>研<rt>けん</rt></ruby><ruby>究<rt>きゅう</rt></ruby>します", meaning: "Nghiên cứu" },
+        { kana: "しっています", romaji: ["shitteimasu"], rubyHtml: "<ruby>知<rt>し</rt></ruby>っています", meaning: "Biết (đang biết)" },
+        { kana: "すんでいます", romaji: ["sundeimasu"], rubyHtml: "<ruby>住<rt>す</rt></ruby>んでいます", meaning: "Sống [ở Osaka]" },
+        { kana: "おもいだします", romaji: ["omoidashimasu"], rubyHtml: "<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>します", meaning: "Nhớ lại, hồi tưởng" },
+        { kana: "いらっしゃいます", romaji: ["irasshaimasu"], rubyHtml: "いらっしゃいます", meaning: "Kính trọng của 「います」" },
+      ],
+    },
+
+    // B. Tài liệu, Sản phẩm & Khái niệm
+    {
+      id: "b15_tailieu_sanpham",
+      name: "B. Tài liệu, Sản phẩm & Khái niệm",
+      selected: true,
+      items: [
+        { kana: "しりょう", romaji: ["shiryou","shiryo"], rubyHtml: "<ruby>資<rt>し</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Tài liệu, tư liệu" },
+        { kana: "カタログ", romaji: ["katarogu"], rubyHtml: "カタログ", meaning: "Ca-ta-lô" },
+        { kana: "じこくひょう", romaji: ["jikokuhyou","jikokuhyo"], rubyHtml: "<ruby>時<rt>じ</rt></ruby><ruby>刻<rt>こく</rt></ruby><ruby>表<rt>ひょう</rt></ruby>", meaning: "Bảng giờ tàu chạy" },
+        { kana: "ふく", romaji: ["fuku"], rubyHtml: "<ruby>服<rt>ふく</rt></ruby>", meaning: "Quần áo" },
+        { kana: "せいひん", romaji: ["seihin"], rubyHtml: "<ruby>製<rt>せい</rt></ruby><ruby>品<rt>ひん</rt></ruby>", meaning: "Sản phẩm" },
+        { kana: "ソフト", romaji: ["sofuto"], rubyHtml: "ソフト", meaning: "Phần mềm" },
+        { kana: "せんもん", romaji: ["senmon"], rubyHtml: "<ruby>専<rt>せん</rt></ruby><ruby>門<rt>もん</rt></ruby>", meaning: "Chuyên môn" },
+        { kana: "でんしじしょ", romaji: ["denshijisho"], rubyHtml: "<ruby>電子辞書<rt>でんしじしょ</rt></ruby>", meaning: "Kim từ điển, từ điển điện tử", reviewTopicId: "b15_bosung_sach_tap1" },
+        { kana: "けいざい", romaji: ["keizai"], rubyHtml: "<ruby>経済<rt>けいざい</rt></ruby>", meaning: "Kinh tế", reviewTopicId: "b15_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Nghề nghiệp, Địa điểm, Con người & Giao tiếp
+    {
+      id: "b15_nghenghiep_diadiem",
+      name: "C. Nghề nghiệp, Địa điểm, Con người & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "はいしゃ", romaji: ["haisha"], rubyHtml: "<ruby>歯<rt>は</rt></ruby><ruby>医<rt>い</rt></ruby><ruby>者<rt>しゃ</rt></ruby>", meaning: "Nha sĩ, bác sĩ răng" },
+        { kana: "とこや", romaji: ["tokoya"], rubyHtml: "<ruby>床<rt>とこ</rt></ruby><ruby>屋<rt>や</rt></ruby>", meaning: "Hiệu cắt tóc" },
+        { kana: "プレイガイド", romaji: ["pureigaido","puraigaido"], rubyHtml: "プレイガイド", meaning: "Quầy bán vé (trong nhà hát)" },
+        { kana: "どくしん", romaji: ["dokushin"], rubyHtml: "<ruby>独<rt>どく</rt></ruby><ruby>身<rt>しん</rt></ruby>", meaning: "Độc thân" },
+        { kana: "ごかぞく", romaji: ["gokazoku"], rubyHtml: "ご<ruby>家<rt>か</rt></ruby><ruby>族<rt>ぞく</rt></ruby>", meaning: "Gia đình (người khác)" },
+        { kana: "こうこう", romaji: ["koukou","koko"], rubyHtml: "<ruby>高<rt>こう</rt></ruby><ruby>校<rt>こう</rt></ruby>", meaning: "Trường THPT" },
+        { kana: "とくに", romaji: ["tokuni"], rubyHtml: "<ruby>特<rt>とく</rt></ruby>に", meaning: "Đặc biệt" },
+        { kana: "しやくしょ", romaji: ["shiyakusho"], rubyHtml: "<ruby>市役所<rt>しやくしょ</rt></ruby>", meaning: "Tòa thị chính", reviewTopicId: "b15_bosung_sach_tap1" },
+        { kana: "すみません", romaji: ["sumimasen"], rubyHtml: "すみません", meaning: "Xin lỗi", reviewTopicId: "b15_bosung_sach_tap1" },
+        { kana: "みなさん", romaji: ["minasan"], rubyHtml: "<ruby>皆さん<rt>みなさん</rt></ruby>", meaning: "Các anh chị, mọi người, quý vị", reviewTopicId: "b15_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 16
+  // ========================================
   16: [
-    { id: 'b16_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'のります', romaji: ['norimasu'], rubyHtml: '<ruby>乗<rt>の</rt></ruby>ります', meaning: 'Đi, lên [tàu]' },
-      { kana: 'おります', romaji: ['orimasu'], rubyHtml: '<ruby>降<rt>お</rt></ruby>ります', meaning: 'Xuống [tàu]' },
-      { kana: 'のりかえます', romaji: ['norikaemasu'], rubyHtml: '<ruby>乗<rt>の</rt></ruby>り<ruby>換<rt>か</rt></ruby>えます', meaning: 'Chuyển, đổi [tàu]' },
-      { kana: 'あびます', romaji: ['abimasu'], rubyHtml: '<ruby>浴<rt>あ</rt></ruby>びます', meaning: 'Tắm [vòi hoa sen]' },
-      { kana: 'いれます', romaji: ['iremasu'], rubyHtml: '<ruby>入<rt>い</rt></ruby>れます', meaning: 'Cho vào, bỏ vào' },
-      { kana: 'だします', romaji: ['dashimasu'], rubyHtml: '<ruby>出<rt>だ</rt></ruby>します', meaning: 'Lấy ra, rút [tiền]' },
-      { kana: 'はいります', romaji: ['hairimasu'], rubyHtml: '<ruby>入<rt>はい</rt></ruby>ります', meaning: 'Vào, nhập học [đại học]' },
-      { kana: 'でます', romaji: ['demasu'], rubyHtml: '<ruby>出<rt>で</rt></ruby>ます', meaning: 'Ra, tốt nghiệp [đại học]' },
-      { kana: 'やめます', romaji: ['yamemasu'], rubyHtml: 'やめます', meaning: 'Bỏ, thôi [việc công ty]' },
-      { kana: 'おします', romaji: ['oshimasu'], rubyHtml: '<ruby>押<rt>お</rt></ruby>します', meaning: 'Bấm, ấn [nút]' }
-    ]},
-    { id: 'b16_tinhtu', name: 'B. Tính từ & Miêu tả', selected: true, items: [
-      { kana: 'わかい', romaji: ['wakai'], rubyHtml: '<ruby>若<rt>わか</rt></ruby>い', meaning: 'Trẻ' },
-      { kana: 'ながい', romaji: ['nagai'], rubyHtml: '<ruby>長<rt>なが</rt></ruby>い', meaning: 'Dài' },
-      { kana: 'みじかい', romaji: ['mijikai'], rubyHtml: '<ruby>短<rt>みじか</rt></ruby>い', meaning: 'Ngắn' },
-      { kana: 'あかるい', romaji: ['akarui'], rubyHtml: '<ruby>明<rt>あか</rt></ruby>るい', meaning: 'Sáng' },
-      { kana: 'くらい', romaji: ['kurai'], rubyHtml: '<ruby>暗<rt>くら</rt></ruby>い', meaning: 'Tối' },
-      { kana: 'せがたかい', romaji: ['segatakai'], rubyHtml: '<ruby>背<rt>せ</rt></ruby>が<ruby>高<rt>たか</rt></ruby>い', meaning: 'Cao (dùng cho người)' },
-      { kana: 'あたまがいい', romaji: ['atamagaii', 'atamagayoi'], rubyHtml: '<ruby>頭<rt>あたま</rt></ruby>がいい', meaning: 'Thông minh' }
-    ]},
-    { id: 'b16_cothe', name: 'C. Bộ phận cơ thể', selected: true, items: [
-      { kana: 'からだ', romaji: ['karada'], rubyHtml: '<ruby>体<rt>からだ</rt></ruby>', meaning: 'Thân thể, cơ thể' },
-      { kana: 'あたま', romaji: ['atama'], rubyHtml: '<ruby>頭<rt>あたま</rt></ruby>', meaning: 'Đầu' },
-      { kana: 'かみ', romaji: ['kami'], rubyHtml: '<ruby>髪<rt>かみ</rt></ruby>', meaning: 'Tóc' },
-      { kana: 'かお', romaji: ['kao'], rubyHtml: '<ruby>顔<rt>かお</rt></ruby>', meaning: 'Mặt' },
-      { kana: 'め', romaji: ['me'], rubyHtml: '<ruby>目<rt>め</rt></ruby>', meaning: 'Mắt' },
-      { kana: 'みみ', romaji: ['mimi'], rubyHtml: '<ruby>耳<rt>みみ</rt></ruby>', meaning: 'Tai' },
-      { kana: 'は', romaji: ['ha'], rubyHtml: '<ruby>歯<rt>は</rt></ruby>', meaning: 'Răng' },
-      { kana: 'おなか', romaji: ['onaka'], rubyHtml: 'おなか', meaning: 'Bụng' },
-      { kana: 'あし', romaji: ['ashi'], rubyHtml: '<ruby>足<rt>あし</rt></ruby>', meaning: 'Chân' }
-    ]},
-    { id: 'b16_diadiem_dovat', name: 'D. Địa điểm, Đồ vật & Khái niệm', selected: true, items: [
-      { kana: 'サービス', romaji: ['sa-bisu', 'sabisu'], rubyHtml: 'サービス', meaning: 'Dịch vụ' },
-      { kana: 'ジョギング', romaji: ['jogingu'], rubyHtml: 'ジョギング', meaning: 'Việc chạy bộ' },
-      { kana: 'シャワー', romaji: ['shawa-'], rubyHtml: 'シャワー', meaning: 'Vòi hoa sen' },
-      { kana: 'みどり', romaji: ['midori'], rubyHtml: '<ruby>緑<rt>みどり</rt></ruby>', meaning: 'Màu xanh lá cây' },
-      { kana: 'おてら', romaji: ['otera', 'tera'], rubyHtml: 'お<ruby>寺<rt>てら</rt></ruby>', meaning: 'Chùa' },
-      { kana: 'じんじゃ', romaji: ['jinja'], rubyHtml: '<ruby>神<rt>じん</rt></ruby><ruby>社<rt>じゃ</rt></ruby>', meaning: 'Đền thờ đạo Thần' },
-      { kana: 'りゅうがくせい', romaji: ['ryuugakusei', 'ryugakusei'], rubyHtml: '<ruby>留<rt>りゅう</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>', meaning: 'Lưu học sinh, du học sinh' },
-      { kana: 'いちばん', romaji: ['ichiban'], rubyHtml: '<ruby>一<rt>いち</rt></ruby><ruby>番<rt>ばん</rt></ruby>', meaning: 'Số 1 / Nhất' },
-      { kana: 'アジア', romaji: ['ajia'], rubyHtml: 'アジア', meaning: 'Châu Á' },
-      { kana: 'ベトナム', romaji: ['betonamu'], rubyHtml: 'ベトナム', meaning: 'Việt Nam' }
-    ]},
-    { id: 'b16_atm_giaotiep', name: 'E. Thao tác ATM, Từ nối & Giao tiếp', selected: true, items: [
-      { kana: 'まず', romaji: ['mazu'], rubyHtml: 'まず', meaning: 'Trước hết, đầu tiên' },
-      { kana: 'つぎに', romaji: ['tsugini'], rubyHtml: '<ruby>次<rt>つぎ</rt></ruby>に', meaning: 'Tiếp theo' },
-      { kana: 'キャッシュカード', romaji: ['kyasshuka-do', 'kyasshukado'], rubyHtml: 'キャッシュカード', meaning: 'Thẻ ngân hàng, thẻ ATM' },
-      { kana: 'あんしょうばんごう', romaji: ['anshoubangou', 'anshobango'], rubyHtml: '<ruby>暗<rt>あん</rt></ruby><ruby>証<rt>しょう</rt></ruby><ruby>番<rt>ばん</rt></ruby><ruby>号<rt>ごう</rt></ruby>', meaning: 'Mã số bí mật, mật khẩu' },
-      { kana: 'かくにん', romaji: ['kakunin'], rubyHtml: '<ruby>確<rt>かく</rt></ruby><ruby>認<rt>にん</rt></ruby>', meaning: 'Sự xác nhận, kiểm tra' },
-      { kana: 'きんがく', romaji: ['kingaku'], rubyHtml: '<ruby>金<rt>きん</rt></ruby><ruby>額<rt>がく</rt></ruby>', meaning: 'Số tiền, khoản tiền' },
-      { kana: 'ボタン', romaji: ['botan'], rubyHtml: 'ボタン', meaning: 'Nút' },
-      { kana: 'どうやって', romaji: ['douyatte', 'doyatte'], rubyHtml: 'どうやって', meaning: 'Làm thế nào' },
-      { kana: 'どの', romaji: ['dono'], rubyHtml: 'どの～', meaning: 'Cái nào (từ ba thứ trở lên)' },
-      { kana: 'まだまだです', romaji: ['madamadadesu'], rubyHtml: '［いいえ、］まだまだです', meaning: '[Không,] tôi còn kém lắm' }
-    ]}
+    // A. Động từ
+    {
+      id: "b16_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "のります", romaji: ["norimasu"], rubyHtml: "<ruby>乗<rt>の</rt></ruby>ります", meaning: "Đi, lên [tàu]" },
+        { kana: "おります", romaji: ["orimasu"], rubyHtml: "<ruby>降<rt>お</rt></ruby>ります", meaning: "Xuống [tàu]" },
+        { kana: "のりかえます", romaji: ["norikaemasu"], rubyHtml: "<ruby>乗<rt>の</rt></ruby>り<ruby>換<rt>か</rt></ruby>えます", meaning: "Chuyển, đổi [tàu]" },
+        { kana: "あびます", romaji: ["abimasu"], rubyHtml: "<ruby>浴<rt>あ</rt></ruby>びます", meaning: "Tắm [vòi hoa sen]" },
+        { kana: "いれます", romaji: ["iremasu"], rubyHtml: "<ruby>入<rt>い</rt></ruby>れます", meaning: "Cho vào, bỏ vào" },
+        { kana: "だします", romaji: ["dashimasu"], rubyHtml: "<ruby>出<rt>だ</rt></ruby>します", meaning: "Lấy ra, rút [tiền]" },
+        { kana: "はいります", romaji: ["hairimasu"], rubyHtml: "<ruby>入<rt>はい</rt></ruby>ります", meaning: "Vào, nhập học [đại học]" },
+        { kana: "でます", romaji: ["demasu"], rubyHtml: "<ruby>出<rt>で</rt></ruby>ます", meaning: "Ra, tốt nghiệp [đại học]" },
+        { kana: "やめます", romaji: ["yamemasu"], rubyHtml: "やめます", meaning: "Bỏ, thôi [việc công ty]" },
+        { kana: "おします", romaji: ["oshimasu"], rubyHtml: "<ruby>押<rt>お</rt></ruby>します", meaning: "Bấm, ấn [nút]" },
+        { kana: "おろします", romaji: ["oroshimasu"], rubyHtml: "<ruby>下ろします<rt>おろします</rt></ruby>", meaning: "Rút tiền", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "のみます", romaji: ["nomimasu"], rubyHtml: "<ruby>飲みます<rt>のみます</rt></ruby>", meaning: "Uống bia, rượu", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "はじめます", romaji: ["hajimemasu"], rubyHtml: "<ruby>始めます<rt>はじめます</rt></ruby>", meaning: "Bắt đầu", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "けんがくします", romaji: ["kengakushimasu"], rubyHtml: "<ruby>見学します<rt>けんがくします</rt></ruby>", meaning: "Tham quan kiến tập", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "でんわします", romaji: ["denwashimasu"], rubyHtml: "<ruby>電話します<rt>でんわします</rt></ruby>", meaning: "Gọi điện thoại", reviewTopicId: "b16_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Tính từ & Miêu tả
+    {
+      id: "b16_tinhtu",
+      name: "B. Tính từ & Miêu tả",
+      selected: true,
+      items: [
+        { kana: "わかい", romaji: ["wakai"], rubyHtml: "<ruby>若<rt>わか</rt></ruby>い", meaning: "Trẻ" },
+        { kana: "ながい", romaji: ["nagai"], rubyHtml: "<ruby>長<rt>なが</rt></ruby>い", meaning: "Dài" },
+        { kana: "みじかい", romaji: ["mijikai"], rubyHtml: "<ruby>短<rt>みじか</rt></ruby>い", meaning: "Ngắn" },
+        { kana: "あかるい", romaji: ["akarui"], rubyHtml: "<ruby>明<rt>あか</rt></ruby>るい", meaning: "Sáng" },
+        { kana: "くらい", romaji: ["kurai"], rubyHtml: "<ruby>暗<rt>くら</rt></ruby>い", meaning: "Tối" },
+        { kana: "せがたかい", romaji: ["segatakai"], rubyHtml: "<ruby>背<rt>せ</rt></ruby>が<ruby>高<rt>たか</rt></ruby>い", meaning: "Cao (dùng cho người)" },
+        { kana: "あたまがいい", romaji: ["atamagaii","atamagayoi"], rubyHtml: "<ruby>頭<rt>あたま</rt></ruby>がいい", meaning: "Thông minh" },
+      ],
+    },
+
+    // C. Bộ phận cơ thể
+    {
+      id: "b16_cothe",
+      name: "C. Bộ phận cơ thể",
+      selected: true,
+      items: [
+        { kana: "からだ", romaji: ["karada"], rubyHtml: "<ruby>体<rt>からだ</rt></ruby>", meaning: "Thân thể, cơ thể" },
+        { kana: "あたま", romaji: ["atama"], rubyHtml: "<ruby>頭<rt>あたま</rt></ruby>", meaning: "Đầu" },
+        { kana: "かみ", romaji: ["kami"], rubyHtml: "<ruby>髪<rt>かみ</rt></ruby>", meaning: "Tóc" },
+        { kana: "かお", romaji: ["kao"], rubyHtml: "<ruby>顔<rt>かお</rt></ruby>", meaning: "Mặt" },
+        { kana: "め", romaji: ["me"], rubyHtml: "<ruby>目<rt>め</rt></ruby>", meaning: "Mắt" },
+        { kana: "みみ", romaji: ["mimi"], rubyHtml: "<ruby>耳<rt>みみ</rt></ruby>", meaning: "Tai" },
+        { kana: "は", romaji: ["ha"], rubyHtml: "<ruby>歯<rt>は</rt></ruby>", meaning: "Răng" },
+        { kana: "おなか", romaji: ["onaka"], rubyHtml: "おなか", meaning: "Bụng" },
+        { kana: "あし", romaji: ["ashi"], rubyHtml: "<ruby>足<rt>あし</rt></ruby>", meaning: "Chân" },
+        { kana: "はな", romaji: ["hana"], rubyHtml: "<ruby>鼻<rt>はな</rt></ruby>", meaning: "Mũi", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "くち", romaji: ["kuchi"], rubyHtml: "<ruby>口<rt>くち</rt></ruby>", meaning: "Miệng", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "せ", romaji: ["se"], rubyHtml: "<ruby>背<rt>せ</rt></ruby>", meaning: "Chiều cao cơ thể", reviewTopicId: "b16_bosung_sach_tap1" },
+      ],
+    },
+
+    // D. Địa điểm, Đồ vật & Khái niệm
+    {
+      id: "b16_diadiem_dovat",
+      name: "D. Địa điểm, Đồ vật & Khái niệm",
+      selected: true,
+      items: [
+        { kana: "サービス", romaji: ["sa-bisu","sabisu"], rubyHtml: "サービス", meaning: "Dịch vụ" },
+        { kana: "ジョギング", romaji: ["jogingu"], rubyHtml: "ジョギング", meaning: "Việc chạy bộ" },
+        { kana: "シャワー", romaji: ["shawa-"], rubyHtml: "シャワー", meaning: "Vòi hoa sen" },
+        { kana: "みどり", romaji: ["midori"], rubyHtml: "<ruby>緑<rt>みどり</rt></ruby>", meaning: "Màu xanh lá cây" },
+        { kana: "おてら", romaji: ["otera","tera"], rubyHtml: "お<ruby>寺<rt>てら</rt></ruby>", meaning: "Chùa" },
+        { kana: "じんじゃ", romaji: ["jinja"], rubyHtml: "<ruby>神<rt>じん</rt></ruby><ruby>社<rt>じゃ</rt></ruby>", meaning: "Đền thờ đạo Thần" },
+        { kana: "りゅうがくせい", romaji: ["ryuugakusei","ryugakusei"], rubyHtml: "<ruby>留<rt>りゅう</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>", meaning: "Lưu học sinh, du học sinh" },
+        { kana: "いちばん", romaji: ["ichiban"], rubyHtml: "<ruby>一<rt>いち</rt></ruby><ruby>番<rt>ばん</rt></ruby>", meaning: "Số 1 / Nhất" },
+        { kana: "アジア", romaji: ["ajia"], rubyHtml: "アジア", meaning: "Châu Á" },
+        { kana: "ベトナム", romaji: ["betonamu"], rubyHtml: "ベトナム", meaning: "Việt Nam" },
+      ],
+    },
+
+    // E. Thao tác ATM, Từ nối & Giao tiếp
+    {
+      id: "b16_atm_giaotiep",
+      name: "E. Thao tác ATM, Từ nối & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "まず", romaji: ["mazu"], rubyHtml: "まず", meaning: "Trước hết, đầu tiên" },
+        { kana: "つぎに", romaji: ["tsugini"], rubyHtml: "<ruby>次<rt>つぎ</rt></ruby>に", meaning: "Tiếp theo" },
+        { kana: "キャッシュカード", romaji: ["kyasshuka-do","kyasshukado"], rubyHtml: "キャッシュカード", meaning: "Thẻ ngân hàng, thẻ ATM" },
+        { kana: "あんしょうばんごう", romaji: ["anshoubangou","anshobango"], rubyHtml: "<ruby>暗<rt>あん</rt></ruby><ruby>証<rt>しょう</rt></ruby><ruby>番<rt>ばん</rt></ruby><ruby>号<rt>ごう</rt></ruby>", meaning: "Mã số bí mật, mật khẩu" },
+        { kana: "かくにん", romaji: ["kakunin"], rubyHtml: "<ruby>確<rt>かく</rt></ruby><ruby>認<rt>にん</rt></ruby>", meaning: "Sự xác nhận, kiểm tra" },
+        { kana: "きんがく", romaji: ["kingaku"], rubyHtml: "<ruby>金<rt>きん</rt></ruby><ruby>額<rt>がく</rt></ruby>", meaning: "Số tiền, khoản tiền" },
+        { kana: "ボタン", romaji: ["botan"], rubyHtml: "ボタン", meaning: "Nút" },
+        { kana: "どうやって", romaji: ["douyatte","doyatte"], rubyHtml: "どうやって", meaning: "Làm thế nào" },
+        { kana: "どの", romaji: ["dono"], rubyHtml: "どの～", meaning: "Cái nào (từ ba thứ trở lên)" },
+        { kana: "まだまだです", romaji: ["madamadadesu"], rubyHtml: "［いいえ、］まだまだです", meaning: "[Không,] tôi còn kém lắm" },
+        { kana: "どれ", romaji: ["dore"], rubyHtml: "どれ", meaning: "Cái nào (trong ba cái trở lên)", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "すごいですね", romaji: ["sugoidesune"], rubyHtml: "すごいですね", meaning: "Thật tuyệt vời, kinh quá nhỉ", reviewTopicId: "b16_bosung_sach_tap1" },
+        { kana: "おひきだしですか", romaji: ["ohikidashidesuka"], rubyHtml: "<ruby>お引き出しですか<rt>おひきだしですか</rt></ruby>", meaning: "Anh/chị rút tiền ạ?", reviewTopicId: "b16_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 17
+  // ========================================
   17: [
-    { id: 'b17_dongtu', name: 'A. Động từ hành động', selected: true, items: [
-      { kana: 'おぼえます', romaji: ['oboemasu'], rubyHtml: '<ruby>覚<rt>おぼ</rt></ruby>えます', meaning: 'Nhớ, học thuộc' },
-      { kana: 'わすれます', romaji: ['wasuremasu'], rubyHtml: '<ruby>忘<rt>わす</rt></ruby>れます', meaning: 'Quên' },
-      { kana: 'なくします', romaji: ['nakushimasu'], rubyHtml: 'なくします', meaning: 'Mất, đánh mất' },
-      { kana: 'だします', romaji: ['dashimasu'], rubyHtml: '<ruby>出<rt>だ</rt></ruby>します', meaning: 'Nộp [báo cáo]' },
-      { kana: 'はらいます', romaji: ['haraimasu'], rubyHtml: '<ruby>払<rt>はら</rt></ruby>います', meaning: 'Trả tiền' },
-      { kana: 'かえします', romaji: ['kaeshimasu'], rubyHtml: '<ruby>返<rt>かえ</rt></ruby>します', meaning: 'Trả lại' },
-      { kana: 'でかけます', romaji: ['dekakemasu'], rubyHtml: '<ruby>出<rt>で</rt></ruby>かけます', meaning: 'Ra ngoài' },
-      { kana: 'ぬぎます', romaji: ['nugimasu'], rubyHtml: '<ruby>脱<rt>ぬ</rt></ruby>ぎます', meaning: 'Cởi (quần áo, giày)' },
-      { kana: 'もっていきます', romaji: ['motteikimasu'], rubyHtml: '<ruby>持<rt>も</rt></ruby>っていきます', meaning: 'Mang đi' },
-      { kana: 'もってきます', romaji: ['mottekimasu'], rubyHtml: '<ruby>持<rt>も</rt></ruby>ってきます', meaning: 'Mang đến' },
-      { kana: 'しんぱいします', romaji: ['shinpaishimasu'], rubyHtml: '<ruby>心<rt>しん</rt></ruby><ruby>配<rt>ぱい</rt></ruby>します', meaning: 'Lo lắng' },
-      { kana: 'ざんぎょうします', romaji: ['zangyoushimasu', 'zangyoshimasu'], rubyHtml: '<ruby>残<rt>ざん</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>します', meaning: 'Làm thêm giờ' },
-      { kana: 'しゅっちょうします', romaji: ['shucchoushimasu', 'shucchoshimasu'], rubyHtml: '<ruby>出<rt>しゅっ</rt></ruby><ruby>張<rt>ちょう</rt></ruby>します', meaning: 'Đi công tác' },
-      { kana: 'のみます', romaji: ['nomimasu'], rubyHtml: '<ruby>飲<rt>の</rt></ruby>みます', meaning: 'Uống [thuốc]' },
-      { kana: 'はいります', romaji: ['hairimasu'], rubyHtml: '<ruby>入<rt>はい</rt></ruby>ります', meaning: 'Tắm [bồn]' }
-    ]},
-    { id: 'b17_suckhoe_yte', name: 'B. Sức khỏe, Y tế & Trang phục', selected: true, items: [
-      { kana: 'たいせつ', romaji: ['taisetsu'], rubyHtml: '<ruby>大<rt>たい</rt></ruby><ruby>切<rt>せつ</rt></ruby>', meaning: 'Quan trọng' },
-      { kana: 'だいじょうぶ', romaji: ['daijoubu', 'daijobu'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>丈<rt>じょう</rt></ruby><ruby>夫<rt>ぶ</rt></ruby>', meaning: 'Không sao, không có vấn đề gì' },
-      { kana: 'あぶない', romaji: ['abunai'], rubyHtml: '<ruby>危<rt>あぶ</rt></ruby>ない', meaning: 'Nguy hiểm' },
-      { kana: 'もんだい', romaji: ['mondai'], rubyHtml: '<ruby>問<rt>もん</rt></ruby><ruby>題<rt>だい</rt></ruby>', meaning: 'Vấn đề' },
-      { kana: 'こたえ', romaji: ['kotae'], rubyHtml: '<ruby>答<rt>こた</rt></ruby>え', meaning: 'Câu trả lời' },
-      { kana: 'きんえん', romaji: ['kinen', 'kin-en'], rubyHtml: '<ruby>禁<rt>きん</rt></ruby><ruby>煙<rt>えん</rt></ruby>', meaning: 'Cấm hút thuốc' },
-      { kana: 'けんこうほけんしょう', romaji: ['kenkouhokenshou', 'kenkouhokensho'], rubyHtml: '<ruby>健<rt>けん</rt></ruby><ruby>康<rt>こう</rt></ruby><ruby>保<rt>ほ</rt></ruby><ruby>険<rt>けん</rt></ruby><ruby>証<rt>しょう</rt></ruby>', meaning: 'Thẻ bảo hiểm y tế' },
-      { kana: 'かぜ', romaji: ['kaze'], rubyHtml: 'かぜ', meaning: 'Cảm, cúm' },
-      { kana: 'ねつ', romaji: ['netsu'], rubyHtml: '<ruby>熱<rt>ねつ</rt></ruby>', meaning: 'Sốt' },
-      { kana: 'びょうき', romaji: ['byouki', 'byoki'], rubyHtml: '<ruby>病<rt>びょう</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Ốm, bệnh' },
-      { kana: 'くすり', romaji: ['kusuri'], rubyHtml: '<ruby>薬<rt>くすり</rt></ruby>', meaning: 'Thuốc' },
-      { kana: 'おふろ', romaji: ['ofuro', 'furo'], rubyHtml: 'お<ruby>風<rt>ふ</rt></ruby><ruby>呂<rt>ろ</rt></ruby>', meaning: 'Bồn tắm' },
-      { kana: 'うわぎ', romaji: ['uwagi'], rubyHtml: '<ruby>上<rt>うわ</rt></ruby><ruby>着<rt>ぎ</rt></ruby>', meaning: 'Áo khoác' },
-      { kana: 'したぎ', romaji: ['shitagi'], rubyHtml: '<ruby>下<rt>した</rt></ruby><ruby>着<rt>ぎ</rt></ruby>', meaning: 'Quần áo lót' },
-      { kana: 'のど', romaji: ['nodo'], rubyHtml: 'のど', meaning: 'Cổ họng' }
-    ]},
-    { id: 'b17_giaotiep_khac', name: 'C. Số đếm, Thời gian & Giao tiếp bác sĩ', selected: true, items: [
-      { kana: 'せんせい', romaji: ['sensei'], rubyHtml: '<ruby>先<rt>せん</rt></ruby><ruby>生<rt>せい</rt></ruby>', meaning: 'Bác sĩ (xưng hô với bác sĩ)' },
-      { kana: 'にさんにち', romaji: ['nisannichi'], rubyHtml: '２、３<ruby>日<rt>にち</rt></ruby>', meaning: 'Vài ngày' },
-      { kana: 'にさん', romaji: ['nisan'], rubyHtml: '２、３～', meaning: 'Vài ～' },
-      { kana: 'までに', romaji: ['madeni'], rubyHtml: '～までに', meaning: 'Trước ～ (chỉ thời hạn)' },
-      { kana: 'ですから', romaji: ['desukara'], rubyHtml: 'ですから', meaning: 'Vì thế, vì vậy, do đó' },
-      { kana: 'どうしましたか', romaji: ['doushimashitaka', 'doshimashitaka'], rubyHtml: 'どうしましたか', meaning: 'Có vấn đề gì? / Anh/chị bị làm sao?' },
-      { kana: 'いたい', romaji: ['itai', 'itaidesu'], rubyHtml: '～が<ruby>痛<rt>いた</rt></ruby>いです', meaning: 'Tôi bị đau ～' },
-      { kana: 'おだいじに', romaji: ['odaijini'], rubyHtml: 'お<ruby>大<rt>だい</rt></ruby><ruby>事<rt>じ</rt></ruby>に', meaning: 'Anh/chị nhớ giữ gìn sức khỏe' }
-    ]}
+    // A. Động từ hành động
+    {
+      id: "b17_dongtu",
+      name: "A. Động từ hành động",
+      selected: true,
+      items: [
+        { kana: "おぼえます", romaji: ["oboemasu"], rubyHtml: "<ruby>覚<rt>おぼ</rt></ruby>えます", meaning: "Nhớ, học thuộc" },
+        { kana: "わすれます", romaji: ["wasuremasu"], rubyHtml: "<ruby>忘<rt>わす</rt></ruby>れます", meaning: "Quên" },
+        { kana: "なくします", romaji: ["nakushimasu"], rubyHtml: "なくします", meaning: "Mất, đánh mất" },
+        { kana: "だします", romaji: ["dashimasu"], rubyHtml: "<ruby>出<rt>だ</rt></ruby>します", meaning: "Nộp [báo cáo]" },
+        { kana: "はらいます", romaji: ["haraimasu"], rubyHtml: "<ruby>払<rt>はら</rt></ruby>います", meaning: "Trả tiền" },
+        { kana: "かえします", romaji: ["kaeshimasu"], rubyHtml: "<ruby>返<rt>かえ</rt></ruby>します", meaning: "Trả lại" },
+        { kana: "でかけます", romaji: ["dekakemasu"], rubyHtml: "<ruby>出<rt>で</rt></ruby>かけます", meaning: "Ra ngoài" },
+        { kana: "ぬぎます", romaji: ["nugimasu"], rubyHtml: "<ruby>脱<rt>ぬ</rt></ruby>ぎます", meaning: "Cởi (quần áo, giày)" },
+        { kana: "もっていきます", romaji: ["motteikimasu"], rubyHtml: "<ruby>持<rt>も</rt></ruby>っていきます", meaning: "Mang đi" },
+        { kana: "もってきます", romaji: ["mottekimasu"], rubyHtml: "<ruby>持<rt>も</rt></ruby>ってきます", meaning: "Mang đến" },
+        { kana: "しんぱいします", romaji: ["shinpaishimasu"], rubyHtml: "<ruby>心<rt>しん</rt></ruby><ruby>配<rt>ぱい</rt></ruby>します", meaning: "Lo lắng" },
+        { kana: "ざんぎょうします", romaji: ["zangyoushimasu","zangyoshimasu"], rubyHtml: "<ruby>残<rt>ざん</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>します", meaning: "Làm thêm giờ" },
+        { kana: "しゅっちょうします", romaji: ["shucchoushimasu","shucchoshimasu"], rubyHtml: "<ruby>出<rt>しゅっ</rt></ruby><ruby>張<rt>ちょう</rt></ruby>します", meaning: "Đi công tác" },
+        { kana: "のみます", romaji: ["nomimasu"], rubyHtml: "<ruby>飲<rt>の</rt></ruby>みます", meaning: "Uống [thuốc]" },
+        { kana: "はいります", romaji: ["hairimasu"], rubyHtml: "<ruby>入<rt>はい</rt></ruby>ります", meaning: "Tắm [bồn]" },
+      ],
+    },
+
+    // B. Sức khỏe, Y tế & Trang phục
+    {
+      id: "b17_suckhoe_yte",
+      name: "B. Sức khỏe, Y tế & Trang phục",
+      selected: true,
+      items: [
+        { kana: "たいせつ", romaji: ["taisetsu"], rubyHtml: "<ruby>大<rt>たい</rt></ruby><ruby>切<rt>せつ</rt></ruby>", meaning: "Quan trọng" },
+        { kana: "だいじょうぶ", romaji: ["daijoubu","daijobu"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>丈<rt>じょう</rt></ruby><ruby>夫<rt>ぶ</rt></ruby>", meaning: "Không sao, không có vấn đề gì" },
+        { kana: "あぶない", romaji: ["abunai"], rubyHtml: "<ruby>危<rt>あぶ</rt></ruby>ない", meaning: "Nguy hiểm" },
+        { kana: "もんだい", romaji: ["mondai"], rubyHtml: "<ruby>問<rt>もん</rt></ruby><ruby>題<rt>だい</rt></ruby>", meaning: "Vấn đề" },
+        { kana: "こたえ", romaji: ["kotae"], rubyHtml: "<ruby>答<rt>こた</rt></ruby>え", meaning: "Câu trả lời" },
+        { kana: "きんえん", romaji: ["kinen","kin-en"], rubyHtml: "<ruby>禁<rt>きん</rt></ruby><ruby>煙<rt>えん</rt></ruby>", meaning: "Cấm hút thuốc" },
+        { kana: "けんこうほけんしょう", romaji: ["kenkouhokenshou","kenkouhokensho"], rubyHtml: "<ruby>健<rt>けん</rt></ruby><ruby>康<rt>こう</rt></ruby><ruby>保<rt>ほ</rt></ruby><ruby>険<rt>けん</rt></ruby><ruby>証<rt>しょう</rt></ruby>", meaning: "Thẻ bảo hiểm y tế" },
+        { kana: "かぜ", romaji: ["kaze"], rubyHtml: "かぜ", meaning: "Cảm, cúm" },
+        { kana: "ねつ", romaji: ["netsu"], rubyHtml: "<ruby>熱<rt>ねつ</rt></ruby>", meaning: "Sốt" },
+        { kana: "びょうき", romaji: ["byouki","byoki"], rubyHtml: "<ruby>病<rt>びょう</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Ốm, bệnh" },
+        { kana: "くすり", romaji: ["kusuri"], rubyHtml: "<ruby>薬<rt>くすり</rt></ruby>", meaning: "Thuốc" },
+        { kana: "おふろ", romaji: ["ofuro","furo"], rubyHtml: "お<ruby>風<rt>ふ</rt></ruby><ruby>呂<rt>ろ</rt></ruby>", meaning: "Bồn tắm" },
+        { kana: "うわぎ", romaji: ["uwagi"], rubyHtml: "<ruby>上<rt>うわ</rt></ruby><ruby>着<rt>ぎ</rt></ruby>", meaning: "Áo khoác" },
+        { kana: "したぎ", romaji: ["shitagi"], rubyHtml: "<ruby>下<rt>した</rt></ruby><ruby>着<rt>ぎ</rt></ruby>", meaning: "Quần áo lót" },
+        { kana: "のど", romaji: ["nodo"], rubyHtml: "のど", meaning: "Cổ họng" },
+      ],
+    },
+
+    // C. Số đếm, Thời gian & Giao tiếp bác sĩ
+    {
+      id: "b17_giaotiep_khac",
+      name: "C. Số đếm, Thời gian & Giao tiếp bác sĩ",
+      selected: true,
+      items: [
+        { kana: "せんせい", romaji: ["sensei"], rubyHtml: "<ruby>先<rt>せん</rt></ruby><ruby>生<rt>せい</rt></ruby>", meaning: "Bác sĩ (xưng hô với bác sĩ)" },
+        { kana: "にさんにち", romaji: ["nisannichi"], rubyHtml: "２、３<ruby>日<rt>にち</rt></ruby>", meaning: "Vài ngày" },
+        { kana: "にさん", romaji: ["nisan"], rubyHtml: "２、３～", meaning: "Vài ～" },
+        { kana: "までに", romaji: ["madeni"], rubyHtml: "～までに", meaning: "Trước ～ (chỉ thời hạn)" },
+        { kana: "ですから", romaji: ["desukara"], rubyHtml: "ですから", meaning: "Vì thế, vì vậy, do đó" },
+        { kana: "どうしましたか", romaji: ["doushimashitaka","doshimashitaka"], rubyHtml: "どうしましたか", meaning: "Có vấn đề gì? / Anh/chị bị làm sao?" },
+        { kana: "いたい", romaji: ["itai","itaidesu"], rubyHtml: "～が<ruby>痛<rt>いた</rt></ruby>いです", meaning: "Tôi bị đau ～" },
+        { kana: "おだいじに", romaji: ["odaijini"], rubyHtml: "お<ruby>大<rt>だい</rt></ruby><ruby>事<rt>じ</rt></ruby>に", meaning: "Anh/chị nhớ giữ gìn sức khỏe" },
+        { kana: "それから", romaji: ["sorekara"], rubyHtml: "それから", meaning: "Và, sau đó", reviewTopicId: "b17_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 18
+  // ========================================
   18: [
-    { id: 'b18_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'できます', romaji: ['dekimasu'], rubyHtml: 'できます', meaning: 'Có thể' },
-      { kana: 'あらいます', romaji: ['araimasu'], rubyHtml: '<ruby>洗<rt>あら</rt></ruby>います', meaning: 'Rửa' },
-      { kana: 'ひきます', romaji: ['hikimasu'], rubyHtml: '<ruby>弾<rt>ひ</rt></ruby>きます', meaning: 'Chơi (nhạc cụ)' },
-      { kana: 'うたいます', romaji: ['utaimasu'], rubyHtml: '<ruby>歌<rt>うた</rt></ruby>います', meaning: 'Hát' },
-      { kana: 'あつめます', romaji: ['atsumemasu'], rubyHtml: '<ruby>集<rt>あつ</rt></ruby>めます', meaning: 'Sưu tập, thu thập' },
-      { kana: 'すてます', romaji: ['sutemasu'], rubyHtml: '<ruby>捨<rt>す</rt></ruby>てます', meaning: 'Vứt, bỏ' },
-      { kana: 'かえます', romaji: ['kaemasu'], rubyHtml: '<ruby>換<rt>か</rt></ruby>えます', meaning: 'Đổi, trao đổi' },
-      { kana: 'うんてんします', romaji: ['untenshimasu'], rubyHtml: '<ruby>運<rt>うん</rt></ruby><ruby>転<rt>てん</rt></ruby>します', meaning: 'Lái xe' },
-      { kana: 'よやくします', romaji: ['yoyakushimasu'], rubyHtml: '<ruby>予<rt>よ</rt></ruby><ruby>約<rt>やく</rt></ruby>します', meaning: 'Đặt chỗ trước' },
-      { kana: 'けんがくします', romaji: ['kengakushimasu'], rubyHtml: '<ruby>見<rt>けん</rt></ruby><ruby>学<rt>がく</rt></ruby>します', meaning: 'Tham quan mục đích học tập' }
-    ]},
-    { id: 'b18_danhtu_chucvu', name: 'B. Danh từ, Chức vụ & Đồ vật', selected: true, items: [
-      { kana: 'こくさい', romaji: ['kokusai'], rubyHtml: '<ruby>国<rt>こく</rt></ruby><ruby>際<rt>さい</rt></ruby>', meaning: 'Quốc tế' },
-      { kana: 'げんきん', romaji: ['genkin'], rubyHtml: '<ruby>現<rt>げん</rt></ruby><ruby>金<rt>きん</rt></ruby>', meaning: 'Tiền mặt' },
-      { kana: 'しゅみ', romaji: ['shumi'], rubyHtml: '<ruby>趣<rt>しゅ</rt></ruby><ruby>味<rt>み</rt></ruby>', meaning: 'Sở thích' },
-      { kana: 'にっき', romaji: ['nikki'], rubyHtml: '<ruby>日<rt>にっ</rt></ruby><ruby>記<rt>き</rt></ruby>', meaning: 'Nhật ký' },
-      { kana: 'いのり', romaji: ['inori'], rubyHtml: '<ruby>祈<rt>いの</rt></ruby>り', meaning: 'Cầu nguyện, sự cầu nguyện' },
-      { kana: 'かちょう', romaji: ['kachou', 'kacho'], rubyHtml: '<ruby>課<rt>か</rt></ruby><ruby>長<rt>ちょう</rt></ruby>', meaning: 'Tổ trưởng, trưởng tổ' },
-      { kana: 'ぶちょう', romaji: ['buchou', 'bucho'], rubyHtml: '<ruby>部<rt>ぶ</rt></ruby><ruby>長<rt>ちょう</rt></ruby>', meaning: 'Trưởng phòng' },
-      { kana: 'しゃちょう', romaji: ['shachou', 'shacho'], rubyHtml: '<ruby>社<rt>しゃ</rt></ruby><ruby>長<rt>ちょう</rt></ruby>', meaning: 'Giám đốc' },
-      { kana: 'どうぶつ', romaji: ['doubutsu', 'dobutsu'], rubyHtml: '<ruby>動<rt>どう</rt></ruby><ruby>物<rt>ぶつ</rt></ruby>', meaning: 'Động vật' },
-      { kana: 'うま', romaji: ['uma'], rubyHtml: '<ruby>馬<rt>うま</rt></ruby>', meaning: 'Ngựa' },
-      { kana: 'ピアノ', romaji: ['piano'], rubyHtml: 'ピアノ', meaning: 'Đàn piano' },
-      { kana: 'メートル', romaji: ['me-toru', 'metoru'], rubyHtml: '～メートル', meaning: '～ Mét' },
-      { kana: 'ぼくじょう', romaji: ['bokujou', 'bokujo'], rubyHtml: '<ruby>牧<rt>ぼく</rt></ruby><ruby>場<rt>じょう</rt></ruby>', meaning: 'Trang trại' }
-    ]},
-    { id: 'b18_giaotiep', name: 'C. Phó từ & Giao tiếp', selected: true, items: [
-      { kana: 'へえ', romaji: ['hee', 'he-'], rubyHtml: 'へえ', meaning: 'Thế à (thể hiện sự ngạc nhiên)' },
-      { kana: 'それはおもしろいですね', romaji: ['sorewaomoshiroidesune'], rubyHtml: 'それはおもしろいですね', meaning: 'Hay nhỉ / Thú vị nhỉ' },
-      { kana: 'ほんとうですか', romaji: ['hontoudesuka', 'hontodesuka'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby><ruby>当<rt>とう</rt></ruby>ですか', meaning: 'Thật không?' },
-      { kana: 'ぜひ', romaji: ['zehi'], rubyHtml: 'ぜひ', meaning: 'Nhất định' }
-    ]}
+    // A. Động từ
+    {
+      id: "b18_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "できます", romaji: ["dekimasu"], rubyHtml: "できます", meaning: "Có thể" },
+        { kana: "あらいます", romaji: ["araimasu"], rubyHtml: "<ruby>洗<rt>あら</rt></ruby>います", meaning: "Rửa" },
+        { kana: "ひきます", romaji: ["hikimasu"], rubyHtml: "<ruby>弾<rt>ひ</rt></ruby>きます", meaning: "Chơi (nhạc cụ)" },
+        { kana: "うたいます", romaji: ["utaimasu"], rubyHtml: "<ruby>歌<rt>うた</rt></ruby>います", meaning: "Hát" },
+        { kana: "あつめます", romaji: ["atsumemasu"], rubyHtml: "<ruby>集<rt>あつ</rt></ruby>めます", meaning: "Sưu tập, thu thập" },
+        { kana: "すてます", romaji: ["sutemasu"], rubyHtml: "<ruby>捨<rt>す</rt></ruby>てます", meaning: "Vứt, bỏ" },
+        { kana: "かえます", romaji: ["kaemasu"], rubyHtml: "<ruby>換<rt>か</rt></ruby>えます", meaning: "Đổi, trao đổi" },
+        { kana: "うんてんします", romaji: ["untenshimasu"], rubyHtml: "<ruby>運<rt>うん</rt></ruby><ruby>転<rt>てん</rt></ruby>します", meaning: "Lái xe" },
+        { kana: "よやくします", romaji: ["yoyakushimasu"], rubyHtml: "<ruby>予<rt>よ</rt></ruby><ruby>約<rt>やく</rt></ruby>します", meaning: "Đặt chỗ trước" },
+        { kana: "けんがくします", romaji: ["kengakushimasu"], rubyHtml: "<ruby>見<rt>けん</rt></ruby><ruby>学<rt>がく</rt></ruby>します", meaning: "Tham quan mục đích học tập" },
+      ],
+    },
+
+    // B. Danh từ, Chức vụ & Đồ vật
+    {
+      id: "b18_danhtu_chucvu",
+      name: "B. Danh từ, Chức vụ & Đồ vật",
+      selected: true,
+      items: [
+        { kana: "こくさい", romaji: ["kokusai"], rubyHtml: "<ruby>国<rt>こく</rt></ruby><ruby>際<rt>さい</rt></ruby>", meaning: "Quốc tế" },
+        { kana: "げんきん", romaji: ["genkin"], rubyHtml: "<ruby>現<rt>げん</rt></ruby><ruby>金<rt>きん</rt></ruby>", meaning: "Tiền mặt" },
+        { kana: "しゅみ", romaji: ["shumi"], rubyHtml: "<ruby>趣<rt>しゅ</rt></ruby><ruby>味<rt>み</rt></ruby>", meaning: "Sở thích" },
+        { kana: "にっき", romaji: ["nikki"], rubyHtml: "<ruby>日<rt>にっ</rt></ruby><ruby>記<rt>き</rt></ruby>", meaning: "Nhật ký" },
+        { kana: "いのり", romaji: ["inori"], rubyHtml: "<ruby>祈<rt>いの</rt></ruby>り", meaning: "Cầu nguyện, sự cầu nguyện" },
+        { kana: "かちょう", romaji: ["kachou","kacho"], rubyHtml: "<ruby>課<rt>か</rt></ruby><ruby>長<rt>ちょう</rt></ruby>", meaning: "Tổ trưởng, trưởng tổ" },
+        { kana: "ぶちょう", romaji: ["buchou","bucho"], rubyHtml: "<ruby>部<rt>ぶ</rt></ruby><ruby>長<rt>ちょう</rt></ruby>", meaning: "Trưởng phòng" },
+        { kana: "しゃちょう", romaji: ["shachou","shacho"], rubyHtml: "<ruby>社<rt>しゃ</rt></ruby><ruby>長<rt>ちょう</rt></ruby>", meaning: "Giám đốc" },
+        { kana: "どうぶつ", romaji: ["doubutsu","dobutsu"], rubyHtml: "<ruby>動<rt>どう</rt></ruby><ruby>物<rt>ぶつ</rt></ruby>", meaning: "Động vật" },
+        { kana: "うま", romaji: ["uma"], rubyHtml: "<ruby>馬<rt>うま</rt></ruby>", meaning: "Ngựa" },
+        { kana: "ピアノ", romaji: ["piano"], rubyHtml: "ピアノ", meaning: "Đàn piano" },
+        { kana: "メートル", romaji: ["me-toru","metoru"], rubyHtml: "～メートル", meaning: "～ Mét" },
+        { kana: "ぼくじょう", romaji: ["bokujou","bokujo"], rubyHtml: "<ruby>牧<rt>ぼく</rt></ruby><ruby>場<rt>じょう</rt></ruby>", meaning: "Trang trại" },
+        { kana: "インターネット", romaji: ["intaanetto"], rubyHtml: "インターネット", meaning: "Internet", reviewTopicId: "b18_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Phó từ & Giao tiếp
+    {
+      id: "b18_giaotiep",
+      name: "C. Phó từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "へえ", romaji: ["hee","he-"], rubyHtml: "へえ", meaning: "Thế à (thể hiện sự ngạc nhiên)" },
+        { kana: "それはおもしろいですね", romaji: ["sorewaomoshiroidesune"], rubyHtml: "それはおもしろいですね", meaning: "Hay nhỉ / Thú vị nhỉ" },
+        { kana: "ほんとうですか", romaji: ["hontoudesuka","hontodesuka"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby><ruby>当<rt>とう</rt></ruby>ですか", meaning: "Thật không?" },
+        { kana: "ぜひ", romaji: ["zehi"], rubyHtml: "ぜひ", meaning: "Nhất định" },
+        { kana: "とくに", romaji: ["tokuni"], rubyHtml: "<ruby>特に<rt>とくに</rt></ruby>", meaning: "Đặc biệt là", reviewTopicId: "b18_bosung_sach_tap1" },
+        { kana: "なかなか", romaji: ["nakanaka"], rubyHtml: "なかなか", meaning: "Khó mà, mãi mà (dùng với thể phủ định)", reviewTopicId: "b18_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 19
+  // ========================================
   19: [
-    { id: 'b19_dongtu', name: 'A. Động từ & Biến đổi', selected: true, items: [
-      { kana: 'のぼります', romaji: ['noborimasu'], rubyHtml: '<ruby>登<rt>のぼ</rt></ruby>ります', meaning: 'Leo [núi]' },
-      { kana: 'れんしゅうします', romaji: ['renshuushimasu', 'renshushimasu'], rubyHtml: '<ruby>練<rt>れん</rt></ruby><ruby>習<rt>しゅう</rt></ruby>します', meaning: 'Luyện tập, thực hành' },
-      { kana: 'そうじします', romaji: ['soujishimasu', 'sojishimasu'], rubyHtml: '<ruby>掃<rt>そう</rt></ruby><ruby>除<rt>じ</rt></ruby>します', meaning: 'Dọn dẹp' },
-      { kana: 'せんたくします', romaji: ['sentakushimasu'], rubyHtml: '<ruby>洗<rt>せん</rt></ruby><ruby>濯<rt>たく</rt></ruby>します', meaning: 'Giặt giũ' },
-      { kana: 'なります', romaji: ['narimasu'], rubyHtml: 'なります', meaning: 'Trở nên, trở thành' },
-      { kana: 'とまります', romaji: ['tomarimasu'], rubyHtml: '<ruby>泊<rt>と</rt></ruby>まります', meaning: 'Trọ, ở lại [khách sạn]' }
-    ]},
-    { id: 'b19_tinhtu_trangthai', name: 'B. Tính từ & Trạng thái', selected: true, items: [
-      { kana: 'ねむい', romaji: ['nemui'], rubyHtml: '<ruby>眠<rt>ねむ</rt></ruby>い', meaning: 'Buồn ngủ' },
-      { kana: 'つよい', romaji: ['tsuyoi'], rubyHtml: '<ruby>強<rt>つよ</rt></ruby>い', meaning: 'Mạnh' },
-      { kana: 'よわい', romaji: ['yowai'], rubyHtml: '<ruby>弱<rt>よわ</rt></ruby>い', meaning: 'Yếu' },
-      { kana: 'ちょうし', romaji: ['choushi', 'choshi'], rubyHtml: '<ruby>調<rt>ちょう</rt></ruby><ruby>子<rt>し</rt></ruby>', meaning: 'Tình trạng, trạng thái' },
-      { kana: 'ちょうしがいい', romaji: ['choushigaii', 'choshigaii'], rubyHtml: '<ruby>調<rt>ちょう</rt></ruby><ruby>子<rt>し</rt></ruby>がいい', meaning: 'Tình trạng tốt' },
-      { kana: 'ちょうしがわるい', romaji: ['choushigawarui', 'choshigawarui'], rubyHtml: '<ruby>調<rt>ちょう</rt></ruby><ruby>子<rt>し</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Tình trạng xấu' },
-      { kana: 'むり', romaji: ['muri'], rubyHtml: '<ruby>無<rt>む</rt></ruby><ruby>理<rt>り</rt></ruby>', meaning: 'Quá sức, không thể' },
-      { kana: 'からだにいい', romaji: ['karadaniii'], rubyHtml: '<ruby>体<rt>からだ</rt></ruby>にいい', meaning: 'Tốt cho sức khỏe' }
-    ]},
-    { id: 'b19_thethao_vanhoa_dovat', name: 'C. Thể thao, Văn hóa & Đồ ăn', selected: true, items: [
-      { kana: 'おちゃ', romaji: ['ocha'], rubyHtml: 'お<ruby>茶<rt>ちゃ</rt></ruby>', meaning: 'Trà đạo' },
-      { kana: 'すもう', romaji: ['sumou', 'sumo'], rubyHtml: '<ruby>相撲<rt>すもう</rt></ruby>', meaning: 'Vật sumo' },
-      { kana: 'パチンコ', romaji: ['pachinko'], rubyHtml: 'パチンコ', meaning: 'Trò chơi pachinko' },
-      { kana: 'ゴルフ', romaji: ['gorufu'], rubyHtml: 'ゴルフ', meaning: 'Môn gôn (golf)' },
-      { kana: 'ひ', romaji: ['hi'], rubyHtml: '<ruby>日<rt>ひ</rt></ruby>', meaning: 'Ngày' },
-      { kana: 'ダイエット', romaji: ['daietto'], rubyHtml: 'ダイエット', meaning: 'Ăn kiêng' },
-      { kana: 'ケーキ', romaji: ['ke-ki', 'keki'], rubyHtml: 'ケーキ', meaning: 'Bánh ga-tô' }
-    ]},
-    { id: 'b19_trangtu_giaotiep', name: 'D. Trạng từ, Phó từ & Giao tiếp', selected: true, items: [
-      { kana: 'もうすぐ', romaji: ['mousugu', 'mosugu'], rubyHtml: 'もうすぐ', meaning: 'Sắp sửa' },
-      { kana: 'だんだん', romaji: ['dandan'], rubyHtml: 'だんだん', meaning: 'Dần dần' },
-      { kana: 'いちど', romaji: ['ichido'], rubyHtml: '<ruby>一<rt>いち</rt></ruby><ruby>度<rt>ど</rt></ruby>', meaning: 'Một lần' },
-      { kana: 'いちども', romaji: ['ichidomo'], rubyHtml: '<ruby>一<rt>いち</rt></ruby><ruby>度<rt>ど</rt></ruby>も', meaning: 'Chưa lần nào' },
-      { kana: 'なんかいも', romaji: ['nankaimo'], rubyHtml: '<ruby>何<rt>なん</rt></ruby><ruby>回<rt>かい</rt></ruby>も', meaning: 'Nhiều lần' },
-      { kana: 'しかし', romaji: ['shikashi'], rubyHtml: 'しかし', meaning: 'Tuy nhiên' },
-      { kana: 'おかげさまで', romaji: ['okagesamade'], rubyHtml: 'おかげさまで', meaning: 'Cảm ơn (nhờ giúp đỡ/nhờ trời)' },
-      { kana: 'かんぱい', romaji: ['kanpai'], rubyHtml: '<ruby>乾<rt>かん</rt></ruby><ruby>杯<rt>ぱい</rt></ruby>', meaning: 'Nâng cốc, cạn chén' },
-      { kana: 'じつは', romaji: ['jitsuwa'], rubyHtml: '<ruby>実<rt>じつ</rt></ruby>は', meaning: 'Sự tình là, thực ra là' }
-    ]}
+    // A. Động từ & Biến đổi
+    {
+      id: "b19_dongtu",
+      name: "A. Động từ & Biến đổi",
+      selected: true,
+      items: [
+        { kana: "のぼります", romaji: ["noborimasu"], rubyHtml: "<ruby>登<rt>のぼ</rt></ruby>ります", meaning: "Leo [núi]" },
+        { kana: "れんしゅうします", romaji: ["renshuushimasu","renshushimasu"], rubyHtml: "<ruby>練<rt>れん</rt></ruby><ruby>習<rt>しゅう</rt></ruby>します", meaning: "Luyện tập, thực hành" },
+        { kana: "そうじします", romaji: ["soujishimasu","sojishimasu"], rubyHtml: "<ruby>掃<rt>そう</rt></ruby><ruby>除<rt>じ</rt></ruby>します", meaning: "Dọn dẹp" },
+        { kana: "せんたくします", romaji: ["sentakushimasu"], rubyHtml: "<ruby>洗<rt>せん</rt></ruby><ruby>濯<rt>たく</rt></ruby>します", meaning: "Giặt giũ" },
+        { kana: "なります", romaji: ["narimasu"], rubyHtml: "なります", meaning: "Trở nên, trở thành" },
+        { kana: "とまります", romaji: ["tomarimasu"], rubyHtml: "<ruby>泊<rt>と</rt></ruby>まります", meaning: "Trọ, ở lại [khách sạn]" },
+      ],
+    },
+
+    // B. Tính từ & Trạng thái
+    {
+      id: "b19_tinhtu_trangthai",
+      name: "B. Tính từ & Trạng thái",
+      selected: true,
+      items: [
+        { kana: "ねむい", romaji: ["nemui"], rubyHtml: "<ruby>眠<rt>ねむ</rt></ruby>い", meaning: "Buồn ngủ" },
+        { kana: "つよい", romaji: ["tsuyoi"], rubyHtml: "<ruby>強<rt>つよ</rt></ruby>い", meaning: "Mạnh" },
+        { kana: "よわい", romaji: ["yowai"], rubyHtml: "<ruby>弱<rt>よわ</rt></ruby>い", meaning: "Yếu" },
+        { kana: "ちょうし", romaji: ["choushi","choshi"], rubyHtml: "<ruby>調<rt>ちょう</rt></ruby><ruby>子<rt>し</rt></ruby>", meaning: "Tình trạng, trạng thái" },
+        { kana: "ちょうしがいい", romaji: ["choushigaii","choshigaii"], rubyHtml: "<ruby>調<rt>ちょう</rt></ruby><ruby>子<rt>し</rt></ruby>がいい", meaning: "Tình trạng tốt" },
+        { kana: "ちょうしがわるい", romaji: ["choushigawarui","choshigawarui"], rubyHtml: "<ruby>調<rt>ちょう</rt></ruby><ruby>子<rt>し</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い", meaning: "Tình trạng xấu" },
+        { kana: "むり", romaji: ["muri"], rubyHtml: "<ruby>無<rt>む</rt></ruby><ruby>理<rt>り</rt></ruby>", meaning: "Quá sức, không thể" },
+        { kana: "からだにいい", romaji: ["karadaniii"], rubyHtml: "<ruby>体<rt>からだ</rt></ruby>にいい", meaning: "Tốt cho sức khỏe" },
+      ],
+    },
+
+    // C. Thể thao, Văn hóa & Đồ ăn
+    {
+      id: "b19_thethao_vanhoa_dovat",
+      name: "C. Thể thao, Văn hóa & Đồ ăn",
+      selected: true,
+      items: [
+        { kana: "おちゃ", romaji: ["ocha"], rubyHtml: "お<ruby>茶<rt>ちゃ</rt></ruby>", meaning: "Trà đạo" },
+        { kana: "すもう", romaji: ["sumou","sumo"], rubyHtml: "<ruby>相撲<rt>すもう</rt></ruby>", meaning: "Vật sumo" },
+        { kana: "パチンコ", romaji: ["pachinko"], rubyHtml: "パチンコ", meaning: "Trò chơi pachinko" },
+        { kana: "ゴルフ", romaji: ["gorufu"], rubyHtml: "ゴルフ", meaning: "Môn gôn (golf)" },
+        { kana: "ひ", romaji: ["hi"], rubyHtml: "<ruby>日<rt>ひ</rt></ruby>", meaning: "Ngày" },
+        { kana: "ダイエット", romaji: ["daietto"], rubyHtml: "ダイエット", meaning: "Ăn kiêng" },
+        { kana: "ケーキ", romaji: ["ke-ki","keki"], rubyHtml: "ケーキ", meaning: "Bánh ga-tô" },
+        { kana: "れんしゅう", romaji: ["renshuu"], rubyHtml: "<ruby>練習<rt>れんしゅう</rt></ruby>", meaning: "Sự luyện tập", reviewTopicId: "b19_bosung_sach_tap1" },
+      ],
+    },
+
+    // D. Trạng từ, Phó từ & Giao tiếp
+    {
+      id: "b19_trangtu_giaotiep",
+      name: "D. Trạng từ, Phó từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "もうすぐ", romaji: ["mousugu","mosugu"], rubyHtml: "もうすぐ", meaning: "Sắp sửa" },
+        { kana: "だんだん", romaji: ["dandan"], rubyHtml: "だんだん", meaning: "Dần dần" },
+        { kana: "いちど", romaji: ["ichido"], rubyHtml: "<ruby>一<rt>いち</rt></ruby><ruby>度<rt>ど</rt></ruby>", meaning: "Một lần" },
+        { kana: "いちども", romaji: ["ichidomo"], rubyHtml: "<ruby>一<rt>いち</rt></ruby><ruby>度<rt>ど</rt></ruby>も", meaning: "Chưa lần nào" },
+        { kana: "なんかいも", romaji: ["nankaimo"], rubyHtml: "<ruby>何<rt>なん</rt></ruby><ruby>回<rt>かい</rt></ruby>も", meaning: "Nhiều lần" },
+        { kana: "しかし", romaji: ["shikashi"], rubyHtml: "しかし", meaning: "Tuy nhiên" },
+        { kana: "おかげさまで", romaji: ["okagesamade"], rubyHtml: "おかげさまで", meaning: "Cảm ơn (nhờ giúp đỡ/nhờ trời)" },
+        { kana: "かんぱい", romaji: ["kanpai"], rubyHtml: "<ruby>乾<rt>かん</rt></ruby><ruby>杯<rt>ぱい</rt></ruby>", meaning: "Nâng cốc, cạn chén" },
+        { kana: "じつは", romaji: ["jitsuwa"], rubyHtml: "<ruby>実<rt>じつ</rt></ruby>は", meaning: "Sự tình là, thực ra là" },
+        { kana: "でも", romaji: ["demo"], rubyHtml: "でも", meaning: "Nhưng", reviewTopicId: "b19_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 20
+  // ========================================
   20: [
-    { id: 'b20_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'いります', romaji: ['irimasu', 'iru'], rubyHtml: '<ruby>要<rt>い</rt></ruby>ります', meaning: 'Cần [visa]' },
-      { kana: 'しらべます', romaji: ['shirabemasu', 'shiraberu'], rubyHtml: '<ruby>調<rt>しら</rt></ruby>べます', meaning: 'Tìm hiểu, điều tra' },
-      { kana: 'なおします', romaji: ['naoshimasu', 'naosu'], rubyHtml: '<ruby>直<rt>なお</rt></ruby>します', meaning: 'Sửa, chữa' },
-      { kana: 'しゅうりします', romaji: ['shuurishimasu', 'shurishimasu'], rubyHtml: '<ruby>修<rt>しゅう</rt></ruby><ruby>理<rt>り</rt></ruby>します', meaning: 'Sửa chữa, tu sửa' },
-      { kana: 'でんわします', romaji: ['denwashimasu'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>します', meaning: 'Gọi điện thoại' }
-    ]},
-    { id: 'b20_xungho_danhtu', name: 'B. Đại từ xưng hô & Danh từ', selected: true, items: [
-      { kana: 'ぼく', romaji: ['boku'], rubyHtml: '<ruby>僕<rt>ぼく</rt></ruby>', meaning: 'Tớ (xưng hô thân mật của nam giới)' },
-      { kana: 'きみ', romaji: ['kimi'], rubyHtml: '<ruby>君<rt>きみ</rt></ruby>', meaning: 'Cậu, bạn (xưng hô thân mật)' },
-      { kana: 'くん', romaji: ['kun'], rubyHtml: '～<ruby>君<rt>くん</rt></ruby>', meaning: 'Bé, em (hậu tố gọi nam giới/trẻ em)' },
-      { kana: 'サラリーマン', romaji: ['sarari-man', 'sarariman'], rubyHtml: 'サラリーマン', meaning: 'Người làm việc cho công ty' },
-      { kana: 'ことば', romaji: ['kotoba'], rubyHtml: '<ruby>言<rt>こと</rt></ruby><ruby>葉<rt>ば</rt></ruby>', meaning: 'Từ, tiếng, ngôn ngữ' },
-      { kana: 'ぶっか', romaji: ['bukka'], rubyHtml: '<ruby>物<rt>ぶっ</rt></ruby><ruby>価<rt>か</rt></ruby>', meaning: 'Giá cả, vật giá' },
-      { kana: 'きもの', romaji: ['kimono'], rubyHtml: '<ruby>着<rt>き</rt></ruby><ruby>物<rt>もの</rt></ruby>', meaning: 'Kimono (trang phục truyền thống Nhật)' },
-      { kana: 'ビザ', romaji: ['biza'], rubyHtml: 'ビザ', meaning: 'Visa, thị thực' },
-      { kana: 'はじめ', romaji: ['hajime'], rubyHtml: '<ruby>始<rt>はじ</rt></ruby>め', meaning: 'Bắt đầu' },
-      { kana: 'おわり', romaji: ['owari'], rubyHtml: '<ruby>終<rt>お</rt></ruby>わり', meaning: 'Kết thúc' }
-    ]},
-    { id: 'b20_chithi_trangtu', name: 'C. Chỉ thị từ thân mật & Trạng từ', selected: true, items: [
-      { kana: 'こっち', romaji: ['kotchi', 'kocchi'], rubyHtml: 'こっち', meaning: 'Phía này, chỗ này (thân mật của ここ)' },
-      { kana: 'そっち', romaji: ['sotchi', 'socchi'], rubyHtml: 'そっち', meaning: 'Phía đó, chỗ đó (thân mật của そこ)' },
-      { kana: 'あっち', romaji: ['atchi', 'acchi'], rubyHtml: 'あっち', meaning: 'Phía kia, chỗ kia (thân mật của あそこ)' },
-      { kana: 'どっち', romaji: ['dotchi', 'docchi'], rubyHtml: 'どっち', meaning: 'Phía nào, chỗ nào (thân mật của どこ)' },
-      { kana: 'このあいだ', romaji: ['konoaida'], rubyHtml: 'この<ruby>間<rt>あいだ</rt></ruby>', meaning: 'Hôm nọ, vừa rồi' },
-      { kana: 'みんなで', romaji: ['minnade'], rubyHtml: 'みんなで', meaning: 'Mọi người cùng nhau' },
-      { kana: 'いろいろ', romaji: ['iroiro'], rubyHtml: '<ruby>色<rt>いろ</rt></ruby>々', meaning: 'Nhiều thứ, đa dạng' }
-    ]},
-    { id: 'b20_giaotiep_thanmat', name: 'D. Trợ từ & Giao tiếp thể thân mật', selected: true, items: [
-      { kana: 'うん', romaji: ['un'], rubyHtml: 'うん', meaning: 'Có, ừ (thân mật của はい)' },
-      { kana: 'ううん', romaji: ['uun'], rubyHtml: 'ううん', meaning: 'Không (thân mật của いいえ)' },
-      { kana: 'けど', romaji: ['kedo'], rubyHtml: '～けど', meaning: 'Nhưng (thân mật của が)' },
-      { kana: 'くにへかえるの', romaji: ['kunihekaeruno', 'kuniekaeruno'], rubyHtml: '<ruby>国<rt>くに</rt></ruby>へ<ruby>帰<rt>かえ</rt></ruby>るの', meaning: 'Anh/Chị có về nước không?' },
-      { kana: 'どうするの', romaji: ['dousuruno', 'dosuruno'], rubyHtml: 'どうするの', meaning: 'Anh/Chị tính sao?' },
-      { kana: 'どうしようかな', romaji: ['doushiyoukana', 'doshiyokana'], rubyHtml: 'どうしようかな', meaning: 'Tính sao đây / Để tôi xem' },
-      { kana: 'よかったら', romaji: ['yokattara'], rubyHtml: '<ruby>良<rt>よ</rt></ruby>かったら', meaning: 'Nếu anh/chị thích thì' }
-    ]}
+    // A. Động từ
+    {
+      id: "b20_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "いります", romaji: ["irimasu","iru"], rubyHtml: "<ruby>要<rt>い</rt></ruby>ります", meaning: "Cần [visa]" },
+        { kana: "しらべます", romaji: ["shirabemasu","shiraberu"], rubyHtml: "<ruby>調<rt>しら</rt></ruby>べます", meaning: "Tìm hiểu, điều tra" },
+        { kana: "なおします", romaji: ["naoshimasu","naosu"], rubyHtml: "<ruby>直<rt>なお</rt></ruby>します", meaning: "Sửa, chữa" },
+        { kana: "しゅうりします", romaji: ["shuurishimasu","shurishimasu"], rubyHtml: "<ruby>修<rt>しゅう</rt></ruby><ruby>理<rt>り</rt></ruby>します", meaning: "Sửa chữa, tu sửa" },
+        { kana: "でんわします", romaji: ["denwashimasu"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>します", meaning: "Gọi điện thoại" },
+      ],
+    },
+
+    // B. Đại từ xưng hô & Danh từ
+    {
+      id: "b20_xungho_danhtu",
+      name: "B. Đại từ xưng hô & Danh từ",
+      selected: true,
+      items: [
+        { kana: "ぼく", romaji: ["boku"], rubyHtml: "<ruby>僕<rt>ぼく</rt></ruby>", meaning: "Tớ (xưng hô thân mật của nam giới)" },
+        { kana: "きみ", romaji: ["kimi"], rubyHtml: "<ruby>君<rt>きみ</rt></ruby>", meaning: "Cậu, bạn (xưng hô thân mật)" },
+        { kana: "くん", romaji: ["kun"], rubyHtml: "～<ruby>君<rt>くん</rt></ruby>", meaning: "Bé, em (hậu tố gọi nam giới/trẻ em)" },
+        { kana: "サラリーマン", romaji: ["sarari-man","sarariman"], rubyHtml: "サラリーマン", meaning: "Người làm việc cho công ty" },
+        { kana: "ことば", romaji: ["kotoba"], rubyHtml: "<ruby>言<rt>こと</rt></ruby><ruby>葉<rt>ば</rt></ruby>", meaning: "Từ, tiếng, ngôn ngữ" },
+        { kana: "ぶっか", romaji: ["bukka"], rubyHtml: "<ruby>物<rt>ぶっ</rt></ruby><ruby>価<rt>か</rt></ruby>", meaning: "Giá cả, vật giá" },
+        { kana: "きもの", romaji: ["kimono"], rubyHtml: "<ruby>着<rt>き</rt></ruby><ruby>物<rt>もの</rt></ruby>", meaning: "Kimono (trang phục truyền thống Nhật)" },
+        { kana: "ビザ", romaji: ["biza"], rubyHtml: "ビザ", meaning: "Visa, thị thực" },
+        { kana: "はじめ", romaji: ["hajime"], rubyHtml: "<ruby>始<rt>はじ</rt></ruby>め", meaning: "Bắt đầu" },
+        { kana: "おわり", romaji: ["owari"], rubyHtml: "<ruby>終<rt>お</rt></ruby>わり", meaning: "Kết thúc" },
+      ],
+    },
+
+    // C. Chỉ thị từ thân mật & Trạng từ
+    {
+      id: "b20_chithi_trangtu",
+      name: "C. Chỉ thị từ thân mật & Trạng từ",
+      selected: true,
+      items: [
+        { kana: "こっち", romaji: ["kotchi","kocchi"], rubyHtml: "こっち", meaning: "Phía này, chỗ này (thân mật của ここ)" },
+        { kana: "そっち", romaji: ["sotchi","socchi"], rubyHtml: "そっち", meaning: "Phía đó, chỗ đó (thân mật của そこ)" },
+        { kana: "あっち", romaji: ["atchi","acchi"], rubyHtml: "あっち", meaning: "Phía kia, chỗ kia (thân mật của あそこ)" },
+        { kana: "どっち", romaji: ["dotchi","docchi"], rubyHtml: "どっち", meaning: "Phía nào, chỗ nào (thân mật của どこ)" },
+        { kana: "このあいだ", romaji: ["konoaida"], rubyHtml: "この<ruby>間<rt>あいだ</rt></ruby>", meaning: "Hôm nọ, vừa rồi" },
+        { kana: "みんなで", romaji: ["minnade"], rubyHtml: "みんなで", meaning: "Mọi người cùng nhau" },
+        { kana: "いろいろ", romaji: ["iroiro"], rubyHtml: "<ruby>色<rt>いろ</rt></ruby>々", meaning: "Nhiều thứ, đa dạng" },
+      ],
+    },
+
+    // D. Trợ từ & Giao tiếp thể thân mật
+    {
+      id: "b20_giaotiep_thanmat",
+      name: "D. Trợ từ & Giao tiếp thể thân mật",
+      selected: true,
+      items: [
+        { kana: "うん", romaji: ["un"], rubyHtml: "うん", meaning: "Có, ừ (thân mật của はい)" },
+        { kana: "ううん", romaji: ["uun"], rubyHtml: "ううん", meaning: "Không (thân mật của いいえ)" },
+        { kana: "けど", romaji: ["kedo"], rubyHtml: "～けど", meaning: "Nhưng (thân mật của が)" },
+        { kana: "くにへかえるの", romaji: ["kunihekaeruno","kuniekaeruno"], rubyHtml: "<ruby>国<rt>くに</rt></ruby>へ<ruby>帰<rt>かえ</rt></ruby>るの", meaning: "Anh/Chị có về nước không?" },
+        { kana: "どうするの", romaji: ["dousuruno","dosuruno"], rubyHtml: "どうするの", meaning: "Anh/Chị tính sao?" },
+        { kana: "どうしようかな", romaji: ["doushiyoukana","doshiyokana"], rubyHtml: "どうしようかな", meaning: "Tính sao đây / Để tôi xem" },
+        { kana: "よかったら", romaji: ["yokattara"], rubyHtml: "<ruby>良<rt>よ</rt></ruby>かったら", meaning: "Nếu anh/chị thích thì" },
+        { kana: "おなかがいっぱいです", romaji: ["onakagaippaidesu"], rubyHtml: "おなかがいっぱいです", meaning: "Tôi no rồi", reviewTopicId: "b20_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 21
+  // ========================================
   21: [
-    { id: 'b21_dongtu', name: 'A. Động từ', selected: true, items: [
-      { kana: 'おもいます', romaji: ['omoimasu', 'omou'], rubyHtml: '<ruby>思<rt>おも</rt></ruby>います', meaning: 'Nghĩ, suy nghĩ' },
-      { kana: 'いいます', romaji: ['iimasu', 'iu'], rubyHtml: '<ruby>言<rt>い</rt></ruby>います', meaning: 'Nói' },
-      { kana: 'たります', romaji: ['tarimasu', 'tariru'], rubyHtml: '<ruby>足<rt>た</rt></ruby>ります', meaning: 'Đủ' },
-      { kana: 'かちます', romaji: ['kachimasu', 'katsu'], rubyHtml: '<ruby>勝<rt>か</rt></ruby>ちます', meaning: 'Thắng' },
-      { kana: 'まけます', romaji: ['makemasu', 'makeru'], rubyHtml: '<ruby>負<rt>ま</rt></ruby>けます', meaning: 'Thua' },
-      { kana: 'あります', romaji: ['arimasu'], rubyHtml: 'あります', meaning: 'Được tổ chức, diễn ra [lễ hội, trận đấu]' },
-      { kana: 'やくにたちます', romaji: ['yakunitachimasu'], rubyHtml: '<ruby>役<rt>やく</rt></ruby>に<ruby>立<rt>た</rt></ruby>ちます', meaning: 'Giúp ích, có ích' }
-    ]},
-    { id: 'b21_tinhtu_trangthai', name: 'B. Tính từ & Trạng thái', selected: true, items: [
-      { kana: 'むだ', romaji: ['muda'], rubyHtml: 'むだ', meaning: 'Vô ích, lãng phí' },
-      { kana: 'ふべん', romaji: ['fuben'], rubyHtml: '<ruby>不<rt>ふ</rt></ruby><ruby>便<rt>べん</rt></ruby>', meaning: 'Bất tiện' },
-      { kana: 'おなじ', romaji: ['onaji'], rubyHtml: '<ruby>同<rt>おな</rt></ruby>じ', meaning: 'Giống' },
-      { kana: 'すごい', romaji: ['sugoi'], rubyHtml: 'すごい', meaning: 'Giỏi, siêu, tuyệt vời' }
-    ]},
-    { id: 'b21_danhtu', name: 'C. Danh từ & Xã hội', selected: true, items: [
-      { kana: 'しゅしょう', romaji: ['shushou', 'shusho'], rubyHtml: '<ruby>首<rt>しゅ</rt></ruby><ruby>相<rt>しょう</rt></ruby>', meaning: 'Thủ tướng' },
-      { kana: 'だいとうりょう', romaji: ['daitouryou', 'daitoryo'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>統<rt>とう</rt></ruby><ruby>領<rt>りょう</rt></ruby>', meaning: 'Tổng thống' },
-      { kana: 'せいじ', romaji: ['seiji'], rubyHtml: '<ruby>政<rt>せい</rt></ruby><ruby>治<rt>じ</rt></ruby>', meaning: 'Chính trị' },
-      { kana: 'ニュース', romaji: ['nyu-su', 'nyusu'], rubyHtml: 'ニュース', meaning: 'Tin tức' },
-      { kana: 'スピーチ', romaji: ['supi-chi', 'supichi'], rubyHtml: 'スピーチ', meaning: 'Bài phát biểu' },
-      { kana: 'しあい', romaji: ['shiai'], rubyHtml: '<ruby>試<rt>し</rt></ruby><ruby>合<rt>あい</rt></ruby>', meaning: 'Trận đấu' },
-      { kana: 'アルバイト', romaji: ['arubaito'], rubyHtml: 'アルバイト', meaning: 'Việc làm thêm' },
-      { kana: 'いけん', romaji: ['iken'], rubyHtml: '<ruby>意<rt>い</rt></ruby><ruby>見<rt>けん</rt></ruby>', meaning: 'Ý kiến' },
-      { kana: 'はなし', romaji: ['hanashi'], rubyHtml: '<ruby>話<rt>はなし</rt></ruby>', meaning: 'Câu chuyện, bài nói' },
-      { kana: 'ユーモア', romaji: ['yu-moa', 'yumoa'], rubyHtml: 'ユーモア', meaning: 'Hài hước' },
-      { kana: 'デザイン', romaji: ['dezain'], rubyHtml: 'デザイン', meaning: 'Thiết kế' },
-      { kana: 'こうつう', romaji: ['koutsuu', 'kotsu'], rubyHtml: '<ruby>交<rt>こう</rt></ruby><ruby>通<rt>つう</rt></ruby>', meaning: 'Giao thông' },
-      { kana: 'ラッシュ', romaji: ['rasshu'], rubyHtml: 'ラッシュ', meaning: 'Giờ cao điểm' },
-      { kana: 'カンガルー', romaji: ['kangaruu', 'kangaru'], rubyHtml: 'カンガルー', meaning: 'Chuột túi Kangaroo' }
-    ]},
-    { id: 'b21_trangtu_giaotiep', name: 'D. Trạng từ & Cụm từ giao tiếp', selected: true, items: [
-      { kana: 'さいきん', romaji: ['saikin'], rubyHtml: '<ruby>最<rt>さい</rt></ruby><ruby>近<rt>きん</rt></ruby>', meaning: 'Gần đây' },
-      { kana: 'たぶん', romaji: ['tabun'], rubyHtml: 'たぶん', meaning: 'Chắc là, có thể' },
-      { kana: 'きっと', romaji: ['kitto'], rubyHtml: 'きっと', meaning: 'Chắc chắn, nhất định' },
-      { kana: 'ほんとうに', romaji: ['hontouni', 'hontoni'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby><ruby>当<rt>とう</rt></ruby>に', meaning: 'Thật sự' },
-      { kana: 'そんなに', romaji: ['sonnani'], rubyHtml: 'そんなに', meaning: '(Không) ~ lắm' },
-      { kana: 'について', romaji: ['nitsuite'], rubyHtml: '～について', meaning: 'Về ～' },
-      { kana: 'しかたがありません', romaji: ['shikatagaarimasen'], rubyHtml: 'しかたがありません', meaning: 'Không còn cách nào khác' },
-      { kana: 'しばらくですね', romaji: ['shibarakudesune'], rubyHtml: 'しばらくですね', meaning: 'Lâu rồi không gặp' },
-      { kana: 'でものみませんか', romaji: ['demonomimasenka'], rubyHtml: '～でも<ruby>飲<rt>の</rt></ruby>みませんか', meaning: 'Uống (cà phê, rượu...) nhé' },
-      { kana: 'みないと', romaji: ['minaito'], rubyHtml: '<ruby>見<rt>み</rt></ruby>ないと…', meaning: 'Phải xem…' },
-      { kana: 'もちろん', romaji: ['mochiron'], rubyHtml: 'もちろん', meaning: 'Tất nhiên' }
-    ]}
+    // A. Động từ
+    {
+      id: "b21_dongtu",
+      name: "A. Động từ",
+      selected: true,
+      items: [
+        { kana: "おもいます", romaji: ["omoimasu","omou"], rubyHtml: "<ruby>思<rt>おも</rt></ruby>います", meaning: "Nghĩ, suy nghĩ" },
+        { kana: "いいます", romaji: ["iimasu","iu"], rubyHtml: "<ruby>言<rt>い</rt></ruby>います", meaning: "Nói" },
+        { kana: "たります", romaji: ["tarimasu","tariru"], rubyHtml: "<ruby>足<rt>た</rt></ruby>ります", meaning: "Đủ" },
+        { kana: "かちます", romaji: ["kachimasu","katsu"], rubyHtml: "<ruby>勝<rt>か</rt></ruby>ちます", meaning: "Thắng" },
+        { kana: "まけます", romaji: ["makemasu","makeru"], rubyHtml: "<ruby>負<rt>ま</rt></ruby>けます", meaning: "Thua" },
+        { kana: "あります", romaji: ["arimasu"], rubyHtml: "あります", meaning: "Được tổ chức, diễn ra [lễ hội, trận đấu]" },
+        { kana: "やくにたちます", romaji: ["yakunitachimasu"], rubyHtml: "<ruby>役<rt>やく</rt></ruby>に<ruby>立<rt>た</rt></ruby>ちます", meaning: "Giúp ích, có ích" },
+        { kana: "うごきます", romaji: ["ugokimasu"], rubyHtml: "<ruby>動きます<rt>うごきます</rt></ruby>", meaning: "Chuyển động, chạy", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "やめます", romaji: ["yamemasu"], rubyHtml: "やめます", meaning: "Bỏ, thôi việc công ty", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "きをつけます", romaji: ["kiotsukemasu"], rubyHtml: "<ruby>気をつけます<rt>きをつけます</rt></ruby>", meaning: "Chú ý, bảo trọng", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "りゅうがくします", romaji: ["ryuugakushimasu"], rubyHtml: "<ruby>留学します<rt>りゅうがくします</rt></ruby>", meaning: "Du học", reviewTopicId: "b21_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Tính từ & Trạng thái
+    {
+      id: "b21_tinhtu_trangthai",
+      name: "B. Tính từ & Trạng thái",
+      selected: true,
+      items: [
+        { kana: "むだ", romaji: ["muda"], rubyHtml: "むだ", meaning: "Vô ích, lãng phí" },
+        { kana: "ふべん", romaji: ["fuben"], rubyHtml: "<ruby>不<rt>ふ</rt></ruby><ruby>便<rt>べん</rt></ruby>", meaning: "Bất tiện" },
+        { kana: "おなじ", romaji: ["onaji"], rubyHtml: "<ruby>同<rt>おな</rt></ruby>じ", meaning: "Giống" },
+        { kana: "すごい", romaji: ["sugoi"], rubyHtml: "すごい", meaning: "Giỏi, siêu, tuyệt vời" },
+      ],
+    },
+
+    // C. Danh từ & Xã hội
+    {
+      id: "b21_danhtu",
+      name: "C. Danh từ & Xã hội",
+      selected: true,
+      items: [
+        { kana: "しゅしょう", romaji: ["shushou","shusho"], rubyHtml: "<ruby>首<rt>しゅ</rt></ruby><ruby>相<rt>しょう</rt></ruby>", meaning: "Thủ tướng" },
+        { kana: "だいとうりょう", romaji: ["daitouryou","daitoryo"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>統<rt>とう</rt></ruby><ruby>領<rt>りょう</rt></ruby>", meaning: "Tổng thống" },
+        { kana: "せいじ", romaji: ["seiji"], rubyHtml: "<ruby>政<rt>せい</rt></ruby><ruby>治<rt>じ</rt></ruby>", meaning: "Chính trị" },
+        { kana: "ニュース", romaji: ["nyu-su","nyusu"], rubyHtml: "ニュース", meaning: "Tin tức" },
+        { kana: "スピーチ", romaji: ["supi-chi","supichi"], rubyHtml: "スピーチ", meaning: "Bài phát biểu" },
+        { kana: "しあい", romaji: ["shiai"], rubyHtml: "<ruby>試<rt>し</rt></ruby><ruby>合<rt>あい</rt></ruby>", meaning: "Trận đấu" },
+        { kana: "アルバイト", romaji: ["arubaito"], rubyHtml: "アルバイト", meaning: "Việc làm thêm" },
+        { kana: "いけん", romaji: ["iken"], rubyHtml: "<ruby>意<rt>い</rt></ruby><ruby>見<rt>けん</rt></ruby>", meaning: "Ý kiến" },
+        { kana: "はなし", romaji: ["hanashi"], rubyHtml: "<ruby>話<rt>はなし</rt></ruby>", meaning: "Câu chuyện, bài nói" },
+        { kana: "ユーモア", romaji: ["yu-moa","yumoa"], rubyHtml: "ユーモア", meaning: "Hài hước" },
+        { kana: "デザイン", romaji: ["dezain"], rubyHtml: "デザイン", meaning: "Thiết kế" },
+        { kana: "こうつう", romaji: ["koutsuu","kotsu"], rubyHtml: "<ruby>交<rt>こう</rt></ruby><ruby>通<rt>つう</rt></ruby>", meaning: "Giao thông" },
+        { kana: "ラッシュ", romaji: ["rasshu"], rubyHtml: "ラッシュ", meaning: "Giờ cao điểm" },
+        { kana: "カンガルー", romaji: ["kangaruu","kangaru"], rubyHtml: "カンガルー", meaning: "Chuột túi Kangaroo" },
+        { kana: "ほんとう", romaji: ["hontou"], rubyHtml: "<ruby>本当<rt>ほんとう</rt></ruby>", meaning: "Sự thật", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "うそ", romaji: ["uso"], rubyHtml: "うそ", meaning: "Sự giả dối, lời nói dối", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "じどうしゃ", romaji: ["jidousha"], rubyHtml: "<ruby>自動車<rt>じどうしゃ</rt></ruby>", meaning: "Ô tô, xe hơi", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "ぶっか", romaji: ["bukka"], rubyHtml: "<ruby>物価<rt>ぶっか</rt></ruby>", meaning: "Giá cả, mức giá", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "ほうそう", romaji: ["housou"], rubyHtml: "<ruby>放送<rt>ほうそう</rt></ruby>", meaning: "Phát, phát thanh", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "アニメ", romaji: ["anime"], rubyHtml: "アニメ", meaning: "Phim hoạt hình Nhật Bản", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "マンガ", romaji: ["manga"], rubyHtml: "マンガ", meaning: "Truyện tranh", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "ゆめ", romaji: ["yume"], rubyHtml: "<ruby>夢<rt>ゆめ</rt></ruby>", meaning: "Giấc mơ", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "てんさい", romaji: ["tensai"], rubyHtml: "<ruby>天才<rt>てんさい</rt></ruby>", meaning: "Thiên tài", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "ちきゅう", romaji: ["chikyuu"], rubyHtml: "<ruby>地球<rt>ちきゅう</rt></ruby>", meaning: "Trái đất", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "つき", romaji: ["tsuki"], rubyHtml: "<ruby>月<rt>つき</rt></ruby>", meaning: "Mặt trăng, trăng", reviewTopicId: "b21_bosung_sach_tap1" },
+      ],
+    },
+
+    // D. Trạng từ & Cụm từ giao tiếp
+    {
+      id: "b21_trangtu_giaotiep",
+      name: "D. Trạng từ & Cụm từ giao tiếp",
+      selected: true,
+      items: [
+        { kana: "さいきん", romaji: ["saikin"], rubyHtml: "<ruby>最<rt>さい</rt></ruby><ruby>近<rt>きん</rt></ruby>", meaning: "Gần đây" },
+        { kana: "たぶん", romaji: ["tabun"], rubyHtml: "たぶん", meaning: "Chắc là, có thể" },
+        { kana: "きっと", romaji: ["kitto"], rubyHtml: "きっと", meaning: "Chắc chắn, nhất định" },
+        { kana: "ほんとうに", romaji: ["hontouni","hontoni"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby><ruby>当<rt>とう</rt></ruby>に", meaning: "Thật sự" },
+        { kana: "そんなに", romaji: ["sonnani"], rubyHtml: "そんなに", meaning: "(Không) ~ lắm" },
+        { kana: "について", romaji: ["nitsuite"], rubyHtml: "～について", meaning: "Về ～" },
+        { kana: "しかたがありません", romaji: ["shikatagaarimasen"], rubyHtml: "しかたがありません", meaning: "Không còn cách nào khác" },
+        { kana: "しばらくですね", romaji: ["shibarakudesune"], rubyHtml: "しばらくですね", meaning: "Lâu rồi không gặp" },
+        { kana: "でものみませんか", romaji: ["demonomimasenka"], rubyHtml: "～でも<ruby>飲<rt>の</rt></ruby>みませんか", meaning: "Uống (cà phê, rượu...) nhé" },
+        { kana: "みないと", romaji: ["minaito"], rubyHtml: "<ruby>見<rt>み</rt></ruby>ないと…", meaning: "Phải xem…" },
+        { kana: "もちろん", romaji: ["mochiron"], rubyHtml: "もちろん", meaning: "Tất nhiên" },
+        { kana: "ひさしぶりですね", romaji: ["hisashiburidesune"], rubyHtml: "<ruby>久しぶりですね<rt>ひさしぶりですね</rt></ruby>", meaning: "Đã lâu không gặp anh/chị", reviewTopicId: "b21_bosung_sach_tap1" },
+        { kana: "もうかえらないと", romaji: ["moukaeranaito"], rubyHtml: "<ruby>もう帰らないと<rt>もうかえらないと</rt></ruby>", meaning: "Tôi phải về bây giờ không thì...", reviewTopicId: "b21_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 22
+  // ========================================
   22: [
-    { id: 'b22_dongtu', name: 'A. Động từ mặc đồ & Sinh ra', selected: true, items: [
-      { kana: 'きます', romaji: ['kimasu', 'kiru'], rubyHtml: '<ruby>着<rt>き</rt></ruby>ます', meaning: 'Mặc [áo sơ mi...]' },
-      { kana: 'はきます', romaji: ['hakimasu', 'haku'], rubyHtml: 'はきます', meaning: 'Đi, mang [giày, quần...]' },
-      { kana: 'かぶります', romaji: ['kaburimasu', 'kaburu'], rubyHtml: 'かぶります', meaning: 'Đội [nón, mũ...]' },
-      { kana: 'かけます', romaji: ['kakemasu', 'kakeru'], rubyHtml: 'かけます', meaning: 'Đeo [kính...]' },
-      { kana: 'うまれます', romaji: ['umaremasu', 'umareru'], rubyHtml: '<ruby>生<rt>うま</rt></ruby>れます', meaning: 'Sinh ra' }
-    ]},
-    { id: 'b22_trangphuc', name: 'B. Trang phục & Phụ kiện', selected: true, items: [
-      { kana: 'コート', romaji: ['ko-to', 'koto'], rubyHtml: 'コート', meaning: 'Áo khoác' },
-      { kana: 'スーツ', romaji: ['su-tsu', 'sutsu'], rubyHtml: 'スーツ', meaning: 'Bộ com-lê' },
-      { kana: 'セーター', romaji: ['se-ta-', 'seta'], rubyHtml: 'セーター', meaning: 'Áo len' },
-      { kana: 'ぼうし', romaji: ['boushi', 'boshi'], rubyHtml: '<ruby>帽<rt>ぼう</rt></ruby><ruby>子<rt>し</rt></ruby>', meaning: 'Nón, mũ' },
-      { kana: 'めがね', romaji: ['megane'], rubyHtml: '<ruby>眼鏡<rt>めがね</rt></ruby>', meaning: 'Kính mắt' }
-    ]},
-    { id: 'b22_nhacua', name: 'C. Nhà cửa, Phòng ở & Đồ dùng', selected: true, items: [
-      { kana: 'やちん', romaji: ['yachin'], rubyHtml: '<ruby>家<rt>や</rt></ruby><ruby>賃<rt>ちん</rt></ruby>', meaning: 'Tiền thuê nhà' },
-      { kana: 'ダイニングキッチン', romaji: ['dainingu-kitchin', 'dainingukitchin'], rubyHtml: 'ダイニングキッチン', meaning: 'Phòng ăn kèm bếp' },
-      { kana: 'わしつ', romaji: ['washitsu'], rubyHtml: '<ruby>和<rt>わ</rt></ruby><ruby>室<rt>しつ</rt></ruby>', meaning: 'Phòng kiểu Nhật' },
-      { kana: 'おしいれ', romaji: ['oshiire'], rubyHtml: '<ruby>押<rt>お</rt></ruby>し<ruby>入<rt>い</rt></ruby>れ', meaning: 'Tủ âm tường (để chăn gối kiểu Nhật)' },
-      { kana: 'ふとん', romaji: ['futon'], rubyHtml: '<ruby>布<rt>ふ</rt></ruby><ruby>団<rt>とん</rt></ruby>', meaning: 'Chăn, đệm' },
-      { kana: 'アパート', romaji: ['apa-to', 'apato'], rubyHtml: 'アパート', meaning: 'Căn hộ, nhà chung cư' }
-    ]},
-    { id: 'b22_trangtu_giaotiep', name: 'D. Trạng từ, Địa danh & Giao tiếp', selected: true, items: [
-      { kana: 'よく', romaji: ['yoku'], rubyHtml: 'よく', meaning: 'Thường, hay' },
-      { kana: 'おめでとうございます', romaji: ['omedetougozaimasu', 'omedetogozaimasu'], rubyHtml: 'おめでとうございます', meaning: 'Chúc mừng' },
-      { kana: 'こちら', romaji: ['kochira'], rubyHtml: 'こちら', meaning: 'Cái này (lịch sự của これ)' },
-      { kana: 'うーん', romaji: ['uun', 'un'], rubyHtml: 'うーん', meaning: 'Để tôi xem / ừ / thế nào nhỉ' },
-      { kana: 'パリ', romaji: ['pari'], rubyHtml: 'パリ', meaning: 'Pa-ri (Paris)' },
-      { kana: 'ばんりのちょうじょう', romaji: ['banrinochoujou', 'banrinochojo'], rubyHtml: '<ruby>万<rt>ばん</rt></ruby><ruby>里<rt>り</rt></ruby>の<ruby>長<rt>ちょう</rt></ruby><ruby>城<rt>じょう</rt></ruby>', meaning: 'Vạn Lý Trường Thành' },
-      { kana: 'よかかいはつセンター', romaji: ['yokakaihatsusenta-'], rubyHtml: '<ruby>余<rt>よ</rt></ruby><ruby>暇<rt>か</rt></ruby><ruby>開<rt>かい</rt></ruby><ruby>発<rt>はつ</rt></ruby>センター', meaning: 'Trung tâm phát triển hoạt động giải trí' },
-      { kana: 'レジャーはくしょ', romaji: ['reja-hakusho', 'rejahakusho'], rubyHtml: 'レジャー<ruby>白<rt>はく</rt></ruby><ruby>書<rt>しょ</rt></ruby>', meaning: 'Sách trắng về giải trí' }
-    ]}
+    // A. Động từ mặc đồ & Sinh ra
+    {
+      id: "b22_dongtu",
+      name: "A. Động từ mặc đồ & Sinh ra",
+      selected: true,
+      items: [
+        { kana: "きます", romaji: ["kimasu","kiru"], rubyHtml: "<ruby>着<rt>き</rt></ruby>ます", meaning: "Mặc [áo sơ mi...]" },
+        { kana: "はきます", romaji: ["hakimasu","haku"], rubyHtml: "はきます", meaning: "Đi, mang [giày, quần...]" },
+        { kana: "かぶります", romaji: ["kaburimasu","kaburu"], rubyHtml: "かぶります", meaning: "Đội [nón, mũ...]" },
+        { kana: "かけます", romaji: ["kakemasu","kakeru"], rubyHtml: "かけます", meaning: "Đeo [kính...]" },
+        { kana: "うまれます", romaji: ["umaremasu","umareru"], rubyHtml: "<ruby>生<rt>うま</rt></ruby>れます", meaning: "Sinh ra" },
+        { kana: "します", romaji: ["shimasu"], rubyHtml: "します", meaning: "Đeo cà vạt", reviewTopicId: "b22_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Trang phục & Phụ kiện
+    {
+      id: "b22_trangphuc",
+      name: "B. Trang phục & Phụ kiện",
+      selected: true,
+      items: [
+        { kana: "コート", romaji: ["ko-to","koto"], rubyHtml: "コート", meaning: "Áo khoác" },
+        { kana: "スーツ", romaji: ["su-tsu","sutsu"], rubyHtml: "スーツ", meaning: "Bộ com-lê" },
+        { kana: "セーター", romaji: ["se-ta-","seta"], rubyHtml: "セーター", meaning: "Áo len" },
+        { kana: "ぼうし", romaji: ["boushi","boshi"], rubyHtml: "<ruby>帽<rt>ぼう</rt></ruby><ruby>子<rt>し</rt></ruby>", meaning: "Nón, mũ" },
+        { kana: "めがね", romaji: ["megane"], rubyHtml: "<ruby>眼鏡<rt>めがね</rt></ruby>", meaning: "Kính mắt" },
+      ],
+    },
+
+    // C. Nhà cửa, Phòng ở & Thiết bị
+    {
+      id: "b22_nhacua",
+      name: "C. Nhà cửa, Phòng ở & Thiết bị",
+      selected: true,
+      items: [
+        { kana: "やちん", romaji: ["yachin"], rubyHtml: "<ruby>家<rt>や</rt></ruby><ruby>賃<rt>ちん</rt></ruby>", meaning: "Tiền thuê nhà" },
+        { kana: "ダイニングキッチン", romaji: ["dainingu-kitchin","dainingukitchin"], rubyHtml: "ダイニングキッチン", meaning: "Phòng ăn kèm bếp" },
+        { kana: "わしつ", romaji: ["washitsu"], rubyHtml: "<ruby>和<rt>わ</rt></ruby><ruby>室<rt>しつ</rt></ruby>", meaning: "Phòng kiểu Nhật" },
+        { kana: "おしいれ", romaji: ["oshiire"], rubyHtml: "<ruby>押<rt>お</rt></ruby>し<ruby>入<rt>い</rt></ruby>れ", meaning: "Tủ âm tường (để chăn gối kiểu Nhật)" },
+        { kana: "ふとん", romaji: ["futon"], rubyHtml: "<ruby>布<rt>ふ</rt></ruby><ruby>団<rt>とん</rt></ruby>", meaning: "Chăn, đệm" },
+        { kana: "アパート", romaji: ["apa-to","apato"], rubyHtml: "アパート", meaning: "Căn hộ, nhà chung cư" },
+        { kana: "ロボット", romaji: ["robotto"], rubyHtml: "ロボット", meaning: "Rô-bốt", reviewTopicId: "b22_bosung_sach_tap1" },
+      ],
+    },
+
+    // D. Trạng từ, Địa danh & Giao tiếp
+    {
+      id: "b22_trangtu_giaotiep",
+      name: "D. Trạng từ, Địa danh & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "よく", romaji: ["yoku"], rubyHtml: "よく", meaning: "Thường, hay" },
+        { kana: "おめでとうございます", romaji: ["omedetougozaimasu","omedetogozaimasu"], rubyHtml: "おめでとうございます", meaning: "Chúc mừng" },
+        { kana: "こちら", romaji: ["kochira"], rubyHtml: "こちら", meaning: "Cái này (lịch sự của これ)" },
+        { kana: "うーん", romaji: ["uun","un"], rubyHtml: "うーん", meaning: "Để tôi xem / ừ / thế nào nhỉ" },
+        { kana: "パリ", romaji: ["pari"], rubyHtml: "パリ", meaning: "Pa-ri (Paris)" },
+        { kana: "ばんりのちょうじょう", romaji: ["banrinochoujou","banrinochojo"], rubyHtml: "<ruby>万<rt>ばん</rt></ruby><ruby>里<rt>り</rt></ruby>の<ruby>長<rt>ちょう</rt></ruby><ruby>城<rt>じょう</rt></ruby>", meaning: "Vạn Lý Trường Thành" },
+        { kana: "よかかいはつセンター", romaji: ["yokakaihatsusenta-"], rubyHtml: "<ruby>余<rt>よ</rt></ruby><ruby>暇<rt>か</rt></ruby><ruby>開<rt>かい</rt></ruby><ruby>発<rt>はつ</rt></ruby>センター", meaning: "Trung tâm phát triển hoạt động giải trí" },
+        { kana: "レジャーはくしょ", romaji: ["reja-hakusho","rejahakusho"], rubyHtml: "レジャー<ruby>白<rt>はく</rt></ruby><ruby>書<rt>しょ</rt></ruby>", meaning: "Sách trắng về giải trí" },
+        { kana: "えーと", romaji: ["eeto"], rubyHtml: "えーと", meaning: "Ừ, à", reviewTopicId: "b22_bosung_sach_tap1" },
+        { kana: "おさがしですか", romaji: ["osagashidesuka"], rubyHtml: "<ruby>お探しですか<rt>おさがしですか</rt></ruby>", meaning: "Anh/chị tìm ~ à?", reviewTopicId: "b22_bosung_sach_tap1" },
+        { kana: "では", romaji: ["dewa"], rubyHtml: "では", meaning: "Thế, vậy nhé", reviewTopicId: "b22_bosung_sach_tap1" },
+      ],
+    },
+
+    // E. Đại từ, Đồ ăn & Khái niệm
+    {
+      id: "b22_danhtu",
+      name: "E. Đại từ, Đồ ăn & Khái niệm",
+      selected: true,
+      items: [
+        { kana: "わたしたち", romaji: ["watashitachi"], rubyHtml: "<ruby>私たち<rt>わたしたち</rt></ruby>", meaning: "Chúng tôi, chúng ta", reviewTopicId: "b22_bosung_sach_tap1" },
+        { kana: "ケーキ", romaji: ["keeki"], rubyHtml: "ケーキ", meaning: "Bánh ngọt", reviewTopicId: "b22_bosung_sach_tap1" },
+        { kana: "おべんとう", romaji: ["obentou"], rubyHtml: "<ruby>お弁当<rt>おべんとう</rt></ruby>", meaning: "Cơm hộp", reviewTopicId: "b22_bosung_sach_tap1" },
+        { kana: "ユーモア", romaji: ["yuumoa"], rubyHtml: "ユーモア", meaning: "Sự hài hước", reviewTopicId: "b22_bosung_sach_tap1" },
+        { kana: "つごう", romaji: ["tsugou"], rubyHtml: "<ruby>都合<rt>つごう</rt></ruby>", meaning: "Sự thích hợp, thuận tiện", reviewTopicId: "b22_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 23
+  // ========================================
   23: [
-    { id: 'b23_dongtu', name: 'A. Động từ & Thao tác', selected: true, items: [
-      { kana: 'ききます', romaji: ['kikimasu', 'kiku'], rubyHtml: '<ruby>聞<rt>き</rt></ruby>きます', meaning: 'Hỏi [giáo viên]' },
-      { kana: 'まわします', romaji: ['mawashimasu', 'mawasu'], rubyHtml: '<ruby>回<rt>まわ</rt></ruby>します', meaning: 'Vặn (nút)' },
-      { kana: 'ひきます', romaji: ['hikimasu', 'hiku'], rubyHtml: '<ruby>引<rt>ひ</rt></ruby>きます', meaning: 'Kéo' },
-      { kana: 'かえます', romaji: ['kaemasu', 'kaeru'], rubyHtml: '<ruby>変<rt>か</rt></ruby>えます', meaning: 'Đổi, thay đổi' },
-      { kana: 'さわります', romaji: ['sawarimasu', 'sawaru'], rubyHtml: '<ruby>触<rt>さわ</rt></ruby>ります', meaning: 'Sờ, chạm vào' },
-      { kana: 'でます', romaji: ['demasu', 'deru'], rubyHtml: '<ruby>出<rt>で</rt></ruby>ます', meaning: 'Ra, đi ra [tiền thối/nước]' },
-      { kana: 'うごきます', romaji: ['ugokimasu', 'ugoku'], rubyHtml: '<ruby>動<rt>うご</rt></ruby>きます', meaning: 'Chuyển động, chạy' },
-      { kana: 'あるきます', romaji: ['arukimasu', 'aruku'], rubyHtml: '<ruby>歩<rt>ある</rt></ruby>きます', meaning: 'Đi bộ [trên đường]' },
-      { kana: 'わたります', romaji: ['watarimasu', 'wataru'], rubyHtml: '<ruby>渡<rt>わた</rt></ruby>ります', meaning: 'Qua, đi qua [cầu]' },
-      { kana: 'きをつけます', romaji: ['kiotsukemasu'], rubyHtml: '<ruby>気<rt>き</rt></ruby>をつけます', meaning: 'Chú ý, cẩn thận' },
-      { kana: 'ひっこしします', romaji: ['hikkoshishimasu'], rubyHtml: '<ruby>引<rt>ひっ</rt></ruby><ruby>越<rt>こ</rt></ruby>しします', meaning: 'Chuyển nhà' }
-    ]},
-    { id: 'b23_thietbi_dovat', name: 'B. Thiết bị, Máy móc & Giấy tờ', selected: true, items: [
-      { kana: 'でんきや', romaji: ['denkiya'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>気<rt>き</rt></ruby><ruby>屋<rt>や</rt></ruby>', meaning: 'Cửa hàng đồ điện' },
-      { kana: 'こしょう', romaji: ['koshou', 'kosho'], rubyHtml: '<ruby>故<rt>こ</rt></ruby><ruby>障<rt>しょう</rt></ruby>', meaning: 'Hỏng, sự cố' },
-      { kana: 'や', romaji: ['ya'], rubyHtml: '～<ruby>屋<rt>や</rt></ruby>', meaning: 'Cửa hàng ～' },
-      { kana: 'サイズ', romaji: ['saizu'], rubyHtml: 'サイズ', meaning: 'Cỡ, kích thước' },
-      { kana: 'おと', romaji: ['oto'], rubyHtml: '<ruby>音<rt>おと</rt></ruby>', meaning: 'Âm thanh' },
-      { kana: 'きかい', romaji: ['kikai'], rubyHtml: '<ruby>機<rt>き</rt></ruby><ruby>械<rt>かい</rt></ruby>', meaning: 'Máy móc' },
-      { kana: 'つまみ', romaji: ['tsumami'], rubyHtml: 'つまみ', meaning: 'Núm vặn' },
-      { kana: 'たてもの', romaji: ['tatemono'], rubyHtml: '<ruby>建<rt>たて</rt></ruby><ruby>物<rt>もの</rt></ruby>', meaning: 'Tòa nhà' },
-      { kana: 'がいこくじんとうろくしょう', romaji: ['gaikokujintourokushou', 'gaikokujintorokusho'], rubyHtml: '<ruby>外<rt>がい</rt></ruby><ruby>国<rt>こく</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>登<rt>とう</rt></ruby><ruby>録<rt>ろく</rt></ruby><ruby>証<rt>しょう</rt></ruby>', meaning: 'Thẻ đăng ký người nước ngoài' }
-    ]},
-    { id: 'b23_duongxa_diadiem', name: 'C. Đường xá & Vị trí nơi chốn', selected: true, items: [
-      { kana: 'みち', romaji: ['michi'], rubyHtml: '<ruby>道<rt>みち</rt></ruby>', meaning: 'Đường' },
-      { kana: 'こうさてん', romaji: ['kousaten', 'kosaten'], rubyHtml: '<ruby>交<rt>こう</rt></ruby><ruby>差<rt>さ</rt></ruby><ruby>点<rt>てん</rt></ruby>', meaning: 'Ngã tư' },
-      { kana: 'しんごう', romaji: ['shingou', 'shingo'], rubyHtml: '<ruby>信<rt>しん</rt></ruby><ruby>号<rt>ごう</rt></ruby>', meaning: 'Đèn tín hiệu' },
-      { kana: 'かど', romaji: ['kado'], rubyHtml: '<ruby>角<rt>かど</rt></ruby>', meaning: 'Góc' },
-      { kana: 'はし', romaji: ['hashi'], rubyHtml: '<ruby>橋<rt>はし</rt></ruby>', meaning: 'Cầu' },
-      { kana: 'ちゅうしゃじょう', romaji: ['chuushajou', 'chushajo'], rubyHtml: '<ruby>駐<rt>ちゅう</rt></ruby><ruby>車<rt>しゃ</rt></ruby><ruby>場<rt>じょう</rt></ruby>', meaning: 'Bãi đỗ xe' }
-    ]},
-    { id: 'b23_giaotiep_khac', name: 'D. Số thứ tự, Ngày lễ & Giao tiếp', selected: true, items: [
-      { kana: 'おしょうがつ', romaji: ['oshougatsu', 'oshogatsu'], rubyHtml: 'お<ruby>正<rt>しょう</rt></ruby><ruby>月<rt>がつ</rt></ruby>', meaning: 'Tết Dương lịch' },
-      { kana: 'め', romaji: ['me'], rubyHtml: '～<ruby>目<rt>め</rt></ruby>', meaning: 'Thứ ～, số ～ (chỉ thứ tự)' },
-      { kana: 'ごちそうさまでした', romaji: ['gochisousamadeshita', 'gochisosamadeshita'], rubyHtml: 'ごちそうさまでした', meaning: 'Xin cảm ơn anh chị đã đãi tôi bữa cơm' }
-    ]}
+    // A. Động từ & Thao tác
+    {
+      id: "b23_dongtu",
+      name: "A. Động từ & Thao tác",
+      selected: true,
+      items: [
+        { kana: "ききます", romaji: ["kikimasu","kiku"], rubyHtml: "<ruby>聞<rt>き</rt></ruby>きます", meaning: "Hỏi [giáo viên]" },
+        { kana: "まわします", romaji: ["mawashimasu","mawasu"], rubyHtml: "<ruby>回<rt>まわ</rt></ruby>します", meaning: "Vặn (nút)" },
+        { kana: "ひきます", romaji: ["hikimasu","hiku"], rubyHtml: "<ruby>引<rt>ひ</rt></ruby>きます", meaning: "Kéo" },
+        { kana: "かえます", romaji: ["kaemasu","kaeru"], rubyHtml: "<ruby>変<rt>か</rt></ruby>えます", meaning: "Đổi, thay đổi" },
+        { kana: "さわります", romaji: ["sawarimasu","sawaru"], rubyHtml: "<ruby>触<rt>さわ</rt></ruby>ります", meaning: "Sờ, chạm vào" },
+        { kana: "でます", romaji: ["demasu","deru"], rubyHtml: "<ruby>出<rt>で</rt></ruby>ます", meaning: "Ra, đi ra [tiền thối/nước]" },
+        { kana: "うごきます", romaji: ["ugokimasu","ugoku"], rubyHtml: "<ruby>動<rt>うご</rt></ruby>きます", meaning: "Chuyển động, chạy" },
+        { kana: "あるきます", romaji: ["arukimasu","aruku"], rubyHtml: "<ruby>歩<rt>ある</rt></ruby>きます", meaning: "Đi bộ [trên đường]" },
+        { kana: "わたります", romaji: ["watarimasu","wataru"], rubyHtml: "<ruby>渡<rt>わた</rt></ruby>ります", meaning: "Qua, đi qua [cầu]" },
+        { kana: "きをつけます", romaji: ["kiotsukemasu"], rubyHtml: "<ruby>気<rt>き</rt></ruby>をつけます", meaning: "Chú ý, cẩn thận" },
+        { kana: "ひっこしします", romaji: ["hikkoshishimasu"], rubyHtml: "<ruby>引<rt>ひっ</rt></ruby><ruby>越<rt>こ</rt></ruby>しします", meaning: "Chuyển nhà" },
+        { kana: "まがります", romaji: ["magarimasu"], rubyHtml: "<ruby>曲がります<rt>まがります</rt></ruby>", meaning: "Rẽ, quẹo", reviewTopicId: "b23_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Thiết bị, Vật dụng & Danh từ
+    {
+      id: "b23_thietbi_dovat",
+      name: "B. Thiết bị, Vật dụng & Danh từ",
+      selected: true,
+      items: [
+        { kana: "でんきや", romaji: ["denkiya"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>気<rt>き</rt></ruby><ruby>屋<rt>や</rt></ruby>", meaning: "Cửa hàng đồ điện" },
+        { kana: "こしょう", romaji: ["koshou","kosho"], rubyHtml: "<ruby>故<rt>こ</rt></ruby><ruby>障<rt>しょう</rt></ruby>", meaning: "Hỏng, sự cố" },
+        { kana: "や", romaji: ["ya"], rubyHtml: "～<ruby>屋<rt>や</rt></ruby>", meaning: "Cửa hàng ～" },
+        { kana: "サイズ", romaji: ["saizu"], rubyHtml: "サイズ", meaning: "Cỡ, kích thước" },
+        { kana: "おと", romaji: ["oto"], rubyHtml: "<ruby>音<rt>おと</rt></ruby>", meaning: "Âm thanh" },
+        { kana: "きかい", romaji: ["kikai"], rubyHtml: "<ruby>機<rt>き</rt></ruby><ruby>械<rt>かい</rt></ruby>", meaning: "Máy móc" },
+        { kana: "つまみ", romaji: ["tsumami"], rubyHtml: "つまみ", meaning: "Núm vặn" },
+        { kana: "たてもの", romaji: ["tatemono"], rubyHtml: "<ruby>建<rt>たて</rt></ruby><ruby>物<rt>もの</rt></ruby>", meaning: "Tòa nhà" },
+        { kana: "がいこくじんとうろくしょう", romaji: ["gaikokujintourokushou","gaikokujintorokusho"], rubyHtml: "<ruby>外<rt>がい</rt></ruby><ruby>国<rt>こく</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>登<rt>とう</rt></ruby><ruby>録<rt>ろく</rt></ruby><ruby>証<rt>しょう</rt></ruby>", meaning: "Thẻ đăng ký người nước ngoài" },
+        { kana: "おゆ", romaji: ["oyu"], rubyHtml: "<ruby>お湯<rt>おゆ</rt></ruby>", meaning: "Nước nóng", reviewTopicId: "b23_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Đường xá & Vị trí nơi chốn
+    {
+      id: "b23_duongxa_diadiem",
+      name: "C. Đường xá & Vị trí nơi chốn",
+      selected: true,
+      items: [
+        { kana: "みち", romaji: ["michi"], rubyHtml: "<ruby>道<rt>みち</rt></ruby>", meaning: "Đường" },
+        { kana: "こうさてん", romaji: ["kousaten","kosaten"], rubyHtml: "<ruby>交<rt>こう</rt></ruby><ruby>差<rt>さ</rt></ruby><ruby>点<rt>てん</rt></ruby>", meaning: "Ngã tư" },
+        { kana: "しんごう", romaji: ["shingou","shingo"], rubyHtml: "<ruby>信<rt>しん</rt></ruby><ruby>号<rt>ごう</rt></ruby>", meaning: "Đèn tín hiệu" },
+        { kana: "かど", romaji: ["kado"], rubyHtml: "<ruby>角<rt>かど</rt></ruby>", meaning: "Góc" },
+        { kana: "はし", romaji: ["hashi"], rubyHtml: "<ruby>橋<rt>はし</rt></ruby>", meaning: "Cầu" },
+        { kana: "ちゅうしゃじょう", romaji: ["chuushajou","chushajo"], rubyHtml: "<ruby>駐<rt>ちゅう</rt></ruby><ruby>車<rt>しゃ</rt></ruby><ruby>場<rt>じょう</rt></ruby>", meaning: "Bãi đỗ xe" },
+      ],
+    },
+
+    // D. Tính từ, Số lần, Số thứ tự & Giao tiếp
+    {
+      id: "b23_giaotiep_khac",
+      name: "D. Tính từ, Số lần, Số thứ tự & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "おしょうがつ", romaji: ["oshougatsu","oshogatsu"], rubyHtml: "お<ruby>正<rt>しょう</rt></ruby><ruby>月<rt>がつ</rt></ruby>", meaning: "Tết Dương lịch" },
+        { kana: "め", romaji: ["me"], rubyHtml: "～<ruby>目<rt>め</rt></ruby>", meaning: "Thứ ～, số ～ (chỉ thứ tự)" },
+        { kana: "ごちそうさまでした", romaji: ["gochisousamadeshita","gochisosamadeshita"], rubyHtml: "ごちそうさまでした", meaning: "Xin cảm ơn anh chị đã đãi tôi bữa cơm" },
+        { kana: "さびしい", romaji: ["sabishii"], rubyHtml: "<ruby>寂しい<rt>さびしい</rt></ruby>", meaning: "Buồn, cô đơn", reviewTopicId: "b23_bosung_sach_tap1" },
+        { kana: "なんかいも", romaji: ["nankaimo"], rubyHtml: "<ruby>何回も<rt>なんかいも</rt></ruby>", meaning: "Nhiều lần", reviewTopicId: "b23_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 24
+  // ========================================
   24: [
-    { id: 'b24_dongtu', name: 'A. Động từ cho/nhận & Hành động', selected: true, items: [
-      { kana: 'くれます', romaji: ['kuremasu', 'kureru'], rubyHtml: 'くれます', meaning: 'Cho, tặng (tôi)' },
-      { kana: 'つれていきます', romaji: ['tsureteikimasu'], rubyHtml: '<ruby>連<rt>つ</rt></ruby>れて<ruby>行<rt>い</rt></ruby>きます', meaning: 'Dẫn đi' },
-      { kana: 'つれてきます', romaji: ['tsuretekimasu'], rubyHtml: '<ruby>連<rt>つ</rt></ruby>れて<ruby>来<rt>き</rt></ruby>ます', meaning: 'Dẫn đến' },
-      { kana: 'おくります', romaji: ['okurimasu'], rubyHtml: '<ruby>送<rt>おく</rt></ruby>ります', meaning: 'Đưa đi, đưa đến, tiễn' },
-      { kana: 'しょうかいします', romaji: ['shoukaishimasu', 'shokaishimasu'], rubyHtml: '<ruby>紹<rt>しょう</rt></ruby><ruby>介<rt>かい</rt></ruby>します', meaning: 'Giới thiệu' },
-      { kana: 'あんないします', romaji: ['annaishimasu'], rubyHtml: '<ruby>案<rt>あん</rt></ruby><ruby>内<rt>ない</rt></ruby>します', meaning: 'Hướng dẫn, chỉ đường' },
-      { kana: 'せつめいします', romaji: ['setsumeishimasu'], rubyHtml: '<ruby>説<rt>せつ</rt></ruby><ruby>明<rt>めい</rt></ruby>します', meaning: 'Giải thích, trình bày' },
-      { kana: 'いれます', romaji: ['iremasu'], rubyHtml: 'いれます', meaning: 'Pha [cà phê]' }
-    ]},
-    { id: 'b24_xungho_danhtu', name: 'B. Xưng hô gia đình, Danh từ & Từ chỉ số lượng', selected: true, items: [
-      { kana: 'おじいさん', romaji: ['ojiisan', 'ojiichan'], rubyHtml: 'おじいさん / おじいちゃん', meaning: 'Ông nội, ông ngoại, ông' },
-      { kana: 'おばあさん', romaji: ['obaasan', 'obaachan'], rubyHtml: 'おばあさん / おばあちゃん', meaning: 'Bà nội, bà ngoại, bà' },
-      { kana: 'おじさん', romaji: ['ojisan'], rubyHtml: 'おじさん', meaning: 'Chú, bác, cậu' },
-      { kana: 'おばさん', romaji: ['obasan'], rubyHtml: 'おばさん', meaning: 'Cô, dì, bác gái' },
-      { kana: 'ははのひ', romaji: ['hahanohi'], rubyHtml: '<ruby>母<rt>はは</rt></ruby>の<ruby>日<rt>ひ</rt></ruby>', meaning: 'Ngày của Mẹ' },
-      { kana: 'ちちのひ', romaji: ['chichinohi'], rubyHtml: '<ruby>父<rt>ちち</rt></ruby>の<ruby>日<rt>ひ</rt></ruby>', meaning: 'Ngày của Cha' },
-      { kana: 'じゅんび', romaji: ['junbi'], rubyHtml: '<ruby>準<rt>じゅん</rt></ruby><ruby>備<rt>び</rt></ruby>', meaning: 'Sự chuẩn bị (～します: chuẩn bị)' },
-      { kana: 'いみ', romaji: ['imi'], rubyHtml: '<ruby>意<rt>い</rt></ruby><ruby>味<rt>み</rt></ruby>', meaning: 'Ý nghĩa' },
-      { kana: 'おかし', romaji: ['okashi', 'kashi'], rubyHtml: 'お<ruby>菓<rt>か</rt></ruby><ruby>子<rt>し</rt></ruby>', meaning: 'Bánh kẹo' },
-      { kana: 'ぜんぶ', romaji: ['zenbu'], rubyHtml: '<ruby>全<rt>ぜん</rt></ruby><ruby>部<rt>ぶ</rt></ruby>', meaning: 'Toàn bộ, tất cả' }
-    ]}
+    // A. Động từ cho/nhận & Hành động
+    {
+      id: "b24_dongtu",
+      name: "A. Động từ cho/nhận & Hành động",
+      selected: true,
+      items: [
+        { kana: "くれます", romaji: ["kuremasu","kureru"], rubyHtml: "くれます", meaning: "Cho, tặng (tôi)" },
+        { kana: "つれていきます", romaji: ["tsureteikimasu"], rubyHtml: "<ruby>連<rt>つ</rt></ruby>れて<ruby>行<rt>い</rt></ruby>きます", meaning: "Dẫn đi" },
+        { kana: "つれてきます", romaji: ["tsuretekimasu"], rubyHtml: "<ruby>連<rt>つ</rt></ruby>れて<ruby>来<rt>き</rt></ruby>ます", meaning: "Dẫn đến" },
+        { kana: "おくります", romaji: ["okurimasu"], rubyHtml: "<ruby>送<rt>おく</rt></ruby>ります", meaning: "Đưa đi, đưa đến, tiễn" },
+        { kana: "しょうかいします", romaji: ["shoukaishimasu","shokaishimasu"], rubyHtml: "<ruby>紹<rt>しょう</rt></ruby><ruby>介<rt>かい</rt></ruby>します", meaning: "Giới thiệu" },
+        { kana: "あんないします", romaji: ["annaishimasu"], rubyHtml: "<ruby>案<rt>あん</rt></ruby><ruby>内<rt>ない</rt></ruby>します", meaning: "Hướng dẫn, chỉ đường" },
+        { kana: "せつめいします", romaji: ["setsumeishimasu"], rubyHtml: "<ruby>説<rt>せつ</rt></ruby><ruby>明<rt>めい</rt></ruby>します", meaning: "Giải thích, trình bày" },
+        { kana: "いれます", romaji: ["iremasu"], rubyHtml: "いれます", meaning: "Pha [cà phê]" },
+        { kana: "なおします", romaji: ["naoshimasu"], rubyHtml: "<ruby>直します<rt>なおします</rt></ruby>", meaning: "Chữa, sửa", reviewTopicId: "b24_bosung_sach_tap1" },
+      ],
+    },
+
+    // B. Gia đình, Sinh hoạt & Danh từ
+    {
+      id: "b24_xungho_danhtu",
+      name: "B. Gia đình, Sinh hoạt & Danh từ",
+      selected: true,
+      items: [
+        { kana: "おじいさん", romaji: ["ojiisan","ojiichan"], rubyHtml: "おじいさん / おじいちゃん", meaning: "Ông nội, ông ngoại, ông" },
+        { kana: "おばあさん", romaji: ["obaasan","obaachan"], rubyHtml: "おばあさん / おばあちゃん", meaning: "Bà nội, bà ngoại, bà" },
+        { kana: "おじさん", romaji: ["ojisan"], rubyHtml: "おじさん", meaning: "Chú, bác, cậu" },
+        { kana: "おばさん", romaji: ["obasan"], rubyHtml: "おばさん", meaning: "Cô, dì, bác gái" },
+        { kana: "ははのひ", romaji: ["hahanohi"], rubyHtml: "<ruby>母<rt>はは</rt></ruby>の<ruby>日<rt>ひ</rt></ruby>", meaning: "Ngày của Mẹ" },
+        { kana: "ちちのひ", romaji: ["chichinohi"], rubyHtml: "<ruby>父<rt>ちち</rt></ruby>の<ruby>日<rt>ひ</rt></ruby>", meaning: "Ngày của Cha" },
+        { kana: "じゅんび", romaji: ["junbi"], rubyHtml: "<ruby>準<rt>じゅん</rt></ruby><ruby>備<rt>び</rt></ruby>", meaning: "Sự chuẩn bị (～します: chuẩn bị)" },
+        { kana: "いみ", romaji: ["imi"], rubyHtml: "<ruby>意<rt>い</rt></ruby><ruby>味<rt>み</rt></ruby>", meaning: "Ý nghĩa" },
+        { kana: "おかし", romaji: ["okashi","kashi"], rubyHtml: "お<ruby>菓<rt>か</rt></ruby><ruby>子<rt>し</rt></ruby>", meaning: "Bánh kẹo" },
+        { kana: "ぜんぶ", romaji: ["zenbu"], rubyHtml: "<ruby>全<rt>ぜん</rt></ruby><ruby>部<rt>ぶ</rt></ruby>", meaning: "Toàn bộ, tất cả" },
+        { kana: "おじいちゃん", romaji: ["ojiichan"], rubyHtml: "おじいちゃん", meaning: "Ông nội, ông ngoại (thân mật)", reviewTopicId: "b24_bosung_sach_tap1" },
+        { kana: "おばあちゃん", romaji: ["obaachan"], rubyHtml: "おばあちゃん", meaning: "Bà nội, bà ngoại (thân mật)", reviewTopicId: "b24_bosung_sach_tap1" },
+        { kana: "ひっこし", romaji: ["hikkoshi"], rubyHtml: "<ruby>引っ越し<rt>ひっこし</rt></ruby>", meaning: "Sự chuyển nhà", reviewTopicId: "b24_bosung_sach_tap1" },
+        { kana: "ホームステイ", romaji: ["hoomusutei"], rubyHtml: "ホームステイ", meaning: "Homestay", reviewTopicId: "b24_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Trạng từ & Giao tiếp
+    {
+      id: "b24_giaotiep",
+      name: "C. Trạng từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "じぶんで", romaji: ["jibunde"], rubyHtml: "<ruby>自分で<rt>じぶんで</rt></ruby>", meaning: "Tự mình", reviewTopicId: "b24_bosung_sach_tap1" },
+        { kana: "ほかに", romaji: ["hokani"], rubyHtml: "ほかに", meaning: "Ngoài ra, bên cạnh đó", reviewTopicId: "b24_bosung_sach_tap1" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 25
+  // ========================================
   25: [
-    { id: 'b25_dongtu', name: 'A. Động từ & Hành động', selected: true, items: [
-      { kana: 'かんがえます', romaji: ['kangaemasu', 'kangaeru'], rubyHtml: '<ruby>考<rt>かんが</rt></ruby>えます', meaning: 'Nghĩ, suy nghĩ' },
-      { kana: 'つきます', romaji: ['tsukimasu', 'tsuku'], rubyHtml: '<ruby>着<rt>つ</rt></ruby>きます', meaning: 'Đến [ga]' },
-      { kana: 'りゅうがくします', romaji: ['ryuugakushimasu', 'ryugakushimasu'], rubyHtml: '<ruby>留<rt>りゅう</rt></ruby><ruby>学<rt>がく</rt></ruby>します', meaning: 'Du học' },
-      { kana: 'とります', romaji: ['torimasu', 'toru'], rubyHtml: '<ruby>取<rt>と</rt></ruby>ります', meaning: 'Thêm [tuổi]' },
-      { kana: 'てんきん', romaji: ['tenkin'], rubyHtml: '<ruby>転<rt>てん</rt></ruby><ruby>勤<rt>きん</rt></ruby>', meaning: 'Chuyển công tác (～します: chuyển công tác)' },
-      { kana: 'がんばります', romaji: ['ganbarimasu', 'ganbaru'], rubyHtml: '<ruby>頑<rt>がん</rt></ruby><ruby>張<rt>ば</rt></ruby>ります', meaning: 'Cố gắng' }
-    ]},
-    { id: 'b25_danhtu', name: 'B. Danh từ & Địa điểm', selected: true, items: [
-      { kana: 'いなか', romaji: ['inaka'], rubyHtml: '<ruby>田舎<rt>いなか</rt></ruby>', meaning: 'Quê, nông thôn' },
-      { kana: 'たいしかん', romaji: ['taishikan'], rubyHtml: '<ruby>大<rt>たい</rt></ruby><ruby>使<rt>し</rt></ruby><ruby>館<rt>かん</rt></ruby>', meaning: 'Đại sứ quán' },
-      { kana: 'グループ', romaji: ['guru-pu', 'gurupu'], rubyHtml: 'グループ', meaning: 'Nhóm, bạn bè' },
-      { kana: 'チャンス', romaji: ['chansu'], rubyHtml: 'チャンス', meaning: 'Cơ hội' },
-      { kana: 'おく', romaji: ['oku'], rubyHtml: '<ruby>億<rt>おく</rt></ruby>', meaning: 'Một trăm triệu' },
-      { kana: 'こと', romaji: ['koto'], rubyHtml: 'こと', meaning: 'Việc, chuyện' }
-    ]},
-    { id: 'b25_trangtu_giaotiep', name: 'C. Phó từ & Giao tiếp', selected: true, items: [
-      { kana: 'もし', romaji: ['moshi'], rubyHtml: 'もし', meaning: 'Nếu' },
-      { kana: 'いくら', romaji: ['ikura'], rubyHtml: 'いくら', meaning: 'Cho dù, thế nào' },
-      { kana: 'いっぱいのみましょう', romaji: ['ippainomimashou', 'ippainomimasho'], rubyHtml: '<ruby>一<rt>いっ</rt></ruby><ruby>杯<rt>ぱい</rt></ruby><ruby>飲<rt>の</rt></ruby>みましょう', meaning: 'Chúng ta cùng uống nhé' },
-      { kana: 'どうぞおげんきで', romaji: ['douzoogenkide', 'dozoogenkide'], rubyHtml: 'どうぞお<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>で', meaning: 'Chúc anh/chị mạnh khỏe' },
-      { kana: 'おせわになりました', romaji: ['osewaninarimashita'], rubyHtml: '（いろいろ）お<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>になりました', meaning: 'Anh/Chị đã giúp đỡ tôi nhiều' }
-    ]}
-  ],
-  // Thêm toàn bộ Bài 26 -> 50 vào mảng MINNA_LESSONS_DATA hiện tại trong data.js
+    // A. Động từ & Hành động
+    {
+      id: "b25_dongtu",
+      name: "A. Động từ & Hành động",
+      selected: true,
+      items: [
+        { kana: "かんがえます", romaji: ["kangaemasu","kangaeru"], rubyHtml: "<ruby>考<rt>かんが</rt></ruby>えます", meaning: "Nghĩ, suy nghĩ" },
+        { kana: "つきます", romaji: ["tsukimasu","tsuku"], rubyHtml: "<ruby>着<rt>つ</rt></ruby>きます", meaning: "Đến [ga]" },
+        { kana: "りゅうがくします", romaji: ["ryuugakushimasu","ryugakushimasu"], rubyHtml: "<ruby>留<rt>りゅう</rt></ruby><ruby>学<rt>がく</rt></ruby>します", meaning: "Du học" },
+        { kana: "とります", romaji: ["torimasu","toru"], rubyHtml: "<ruby>取<rt>と</rt></ruby>ります", meaning: "Thêm [tuổi]" },
+        { kana: "てんきん", romaji: ["tenkin"], rubyHtml: "<ruby>転<rt>てん</rt></ruby><ruby>勤<rt>きん</rt></ruby>", meaning: "Chuyển công tác (～します: chuyển công tác)" },
+        { kana: "がんばります", romaji: ["ganbarimasu","ganbaru"], rubyHtml: "<ruby>頑<rt>がん</rt></ruby><ruby>張<rt>ば</rt></ruby>ります", meaning: "Cố gắng" },
+        { kana: "たります", romaji: ["tarimasu"], rubyHtml: "<ruby>足ります<rt>たります</rt></ruby>", meaning: "Đủ", reviewTopicId: "b25_bosung_sach_tap1" },
+      ],
+    },
 
+    // B. Danh từ & Địa điểm
+    {
+      id: "b25_danhtu",
+      name: "B. Danh từ & Địa điểm",
+      selected: true,
+      items: [
+        { kana: "いなか", romaji: ["inaka"], rubyHtml: "<ruby>田舎<rt>いなか</rt></ruby>", meaning: "Quê, nông thôn" },
+        { kana: "たいしかん", romaji: ["taishikan"], rubyHtml: "<ruby>大<rt>たい</rt></ruby><ruby>使<rt>し</rt></ruby><ruby>館<rt>かん</rt></ruby>", meaning: "Đại sứ quán" },
+        { kana: "グループ", romaji: ["guru-pu","gurupu"], rubyHtml: "グループ", meaning: "Nhóm, bạn bè" },
+        { kana: "チャンス", romaji: ["chansu"], rubyHtml: "チャンス", meaning: "Cơ hội" },
+        { kana: "おく", romaji: ["oku"], rubyHtml: "<ruby>億<rt>おく</rt></ruby>", meaning: "Một trăm triệu" },
+        { kana: "こと", romaji: ["koto"], rubyHtml: "こと", meaning: "Việc, chuyện" },
+        { kana: "いみ", romaji: ["imi"], rubyHtml: "<ruby>意味<rt>いみ</rt></ruby>", meaning: "Nghĩa, ý nghĩa", reviewTopicId: "b25_bosung_sach_tap1" },
+        { kana: "ひま", romaji: ["hima"], rubyHtml: "<ruby>暇<rt>ひま</rt></ruby>", meaning: "Thời gian rảnh", reviewTopicId: "b25_bosung_sach_tap1" },
+        { kana: "ベトナム", romaji: ["betonamu"], rubyHtml: "ベトナム", meaning: "Việt Nam", reviewTopicId: "b25_bosung_sach_tap1" },
+      ],
+    },
+
+    // C. Phó từ & Giao tiếp
+    {
+      id: "b25_trangtu_giaotiep",
+      name: "C. Phó từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "もし", romaji: ["moshi"], rubyHtml: "もし", meaning: "Nếu" },
+        { kana: "いくら", romaji: ["ikura"], rubyHtml: "いくら", meaning: "Cho dù, thế nào" },
+        { kana: "いっぱいのみましょう", romaji: ["ippainomimashou","ippainomimasho"], rubyHtml: "<ruby>一<rt>いっ</rt></ruby><ruby>杯<rt>ぱい</rt></ruby><ruby>飲<rt>の</rt></ruby>みましょう", meaning: "Chúng ta cùng uống nhé" },
+        { kana: "どうぞおげんきで", romaji: ["douzoogenkide","dozoogenkide"], rubyHtml: "どうぞお<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>で", meaning: "Chúc anh/chị mạnh khỏe" },
+        { kana: "おせわになりました", romaji: ["osewaninarimashita"], rubyHtml: "（いろいろ）お<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>になりました", meaning: "Anh/Chị đã giúp đỡ tôi nhiều" },
+        { kana: "もしもし", romaji: ["moshimoshi"], rubyHtml: "もしもし", meaning: "A-lô", reviewTopicId: "b25_bosung_sach_tap1" },
+      ],
+    },
+
+  ],
+
+  // ========================================
+  // BÀI 26
+  // ========================================
   26: [
-    { id: 'b26_dongtu', name: 'A. Động từ & Trạng thái', selected: true, items: [
-      { kana: 'みます', romaji: ['mimasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>ます / <ruby>診<rt>み</rt></ruby>ます', meaning: 'Xem, khám bệnh' },
-      { kana: 'さがします', romaji: ['sagashimasu'], rubyHtml: '<ruby>探<rt>さが</rt></ruby>します / <ruby>捜<rt>さが</rt></ruby>します', meaning: 'Tìm, tìm kiếm' },
-      { kana: 'おくれます', romaji: ['okuremasu'], rubyHtml: '<ruby>遅<rt>おく</rt></ruby>れます', meaning: 'Chậm, muộn [cuộc hẹn]' },
-      { kana: 'やります', romaji: ['yarimasu'], rubyHtml: 'やります', meaning: 'Làm' },
-      { kana: 'さんかします', romaji: ['sankashimasu'], rubyHtml: '<ruby>参<rt>さん</rt></ruby><ruby>加<rt>か</rt></ruby>します', meaning: 'Tham gia, dự [buổi tiệc]' },
-      { kana: 'もうしこみます', romaji: ['moushikomimasu'], rubyHtml: '<ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>みます', meaning: 'Đăng ký' },
-      { kana: 'つごうがいい', romaji: ['tsugougaii'], rubyHtml: '<ruby>都<rt>つ</rt></ruby><ruby>合<rt>ごう</rt></ruby>がいい', meaning: 'Có thời gian, thuận tiện' },
-      { kana: 'つごうがわるい', romaji: ['tsugougawarui'], rubyHtml: '<ruby>都<rt>つ</rt></ruby><ruby>合<rt>ごう</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Không có thời gian, bận, bất tiện' },
-      { kana: 'きぶんがいい', romaji: ['kibungaii'], rubyHtml: '<ruby>気<rt>き</rt></ruby><ruby>分<rt>ぶん</rt></ruby>がいい', meaning: 'Cảm thấy tốt, khỏe' },
-      { kana: 'きぶんがわるい', romaji: ['kibungawarui'], rubyHtml: '<ruby>気<rt>き</rt></ruby><ruby>分<rt>ぶん</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Cảm thấy không tốt, mệt' },
-      { kana: 'かたづきます', romaji: ['katadzukimasu', 'katatsukimasu'], rubyHtml: '<ruby>片<rt>かた</rt></ruby><ruby>付<rt>づ</rt></ruby>きます', meaning: 'Được dọn dẹp ngăn nắp' },
-      { kana: 'だします', romaji: ['dashimasu'], rubyHtml: '<ruby>出<rt>だ</rt></ruby>します', meaning: 'Đổ, để [rác]' },
-      { kana: 'もえます', romaji: ['moemasu'], rubyHtml: '<ruby>燃<rt>も</rt></ruby>えます', meaning: 'Cháy được [rác]' },
-      { kana: 'れんらくします', romaji: ['renrakushimasu'], rubyHtml: '<ruby>連<rt>れん</rt></ruby><ruby>絡<rt>らく</rt></ruby>します', meaning: 'Liên lạc' },
-      { kana: 'まにあいます', romaji: ['maniaimasu'], rubyHtml: '<ruby>間<rt>ま</rt></ruby>に<ruby>合<rt>あ</rt></ruby>います', meaning: 'Kịp [giờ]' }
-    ]},
-    { id: 'b26_dovat', name: 'B. Đồ vật & Rác', selected: true, items: [
-      { kana: 'ごみ', romaji: ['gomi'], rubyHtml: 'ごみ', meaning: 'Rác' },
-      { kana: 'おきば', romaji: ['okiba'], rubyHtml: '<ruby>置<rt>お</rt></ruby>き<ruby>場<rt>ば</rt></ruby>', meaning: 'Nơi để' },
-      { kana: 'よこ', romaji: ['yoko'], rubyHtml: '<ruby>横<rt>よこ</rt></ruby>', meaning: 'Bên cạnh' },
-      { kana: 'びん', romaji: ['bin'], rubyHtml: '<ruby>瓶<rt>びん</rt></ruby>', meaning: 'Cái chai' },
-      { kana: 'かん', romaji: ['kan'], rubyHtml: '<ruby>缶<rt>かん</rt></ruby>', meaning: 'Cái lon, hộp kim loại' },
-      { kana: 'おゆ', romaji: ['oyu'], rubyHtml: '［お］<ruby>湯<rt>ゆ</rt></ruby>', meaning: 'Nước nóng' },
-      { kana: 'ガス', romaji: ['gasu'], rubyHtml: 'ガス', meaning: 'Ga' },
-      { kana: 'げっすいきん', romaji: ['gessuikin'], rubyHtml: '<ruby>月<rt>げつ</rt></ruby>・<ruby>水<rt>すい</rt></ruby>・<ruby>金<rt>きん</rt></ruby>', meaning: 'Thứ hai, thứ tư, thứ sáu' }
-    ]},
-    { id: 'b26_vutru', name: 'C. Vũ trụ, Xã hội & Khác', selected: true, items: [
-      { kana: 'しんぶんしゃ', romaji: ['shinbunsha'], rubyHtml: '<ruby>新<rt>しん</rt></ruby><ruby>聞<rt>ぶん</rt></ruby><ruby>社<rt>しゃ</rt></ruby>', meaning: 'Tòa soạn báo' },
-      { kana: 'じゅうどう', romaji: ['juudou'], rubyHtml: '<ruby>柔<rt>じゅう</rt></ruby><ruby>道<rt>どう</rt></ruby>', meaning: 'Võ Judo' },
-      { kana: 'うんどうかい', romaji: ['undoukai'], rubyHtml: '<ruby>運<rt>うん</rt></ruby><ruby>動<rt>どう</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Hội thi thể thao' },
-      { kana: 'ばしょ', romaji: ['basho'], rubyHtml: '<ruby>場<rt>ば</rt></ruby><ruby>所<rt>しょ</rt></ruby>', meaning: 'Địa điểm' },
-      { kana: 'ボランティア', romaji: ['borantia'], rubyHtml: 'ボランティア', meaning: 'Tình nguyện viên' },
-      { kana: 'うちゅう', romaji: ['uchuu'], rubyHtml: '<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby>', meaning: 'Vũ trụ' },
-      { kana: 'うちゅうせん', romaji: ['uchuusen'], rubyHtml: '<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby><ruby>船<rt>せん</rt></ruby>', meaning: 'Tàu vũ trụ' },
-      { kana: 'うちゅうひこうし', romaji: ['uchuuhikoushi'], rubyHtml: '<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby><ruby>飛<rt>ひ</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>士<rt>し</rt></ruby>', meaning: 'Nhà du hành vũ trụ' },
-      { kana: 'こわい', romaji: ['kowai'], rubyHtml: '<ruby>怖<rt>こわ</rt></ruby>い', meaning: 'Sợ' },
-      { kana: 'こどものひ', romaji: ['kodomonohi'], rubyHtml: 'こどもの<ruby>日<rt>ひ</rt></ruby>', meaning: 'Ngày trẻ em' },
-      { kana: 'べん', romaji: ['ben'], rubyHtml: '～<ruby>弁<rt>べん</rt></ruby>', meaning: 'Tiếng ~, giọng ~' },
-      { kana: 'がいしゃ', romaji: ['gaisha'], rubyHtml: '～<ruby>会<rt>がい</rt></ruby><ruby>社<rt>しゃ</rt></ruby>', meaning: 'Công ty ~' },
-      { kana: 'でんしメール', romaji: ['denshime-ru'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>子<rt>し</rt></ruby>メール', meaning: 'Thư điện tử, e-mail' },
-      { kana: 'べつの', romaji: ['betsuno'], rubyHtml: '<ruby>別<rt>べつ</rt></ruby>の', meaning: 'Khác' }
-    ]},
-    { id: 'b26_giaotiep', name: 'D. Giao tiếp & Trạng từ', selected: true, items: [
-      { kana: 'こんど', romaji: ['kondo'], rubyHtml: '<ruby>今<rt>こん</rt></ruby><ruby>度<rt>ど</rt></ruby>', meaning: 'Lần tới' },
-      { kana: 'ずいぶん', romaji: ['zuibun'], rubyHtml: 'ずいぶん', meaning: 'Khá, tương đối' },
-      { kana: 'ちょくせつ', romaji: ['chokusetsu'], rubyHtml: '<ruby>直<rt>ちょく</rt></ruby><ruby>接<rt>せつ</rt></ruby>', meaning: 'Trực tiếp' },
-      { kana: 'いつでも', romaji: ['itsudemo'], rubyHtml: 'いつでも', meaning: 'Lúc nào cũng' },
-      { kana: 'どこでも', romaji: ['dokodemo'], rubyHtml: 'どこでも', meaning: 'Ở đâu cũng' },
-      { kana: 'だれでも', romaji: ['daredemo'], rubyHtml: 'だれでも', meaning: 'Ai cũng' },
-      { kana: 'なんでも', romaji: ['nandemo'], rubyHtml: '<ruby>何<rt>なん</rt></ruby>でも', meaning: 'Cái gì cũng' },
-      { kana: 'こんな', romaji: ['konna'], rubyHtml: 'こんな～', meaning: '~ Như thế này' },
-      { kana: 'そんな', romaji: ['sonna'], rubyHtml: 'そんな～', meaning: '~ Như thế đó' },
-      { kana: 'あんな', romaji: ['anna'], rubyHtml: 'あんな～', meaning: '~ Như thế kia' },
-      { kana: 'こまったなあ', romaji: ['komattanaa'], rubyHtml: '<ruby>困<rt>こま</rt></ruby>ったなあ', meaning: 'Gay quá! / Làm thế nào đây!' }
-    ]}
+    // A. Động từ & Trạng thái
+    {
+      id: "b26_dongtu",
+      name: "A. Động từ & Trạng thái",
+      selected: true,
+      items: [
+        { kana: "みます", romaji: ["mimasu"], rubyHtml: "<ruby>見<rt>み</rt></ruby>ます / <ruby>診<rt>み</rt></ruby>ます", meaning: "Xem, khám bệnh" },
+        { kana: "さがします", romaji: ["sagashimasu"], rubyHtml: "<ruby>探<rt>さが</rt></ruby>します / <ruby>捜<rt>さが</rt></ruby>します", meaning: "Tìm, tìm kiếm" },
+        { kana: "おくれます", romaji: ["okuremasu"], rubyHtml: "<ruby>遅<rt>おく</rt></ruby>れます", meaning: "Chậm, muộn [cuộc hẹn]" },
+        { kana: "やります", romaji: ["yarimasu"], rubyHtml: "やります", meaning: "Làm" },
+        { kana: "さんかします", romaji: ["sankashimasu"], rubyHtml: "<ruby>参<rt>さん</rt></ruby><ruby>加<rt>か</rt></ruby>します", meaning: "Tham gia, dự [buổi tiệc]" },
+        { kana: "もうしこみます", romaji: ["moushikomimasu"], rubyHtml: "<ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>みます", meaning: "Đăng ký" },
+        { kana: "つごうがいい", romaji: ["tsugougaii"], rubyHtml: "<ruby>都<rt>つ</rt></ruby><ruby>合<rt>ごう</rt></ruby>がいい", meaning: "Có thời gian, thuận tiện" },
+        { kana: "つごうがわるい", romaji: ["tsugougawarui"], rubyHtml: "<ruby>都<rt>つ</rt></ruby><ruby>合<rt>ごう</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い", meaning: "Không có thời gian, bận, bất tiện" },
+        { kana: "きぶんがいい", romaji: ["kibungaii"], rubyHtml: "<ruby>気<rt>き</rt></ruby><ruby>分<rt>ぶん</rt></ruby>がいい", meaning: "Cảm thấy tốt, khỏe" },
+        { kana: "きぶんがわるい", romaji: ["kibungawarui"], rubyHtml: "<ruby>気<rt>き</rt></ruby><ruby>分<rt>ぶん</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い", meaning: "Cảm thấy không tốt, mệt" },
+        { kana: "かたづきます", romaji: ["katadzukimasu","katatsukimasu"], rubyHtml: "<ruby>片<rt>かた</rt></ruby><ruby>付<rt>づ</rt></ruby>きます", meaning: "Được dọn dẹp ngăn nắp" },
+        { kana: "だします", romaji: ["dashimasu"], rubyHtml: "<ruby>出<rt>だ</rt></ruby>します", meaning: "Đổ, để [rác]" },
+        { kana: "もえます", romaji: ["moemasu"], rubyHtml: "<ruby>燃<rt>も</rt></ruby>えます", meaning: "Cháy được [rác]" },
+        { kana: "れんらくします", romaji: ["renrakushimasu"], rubyHtml: "<ruby>連<rt>れん</rt></ruby><ruby>絡<rt>らく</rt></ruby>します", meaning: "Liên lạc" },
+        { kana: "まにあいます", romaji: ["maniaimasu"], rubyHtml: "<ruby>間<rt>ま</rt></ruby>に<ruby>合<rt>あ</rt></ruby>います", meaning: "Kịp [giờ]" },
+      ],
+    },
+
+    // B. Đồ vật & Rác
+    {
+      id: "b26_dovat",
+      name: "B. Đồ vật & Rác",
+      selected: true,
+      items: [
+        { kana: "ごみ", romaji: ["gomi"], rubyHtml: "ごみ", meaning: "Rác" },
+        { kana: "おきば", romaji: ["okiba"], rubyHtml: "<ruby>置<rt>お</rt></ruby>き<ruby>場<rt>ば</rt></ruby>", meaning: "Nơi để" },
+        { kana: "よこ", romaji: ["yoko"], rubyHtml: "<ruby>横<rt>よこ</rt></ruby>", meaning: "Bên cạnh" },
+        { kana: "びん", romaji: ["bin"], rubyHtml: "<ruby>瓶<rt>びん</rt></ruby>", meaning: "Cái chai" },
+        { kana: "かん", romaji: ["kan"], rubyHtml: "<ruby>缶<rt>かん</rt></ruby>", meaning: "Cái lon, hộp kim loại" },
+        { kana: "おゆ", romaji: ["oyu"], rubyHtml: "［お］<ruby>湯<rt>ゆ</rt></ruby>", meaning: "Nước nóng" },
+        { kana: "ガス", romaji: ["gasu"], rubyHtml: "ガス", meaning: "Ga" },
+        { kana: "げっすいきん", romaji: ["gessuikin"], rubyHtml: "<ruby>月<rt>げつ</rt></ruby>・<ruby>水<rt>すい</rt></ruby>・<ruby>金<rt>きん</rt></ruby>", meaning: "Thứ hai, thứ tư, thứ sáu" },
+      ],
+    },
+
+    // C. Vũ trụ, Xã hội & Khác
+    {
+      id: "b26_vutru",
+      name: "C. Vũ trụ, Xã hội & Khác",
+      selected: true,
+      items: [
+        { kana: "しんぶんしゃ", romaji: ["shinbunsha"], rubyHtml: "<ruby>新<rt>しん</rt></ruby><ruby>聞<rt>ぶん</rt></ruby><ruby>社<rt>しゃ</rt></ruby>", meaning: "Tòa soạn báo" },
+        { kana: "じゅうどう", romaji: ["juudou"], rubyHtml: "<ruby>柔<rt>じゅう</rt></ruby><ruby>道<rt>どう</rt></ruby>", meaning: "Võ Judo" },
+        { kana: "うんどうかい", romaji: ["undoukai"], rubyHtml: "<ruby>運<rt>うん</rt></ruby><ruby>動<rt>どう</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Hội thi thể thao" },
+        { kana: "ばしょ", romaji: ["basho"], rubyHtml: "<ruby>場<rt>ば</rt></ruby><ruby>所<rt>しょ</rt></ruby>", meaning: "Địa điểm" },
+        { kana: "ボランティア", romaji: ["borantia"], rubyHtml: "ボランティア", meaning: "Tình nguyện viên" },
+        { kana: "うちゅう", romaji: ["uchuu"], rubyHtml: "<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby>", meaning: "Vũ trụ" },
+        { kana: "うちゅうせん", romaji: ["uchuusen"], rubyHtml: "<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby><ruby>船<rt>せん</rt></ruby>", meaning: "Tàu vũ trụ" },
+        { kana: "うちゅうひこうし", romaji: ["uchuuhikoushi"], rubyHtml: "<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby><ruby>飛<rt>ひ</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>士<rt>し</rt></ruby>", meaning: "Nhà du hành vũ trụ" },
+        { kana: "こわい", romaji: ["kowai"], rubyHtml: "<ruby>怖<rt>こわ</rt></ruby>い", meaning: "Sợ" },
+        { kana: "こどものひ", romaji: ["kodomonohi"], rubyHtml: "こどもの<ruby>日<rt>ひ</rt></ruby>", meaning: "Ngày trẻ em" },
+        { kana: "べん", romaji: ["ben"], rubyHtml: "～<ruby>弁<rt>べん</rt></ruby>", meaning: "Tiếng ~, giọng ~" },
+        { kana: "がいしゃ", romaji: ["gaisha"], rubyHtml: "～<ruby>会<rt>がい</rt></ruby><ruby>社<rt>しゃ</rt></ruby>", meaning: "Công ty ~" },
+        { kana: "でんしメール", romaji: ["denshime-ru"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>子<rt>し</rt></ruby>メール", meaning: "Thư điện tử, e-mail" },
+        { kana: "べつの", romaji: ["betsuno"], rubyHtml: "<ruby>別<rt>べつ</rt></ruby>の", meaning: "Khác" },
+      ],
+    },
+
+    // D. Giao tiếp & Trạng từ
+    {
+      id: "b26_giaotiep",
+      name: "D. Giao tiếp & Trạng từ",
+      selected: true,
+      items: [
+        { kana: "こんど", romaji: ["kondo"], rubyHtml: "<ruby>今<rt>こん</rt></ruby><ruby>度<rt>ど</rt></ruby>", meaning: "Lần tới" },
+        { kana: "ずいぶん", romaji: ["zuibun"], rubyHtml: "ずいぶん", meaning: "Khá, tương đối" },
+        { kana: "ちょくせつ", romaji: ["chokusetsu"], rubyHtml: "<ruby>直<rt>ちょく</rt></ruby><ruby>接<rt>せつ</rt></ruby>", meaning: "Trực tiếp" },
+        { kana: "いつでも", romaji: ["itsudemo"], rubyHtml: "いつでも", meaning: "Lúc nào cũng" },
+        { kana: "どこでも", romaji: ["dokodemo"], rubyHtml: "どこでも", meaning: "Ở đâu cũng" },
+        { kana: "だれでも", romaji: ["daredemo"], rubyHtml: "だれでも", meaning: "Ai cũng" },
+        { kana: "なんでも", romaji: ["nandemo"], rubyHtml: "<ruby>何<rt>なん</rt></ruby>でも", meaning: "Cái gì cũng" },
+        { kana: "こんな", romaji: ["konna"], rubyHtml: "こんな～", meaning: "~ Như thế này" },
+        { kana: "そんな", romaji: ["sonna"], rubyHtml: "そんな～", meaning: "~ Như thế đó" },
+        { kana: "あんな", romaji: ["anna"], rubyHtml: "あんな～", meaning: "~ Như thế kia" },
+        { kana: "こまったなあ", romaji: ["komattanaa"], rubyHtml: "<ruby>困<rt>こま</rt></ruby>ったなあ", meaning: "Gay quá! / Làm thế nào đây!" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 27
+  // ========================================
   27: [
-    { id: 'b27_khanang', name: 'A. Động từ khả năng', selected: true, items: [
-      { kana: 'かいます', romaji: ['kaimasu'], rubyHtml: '<ruby>飼<rt>か</rt></ruby>います', meaning: 'Nuôi (động vật)' },
-      { kana: 'たてます', romaji: ['tatemasu'], rubyHtml: '<ruby>建<rt>た</rt></ruby>てます', meaning: 'Xây, xây dựng' },
-      { kana: 'はしります', romaji: ['hashirimasu'], rubyHtml: '<ruby>走<rt>はし</rt></ruby>ります', meaning: 'Chạy [trên đường]' },
-      { kana: 'とります', romaji: ['torimasu'], rubyHtml: '<ruby>取<rt>と</rt></ruby>ります', meaning: 'Xin [nghỉ]' },
-      { kana: 'みえます', romaji: ['miemasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>えます', meaning: 'Nhìn thấy [núi]' },
-      { kana: 'きこえます', romaji: ['kikoemasu'], rubyHtml: '<ruby>聞<rt>き</rt></ruby>こえます', meaning: 'Nghe thấy [âm thanh]' },
-      { kana: 'できます', romaji: ['dekimasu'], rubyHtml: 'できます', meaning: 'Được xây dựng lên, hoàn thành' },
-      { kana: 'ひらきます', romaji: ['hirakimasu'], rubyHtml: '<ruby>開<rt>ひら</rt></ruby>きます', meaning: 'Mở [lớp học]' },
-      { kana: 'とびます', romaji: ['tobimasu'], rubyHtml: '<ruby>飛<rt>と</rt></ruby>びます', meaning: 'Bay' },
-      { kana: 'つけます', romaji: ['tsukemasu'], rubyHtml: '<ruby>付<rt>つ</rt></ruby>けます', meaning: 'Lắp, ghép thêm' }
-    ]},
-    { id: 'b27_phongcanh', name: 'B. Phong cảnh & Động vật', selected: true, items: [
-      { kana: 'ペット', romaji: ['petto'], rubyHtml: 'ペット', meaning: 'Động vật cảnh (pet)' },
-      { kana: 'とり', romaji: ['tori'], rubyHtml: '<ruby>鳥<rt>とり</rt></ruby>', meaning: 'Chim' },
-      { kana: 'こえ', romaji: ['koe'], rubyHtml: '<ruby>声<rt>こえ</rt></ruby>', meaning: 'Tiếng nói, giọng nói' },
-      { kana: 'なみ', romaji: ['nami'], rubyHtml: '<ruby>波<rt>なみ</rt></ruby>', meaning: 'Sóng' },
-      { kana: 'はなび', romaji: ['hanabi'], rubyHtml: '<ruby>花<rt>はな</rt></ruby><ruby>火<rt>び</rt></ruby>', meaning: 'Pháo hoa' },
-      { kana: 'けしき', romaji: ['keshiki'], rubyHtml: '<ruby>景色<rt>けしき</rt></ruby>', meaning: 'Phong cảnh' },
-      { kana: 'ひるま', romaji: ['hiruma'], rubyHtml: '<ruby>昼<rt>ひる</rt></ruby><ruby>間<rt>ま</rt></ruby>', meaning: 'Thời gian ban ngày' },
-      { kana: 'むかし', romaji: ['mukashi'], rubyHtml: '<ruby>昔<rt>むかし</rt></ruby>', meaning: 'Ngày xưa, trước đây' },
-      { kana: 'そら', romaji: ['sora'], rubyHtml: '<ruby>空<rt>そら</rt></ruby>', meaning: 'Bầu trời' },
-      { kana: 'ドラえもん', romaji: ['doraemon'], rubyHtml: 'ドラえもん', meaning: 'Nhân vật Doraemon' }
-    ]},
-    { id: 'b27_dodung', name: 'C. Đồ dùng & Nhà cửa', selected: true, items: [
-      { kana: 'どうぐ', romaji: ['dougu'], rubyHtml: '<ruby>道<rt>どう</rt></ruby><ruby>具<rt>ぐ</rt></ruby>', meaning: 'Dụng cụ, công cụ' },
-      { kana: 'じどうはんばいき', romaji: ['jidouhanbaiki'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>動<rt>どう</rt></ruby><ruby>販<rt>はん</rt></ruby><ruby>売<rt>ばい</rt></ruby><ruby>機<rt>き</rt></ruby>', meaning: 'Máy bán tự động' },
-      { kana: 'つうしんはんばい', romaji: ['tsuushinhanbai'], rubyHtml: '<ruby>通<rt>つう</rt></ruby><ruby>信<rt>しん</rt></ruby><ruby>販<rt>はん</rt></ruby><ruby>売<rt>ばい</rt></ruby>', meaning: 'Thương mại viễn thông' },
-      { kana: 'クリーニング', romaji: ['kuri-ningu'], rubyHtml: 'クリーニング', meaning: 'Giặt ủi' },
-      { kana: 'マンション', romaji: ['manshon'], rubyHtml: 'マンション', meaning: 'Nhà chung cư' },
-      { kana: 'だいどころ', romaji: ['daidokoro'], rubyHtml: '<ruby>台<rt>だい</rt></ruby><ruby>所<rt>どころ</rt></ruby>', meaning: 'Bếp' },
-      { kana: 'きょうしつ', romaji: ['kyoushitsu'], rubyHtml: '～<ruby>教<rt>きょう</rt></ruby><ruby>室<rt>しつ</rt></ruby>', meaning: 'Lớp học ~' },
-      { kana: 'パーティールーム', romaji: ['pa-ti-ru-mu'], rubyHtml: 'パーティールーム', meaning: 'Phòng tiệc' },
-      { kana: 'ほんだな', romaji: ['hondana'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby><ruby>棚<rt>だな</rt></ruby>', meaning: 'Giá sách' },
-      { kana: 'いえ', romaji: ['ie'], rubyHtml: '<ruby>家<rt>いえ</rt></ruby>', meaning: 'Nhà' },
-      { kana: 'かたち', romaji: ['katachi'], rubyHtml: '<ruby>形<rt>かたち</rt></ruby>', meaning: 'Hình, dạng' },
-      { kana: 'ロボット', romaji: ['robotto'], rubyHtml: 'ロボット', meaning: 'Người máy, Rô-bốt' },
-      { kana: 'ポケット', romaji: ['poketto'], rubyHtml: 'ポケット', meaning: 'Túi áo, túi quần' }
-    ]},
-    { id: 'b27_uocmo', name: 'D. Ước mơ & Bổ trợ', selected: true, items: [
-      { kana: 'しか', romaji: ['shika'], rubyHtml: '～しか', meaning: 'Chỉ ~ (dùng với thể phủ định)' },
-      { kana: 'ほかの', romaji: ['hokano'], rubyHtml: 'ほかの', meaning: 'Khác' },
-      { kana: 'はっきり', romaji: ['hakkiri'], rubyHtml: 'はっきり', meaning: 'Rõ, rõ ràng' },
-      { kana: 'ほとんど', romaji: ['hotondo'], rubyHtml: 'ほとんど', meaning: 'Hầu hết, hầu như' },
-      { kana: 'かんさいくうこう', romaji: ['kansaikuukou'], rubyHtml: '<ruby>関<rt>かん</rt></ruby><ruby>西<rt>さい</rt></ruby><ruby>空<rt>くう</rt></ruby><ruby>港<rt>こう</rt></ruby>', meaning: 'Sân bay Kansai' },
-      { kana: 'あきはばら', romaji: ['akihabara'], rubyHtml: '<ruby>秋<rt>あき</rt></ruby><ruby>葉<rt>は</rt></ruby><ruby>原<rt>ばら</rt></ruby>', meaning: 'Khu đồ điện tử Akihabara' },
-      { kana: 'いず', romaji: ['izu'], rubyHtml: '<ruby>伊<rt>い</rt></ruby><ruby>豆<rt>ず</rt></ruby>', meaning: 'Bán đảo Izu' },
-      { kana: 'にちようだいく', romaji: ['nichiyoudaiku'], rubyHtml: '<ruby>日<rt>にち</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>大<rt>だい</rt></ruby><ruby>工<rt>く</rt></ruby>', meaning: 'Làm thợ mộc chủ nhật' },
-      { kana: 'ゆめ', romaji: ['yume'], rubyHtml: '<ruby>夢<rt>ゆめ</rt></ruby>', meaning: 'Giấc mơ, ước mơ' },
-      { kana: 'いつか', romaji: ['itsuka'], rubyHtml: 'いつか', meaning: 'Một ngày nào đó' },
-      { kana: 'すばらしい', romaji: ['subarashii'], rubyHtml: 'すばらしい', meaning: 'Tuyệt vời' },
-      { kana: 'こどもたち', romaji: ['kodomotachi'], rubyHtml: '<ruby>子<rt>こ</rt></ruby>どもたち', meaning: 'Trẻ em, con cái' },
-      { kana: 'だいすき', romaji: ['daisuki'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>好<rt>す</rt></ruby>き［な］', meaning: 'Rất thích' },
-      { kana: 'まんが', romaji: ['manga'], rubyHtml: '<ruby>漫<rt>まん</rt></ruby><ruby>画<rt>が</rt></ruby>', meaning: 'Truyện tranh' },
-      { kana: 'しゅじんこう', romaji: ['shujinkou'], rubyHtml: '<ruby>主<rt>しゅ</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>公<rt>こう</rt></ruby>', meaning: 'Nhân vật chính' },
-      { kana: 'ふしぎ', romaji: ['fushigi'], rubyHtml: '<ruby>不<rt>ふ</rt></ruby><ruby>思<rt>し</rt></ruby><ruby>議<rt>ぎ</rt></ruby>［な］', meaning: 'Bí ẩn, kỳ thú' },
-      { kana: 'たとえば', romaji: ['tatoeba'], rubyHtml: '<ruby>例<rt>たと</rt></ruby>えば', meaning: 'Ví dụ (như)' },
-      { kana: 'じゆうに', romaji: ['jiyuuni'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>由<rt>ゆう</rt></ruby>に', meaning: 'Tự do, tùy thích' },
-      { kana: 'じぶん', romaji: ['jibun'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>分<rt>ぶん</rt></ruby>', meaning: 'Bản thân, mình' },
-      { kana: 'しょうらい', romaji: ['shourai'], rubyHtml: '<ruby>将<rt>しょう</rt></ruby><ruby>来<rt>らい</rt></ruby>', meaning: 'Tương lai' }
-    ]}
+    // A. Động từ khả năng
+    {
+      id: "b27_khanang",
+      name: "A. Động từ khả năng",
+      selected: true,
+      items: [
+        { kana: "かいます", romaji: ["kaimasu"], rubyHtml: "<ruby>飼<rt>か</rt></ruby>います", meaning: "Nuôi (động vật)" },
+        { kana: "たてます", romaji: ["tatemasu"], rubyHtml: "<ruby>建<rt>た</rt></ruby>てます", meaning: "Xây, xây dựng" },
+        { kana: "はしります", romaji: ["hashirimasu"], rubyHtml: "<ruby>走<rt>はし</rt></ruby>ります", meaning: "Chạy [trên đường]" },
+        { kana: "とります", romaji: ["torimasu"], rubyHtml: "<ruby>取<rt>と</rt></ruby>ります", meaning: "Xin [nghỉ]" },
+        { kana: "みえます", romaji: ["miemasu"], rubyHtml: "<ruby>見<rt>み</rt></ruby>えます", meaning: "Nhìn thấy [núi]" },
+        { kana: "きこえます", romaji: ["kikoemasu"], rubyHtml: "<ruby>聞<rt>き</rt></ruby>こえます", meaning: "Nghe thấy [âm thanh]" },
+        { kana: "できます", romaji: ["dekimasu"], rubyHtml: "できます", meaning: "Được xây dựng lên, hoàn thành" },
+        { kana: "ひらきます", romaji: ["hirakimasu"], rubyHtml: "<ruby>開<rt>ひら</rt></ruby>きます", meaning: "Mở [lớp học]" },
+        { kana: "とびます", romaji: ["tobimasu"], rubyHtml: "<ruby>飛<rt>と</rt></ruby>びます", meaning: "Bay" },
+        { kana: "つけます", romaji: ["tsukemasu"], rubyHtml: "<ruby>付<rt>つ</rt></ruby>けます", meaning: "Lắp, ghép thêm" },
+      ],
+    },
+
+    // B. Phong cảnh & Động vật
+    {
+      id: "b27_phongcanh",
+      name: "B. Phong cảnh & Động vật",
+      selected: true,
+      items: [
+        { kana: "ペット", romaji: ["petto"], rubyHtml: "ペット", meaning: "Động vật cảnh (pet)" },
+        { kana: "とり", romaji: ["tori"], rubyHtml: "<ruby>鳥<rt>とり</rt></ruby>", meaning: "Chim" },
+        { kana: "こえ", romaji: ["koe"], rubyHtml: "<ruby>声<rt>こえ</rt></ruby>", meaning: "Tiếng nói, giọng nói" },
+        { kana: "なみ", romaji: ["nami"], rubyHtml: "<ruby>波<rt>なみ</rt></ruby>", meaning: "Sóng" },
+        { kana: "はなび", romaji: ["hanabi"], rubyHtml: "<ruby>花<rt>はな</rt></ruby><ruby>火<rt>び</rt></ruby>", meaning: "Pháo hoa" },
+        { kana: "けしき", romaji: ["keshiki"], rubyHtml: "<ruby>景色<rt>けしき</rt></ruby>", meaning: "Phong cảnh" },
+        { kana: "ひるま", romaji: ["hiruma"], rubyHtml: "<ruby>昼<rt>ひる</rt></ruby><ruby>間<rt>ま</rt></ruby>", meaning: "Thời gian ban ngày" },
+        { kana: "むかし", romaji: ["mukashi"], rubyHtml: "<ruby>昔<rt>むかし</rt></ruby>", meaning: "Ngày xưa, trước đây" },
+        { kana: "そら", romaji: ["sora"], rubyHtml: "<ruby>空<rt>そら</rt></ruby>", meaning: "Bầu trời" },
+        { kana: "ドラえもん", romaji: ["doraemon"], rubyHtml: "ドラえもん", meaning: "Nhân vật Doraemon" },
+      ],
+    },
+
+    // C. Đồ dùng & Nhà cửa
+    {
+      id: "b27_dodung",
+      name: "C. Đồ dùng & Nhà cửa",
+      selected: true,
+      items: [
+        { kana: "どうぐ", romaji: ["dougu"], rubyHtml: "<ruby>道<rt>どう</rt></ruby><ruby>具<rt>ぐ</rt></ruby>", meaning: "Dụng cụ, công cụ" },
+        { kana: "じどうはんばいき", romaji: ["jidouhanbaiki"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>動<rt>どう</rt></ruby><ruby>販<rt>はん</rt></ruby><ruby>売<rt>ばい</rt></ruby><ruby>機<rt>き</rt></ruby>", meaning: "Máy bán tự động" },
+        { kana: "つうしんはんばい", romaji: ["tsuushinhanbai"], rubyHtml: "<ruby>通<rt>つう</rt></ruby><ruby>信<rt>しん</rt></ruby><ruby>販<rt>はん</rt></ruby><ruby>売<rt>ばい</rt></ruby>", meaning: "Thương mại viễn thông" },
+        { kana: "クリーニング", romaji: ["kuri-ningu"], rubyHtml: "クリーニング", meaning: "Giặt ủi" },
+        { kana: "マンション", romaji: ["manshon"], rubyHtml: "マンション", meaning: "Nhà chung cư" },
+        { kana: "だいどころ", romaji: ["daidokoro"], rubyHtml: "<ruby>台<rt>だい</rt></ruby><ruby>所<rt>どころ</rt></ruby>", meaning: "Bếp" },
+        { kana: "きょうしつ", romaji: ["kyoushitsu"], rubyHtml: "～<ruby>教<rt>きょう</rt></ruby><ruby>室<rt>しつ</rt></ruby>", meaning: "Lớp học ~" },
+        { kana: "パーティールーム", romaji: ["pa-ti-ru-mu"], rubyHtml: "パーティールーム", meaning: "Phòng tiệc" },
+        { kana: "ほんだな", romaji: ["hondana"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby><ruby>棚<rt>だな</rt></ruby>", meaning: "Giá sách" },
+        { kana: "いえ", romaji: ["ie"], rubyHtml: "<ruby>家<rt>いえ</rt></ruby>", meaning: "Nhà" },
+        { kana: "かたち", romaji: ["katachi"], rubyHtml: "<ruby>形<rt>かたち</rt></ruby>", meaning: "Hình, dạng" },
+        { kana: "ロボット", romaji: ["robotto"], rubyHtml: "ロボット", meaning: "Người máy, Rô-bốt" },
+        { kana: "ポケット", romaji: ["poketto"], rubyHtml: "ポケット", meaning: "Túi áo, túi quần" },
+      ],
+    },
+
+    // D. Ước mơ & Bổ trợ
+    {
+      id: "b27_uocmo",
+      name: "D. Ước mơ & Bổ trợ",
+      selected: true,
+      items: [
+        { kana: "しか", romaji: ["shika"], rubyHtml: "～しか", meaning: "Chỉ ~ (dùng với thể phủ định)" },
+        { kana: "ほかの", romaji: ["hokano"], rubyHtml: "ほかの", meaning: "Khác" },
+        { kana: "はっきり", romaji: ["hakkiri"], rubyHtml: "はっきり", meaning: "Rõ, rõ ràng" },
+        { kana: "ほとんど", romaji: ["hotondo"], rubyHtml: "ほとんど", meaning: "Hầu hết, hầu như" },
+        { kana: "かんさいくうこう", romaji: ["kansaikuukou"], rubyHtml: "<ruby>関<rt>かん</rt></ruby><ruby>西<rt>さい</rt></ruby><ruby>空<rt>くう</rt></ruby><ruby>港<rt>こう</rt></ruby>", meaning: "Sân bay Kansai" },
+        { kana: "あきはばら", romaji: ["akihabara"], rubyHtml: "<ruby>秋<rt>あき</rt></ruby><ruby>葉<rt>は</rt></ruby><ruby>原<rt>ばら</rt></ruby>", meaning: "Khu đồ điện tử Akihabara" },
+        { kana: "いず", romaji: ["izu"], rubyHtml: "<ruby>伊<rt>い</rt></ruby><ruby>豆<rt>ず</rt></ruby>", meaning: "Bán đảo Izu" },
+        { kana: "にちようだいく", romaji: ["nichiyoudaiku"], rubyHtml: "<ruby>日<rt>にち</rt></ruby><ruby>曜<rt>よう</rt></ruby><ruby>大<rt>だい</rt></ruby><ruby>工<rt>く</rt></ruby>", meaning: "Làm thợ mộc chủ nhật" },
+        { kana: "ゆめ", romaji: ["yume"], rubyHtml: "<ruby>夢<rt>ゆめ</rt></ruby>", meaning: "Giấc mơ, ước mơ" },
+        { kana: "いつか", romaji: ["itsuka"], rubyHtml: "いつか", meaning: "Một ngày nào đó" },
+        { kana: "すばらしい", romaji: ["subarashii"], rubyHtml: "すばらしい", meaning: "Tuyệt vời" },
+        { kana: "こどもたち", romaji: ["kodomotachi"], rubyHtml: "<ruby>子<rt>こ</rt></ruby>どもたち", meaning: "Trẻ em, con cái" },
+        { kana: "だいすき", romaji: ["daisuki"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>好<rt>す</rt></ruby>き［な］", meaning: "Rất thích" },
+        { kana: "まんが", romaji: ["manga"], rubyHtml: "<ruby>漫<rt>まん</rt></ruby><ruby>画<rt>が</rt></ruby>", meaning: "Truyện tranh" },
+        { kana: "しゅじんこう", romaji: ["shujinkou"], rubyHtml: "<ruby>主<rt>しゅ</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>公<rt>こう</rt></ruby>", meaning: "Nhân vật chính" },
+        { kana: "ふしぎ", romaji: ["fushigi"], rubyHtml: "<ruby>不<rt>ふ</rt></ruby><ruby>思<rt>し</rt></ruby><ruby>議<rt>ぎ</rt></ruby>［な］", meaning: "Bí ẩn, kỳ thú" },
+        { kana: "たとえば", romaji: ["tatoeba"], rubyHtml: "<ruby>例<rt>たと</rt></ruby>えば", meaning: "Ví dụ (như)" },
+        { kana: "じゆうに", romaji: ["jiyuuni"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>由<rt>ゆう</rt></ruby>に", meaning: "Tự do, tùy thích" },
+        { kana: "じぶん", romaji: ["jibun"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>分<rt>ぶん</rt></ruby>", meaning: "Bản thân, mình" },
+        { kana: "しょうらい", romaji: ["shourai"], rubyHtml: "<ruby>将<rt>しょう</rt></ruby><ruby>来<rt>らい</rt></ruby>", meaning: "Tương lai" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 28
+  // ========================================
   28: [
-    { id: 'b28_dongtu', name: 'A. Động từ hành động', selected: true, items: [
-      { kana: 'うれます', romaji: ['uremasu'], rubyHtml: '［パンが～］<ruby>売<rt>う</rt></ruby>れます', meaning: 'Bán chạy [bánh mì]' },
-      { kana: 'おどります', romaji: ['odorimasu'], rubyHtml: '<ruby>踊<rt>おど</rt></ruby>ります', meaning: 'Nhảy, khiêu vũ' },
-      { kana: 'かみます', romaji: ['kamimasu'], rubyHtml: 'かみます', meaning: 'Nhai' },
-      { kana: 'えらびます', romaji: ['erabimasu'], rubyHtml: '<ruby>選<rt>えら</rt></ruby>びます', meaning: 'Chọn' },
-      { kana: 'ちがいます', romaji: ['chigaimasu'], rubyHtml: '<ruby>違<rt>ちが</rt></ruby>います', meaning: 'Khác' },
-      { kana: 'かよいます', romaji: ['kayoimasu'], rubyHtml: '［<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby>に～］<ruby>通<rt>かよ</rt></ruby>います', meaning: 'Đi đi về về [trường đại học]' },
-      { kana: 'メモします', romaji: ['memoshimasu'], rubyHtml: 'メモします', meaning: 'Ghi chép' },
-      { kana: 'おしゃべりします', romaji: ['oshaberishimasu'], rubyHtml: 'おしゃべりします', meaning: 'Nói chuyện, tán chuyện' }
-    ]},
-    { id: 'b28_tinhtu', name: 'B. Tính từ & Con người', selected: true, items: [
-      { kana: 'まじめ', romaji: ['majime'], rubyHtml: 'まじめ［な］', meaning: 'Nghiêm túc, nghiêm chỉnh' },
-      { kana: 'ねっしん', romaji: ['nesshin'], rubyHtml: '<ruby>熱<rt>ねっ</rt></ruby><ruby>心<rt>しん</rt></ruby>［な］', meaning: 'Nhiệt tình, hết lòng' },
-      { kana: 'やさしい', romaji: ['yasashii'], rubyHtml: '<ruby>優<rt>やさ</rt></ruby>しい', meaning: 'Hiền lành, tình cảm' },
-      { kana: 'えらい', romaji: ['erai'], rubyHtml: '<ruby>偉<rt>えら</rt></ruby>い', meaning: 'Vĩ đại, đáng kính' },
-      { kana: 'ちょうどいい', romaji: ['choudoii'], rubyHtml: 'ちょうどいい', meaning: 'Vừa đủ, vừa đúng' },
-      { kana: 'かたち', romaji: ['katachi'], rubyHtml: '<ruby>形<rt>かたち</rt></ruby>', meaning: 'Hình dáng' },
-      { kana: 'いろ', romaji: ['iro'], rubyHtml: '<ruby>色<rt>いろ</rt></ruby>', meaning: 'Màu sắc' },
-      { kana: 'かんりにん', romaji: ['kanrinin'], rubyHtml: '<ruby>管<rt>かん</rt></ruby><ruby>理<rt>り</rt></ruby><ruby>人<rt>にん</rt></ruby>', meaning: 'Người quản lý' },
-      { kana: 'むすこ', romaji: ['musuko'], rubyHtml: '<ruby>息子<rt>むすこ</rt></ruby>', meaning: 'Con trai (mình)' },
-      { kana: 'むすこさん', romaji: ['musukosan'], rubyHtml: '<ruby>息子<rt>むすこ</rt></ruby>さん', meaning: 'Con trai (người khác)' },
-      { kana: 'むすめ', romaji: ['musume'], rubyHtml: '<ruby>娘<rt>むすめ</rt></ruby>', meaning: 'Con gái (mình)' },
-      { kana: 'むすめさん', romaji: ['musumesan'], rubyHtml: '<ruby>娘<rt>むすめ</rt></ruby>さん', meaning: 'Con gái (người khác)' },
-      { kana: 'じぶん', romaji: ['jibun'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>分<rt>ぶん</rt></ruby>', meaning: 'Bản thân, mình' },
-      { kana: 'しょうらい', romaji: ['shourai'], rubyHtml: '<ruby>将<rt>しょう</rt></ruby><ruby>来<rt>らい</rt></ruby>', meaning: 'Tương lai' }
-    ]},
-    { id: 'b28_sanpham', name: 'C. Sản phẩm & Truyền thông', selected: true, items: [
-      { kana: 'しゅうかん', romaji: ['shuukan'], rubyHtml: '<ruby>習<rt>しゅう</rt></ruby><ruby>慣<rt>かん</rt></ruby>', meaning: 'Tập quán' },
-      { kana: 'けいけん', romaji: ['keiken'], rubyHtml: '<ruby>経<rt>けい</rt></ruby><ruby>験<rt>けん</rt></ruby>', meaning: 'Kinh nghiệm' },
-      { kana: 'ちから', romaji: ['chikara'], rubyHtml: '<ruby>力<rt>ちから</rt></ruby>', meaning: 'Sức lực, năng lực' },
-      { kana: 'にんきがあります', romaji: ['ninkigaarimasu'], rubyHtml: '［<ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>に］<ruby>人<rt>にん</rt></ruby><ruby>気<rt>き</rt></ruby>があります', meaning: 'Được [sinh viên] hâm mộ' },
-      { kana: 'あじ', romaji: ['aji'], rubyHtml: '<ruby>味<rt>あじ</rt></ruby>', meaning: 'Vị' },
-      { kana: 'ガム', romaji: ['gamu'], rubyHtml: 'ガム', meaning: 'Kẹo cao su' },
-      { kana: 'しなもの', romaji: ['shinamono'], rubyHtml: '<ruby>品<rt>しな</rt></ruby><ruby>物<rt>もの</rt></ruby>', meaning: 'Hàng hóa, mặt hàng' },
-      { kana: 'ねだん', romaji: ['nedan'], rubyHtml: '<ruby>値<rt>ね</rt></ruby><ruby>段<rt>だん</rt></ruby>', meaning: 'Giá' },
-      { kana: 'きゅうりょう', romaji: ['kyuuryou'], rubyHtml: '<ruby>給<rt>きゅう</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Lương' },
-      { kana: 'ボーナス', romaji: ['bo-nasu'], rubyHtml: 'ボーナス', meaning: 'Thưởng' },
-      { kana: 'ばんぐみ', romaji: ['bangumi'], rubyHtml: '<ruby>番<rt>ばん</rt></ruby><ruby>組<rt>ぐみ</rt></ruby>', meaning: 'Chương trình truyền hình' },
-      { kana: 'ドラマ', romaji: ['dorama'], rubyHtml: 'ドラマ', meaning: 'Phim truyền hình, kịch' },
-      { kana: 'しょうせつ', romaji: ['shousetsu'], rubyHtml: '<ruby>小<rt>しょう</rt></ruby><ruby>説<rt>せつ</rt></ruby>', meaning: 'Tiểu thuyết' },
-      { kana: 'しょうせつか', romaji: ['shousetsuka'], rubyHtml: '<ruby>小<rt>しょう</rt></ruby><ruby>説<rt>せつ</rt></ruby><ruby>家<rt>か</rt></ruby>', meaning: 'Tiểu thuyết gia, nhà văn' },
-      { kana: 'かしゅ', romaji: ['kashu'], rubyHtml: '<ruby>歌<rt>か</rt></ruby><ruby>手<rt>しゅ</rt></ruby>', meaning: 'Ca sĩ' },
-      { kana: 'おしらせ', romaji: ['oshirase'], rubyHtml: 'お<ruby>知<rt>し</rt></ruby>らせ', meaning: 'Thông báo' },
-      { kana: 'ひにち', romaji: ['hinichi'], rubyHtml: '<ruby>日<rt>ひ</rt></ruby>にち', meaning: 'Ngày' },
-      { kana: 'ど', romaji: ['do'], rubyHtml: '<ruby>土<rt>ど</rt></ruby>', meaning: 'Thứ bảy' },
-      { kana: 'たいいくかん', romaji: ['taiikukan'], rubyHtml: '<ruby>体<rt>たい</rt></ruby><ruby>育<rt>いく</rt></ruby><ruby>館<rt>かん</rt></ruby>', meaning: 'Nhà thi đấu thể thao' },
-      { kana: 'むりょう', romaji: ['muryou'], rubyHtml: '<ruby>無<rt>む</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Miễn phí' }
-    ]},
-    { id: 'b28_giaotiep', name: 'D. Giao tiếp & Trạng từ', selected: true, items: [
-      { kana: 'しばらく', romaji: ['shibaraku'], rubyHtml: 'しばらく', meaning: 'Một lúc, một lát' },
-      { kana: 'たいてい', romaji: ['taitei'], rubyHtml: 'たいてい', meaning: 'Thường, thông thường' },
-      { kana: 'それに', romaji: ['soreni'], rubyHtml: 'それに', meaning: 'Thêm vào đó là' },
-      { kana: 'それで', romaji: ['sorede'], rubyHtml: 'それで', meaning: 'Thế nên, do đó' },
-      { kana: 'おねがいがあるんですが', romaji: ['onegaigaarundasuga'], rubyHtml: '［ちょっと］お<ruby>願<rt>ねが</rt></ruby>いがあるんですが', meaning: 'Tôi có (chút) việc muốn nhờ anh/chị' },
-      { kana: 'ホームステイ', romaji: ['ho-musutei'], rubyHtml: 'ホームステイ', meaning: 'Homestay' }
-    ]}
+    // A. Động từ hành động
+    {
+      id: "b28_dongtu",
+      name: "A. Động từ hành động",
+      selected: true,
+      items: [
+        { kana: "うれます", romaji: ["uremasu"], rubyHtml: "［パンが～］<ruby>売<rt>う</rt></ruby>れます", meaning: "Bán chạy [bánh mì]" },
+        { kana: "おどります", romaji: ["odorimasu"], rubyHtml: "<ruby>踊<rt>おど</rt></ruby>ります", meaning: "Nhảy, khiêu vũ" },
+        { kana: "かみます", romaji: ["kamimasu"], rubyHtml: "かみます", meaning: "Nhai" },
+        { kana: "えらびます", romaji: ["erabimasu"], rubyHtml: "<ruby>選<rt>えら</rt></ruby>びます", meaning: "Chọn" },
+        { kana: "ちがいます", romaji: ["chigaimasu"], rubyHtml: "<ruby>違<rt>ちが</rt></ruby>います", meaning: "Khác" },
+        { kana: "かよいます", romaji: ["kayoimasu"], rubyHtml: "［<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby>に～］<ruby>通<rt>かよ</rt></ruby>います", meaning: "Đi đi về về [trường đại học]" },
+        { kana: "メモします", romaji: ["memoshimasu"], rubyHtml: "メモします", meaning: "Ghi chép" },
+        { kana: "おしゃべりします", romaji: ["oshaberishimasu"], rubyHtml: "おしゃべりします", meaning: "Nói chuyện, tán chuyện" },
+      ],
+    },
+
+    // B. Tính từ & Con người
+    {
+      id: "b28_tinhtu",
+      name: "B. Tính từ & Con người",
+      selected: true,
+      items: [
+        { kana: "まじめ", romaji: ["majime"], rubyHtml: "まじめ［な］", meaning: "Nghiêm túc, nghiêm chỉnh" },
+        { kana: "ねっしん", romaji: ["nesshin"], rubyHtml: "<ruby>熱<rt>ねっ</rt></ruby><ruby>心<rt>しん</rt></ruby>［な］", meaning: "Nhiệt tình, hết lòng" },
+        { kana: "やさしい", romaji: ["yasashii"], rubyHtml: "<ruby>優<rt>やさ</rt></ruby>しい", meaning: "Hiền lành, tình cảm" },
+        { kana: "えらい", romaji: ["erai"], rubyHtml: "<ruby>偉<rt>えら</rt></ruby>い", meaning: "Vĩ đại, đáng kính" },
+        { kana: "ちょうどいい", romaji: ["choudoii"], rubyHtml: "ちょうどいい", meaning: "Vừa đủ, vừa đúng" },
+        { kana: "かたち", romaji: ["katachi"], rubyHtml: "<ruby>形<rt>かたち</rt></ruby>", meaning: "Hình dáng" },
+        { kana: "いろ", romaji: ["iro"], rubyHtml: "<ruby>色<rt>いろ</rt></ruby>", meaning: "Màu sắc" },
+        { kana: "かんりにん", romaji: ["kanrinin"], rubyHtml: "<ruby>管<rt>かん</rt></ruby><ruby>理<rt>り</rt></ruby><ruby>人<rt>にん</rt></ruby>", meaning: "Người quản lý" },
+        { kana: "むすこ", romaji: ["musuko"], rubyHtml: "<ruby>息子<rt>むすこ</rt></ruby>", meaning: "Con trai (mình)" },
+        { kana: "むすこさん", romaji: ["musukosan"], rubyHtml: "<ruby>息子<rt>むすこ</rt></ruby>さん", meaning: "Con trai (người khác)" },
+        { kana: "むすめ", romaji: ["musume"], rubyHtml: "<ruby>娘<rt>むすめ</rt></ruby>", meaning: "Con gái (mình)" },
+        { kana: "むすめさん", romaji: ["musumesan"], rubyHtml: "<ruby>娘<rt>むすめ</rt></ruby>さん", meaning: "Con gái (người khác)" },
+        { kana: "じぶん", romaji: ["jibun"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>分<rt>ぶん</rt></ruby>", meaning: "Bản thân, mình" },
+        { kana: "しょうらい", romaji: ["shourai"], rubyHtml: "<ruby>将<rt>しょう</rt></ruby><ruby>来<rt>らい</rt></ruby>", meaning: "Tương lai" },
+      ],
+    },
+
+    // C. Sản phẩm & Truyền thông
+    {
+      id: "b28_sanpham",
+      name: "C. Sản phẩm & Truyền thông",
+      selected: true,
+      items: [
+        { kana: "しゅうかん", romaji: ["shuukan"], rubyHtml: "<ruby>習<rt>しゅう</rt></ruby><ruby>慣<rt>かん</rt></ruby>", meaning: "Tập quán" },
+        { kana: "けいけん", romaji: ["keiken"], rubyHtml: "<ruby>経<rt>けい</rt></ruby><ruby>験<rt>けん</rt></ruby>", meaning: "Kinh nghiệm" },
+        { kana: "ちから", romaji: ["chikara"], rubyHtml: "<ruby>力<rt>ちから</rt></ruby>", meaning: "Sức lực, năng lực" },
+        { kana: "にんきがあります", romaji: ["ninkigaarimasu"], rubyHtml: "［<ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>に］<ruby>人<rt>にん</rt></ruby><ruby>気<rt>き</rt></ruby>があります", meaning: "Được [sinh viên] hâm mộ" },
+        { kana: "あじ", romaji: ["aji"], rubyHtml: "<ruby>味<rt>あじ</rt></ruby>", meaning: "Vị" },
+        { kana: "ガム", romaji: ["gamu"], rubyHtml: "ガム", meaning: "Kẹo cao su" },
+        { kana: "しなもの", romaji: ["shinamono"], rubyHtml: "<ruby>品<rt>しな</rt></ruby><ruby>物<rt>もの</rt></ruby>", meaning: "Hàng hóa, mặt hàng" },
+        { kana: "ねだん", romaji: ["nedan"], rubyHtml: "<ruby>値<rt>ね</rt></ruby><ruby>段<rt>だん</rt></ruby>", meaning: "Giá" },
+        { kana: "きゅうりょう", romaji: ["kyuuryou"], rubyHtml: "<ruby>給<rt>きゅう</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Lương" },
+        { kana: "ボーナス", romaji: ["bo-nasu"], rubyHtml: "ボーナス", meaning: "Thưởng" },
+        { kana: "ばんぐみ", romaji: ["bangumi"], rubyHtml: "<ruby>番<rt>ばん</rt></ruby><ruby>組<rt>ぐみ</rt></ruby>", meaning: "Chương trình truyền hình" },
+        { kana: "ドラマ", romaji: ["dorama"], rubyHtml: "ドラマ", meaning: "Phim truyền hình, kịch" },
+        { kana: "しょうせつ", romaji: ["shousetsu"], rubyHtml: "<ruby>小<rt>しょう</rt></ruby><ruby>説<rt>せつ</rt></ruby>", meaning: "Tiểu thuyết" },
+        { kana: "しょうせつか", romaji: ["shousetsuka"], rubyHtml: "<ruby>小<rt>しょう</rt></ruby><ruby>説<rt>せつ</rt></ruby><ruby>家<rt>か</rt></ruby>", meaning: "Tiểu thuyết gia, nhà văn" },
+        { kana: "かしゅ", romaji: ["kashu"], rubyHtml: "<ruby>歌<rt>か</rt></ruby><ruby>手<rt>しゅ</rt></ruby>", meaning: "Ca sĩ" },
+        { kana: "おしらせ", romaji: ["oshirase"], rubyHtml: "お<ruby>知<rt>し</rt></ruby>らせ", meaning: "Thông báo" },
+        { kana: "ひにち", romaji: ["hinichi"], rubyHtml: "<ruby>日<rt>ひ</rt></ruby>にち", meaning: "Ngày" },
+        { kana: "ど", romaji: ["do"], rubyHtml: "<ruby>土<rt>ど</rt></ruby>", meaning: "Thứ bảy" },
+        { kana: "たいいくかん", romaji: ["taiikukan"], rubyHtml: "<ruby>体<rt>たい</rt></ruby><ruby>育<rt>いく</rt></ruby><ruby>館<rt>かん</rt></ruby>", meaning: "Nhà thi đấu thể thao" },
+        { kana: "むりょう", romaji: ["muryou"], rubyHtml: "<ruby>無<rt>む</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Miễn phí" },
+      ],
+    },
+
+    // D. Giao tiếp & Trạng từ
+    {
+      id: "b28_giaotiep",
+      name: "D. Giao tiếp & Trạng từ",
+      selected: true,
+      items: [
+        { kana: "しばらく", romaji: ["shibaraku"], rubyHtml: "しばらく", meaning: "Một lúc, một lát" },
+        { kana: "たいてい", romaji: ["taitei"], rubyHtml: "たいてい", meaning: "Thường, thông thường" },
+        { kana: "それに", romaji: ["soreni"], rubyHtml: "それに", meaning: "Thêm vào đó là" },
+        { kana: "それで", romaji: ["sorede"], rubyHtml: "それで", meaning: "Thế nên, do đó" },
+        { kana: "おねがいがあるんですが", romaji: ["onegaigaarundasuga"], rubyHtml: "［ちょっと］お<ruby>願<rt>ねが</rt></ruby>いがあるんですが", meaning: "Tôi có (chút) việc muốn nhờ anh/chị" },
+        { kana: "ホームステイ", romaji: ["ho-musutei"], rubyHtml: "ホームステイ", meaning: "Homestay" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 29
+  // ========================================
   29: [
-    { id: 'b29_tudongtu', name: 'A. Tự động từ (Hỏng / Bẩn)', selected: true, items: [
-      { kana: 'あきます', romaji: ['akimasu'], rubyHtml: '［ドアが～］<ruby>開<rt>あ</rt></ruby>きます', meaning: 'Mở [cửa ~]' },
-      { kana: 'しまります', romaji: ['shimarimasu'], rubyHtml: '［ドアが～］<ruby>閉<rt>しま</rt></ruby>ります', meaning: 'Đóng [cửa ~]' },
-      { kana: 'つきます', romaji: ['tsukimasu'], rubyHtml: '［でんきが～］<ruby>点<rt>つ</rt></ruby>きます', meaning: 'Sáng [điện ~]' },
-      { kana: 'きえます', romaji: ['kiemasu'], rubyHtml: '［でんきが～］<ruby>消<rt>き</rt></ruby>えます', meaning: 'Tắt [điện ~]' },
-      { kana: 'こみます', romaji: ['komimasu'], rubyHtml: '［みちが～］<ruby>込<rt>こ</rt></ruby>みます', meaning: 'Đông, tắc [đường ~]' },
-      { kana: 'すきます', romaji: ['sukimasu'], rubyHtml: '［みちが～］<ruby>空<rt>す</rt></ruby>きます', meaning: 'Vắng, thoáng [đường ~]' },
-      { kana: 'こわれます', romaji: ['kowaremasu'], rubyHtml: '［いすが～］<ruby>壊<rt>こわ</rt></ruby>れます', meaning: 'Hỏng [ghế bị ~]' },
-      { kana: 'われます', romaji: ['waremasu'], rubyHtml: '［コップが～］<ruby>割<rt>わ</rt></ruby>れます', meaning: 'Vỡ [cốc bị ~]' },
-      { kana: 'おれます', romaji: ['oremasu'], rubyHtml: '［きが～］<ruby>折<rt>お</rt></ruby>れます', meaning: 'Gãy [cây bị ~]' },
-      { kana: 'やぶれます', romaji: ['yaburemasu'], rubyHtml: '［かみが～］<ruby>破<rt>やぶ</rt></ruby>れます', meaning: 'Rách [giấy bị ~]' },
-      { kana: 'よごれます', romaji: ['yogoremasu'], rubyHtml: '［ふくが～］<ruby>汚<rt>よご</rt></ruby>れます', meaning: 'Bẩn [quần áo bị ~]' },
-      { kana: 'つきます', romaji: ['tsukimasu'], rubyHtml: '［ポケットが～］<ruby>付<rt>つ</rt></ruby>きます', meaning: 'Có, có gắn kèm theo [túi]' },
-      { kana: 'はずれます', romaji: ['hazuremasu'], rubyHtml: '［ボタンが～］<ruby>外<rt>はず</rt></ruby>れます', meaning: 'Tuột, bung [cúc bị ~]' },
-      { kana: 'とまります', romaji: ['tomarimasu'], rubyHtml: '［エレベーターが～］<ruby>止<rt>と</rt></ruby>まります', meaning: 'Dừng [thang máy ~]' },
-      { kana: 'おとします', romaji: ['otoshimasu'], rubyHtml: '<ruby>落<rt>お</rt></ruby>とします', meaning: 'Đánh rơi' },
-      { kana: 'かかります', romaji: ['kakarimasu'], rubyHtml: '［かぎが～］<ruby>掛<rt>か</rt></ruby>ります', meaning: 'Khóa [chìa khóa ~]' },
-      { kana: 'おちます', romaji: ['ochimasu'], rubyHtml: '<ruby>落<rt>お</rt></ruby>ちます', meaning: 'Rơi, rớt' },
-    ]},
-    { id: 'b29_dovat', name: 'B. Đồ vật & Vật dụng', selected: true, items: [
-      { kana: 'おさら', romaji: ['osara'], rubyHtml: '［お］<ruby>皿<rt>さら</rt></ruby>', meaning: 'Cái đĩa' },
-      { kana: 'おちゃわん', romaji: ['ochawan'], rubyHtml: '［お］ちゃわん', meaning: 'Cái bát' },
-      { kana: 'コップ', romaji: ['koppu'], rubyHtml: 'コップ', meaning: 'Cái cốc' },
-      { kana: 'ガラス', romaji: ['garasu'], rubyHtml: 'ガラス', meaning: 'Thủy tinh' },
-      { kana: 'ふくろ', romaji: ['fukuro'], rubyHtml: '<ruby>袋<rt>ふくろ</rt></ruby>', meaning: 'Cái túi' },
-      { kana: 'さいふ', romaji: ['saifu'], rubyHtml: '<ruby>財<rt>さい</rt></ruby><ruby>布<rt>ふ</rt></ruby>', meaning: 'Cái ví' },
-      { kana: 'えだ', romaji: ['eda'], rubyHtml: '<ruby>枝<rt>えだ</rt></ruby>', meaning: 'Cành cây' },
-      { kana: 'あみだな', romaji: ['amidana'], rubyHtml: '<ruby>網<rt>あみ</rt></ruby><ruby>棚<rt>だな</rt></ruby>', meaning: 'Giá hành lý (trên tàu)' },
-      { kana: 'がわ', romaji: ['gawa'], rubyHtml: '～<ruby>側<rt>がわ</rt></ruby>', meaning: 'Phía ~, bên ~' },
-      { kana: 'ポケット', romaji: ['poketto'], rubyHtml: 'ポケット', meaning: 'Túi áo, túi quần' },
-      { kana: 'はり', romaji: ['hari'], rubyHtml: '<ruby>針<rt>はり</rt></ruby>', meaning: 'Kim đồng hồ' },
-    ]},
-    { id: 'b29_tauxe', name: 'C. Tàu xe & Động đất', selected: true, items: [
-      { kana: 'えきいん', romaji: ['ekiin'], rubyHtml: '<ruby>駅<rt>えき</rt></ruby><ruby>員<rt>いん</rt></ruby>', meaning: 'Nhân viên nhà ga' },
-      { kana: 'このへん', romaji: ['konohen'], rubyHtml: 'この<ruby>辺<rt>へん</rt></ruby>', meaning: 'Xung quanh đây, gần đây' },
-      { kana: 'へん', romaji: ['hen'], rubyHtml: '～<ruby>辺<rt>へん</rt></ruby>', meaning: 'Xung quanh, chỗ ~' },
-      { kana: 'いまのでんしゃ', romaji: ['imanodensha'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>の<ruby>電<rt>でん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>', meaning: 'Đoàn tàu vừa rồi' },
-      { kana: 'わすれもの', romaji: ['wasuremono'], rubyHtml: '<ruby>忘<rt>わす</rt></ruby>れ<ruby>物<rt>もの</rt></ruby>', meaning: 'Vật để quên' },
-      { kana: 'よつや', romaji: ['yotsuya'], rubyHtml: '<ruby>四<rt>よ</rt></ruby>ツ<ruby>谷<rt>や</rt></ruby>', meaning: 'Nhà ga Yotsuya (Tokyo)' },
-      { kana: 'じしん', romaji: ['jishin'], rubyHtml: '<ruby>地<rt>じ</rt></ruby><ruby>震<rt>しん</rt></ruby>', meaning: 'Động đất' },
-      { kana: 'かべ', romaji: ['kabe'], rubyHtml: '<ruby>壁<rt>かべ</rt></ruby>', meaning: 'Bức tường' },
-      { kana: 'えきまえ', romaji: ['ekimae'], rubyHtml: '<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>', meaning: 'Khu vực trước nhà ga' },
-      { kana: 'たおれます', romaji: ['taoremasu'], rubyHtml: '<ruby>倒<rt>たお</rt></ruby>れます', meaning: 'Đổ' },
-      { kana: 'にし', romaji: ['nishi'], rubyHtml: '<ruby>西<rt>にし</rt></ruby>', meaning: 'Tây, phía tây' },
-      { kana: 'ほう', romaji: ['hou'], rubyHtml: '<ruby>方<rt>ほう</rt></ruby>', meaning: 'Hướng, phương hướng' },
-      { kana: 'さんのみや', romaji: ['sannomiya'], rubyHtml: '<ruby>三宮<rt>さんのみや</rt></ruby>', meaning: 'Địa điểm Sannomiya (Kobe)' },
-    ]},
-    { id: 'b29_giaotiep', name: 'D. Giao tiếp & Trạng từ', selected: true, items: [
-      { kana: 'まちがえます', romaji: ['machigaemasu'], rubyHtml: 'まちがえます', meaning: 'Nhầm, sai' },
-      { kana: 'このぐらい', romaji: ['konogurai'], rubyHtml: 'このぐらい', meaning: 'Khoảng ngần này, cỡ này' },
-      { kana: 'おさきにどうぞ', romaji: ['osakinidouzo'], rubyHtml: 'お<ruby>先<rt>さき</rt></ruby>にどうぞ。', meaning: 'Xin mời anh/chị đi trước.' },
-      { kana: 'よかった', romaji: ['yokatta'], rubyHtml: '［ああ、］よかった', meaning: 'Ôi, may quá.' },
-      { kana: 'おぼえていません', romaji: ['oboeteimasen'], rubyHtml: '<ruby>覚<rt>おぼ</rt></ruby>えていません', meaning: 'Tôi không nhớ' },
-      { kana: 'たしか', romaji: ['tashika'], rubyHtml: '<ruby>確<rt>たしか</rt></ruby>か', meaning: 'Nếu không lầm thì' },
-      { kana: 'さします', romaji: ['sashimasu'], rubyHtml: '<ruby>指<rt>さ</rt></ruby>します', meaning: 'Chỉ' },
-    ]}
+    // A. Tự động từ (Hỏng / Bẩn)
+    {
+      id: "b29_tudongtu",
+      name: "A. Tự động từ (Hỏng / Bẩn)",
+      selected: true,
+      items: [
+        { kana: "あきます", romaji: ["akimasu"], rubyHtml: "［ドアが～］<ruby>開<rt>あ</rt></ruby>きます", meaning: "Mở [cửa ~]" },
+        { kana: "しまります", romaji: ["shimarimasu"], rubyHtml: "［ドアが～］<ruby>閉<rt>しま</rt></ruby>ります", meaning: "Đóng [cửa ~]" },
+        { kana: "つきます", romaji: ["tsukimasu"], rubyHtml: "［でんきが～］<ruby>点<rt>つ</rt></ruby>きます", meaning: "Sáng [điện ~]" },
+        { kana: "きえます", romaji: ["kiemasu"], rubyHtml: "［でんきが～］<ruby>消<rt>き</rt></ruby>えます", meaning: "Tắt [điện ~]" },
+        { kana: "こみます", romaji: ["komimasu"], rubyHtml: "［みちが～］<ruby>込<rt>こ</rt></ruby>みます", meaning: "Đông, tắc [đường ~]" },
+        { kana: "すきます", romaji: ["sukimasu"], rubyHtml: "［みちが～］<ruby>空<rt>す</rt></ruby>きます", meaning: "Vắng, thoáng [đường ~]" },
+        { kana: "こわれます", romaji: ["kowaremasu"], rubyHtml: "［いすが～］<ruby>壊<rt>こわ</rt></ruby>れます", meaning: "Hỏng [ghế bị ~]" },
+        { kana: "われます", romaji: ["waremasu"], rubyHtml: "［コップが～］<ruby>割<rt>わ</rt></ruby>れます", meaning: "Vỡ [cốc bị ~]" },
+        { kana: "おれます", romaji: ["oremasu"], rubyHtml: "［きが～］<ruby>折<rt>お</rt></ruby>れます", meaning: "Gãy [cây bị ~]" },
+        { kana: "やぶれます", romaji: ["yaburemasu"], rubyHtml: "［かみが～］<ruby>破<rt>やぶ</rt></ruby>れます", meaning: "Rách [giấy bị ~]" },
+        { kana: "よごれます", romaji: ["yogoremasu"], rubyHtml: "［ふくが～］<ruby>汚<rt>よご</rt></ruby>れます", meaning: "Bẩn [quần áo bị ~]" },
+        { kana: "つきます", romaji: ["tsukimasu"], rubyHtml: "［ポケットが～］<ruby>付<rt>つ</rt></ruby>きます", meaning: "Có, có gắn kèm theo [túi]" },
+        { kana: "はずれます", romaji: ["hazuremasu"], rubyHtml: "［ボタンが～］<ruby>外<rt>はず</rt></ruby>れます", meaning: "Tuột, bung [cúc bị ~]" },
+        { kana: "とまります", romaji: ["tomarimasu"], rubyHtml: "［エレベーターが～］<ruby>止<rt>と</rt></ruby>まります", meaning: "Dừng [thang máy ~]" },
+        { kana: "おとします", romaji: ["otoshimasu"], rubyHtml: "<ruby>落<rt>お</rt></ruby>とします", meaning: "Đánh rơi" },
+        { kana: "かかります", romaji: ["kakarimasu"], rubyHtml: "［かぎが～］<ruby>掛<rt>か</rt></ruby>ります", meaning: "Khóa [chìa khóa ~]" },
+        { kana: "おちます", romaji: ["ochimasu"], rubyHtml: "<ruby>落<rt>お</rt></ruby>ちます", meaning: "Rơi, rớt" },
+      ],
+    },
+
+    // B. Đồ vật & Vật dụng
+    {
+      id: "b29_dovat",
+      name: "B. Đồ vật & Vật dụng",
+      selected: true,
+      items: [
+        { kana: "おさら", romaji: ["osara"], rubyHtml: "［お］<ruby>皿<rt>さら</rt></ruby>", meaning: "Cái đĩa" },
+        { kana: "おちゃわん", romaji: ["ochawan"], rubyHtml: "［お］ちゃわん", meaning: "Cái bát" },
+        { kana: "コップ", romaji: ["koppu"], rubyHtml: "コップ", meaning: "Cái cốc" },
+        { kana: "ガラス", romaji: ["garasu"], rubyHtml: "ガラス", meaning: "Thủy tinh" },
+        { kana: "ふくろ", romaji: ["fukuro"], rubyHtml: "<ruby>袋<rt>ふくろ</rt></ruby>", meaning: "Cái túi" },
+        { kana: "さいふ", romaji: ["saifu"], rubyHtml: "<ruby>財<rt>さい</rt></ruby><ruby>布<rt>ふ</rt></ruby>", meaning: "Cái ví" },
+        { kana: "えだ", romaji: ["eda"], rubyHtml: "<ruby>枝<rt>えだ</rt></ruby>", meaning: "Cành cây" },
+        { kana: "あみだな", romaji: ["amidana"], rubyHtml: "<ruby>網<rt>あみ</rt></ruby><ruby>棚<rt>だな</rt></ruby>", meaning: "Giá hành lý (trên tàu)" },
+        { kana: "がわ", romaji: ["gawa"], rubyHtml: "～<ruby>側<rt>がわ</rt></ruby>", meaning: "Phía ~, bên ~" },
+        { kana: "ポケット", romaji: ["poketto"], rubyHtml: "ポケット", meaning: "Túi áo, túi quần" },
+        { kana: "はり", romaji: ["hari"], rubyHtml: "<ruby>針<rt>はり</rt></ruby>", meaning: "Kim đồng hồ" },
+      ],
+    },
+
+    // C. Tàu xe & Động đất
+    {
+      id: "b29_tauxe",
+      name: "C. Tàu xe & Động đất",
+      selected: true,
+      items: [
+        { kana: "えきいん", romaji: ["ekiin"], rubyHtml: "<ruby>駅<rt>えき</rt></ruby><ruby>員<rt>いん</rt></ruby>", meaning: "Nhân viên nhà ga" },
+        { kana: "このへん", romaji: ["konohen"], rubyHtml: "この<ruby>辺<rt>へん</rt></ruby>", meaning: "Xung quanh đây, gần đây" },
+        { kana: "へん", romaji: ["hen"], rubyHtml: "～<ruby>辺<rt>へん</rt></ruby>", meaning: "Xung quanh, chỗ ~" },
+        { kana: "いまのでんしゃ", romaji: ["imanodensha"], rubyHtml: "<ruby>今<rt>いま</rt></ruby>の<ruby>電<rt>でん</rt></ruby><ruby>車<rt>しゃ</rt></ruby>", meaning: "Đoàn tàu vừa rồi" },
+        { kana: "わすれもの", romaji: ["wasuremono"], rubyHtml: "<ruby>忘<rt>わす</rt></ruby>れ<ruby>物<rt>もの</rt></ruby>", meaning: "Vật để quên" },
+        { kana: "よつや", romaji: ["yotsuya"], rubyHtml: "<ruby>四<rt>よ</rt></ruby>ツ<ruby>谷<rt>や</rt></ruby>", meaning: "Nhà ga Yotsuya (Tokyo)" },
+        { kana: "じしん", romaji: ["jishin"], rubyHtml: "<ruby>地<rt>じ</rt></ruby><ruby>震<rt>しん</rt></ruby>", meaning: "Động đất" },
+        { kana: "かべ", romaji: ["kabe"], rubyHtml: "<ruby>壁<rt>かべ</rt></ruby>", meaning: "Bức tường" },
+        { kana: "えきまえ", romaji: ["ekimae"], rubyHtml: "<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>", meaning: "Khu vực trước nhà ga" },
+        { kana: "たおれます", romaji: ["taoremasu"], rubyHtml: "<ruby>倒<rt>たお</rt></ruby>れます", meaning: "Đổ" },
+        { kana: "にし", romaji: ["nishi"], rubyHtml: "<ruby>西<rt>にし</rt></ruby>", meaning: "Tây, phía tây" },
+        { kana: "ほう", romaji: ["hou"], rubyHtml: "<ruby>方<rt>ほう</rt></ruby>", meaning: "Hướng, phương hướng" },
+        { kana: "さんのみや", romaji: ["sannomiya"], rubyHtml: "<ruby>三宮<rt>さんのみや</rt></ruby>", meaning: "Địa điểm Sannomiya (Kobe)" },
+      ],
+    },
+
+    // D. Giao tiếp & Trạng từ
+    {
+      id: "b29_giaotiep",
+      name: "D. Giao tiếp & Trạng từ",
+      selected: true,
+      items: [
+        { kana: "まちがえます", romaji: ["machigaemasu"], rubyHtml: "まちがえます", meaning: "Nhầm, sai" },
+        { kana: "このぐらい", romaji: ["konogurai"], rubyHtml: "このぐらい", meaning: "Khoảng ngần này, cỡ này" },
+        { kana: "おさきにどうぞ", romaji: ["osakinidouzo"], rubyHtml: "お<ruby>先<rt>さき</rt></ruby>にどうぞ。", meaning: "Xin mời anh/chị đi trước." },
+        { kana: "よかった", romaji: ["yokatta"], rubyHtml: "［ああ、］よかった", meaning: "Ôi, may quá." },
+        { kana: "おぼえていません", romaji: ["oboeteimasen"], rubyHtml: "<ruby>覚<rt>おぼ</rt></ruby>えていません", meaning: "Tôi không nhớ" },
+        { kana: "たしか", romaji: ["tashika"], rubyHtml: "<ruby>確<rt>たしか</rt></ruby>か", meaning: "Nếu không lầm thì" },
+        { kana: "さします", romaji: ["sashimasu"], rubyHtml: "<ruby>指<rt>さ</rt></ruby>します", meaning: "Chỉ" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 30
+  // ========================================
   30: [
-    { id: 'b30_thadongtu', name: 'A. Tha động từ (Chuẩn bị / Sắp xếp)', selected: true, items: [
-      { kana: 'はります', romaji: ['harimasu'], rubyHtml: 'はります', meaning: 'Dán, dán lên' },
-      { kana: 'かけます', romaji: ['kakemasu'], rubyHtml: '<ruby>掛<rt>か</rt></ruby>けます', meaning: 'Treo' },
-      { kana: 'かざります', romaji: ['kazarimasu'], rubyHtml: '<ruby>飾<rt>かざ</rt></ruby>ります', meaning: 'Trang trí' },
-      { kana: 'ならべます', romaji: ['narabemasu'], rubyHtml: '<ruby>並<rt>なら</rt></ruby>べます', meaning: 'Xếp thành hàng' },
-      { kana: 'うえます', romaji: ['uemasu'], rubyHtml: '<ruby>植<rt>うえ</rt></ruby>えます', meaning: 'Trồng (cây)' },
-      { kana: 'もどします', romaji: ['modoshimasu'], rubyHtml: '<ruby>戻<rt>もど</rt></ruby>します', meaning: 'Đưa về, trả về vị trí cũ' },
-      { kana: 'まとめます', romaji: ['matomemasu'], rubyHtml: 'まとめます', meaning: 'Nhóm lại, tóm tắt' },
-      { kana: 'かたづけます', romaji: ['katadukemasu'], rubyHtml: '<ruby>片<rt>かた</rt></ruby>づけます', meaning: 'Dọn dẹp, sắp xếp' },
-      { kana: 'しまいます', romaji: ['shimaimasu'], rubyHtml: 'しまいます', meaning: 'Cất vào, để vào' },
-      { kana: 'きめます', romaji: ['kimemasu'], rubyHtml: '<ruby>決<rt>き</rt></ruby>めます', meaning: 'Quyết định' },
-      { kana: 'しらせます', romaji: ['shirasemasu'], rubyHtml: '<ruby>知<rt>し</rt></ruby>らせます', meaning: 'Thông báo, báo' },
-      { kana: 'そうだんします', romaji: ['soudanshimasu'], rubyHtml: '<ruby>相<rt>そう</rt></ruby><ruby>談<rt>だん</rt></ruby>します', meaning: 'Trao đổi, bàn bạc' },
-      { kana: 'よしゅうします', romaji: ['yoshuushimasu'], rubyHtml: '<ruby>予<rt>よ</rt></ruby><ruby>習<rt>しゅう</rt></ruby>します', meaning: 'Chuẩn bị bài mới' },
-      { kana: 'ふくしゅうします', romaji: ['fukushuushimasu'], rubyHtml: '<ruby>復<rt>ふく</rt></ruby><ruby>習<rt>しゅう</rt></ruby>します', meaning: 'Ôn bài cũ' },
-      { kana: 'そのままにします', romaji: ['sonomamanishimasu'], rubyHtml: 'そのままにします', meaning: 'Để nguyên như thế' },
-      { kana: 'めがさめます', romaji: ['megasamemasu'], rubyHtml: '<ruby>目<rt>め</rt></ruby>が<ruby>覚<rt>さ</rt></ruby>めます', meaning: 'Tỉnh giấc, mở mắt' }
-    ]},
-    { id: 'b30_dovat', name: 'B. Đồ vật & Vị trí', selected: true, items: [
-      { kana: 'カレンダー', romaji: ['karenda-'], rubyHtml: 'カレンダー', meaning: 'Lịch, tờ lịch' },
-      { kana: 'ポスター', romaji: ['posuta-'], rubyHtml: 'ポスター', meaning: 'Tờ áp phích, pano' },
-      { kana: 'ごみばこ', romaji: ['gomibako'], rubyHtml: 'ごみ<ruby>箱<rt>ばこ</rt></ruby>', meaning: 'Thùng rác' },
-      { kana: 'にんぎょう', romaji: ['ningyou'], rubyHtml: '<ruby>人<rt>にん</rt></ruby><ruby>形<rt>ぎょう</rt></ruby>', meaning: 'Con búp bê' },
-      { kana: 'かびん', romaji: ['kabin'], rubyHtml: '<ruby>花<rt>か</rt></ruby><ruby>瓶<rt>びん</rt></ruby>', meaning: 'Lọ hoa' },
-      { kana: 'かがみ', romaji: ['kagami'], rubyHtml: '<ruby>鏡<rt>かがみ</rt></ruby>', meaning: 'Cái gương' },
-      { kana: 'ひきだし', romaji: ['hikidashi'], rubyHtml: '<ruby>引<rt>ひ</rt></ruby>き<ruby>出<rt>だ</rt></ruby>し', meaning: 'Ngăn kéo' },
-      { kana: 'げんかん', romaji: ['genkan'], rubyHtml: '<ruby>玄<rt>げん</rt></ruby><ruby>関<rt>かん</rt></ruby>', meaning: 'Cửa vào' },
-      { kana: 'ろうか', romaji: ['rouka'], rubyHtml: '<ruby>廊<rt>ろう</rt></ruby><ruby>下<rt>か</rt></ruby>', meaning: 'Hành lang' },
-      { kana: 'かべ', romaji: ['kabe'], rubyHtml: '<ruby>壁<rt>かべ</rt></ruby>', meaning: 'Bức tường' },
-      { kana: 'いけ', romaji: ['ike'], rubyHtml: '<ruby>池<rt>いけ</rt></ruby>', meaning: 'Cái ao' },
-      { kana: 'こうばん', romaji: ['kouban'], rubyHtml: '<ruby>交<rt>こう</rt></ruby><ruby>番<rt>ばん</rt></ruby>', meaning: 'Bốt cảnh sát' },
-      { kana: 'あんないしょ', romaji: ['annaisho'], rubyHtml: '<ruby>案<rt>あん</rt></ruby><ruby>内<rt>ない</rt></ruby><ruby>書<rt>しょ</rt></ruby>', meaning: 'Sách hướng dẫn' },
-      { kana: 'もとのところ', romaji: ['motonotokoro'], rubyHtml: '<ruby>元<rt>もと</rt></ruby>の<ruby>所<rt>ところ</rt></ruby>', meaning: 'Địa điểm ban đầu, vị trí gốc' },
-      { kana: 'まわり', romaji: ['mawari'], rubyHtml: '<ruby>周<rt>まわ</rt></ruby>り', meaning: 'Xung quanh' },
-      { kana: 'まんなか', romaji: ['mannaka'], rubyHtml: '<ruby>真<rt>ま</rt></ruby>ん<ruby>中<rt>なか</rt></ruby>', meaning: 'Giữa, trung tâm' },
-      { kana: 'すみ', romaji: ['sumi'], rubyHtml: '<ruby>隅<rt>すみ</rt></ruby>', meaning: 'Góc' },
-      { kana: 'つき', romaji: ['tsuki'], rubyHtml: '<ruby>月<rt>つき</rt></ruby>', meaning: 'Mặt trăng' }
-    ]},
-    { id: 'b30_lichtrinh', name: 'C. Lịch trình & Giờ học', selected: true, items: [
-      { kana: 'じゅぎょう', romaji: ['jugyou'], rubyHtml: '<ruby>授<rt>じゅ</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>', meaning: 'Giờ học' },
-      { kana: 'こうぎ', romaji: ['kougi'], rubyHtml: '<ruby>講<rt>こう</rt></ruby><ruby>義<rt>ぎ</rt></ruby>', meaning: 'Bài giảng' },
-      { kana: 'ミーティング', romaji: ['mi-tingu'], rubyHtml: 'ミーティング', meaning: 'Cuộc họp' },
-      { kana: 'よてい', romaji: ['yotei'], rubyHtml: '<ruby>予<rt>よ</rt></ruby><ruby>定<rt>てい</rt></ruby>', meaning: 'Kế hoạch, dự định' },
-      { kana: 'おしらせ', romaji: ['oshirase'], rubyHtml: 'お<ruby>知<rt>し</rt></ruby>らせ', meaning: 'Bản thông báo' },
-      { kana: 'よていひょう', romaji: ['yoteihyou'], rubyHtml: '<ruby>予<rt>よ</rt></ruby><ruby>定<rt>てい</rt></ruby><ruby>表<rt>ひょう</rt></ruby>', meaning: 'Thời khóa biểu, lịch làm việc' }
-    ]},
-    { id: 'b30_giaotiep', name: 'D. Giao tiếp & Khác', selected: true, items: [
-      { kana: 'おこさん', romaji: ['okosan'], rubyHtml: 'お<ruby>子<rt>こ</rt></ruby>さん', meaning: 'Con (của người khác)' },
-      { kana: 'まだ', romaji: ['mada'], rubyHtml: 'まだ', meaning: 'Chưa' },
-      { kana: 'ほど', romaji: ['hodo'], rubyHtml: '～ほど', meaning: 'Khoảng, chừng ~' },
-      { kana: 'ごくろうさま', romaji: ['gokurousama'], rubyHtml: 'ご<ruby>苦<rt>く</rt></ruby><ruby>労<rt>ろう</rt></ruby>さま', meaning: 'Anh/chị đã làm việc vất vả' },
-      { kana: 'きぼう', romaji: ['kibou'], rubyHtml: '<ruby>希<rt>き</rt></ruby><ruby>望<rt>ぼう</rt></ruby>', meaning: 'Hi vọng, nguyện vọng' },
-      { kana: 'なにかごきぼうがありますか', romaji: ['nanikagokibougaarimasuka'], rubyHtml: 'なにかご<ruby>希<rt>き</rt></ruby><ruby>望<rt>ぼう</rt></ruby>がありますか。', meaning: 'Anh/chị có yêu cầu/nguyện vọng gì không?' },
-      { kana: 'ミュージカル', romaji: ['myu-jikaru'], rubyHtml: 'ミュージカル', meaning: 'Ca kịch' },
-      { kana: 'それはいいですね', romaji: ['sorewaiidesune'], rubyHtml: 'それはいいですね。', meaning: 'Điều đó được đấy nhỉ / Hay quá' },
-      { kana: 'ブロードウェイ', romaji: ['buro-dowei'], rubyHtml: 'ブロードウェイ', meaning: 'Broadway' },
-      { kana: 'まるい', romaji: ['marui'], rubyHtml: '<ruby>丸<rt>まる</rt></ruby>い', meaning: 'Tròn' },
-      { kana: 'ある', romaji: ['aru'], rubyHtml: 'ある～', meaning: 'Có ~, một ~' },
-      { kana: 'ちきゅう', romaji: ['chikyuu'], rubyHtml: '<ruby>地<rt>ち</rt></ruby><ruby>球<rt>きゅう</rt></ruby>', meaning: 'Trái đất' },
-      { kana: 'うれしい', romaji: ['ureshii'], rubyHtml: 'うれしい', meaning: 'Vui' },
-      { kana: 'いや', romaji: ['iya'], rubyHtml: '<ruby>嫌<rt>いや</rt></ruby>［な］', meaning: 'Chán, ghét' },
-      { kana: 'すると', romaji: ['suruto'], rubyHtml: 'すると', meaning: 'Thế rồi, sau đó' }
-    ]}
+    // A. Tha động từ (Chuẩn bị / Sắp xếp)
+    {
+      id: "b30_thadongtu",
+      name: "A. Tha động từ (Chuẩn bị / Sắp xếp)",
+      selected: true,
+      items: [
+        { kana: "はります", romaji: ["harimasu"], rubyHtml: "はります", meaning: "Dán, dán lên" },
+        { kana: "かけます", romaji: ["kakemasu"], rubyHtml: "<ruby>掛<rt>か</rt></ruby>けます", meaning: "Treo" },
+        { kana: "かざります", romaji: ["kazarimasu"], rubyHtml: "<ruby>飾<rt>かざ</rt></ruby>ります", meaning: "Trang trí" },
+        { kana: "ならべます", romaji: ["narabemasu"], rubyHtml: "<ruby>並<rt>なら</rt></ruby>べます", meaning: "Xếp thành hàng" },
+        { kana: "うえます", romaji: ["uemasu"], rubyHtml: "<ruby>植<rt>うえ</rt></ruby>えます", meaning: "Trồng (cây)" },
+        { kana: "もどします", romaji: ["modoshimasu"], rubyHtml: "<ruby>戻<rt>もど</rt></ruby>します", meaning: "Đưa về, trả về vị trí cũ" },
+        { kana: "まとめます", romaji: ["matomemasu"], rubyHtml: "まとめます", meaning: "Nhóm lại, tóm tắt" },
+        { kana: "かたづけます", romaji: ["katadukemasu"], rubyHtml: "<ruby>片<rt>かた</rt></ruby>づけます", meaning: "Dọn dẹp, sắp xếp" },
+        { kana: "しまいます", romaji: ["shimaimasu"], rubyHtml: "しまいます", meaning: "Cất vào, để vào" },
+        { kana: "きめます", romaji: ["kimemasu"], rubyHtml: "<ruby>決<rt>き</rt></ruby>めます", meaning: "Quyết định" },
+        { kana: "しらせます", romaji: ["shirasemasu"], rubyHtml: "<ruby>知<rt>し</rt></ruby>らせます", meaning: "Thông báo, báo" },
+        { kana: "そうだんします", romaji: ["soudanshimasu"], rubyHtml: "<ruby>相<rt>そう</rt></ruby><ruby>談<rt>だん</rt></ruby>します", meaning: "Trao đổi, bàn bạc" },
+        { kana: "よしゅうします", romaji: ["yoshuushimasu"], rubyHtml: "<ruby>予<rt>よ</rt></ruby><ruby>習<rt>しゅう</rt></ruby>します", meaning: "Chuẩn bị bài mới" },
+        { kana: "ふくしゅうします", romaji: ["fukushuushimasu"], rubyHtml: "<ruby>復<rt>ふく</rt></ruby><ruby>習<rt>しゅう</rt></ruby>します", meaning: "Ôn bài cũ" },
+        { kana: "そのままにします", romaji: ["sonomamanishimasu"], rubyHtml: "そのままにします", meaning: "Để nguyên như thế" },
+        { kana: "めがさめます", romaji: ["megasamemasu"], rubyHtml: "<ruby>目<rt>め</rt></ruby>が<ruby>覚<rt>さ</rt></ruby>めます", meaning: "Tỉnh giấc, mở mắt" },
+      ],
+    },
+
+    // B. Đồ vật & Vị trí
+    {
+      id: "b30_dovat",
+      name: "B. Đồ vật & Vị trí",
+      selected: true,
+      items: [
+        { kana: "カレンダー", romaji: ["karenda-"], rubyHtml: "カレンダー", meaning: "Lịch, tờ lịch" },
+        { kana: "ポスター", romaji: ["posuta-"], rubyHtml: "ポスター", meaning: "Tờ áp phích, pano" },
+        { kana: "ごみばこ", romaji: ["gomibako"], rubyHtml: "ごみ<ruby>箱<rt>ばこ</rt></ruby>", meaning: "Thùng rác" },
+        { kana: "にんぎょう", romaji: ["ningyou"], rubyHtml: "<ruby>人<rt>にん</rt></ruby><ruby>形<rt>ぎょう</rt></ruby>", meaning: "Con búp bê" },
+        { kana: "かびん", romaji: ["kabin"], rubyHtml: "<ruby>花<rt>か</rt></ruby><ruby>瓶<rt>びん</rt></ruby>", meaning: "Lọ hoa" },
+        { kana: "かがみ", romaji: ["kagami"], rubyHtml: "<ruby>鏡<rt>かがみ</rt></ruby>", meaning: "Cái gương" },
+        { kana: "ひきだし", romaji: ["hikidashi"], rubyHtml: "<ruby>引<rt>ひ</rt></ruby>き<ruby>出<rt>だ</rt></ruby>し", meaning: "Ngăn kéo" },
+        { kana: "げんかん", romaji: ["genkan"], rubyHtml: "<ruby>玄<rt>げん</rt></ruby><ruby>関<rt>かん</rt></ruby>", meaning: "Cửa vào" },
+        { kana: "ろうか", romaji: ["rouka"], rubyHtml: "<ruby>廊<rt>ろう</rt></ruby><ruby>下<rt>か</rt></ruby>", meaning: "Hành lang" },
+        { kana: "かべ", romaji: ["kabe"], rubyHtml: "<ruby>壁<rt>かべ</rt></ruby>", meaning: "Bức tường" },
+        { kana: "いけ", romaji: ["ike"], rubyHtml: "<ruby>池<rt>いけ</rt></ruby>", meaning: "Cái ao" },
+        { kana: "こうばん", romaji: ["kouban"], rubyHtml: "<ruby>交<rt>こう</rt></ruby><ruby>番<rt>ばん</rt></ruby>", meaning: "Bốt cảnh sát" },
+        { kana: "あんないしょ", romaji: ["annaisho"], rubyHtml: "<ruby>案<rt>あん</rt></ruby><ruby>内<rt>ない</rt></ruby><ruby>書<rt>しょ</rt></ruby>", meaning: "Sách hướng dẫn" },
+        { kana: "もとのところ", romaji: ["motonotokoro"], rubyHtml: "<ruby>元<rt>もと</rt></ruby>の<ruby>所<rt>ところ</rt></ruby>", meaning: "Địa điểm ban đầu, vị trí gốc" },
+        { kana: "まわり", romaji: ["mawari"], rubyHtml: "<ruby>周<rt>まわ</rt></ruby>り", meaning: "Xung quanh" },
+        { kana: "まんなか", romaji: ["mannaka"], rubyHtml: "<ruby>真<rt>ま</rt></ruby>ん<ruby>中<rt>なか</rt></ruby>", meaning: "Giữa, trung tâm" },
+        { kana: "すみ", romaji: ["sumi"], rubyHtml: "<ruby>隅<rt>すみ</rt></ruby>", meaning: "Góc" },
+        { kana: "つき", romaji: ["tsuki"], rubyHtml: "<ruby>月<rt>つき</rt></ruby>", meaning: "Mặt trăng" },
+      ],
+    },
+
+    // C. Lịch trình & Giờ học
+    {
+      id: "b30_lichtrinh",
+      name: "C. Lịch trình & Giờ học",
+      selected: true,
+      items: [
+        { kana: "じゅぎょう", romaji: ["jugyou"], rubyHtml: "<ruby>授<rt>じゅ</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>", meaning: "Giờ học" },
+        { kana: "こうぎ", romaji: ["kougi"], rubyHtml: "<ruby>講<rt>こう</rt></ruby><ruby>義<rt>ぎ</rt></ruby>", meaning: "Bài giảng" },
+        { kana: "ミーティング", romaji: ["mi-tingu"], rubyHtml: "ミーティング", meaning: "Cuộc họp" },
+        { kana: "よてい", romaji: ["yotei"], rubyHtml: "<ruby>予<rt>よ</rt></ruby><ruby>定<rt>てい</rt></ruby>", meaning: "Kế hoạch, dự định" },
+        { kana: "おしらせ", romaji: ["oshirase"], rubyHtml: "お<ruby>知<rt>し</rt></ruby>らせ", meaning: "Bản thông báo" },
+        { kana: "よていひょう", romaji: ["yoteihyou"], rubyHtml: "<ruby>予<rt>よ</rt></ruby><ruby>定<rt>てい</rt></ruby><ruby>表<rt>ひょう</rt></ruby>", meaning: "Thời khóa biểu, lịch làm việc" },
+      ],
+    },
+
+    // D. Giao tiếp & Khác
+    {
+      id: "b30_giaotiep",
+      name: "D. Giao tiếp & Khác",
+      selected: true,
+      items: [
+        { kana: "おこさん", romaji: ["okosan"], rubyHtml: "お<ruby>子<rt>こ</rt></ruby>さん", meaning: "Con (của người khác)" },
+        { kana: "まだ", romaji: ["mada"], rubyHtml: "まだ", meaning: "Chưa" },
+        { kana: "ほど", romaji: ["hodo"], rubyHtml: "～ほど", meaning: "Khoảng, chừng ~" },
+        { kana: "ごくろうさま", romaji: ["gokurousama"], rubyHtml: "ご<ruby>苦<rt>く</rt></ruby><ruby>労<rt>ろう</rt></ruby>さま", meaning: "Anh/chị đã làm việc vất vả" },
+        { kana: "きぼう", romaji: ["kibou"], rubyHtml: "<ruby>希<rt>き</rt></ruby><ruby>望<rt>ぼう</rt></ruby>", meaning: "Hi vọng, nguyện vọng" },
+        { kana: "なにかごきぼうがありますか", romaji: ["nanikagokibougaarimasuka"], rubyHtml: "なにかご<ruby>希<rt>き</rt></ruby><ruby>望<rt>ぼう</rt></ruby>がありますか。", meaning: "Anh/chị có yêu cầu/nguyện vọng gì không?" },
+        { kana: "ミュージカル", romaji: ["myu-jikaru"], rubyHtml: "ミュージカル", meaning: "Ca kịch" },
+        { kana: "それはいいですね", romaji: ["sorewaiidesune"], rubyHtml: "それはいいですね。", meaning: "Điều đó được đấy nhỉ / Hay quá" },
+        { kana: "ブロードウェイ", romaji: ["buro-dowei"], rubyHtml: "ブロードウェイ", meaning: "Broadway" },
+        { kana: "まるい", romaji: ["marui"], rubyHtml: "<ruby>丸<rt>まる</rt></ruby>い", meaning: "Tròn" },
+        { kana: "ある", romaji: ["aru"], rubyHtml: "ある～", meaning: "Có ~, một ~" },
+        { kana: "ちきゅう", romaji: ["chikyuu"], rubyHtml: "<ruby>地<rt>ち</rt></ruby><ruby>球<rt>きゅう</rt></ruby>", meaning: "Trái đất" },
+        { kana: "うれしい", romaji: ["ureshii"], rubyHtml: "うれしい", meaning: "Vui" },
+        { kana: "いや", romaji: ["iya"], rubyHtml: "<ruby>嫌<rt>いや</rt></ruby>［な］", meaning: "Chán, ghét" },
+        { kana: "すると", romaji: ["suruto"], rubyHtml: "すると", meaning: "Thế rồi, sau đó" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 31
+  // ========================================
   31: [
-    { id: 'b31_ydinh', name: 'A. Động từ thể Ý định & Sự kiện', selected: true, items: [
-      { kana: 'はじまります', romaji: ['hajimarimasu'], rubyHtml: '<ruby>始<rt>はじ</rt></ruby>まります', meaning: 'Bắt đầu (lễ hội bắt đầu)' },
-      { kana: 'つづけます', romaji: ['tsudukemasu'], rubyHtml: '<ruby>続<rt>つづ</rt></ruby>けます', meaning: 'Tiếp tục' },
-      { kana: 'みつけます', romaji: ['mitsukemasu'], rubyHtml: '<ruby>見<rt>み</rt></ruby>つけます', meaning: 'Tìm thấy' },
-      { kana: 'うけます', romaji: ['ukemasu'], rubyHtml: '<ruby>受<rt>う</rt></ruby>けます', meaning: 'Dự thi' },
-      { kana: 'にゅうがくします', romaji: ['nyuugakushimasu'], rubyHtml: '<ruby>入<rt>にゅう</rt></ruby><ruby>学<rt>がく</rt></ruby>します', meaning: 'Nhập học' },
-      { kana: 'そつぎょうします', romaji: ['sotsugyoushimasu'], rubyHtml: '<ruby>卒<rt>そつ</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>します', meaning: 'Tốt nghiệp' },
-      { kana: 'しゅっせきします', romaji: ['shussekishimasu'], rubyHtml: '<ruby>出<rt>しゅっ</rt></ruby><ruby>席<rt>せき</rt></ruby>します', meaning: 'Tham dự' },
-      { kana: 'きゅうけいします', romaji: ['kyuukeishimasu'], rubyHtml: '<ruby>休<rt>きゅう</rt></ruby><ruby>憩<rt>けい</rt></ruby>します', meaning: 'Nghỉ giải lao' },
-      { kana: 'のこります', romaji: ['nokorimasu'], rubyHtml: '<ruby>残<rt>のこ</rt></ruby>ります', meaning: 'Ở lại' },
-      { kana: 'とじます', romaji: ['tojimasu'], rubyHtml: '<ruby>閉<rt>と</rt></ruby>じます', meaning: 'Đóng, nhắm [mắt]' },
-      { kana: 'あつまります', romaji: ['atsumarimasu'], rubyHtml: '<ruby>集<rt>あつ</rt></ruby>まります', meaning: 'Tập trung' },
-      { kana: 'きがつきます', romaji: ['kigatsukimasu'], rubyHtml: '<ruby>気<rt>き</rt></ruby>がつきます', meaning: 'Để ý, nhận ra' },
-    ]},
-    { id: 'b31_coso', name: 'B. Cơ sở & Địa điểm', selected: true, items: [
-      { kana: 'ほんしゃ', romaji: ['honsha'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby><ruby>社<rt>しゃ</rt></ruby>', meaning: 'Trụ sở chính' },
-      { kana: 'してん', romaji: ['shiten'], rubyHtml: '<ruby>支<rt>し</rt></ruby><ruby>店<rt>てん</rt></ruby>', meaning: 'Chi nhánh' },
-      { kana: 'きょうかい', romaji: ['kyoukai'], rubyHtml: '<ruby>教<rt>きょう</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Nhà thờ' },
-      { kana: 'だいがくいん', romaji: ['daigakuin'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>院<rt>いん</rt></ruby>', meaning: 'Cao học' },
-      { kana: 'どうぶつえん', romaji: ['doubutsuen'], rubyHtml: '<ruby>動<rt>どう</rt></ruby><ruby>物<rt>ぶつ</rt></ruby><ruby>園<rt>えん</rt></ruby>', meaning: 'Sở thú' },
-      { kana: 'おんせん', romaji: ['onsen'], rubyHtml: '<ruby>温<rt>おん</rt></ruby><ruby>泉<rt>せん</rt></ruby>', meaning: 'Suối nước nóng' },
-      { kana: 'えいがかん', romaji: ['eigakan'], rubyHtml: '<ruby>映<rt>えい</rt></ruby><ruby>画<rt>が</rt></ruby><ruby>館<rt>かん</rt></ruby>', meaning: 'Rạp chiếu phim' },
-      { kana: 'のほう', romaji: ['nohou'], rubyHtml: '～の<ruby>方<rt>ほう</rt></ruby>', meaning: 'Phía ~, hướng ~' },
-      { kana: 'うえのこうえん', romaji: ['uenokouen'], rubyHtml: '<ruby>上<rt>うえ</rt></ruby><ruby>野<rt>の</rt></ruby><ruby>公<rt>こう</rt></ruby><ruby>園<rt>えん</rt></ruby>', meaning: 'Công viên Ueno (ở Tokyo)' },
-      { kana: 'むら', romaji: ['mura'], rubyHtml: '<ruby>村<rt>むら</rt></ruby>', meaning: 'Làng' },
-      { kana: 'とかい', romaji: ['tokai'], rubyHtml: '<ruby>都<rt>と</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Thành phố, nơi đô hội' },
-    ]},
-    { id: 'b31_sukien', name: 'C. Sự kiện & Đời sống', selected: true, items: [
-      { kana: 'れんきゅう', romaji: ['renkyuu'], rubyHtml: '<ruby>連<rt>れん</rt></ruby><ruby>休<rt>きゅう</rt></ruby>', meaning: 'Kỳ nghỉ dài ngày' },
-      { kana: 'さくぶん', romaji: ['sakubun'], rubyHtml: '<ruby>作<rt>さく</rt></ruby><ruby>文<rt>ぶん</rt></ruby>', meaning: 'Bài tập làm văn' },
-      { kana: 'てんらんかい', romaji: ['tenrankai'], rubyHtml: '<ruby>展<rt>てん</rt></ruby><ruby>覧<rt>らん</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Triển lãm' },
-      { kana: 'けっこんしき', romaji: ['kekkonshiki'], rubyHtml: '<ruby>結<rt>けっ</rt></ruby><ruby>婚<rt>こん</rt></ruby><ruby>式<rt>しき</rt></ruby>', meaning: 'Lễ kết hôn' },
-      { kana: 'そうしき', romaji: ['soushiki'], rubyHtml: 'お<ruby>葬<rt>そう</rt></ruby><ruby>式<rt>しき</rt></ruby>', meaning: 'Đám tang' },
-      { kana: 'しき', romaji: ['shiki'], rubyHtml: '<ruby>式<rt>しき</rt></ruby>', meaning: 'Lễ, đám' },
-      { kana: 'おきゃくさん', romaji: ['okyakusan'], rubyHtml: 'お<ruby>客<rt>きゃく</rt></ruby>さん', meaning: 'Khách hàng' },
-      { kana: 'ピカソ', romaji: ['pikaso'], rubyHtml: 'ピカソ', meaning: 'Picasso (danh họa)' },
-      { kana: 'うつくしい', romaji: ['utsukushii'], rubyHtml: '<ruby>美<rt>うつく</rt></ruby>しい', meaning: 'Đẹp' },
-      { kana: 'しぜん', romaji: ['shizen'], rubyHtml: '<ruby>自<rt>し</rt></ruby><ruby>然<rt>ぜん</rt></ruby>', meaning: 'Tự nhiên, thiên nhiên' },
-      { kana: 'すばらしさ', romaji: ['subarashisa'], rubyHtml: 'すばらしさ', meaning: 'Sự tuyệt vời' },
-    ]},
-    { id: 'b31_giaotiep', name: 'D. Trạng từ & Giao tiếp', selected: true, items: [
-      { kana: 'だれか', romaji: ['dareka'], rubyHtml: 'だれか', meaning: 'Ai đó' },
-      { kana: 'ずっと', romaji: ['zutto'], rubyHtml: 'ずっと', meaning: 'Suốt, liền' },
-      { kana: 'じゆうに', romaji: ['jiyuuni'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>由<rt>ゆう</rt></ruby>に', meaning: 'Tự do, tùy ý' },
-      { kana: 'せかいじゅう', romaji: ['sekaijuu'], rubyHtml: '<ruby>世界中<rt>せかいじゅう</rt></ruby>', meaning: 'Khắp thế giới' },
-      { kana: 'つきに', romaji: ['tsukini'], rubyHtml: '<ruby>月<rt>つき</rt></ruby>に', meaning: 'Một tháng' },
-      { kana: 'ふつうの', romaji: ['futsuuno'], rubyHtml: '<ruby>普<rt>ふ</rt></ruby><ruby>通<rt>つう</rt></ruby>の', meaning: 'Thường, thông thường' },
-      { kana: 'インターネット', romaji: ['inta-netto'], rubyHtml: 'インターネット', meaning: 'Internet' },
-      { kana: 'いや', romaji: ['iya'], rubyHtml: '<ruby>嫌<rt>いや</rt></ruby>［な］', meaning: 'Chán, ghét' },
-    ]}
+    // A. Động từ thể Ý định & Sự kiện
+    {
+      id: "b31_ydinh",
+      name: "A. Động từ thể Ý định & Sự kiện",
+      selected: true,
+      items: [
+        { kana: "はじまります", romaji: ["hajimarimasu"], rubyHtml: "<ruby>始<rt>はじ</rt></ruby>まります", meaning: "Bắt đầu (lễ hội bắt đầu)" },
+        { kana: "つづけます", romaji: ["tsudukemasu"], rubyHtml: "<ruby>続<rt>つづ</rt></ruby>けます", meaning: "Tiếp tục" },
+        { kana: "みつけます", romaji: ["mitsukemasu"], rubyHtml: "<ruby>見<rt>み</rt></ruby>つけます", meaning: "Tìm thấy" },
+        { kana: "うけます", romaji: ["ukemasu"], rubyHtml: "<ruby>受<rt>う</rt></ruby>けます", meaning: "Dự thi" },
+        { kana: "にゅうがくします", romaji: ["nyuugakushimasu"], rubyHtml: "<ruby>入<rt>にゅう</rt></ruby><ruby>学<rt>がく</rt></ruby>します", meaning: "Nhập học" },
+        { kana: "そつぎょうします", romaji: ["sotsugyoushimasu"], rubyHtml: "<ruby>卒<rt>そつ</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>します", meaning: "Tốt nghiệp" },
+        { kana: "しゅっせきします", romaji: ["shussekishimasu"], rubyHtml: "<ruby>出<rt>しゅっ</rt></ruby><ruby>席<rt>せき</rt></ruby>します", meaning: "Tham dự" },
+        { kana: "きゅうけいします", romaji: ["kyuukeishimasu"], rubyHtml: "<ruby>休<rt>きゅう</rt></ruby><ruby>憩<rt>けい</rt></ruby>します", meaning: "Nghỉ giải lao" },
+        { kana: "のこります", romaji: ["nokorimasu"], rubyHtml: "<ruby>残<rt>のこ</rt></ruby>ります", meaning: "Ở lại" },
+        { kana: "とじます", romaji: ["tojimasu"], rubyHtml: "<ruby>閉<rt>と</rt></ruby>じます", meaning: "Đóng, nhắm [mắt]" },
+        { kana: "あつまります", romaji: ["atsumarimasu"], rubyHtml: "<ruby>集<rt>あつ</rt></ruby>まります", meaning: "Tập trung" },
+        { kana: "きがつきます", romaji: ["kigatsukimasu"], rubyHtml: "<ruby>気<rt>き</rt></ruby>がつきます", meaning: "Để ý, nhận ra" },
+      ],
+    },
+
+    // B. Cơ sở & Địa điểm
+    {
+      id: "b31_coso",
+      name: "B. Cơ sở & Địa điểm",
+      selected: true,
+      items: [
+        { kana: "ほんしゃ", romaji: ["honsha"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby><ruby>社<rt>しゃ</rt></ruby>", meaning: "Trụ sở chính" },
+        { kana: "してん", romaji: ["shiten"], rubyHtml: "<ruby>支<rt>し</rt></ruby><ruby>店<rt>てん</rt></ruby>", meaning: "Chi nhánh" },
+        { kana: "きょうかい", romaji: ["kyoukai"], rubyHtml: "<ruby>教<rt>きょう</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Nhà thờ" },
+        { kana: "だいがくいん", romaji: ["daigakuin"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>院<rt>いん</rt></ruby>", meaning: "Cao học" },
+        { kana: "どうぶつえん", romaji: ["doubutsuen"], rubyHtml: "<ruby>動<rt>どう</rt></ruby><ruby>物<rt>ぶつ</rt></ruby><ruby>園<rt>えん</rt></ruby>", meaning: "Sở thú" },
+        { kana: "おんせん", romaji: ["onsen"], rubyHtml: "<ruby>温<rt>おん</rt></ruby><ruby>泉<rt>せん</rt></ruby>", meaning: "Suối nước nóng" },
+        { kana: "えいがかん", romaji: ["eigakan"], rubyHtml: "<ruby>映<rt>えい</rt></ruby><ruby>画<rt>が</rt></ruby><ruby>館<rt>かん</rt></ruby>", meaning: "Rạp chiếu phim" },
+        { kana: "のほう", romaji: ["nohou"], rubyHtml: "～の<ruby>方<rt>ほう</rt></ruby>", meaning: "Phía ~, hướng ~" },
+        { kana: "うえのこうえん", romaji: ["uenokouen"], rubyHtml: "<ruby>上<rt>うえ</rt></ruby><ruby>野<rt>の</rt></ruby><ruby>公<rt>こう</rt></ruby><ruby>園<rt>えん</rt></ruby>", meaning: "Công viên Ueno (ở Tokyo)" },
+        { kana: "むら", romaji: ["mura"], rubyHtml: "<ruby>村<rt>むら</rt></ruby>", meaning: "Làng" },
+        { kana: "とかい", romaji: ["tokai"], rubyHtml: "<ruby>都<rt>と</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Thành phố, nơi đô hội" },
+      ],
+    },
+
+    // C. Sự kiện & Đời sống
+    {
+      id: "b31_sukien",
+      name: "C. Sự kiện & Đời sống",
+      selected: true,
+      items: [
+        { kana: "れんきゅう", romaji: ["renkyuu"], rubyHtml: "<ruby>連<rt>れん</rt></ruby><ruby>休<rt>きゅう</rt></ruby>", meaning: "Kỳ nghỉ dài ngày" },
+        { kana: "さくぶん", romaji: ["sakubun"], rubyHtml: "<ruby>作<rt>さく</rt></ruby><ruby>文<rt>ぶん</rt></ruby>", meaning: "Bài tập làm văn" },
+        { kana: "てんらんかい", romaji: ["tenrankai"], rubyHtml: "<ruby>展<rt>てん</rt></ruby><ruby>覧<rt>らん</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Triển lãm" },
+        { kana: "けっこんしき", romaji: ["kekkonshiki"], rubyHtml: "<ruby>結<rt>けっ</rt></ruby><ruby>婚<rt>こん</rt></ruby><ruby>式<rt>しき</rt></ruby>", meaning: "Lễ kết hôn" },
+        { kana: "そうしき", romaji: ["soushiki"], rubyHtml: "お<ruby>葬<rt>そう</rt></ruby><ruby>式<rt>しき</rt></ruby>", meaning: "Đám tang" },
+        { kana: "しき", romaji: ["shiki"], rubyHtml: "<ruby>式<rt>しき</rt></ruby>", meaning: "Lễ, đám" },
+        { kana: "おきゃくさん", romaji: ["okyakusan"], rubyHtml: "お<ruby>客<rt>きゃく</rt></ruby>さん", meaning: "Khách hàng" },
+        { kana: "ピカソ", romaji: ["pikaso"], rubyHtml: "ピカソ", meaning: "Picasso (danh họa)" },
+        { kana: "うつくしい", romaji: ["utsukushii"], rubyHtml: "<ruby>美<rt>うつく</rt></ruby>しい", meaning: "Đẹp" },
+        { kana: "しぜん", romaji: ["shizen"], rubyHtml: "<ruby>自<rt>し</rt></ruby><ruby>然<rt>ぜん</rt></ruby>", meaning: "Tự nhiên, thiên nhiên" },
+        { kana: "すばらしさ", romaji: ["subarashisa"], rubyHtml: "すばらしさ", meaning: "Sự tuyệt vời" },
+      ],
+    },
+
+    // D. Trạng từ & Giao tiếp
+    {
+      id: "b31_giaotiep",
+      name: "D. Trạng từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "だれか", romaji: ["dareka"], rubyHtml: "だれか", meaning: "Ai đó" },
+        { kana: "ずっと", romaji: ["zutto"], rubyHtml: "ずっと", meaning: "Suốt, liền" },
+        { kana: "じゆうに", romaji: ["jiyuuni"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>由<rt>ゆう</rt></ruby>に", meaning: "Tự do, tùy ý" },
+        { kana: "せかいじゅう", romaji: ["sekaijuu"], rubyHtml: "<ruby>世界中<rt>せかいじゅう</rt></ruby>", meaning: "Khắp thế giới" },
+        { kana: "つきに", romaji: ["tsukini"], rubyHtml: "<ruby>月<rt>つき</rt></ruby>に", meaning: "Một tháng" },
+        { kana: "ふつうの", romaji: ["futsuuno"], rubyHtml: "<ruby>普<rt>ふ</rt></ruby><ruby>通<rt>つう</rt></ruby>の", meaning: "Thường, thông thường" },
+        { kana: "インターネット", romaji: ["inta-netto"], rubyHtml: "インターネット", meaning: "Internet" },
+        { kana: "いや", romaji: ["iya"], rubyHtml: "<ruby>嫌<rt>いや</rt></ruby>［な］", meaning: "Chán, ghét" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 32
+  // ========================================
   32: [
-    { id: 'b32_suckhoe', name: 'A. Động từ Sức khỏe & Sự cố', selected: true, items: [
-      { kana: 'うんどうします', romaji: ['undoushimasu'], rubyHtml: '<ruby>運<rt>うん</rt></ruby><ruby>動<rt>どう</rt></ruby>します', meaning: 'Vận động, tập thể dục' },
-      { kana: 'せいこうします', romaji: ['seikoushimasu'], rubyHtml: '<ruby>成<rt>せい</rt></ruby><ruby>功<rt>こう</rt></ruby>します', meaning: 'Thành công' },
-      { kana: 'しっぱいします', romaji: ['shippaishimasu'], rubyHtml: '<ruby>失<rt>しっ</rt></ruby><ruby>敗<rt>ぱい</rt></ruby>します', meaning: 'Thất bại' },
-      { kana: 'ごうかくします', romaji: ['goukaku-shimasu', 'goukakushimasu'], rubyHtml: '<ruby>合<rt>ごう</rt></ruby><ruby>格<rt>かく</rt></ruby>します', meaning: 'Thi đỗ, đạt' },
-      { kana: 'やみます', romaji: ['yamimasu'], rubyHtml: '<ruby>止<rt>や</rt></ruby>みます', meaning: 'Tạnh (mưa止む)' },
-      { kana: 'はれます', romaji: ['haremasu'], rubyHtml: '<ruby>晴<rt>は</rt></ruby>れます', meaning: 'Nắng, quang mây' },
-      { kana: 'くもります', romaji: ['kumorimasu'], rubyHtml: '<ruby>曇<rt>くも</rt></ruby>ります', meaning: 'Nhiều mây, âm u' },
-      { kana: 'なおります', romaji: ['naorimasu'], rubyHtml: '<ruby>治<rt>なお</rt></ruby>ります', meaning: 'Khỏi bệnh' },
-      { kana: 'もどります', romaji: ['modorimasu'], rubyHtml: '<ruby>戻<rt>もど</rt></ruby>ります', meaning: 'Quay lại, trở lại' },
-{ kana: 'ふきます', romaji: ['fukimasu'], rubyHtml: '［<ruby>風<rt>かぜ</rt></ruby>が～］<ruby>吹<rt>ふ</rt></ruby>きます', meaning: 'Thổi ［gió ~］' },
-{ kana: 'つづきます', romaji: ['tsudukimasu'], rubyHtml: '［<ruby>熱<rt>ねつ</rt></ruby>が～］<ruby>続<rt>つづ</rt></ruby>きます', meaning: 'Tiếp tục ［sốt］' },
-{ kana: 'ひやします', romaji: ['hiyashimasu'], rubyHtml: '<ruby>冷<rt>ひ</rt></ruby>やします', meaning: 'Làm lạnh' },
-{ kana: 'じゅうぶん', romaji: ['juubun'], rubyHtml: '<ruby>十<rt>じゅう</rt></ruby><ruby>分<rt>ぶん</rt></ruby>［な］', meaning: 'Đủ' },
-{ kana: 'おかしい', romaji: ['okashii'], rubyHtml: 'おかしい', meaning: 'Lạ, có vấn đề, buồn cười' },
-{ kana: 'うるさい', romaji: ['urusai'], rubyHtml: 'うるさい', meaning: 'Ồn ào' },
-{ kana: 'おそく', romaji: ['osoku'], rubyHtml: '<ruby>遅<rt>おそ</rt></ruby>く', meaning: 'Muộn, khuya' },
-{ kana: 'むりをします', romaji: ['murioshimasu'], rubyHtml: '<ruby>無<rt>む</rt></ruby><ruby>理<rt>り</rt></ruby>をします', meaning: 'Làm quá sức' },
-{ kana: 'ゆっくりします', romaji: ['yukkurishimasu'], rubyHtml: 'ゆっくりします', meaning: 'Nghỉ ngơi, dưỡng sức' },
-{ kana: 'こまります', romaji: ['komarimasu'], rubyHtml: '<ruby>困<rt>こま</rt></ruby>ります', meaning: 'Rắc rối, khó xử' },
-    ]},
-    { id: 'b32_thoitiet', name: 'B. Thời tiết & Thiên văn', selected: true, items: [
-      { kana: 'たいよう', romaji: ['taiyou'], rubyHtml: '<ruby>太<rt>たい</rt></ruby><ruby>陽<rt>よう</rt></ruby>', meaning: 'Mặt trời' },
-      { kana: 'ほし', romaji: ['hoshi'], rubyHtml: '<ruby>星<rt>ほし</rt></ruby>', meaning: 'Ngôi sao' },
-      { kana: 'かぜ', romaji: ['kaze'], rubyHtml: '<ruby>風<rt>かぜ</rt></ruby>', meaning: 'Gió' },
-      { kana: 'きた', romaji: ['kita'], rubyHtml: '<ruby>北<rt>きた</rt></ruby>', meaning: 'Hướng Bắc' },
-      { kana: 'みなみ', romaji: ['minami'], rubyHtml: '<ruby>南<rt>みなみ</rt></ruby>', meaning: 'Hướng Nam' },
-      { kana: 'にし', romaji: ['nishi'], rubyHtml: '<ruby>西<rt>にし</rt></ruby>', meaning: 'Hướng Tây' },
-      { kana: 'ひがし', romaji: ['higashi'], rubyHtml: '<ruby>東<rt>ひがし</rt></ruby>', meaning: 'Hướng Đông' },
-      { kana: 'すいどう', romaji: ['suidou'], rubyHtml: '<ruby>水<rt>すい</rt></ruby><ruby>道<rt>どう</rt></ruby>', meaning: 'Nước máy' },
-{ kana: 'エンジン', romaji: ['enjin'], rubyHtml: 'エンジン', meaning: 'Động cơ' },
-{ kana: 'こんや', romaji: ['konya'], rubyHtml: '<ruby>今<rt>こん</rt></ruby><ruby>夜<rt>や</rt></ruby>', meaning: 'Tối nay, đêm nay' },
-{ kana: 'ゆうがた', romaji: ['yuugata'], rubyHtml: '<ruby>夕<rt>ゆう</rt></ruby><ruby>方<rt>がた</rt></ruby>', meaning: 'Chiều tối' },
-{ kana: 'まえ', romaji: ['mae'], rubyHtml: 'まえ', meaning: 'Trước' },
-    ]},
-    { id: 'b32_benhtat', name: 'C. Bệnh tật & Y tế', selected: true, items: [
-      { kana: 'しんぱい', romaji: ['shinpai'], rubyHtml: '<ruby>心<rt>しん</rt></ruby><ruby>配<rt>ぱい</rt></ruby>', meaning: 'Lo lắng' },
-      { kana: 'やけど', romaji: ['yakedo'], rubyHtml: 'やけど', meaning: 'Bị bỏng' },
-      { kana: 'けが', romaji: ['kega'], rubyHtml: 'けが', meaning: 'Vết thương' },
-      { kana: 'せき', romaji: ['seki'], rubyHtml: 'せき', meaning: 'Cơn ho' },
-      { kana: 'インフルエンザ', romaji: ['infuruenza'], rubyHtml: 'インフルエンザ', meaning: 'Cúm mùa' },
-      { kana: 'ストレス', romaji: ['sutoresu'], rubyHtml: 'ストレス', meaning: 'Căng thẳng, stress' },
-      { kana: 'ひきます', romaji: ['hikimasu'], rubyHtml: '［かぜを～］ひきます', meaning: 'Bị ［cảm］' },
-{ kana: 'げんき', romaji: ['genki'], rubyHtml: '<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Khỏe, khỏe mạnh' },
-{ kana: 'い', romaji: ['i'], rubyHtml: '<ruby>胃<rt>い</rt></ruby>', meaning: 'Dạ dày' },
-{ kana: 'はたらきすぎ', romaji: ['hatarakisugi'], rubyHtml: '<ruby>働<rt>はたら</rt></ruby>きすぎ', meaning: 'Làm việc quá sức' },
-    ]},
-    { id: 'b32_boitoan', name: 'D. Bói toán & Khác', selected: true, items: [
-      { kana: 'もしかしたら', romaji: ['moshikashitara'], rubyHtml: 'もしかしたら', meaning: 'Có lẽ, biết đâu chừng' },
-      { kana: 'オリンピック', romaji: ['orinpikku'], rubyHtml: 'オリンピック', meaning: 'Thế vận hội Olympic' },
-      { kana: 'たからくじ', romaji: ['takarakuji'], rubyHtml: '<ruby>宝<rt>たから</rt></ruby>くじ', meaning: 'Vé số' },
-      { kana: 'けんこう', romaji: ['kenkou'], rubyHtml: '<ruby>健<rt>けん</rt></ruby><ruby>康<rt>こう</rt></ruby>', meaning: 'Sức khỏe' },
-      { kana: 'チーム', romaji: ['chi-mu'], rubyHtml: 'チーム', meaning: 'Đội' },
-{ kana: 'こんなに', romaji: ['konnani'], rubyHtml: 'こんなに', meaning: 'Như thế này' },
-{ kana: 'そんなに', romaji: ['sonnani'], rubyHtml: 'そんなに', meaning: 'Như thế đó' },
-{ kana: 'あんなに', romaji: ['annani'], rubyHtml: 'あんなに', meaning: 'Như thế kia' },
-{ kana: 'それはいけませんね', romaji: ['sorewaikemasenne'], rubyHtml: 'それはいけませんね。', meaning: 'Thế thì thật không tốt.' },
-{ kana: 'ほしうらない', romaji: ['hoshiuranai'], rubyHtml: '<ruby>星占<rt>ほしうら</rt></ruby>い', meaning: 'Bói sao' },
-{ kana: 'おうしざ', romaji: ['oushiza'], rubyHtml: '<ruby>牡<rt>お</rt></ruby><ruby>牛<rt>うし</rt></ruby><ruby>座<rt>ざ</rt></ruby>', meaning: 'Chòm sao Kim Ngưu' },
-{ kana: 'あたります', romaji: ['atarimasu'], rubyHtml: '［<ruby>宝<rt>たから</rt></ruby>くじが～］<ruby>当<rt>あた</rt></ruby>ります', meaning: 'Trúng ［xổ số］' },
-{ kana: 'れんあい', romaji: ['renai'], rubyHtml: '<ruby>恋<rt>れん</rt></ruby><ruby>愛<rt>あい</rt></ruby>', meaning: 'Tình yêu' },
-{ kana: 'こいびと', romaji: ['koibito'], rubyHtml: '<ruby>恋<rt>こい</rt></ruby><ruby>人<rt>びと</rt></ruby>', meaning: 'Người yêu' },
-{ kana: 'かねもち', romaji: ['kanemochi'], rubyHtml: '［お］<ruby>金<rt>かね</rt></ruby><ruby>持<rt>も</rt></ruby>ち', meaning: 'Người giàu có' },
-    ]}
+    // A. Động từ Sức khỏe & Sự cố
+    {
+      id: "b32_suckhoe",
+      name: "A. Động từ Sức khỏe & Sự cố",
+      selected: true,
+      items: [
+        { kana: "うんどうします", romaji: ["undoushimasu"], rubyHtml: "<ruby>運<rt>うん</rt></ruby><ruby>動<rt>どう</rt></ruby>します", meaning: "Vận động, tập thể dục" },
+        { kana: "せいこうします", romaji: ["seikoushimasu"], rubyHtml: "<ruby>成<rt>せい</rt></ruby><ruby>功<rt>こう</rt></ruby>します", meaning: "Thành công" },
+        { kana: "しっぱいします", romaji: ["shippaishimasu"], rubyHtml: "<ruby>失<rt>しっ</rt></ruby><ruby>敗<rt>ぱい</rt></ruby>します", meaning: "Thất bại" },
+        { kana: "ごうかくします", romaji: ["goukaku-shimasu","goukakushimasu"], rubyHtml: "<ruby>合<rt>ごう</rt></ruby><ruby>格<rt>かく</rt></ruby>します", meaning: "Thi đỗ, đạt" },
+        { kana: "やみます", romaji: ["yamimasu"], rubyHtml: "<ruby>止<rt>や</rt></ruby>みます", meaning: "Tạnh (mưa止む)" },
+        { kana: "はれます", romaji: ["haremasu"], rubyHtml: "<ruby>晴<rt>は</rt></ruby>れます", meaning: "Nắng, quang mây" },
+        { kana: "くもります", romaji: ["kumorimasu"], rubyHtml: "<ruby>曇<rt>くも</rt></ruby>ります", meaning: "Nhiều mây, âm u" },
+        { kana: "なおります", romaji: ["naorimasu"], rubyHtml: "<ruby>治<rt>なお</rt></ruby>ります", meaning: "Khỏi bệnh" },
+        { kana: "もどります", romaji: ["modorimasu"], rubyHtml: "<ruby>戻<rt>もど</rt></ruby>ります", meaning: "Quay lại, trở lại" },
+        { kana: "ふきます", romaji: ["fukimasu"], rubyHtml: "［<ruby>風<rt>かぜ</rt></ruby>が～］<ruby>吹<rt>ふ</rt></ruby>きます", meaning: "Thổi ［gió ~］" },
+        { kana: "つづきます", romaji: ["tsudukimasu"], rubyHtml: "［<ruby>熱<rt>ねつ</rt></ruby>が～］<ruby>続<rt>つづ</rt></ruby>きます", meaning: "Tiếp tục ［sốt］" },
+        { kana: "ひやします", romaji: ["hiyashimasu"], rubyHtml: "<ruby>冷<rt>ひ</rt></ruby>やします", meaning: "Làm lạnh" },
+        { kana: "じゅうぶん", romaji: ["juubun"], rubyHtml: "<ruby>十<rt>じゅう</rt></ruby><ruby>分<rt>ぶん</rt></ruby>［な］", meaning: "Đủ" },
+        { kana: "おかしい", romaji: ["okashii"], rubyHtml: "おかしい", meaning: "Lạ, có vấn đề, buồn cười" },
+        { kana: "うるさい", romaji: ["urusai"], rubyHtml: "うるさい", meaning: "Ồn ào" },
+        { kana: "おそく", romaji: ["osoku"], rubyHtml: "<ruby>遅<rt>おそ</rt></ruby>く", meaning: "Muộn, khuya" },
+        { kana: "むりをします", romaji: ["murioshimasu"], rubyHtml: "<ruby>無<rt>む</rt></ruby><ruby>理<rt>り</rt></ruby>をします", meaning: "Làm quá sức" },
+        { kana: "ゆっくりします", romaji: ["yukkurishimasu"], rubyHtml: "ゆっくりします", meaning: "Nghỉ ngơi, dưỡng sức" },
+        { kana: "こまります", romaji: ["komarimasu"], rubyHtml: "<ruby>困<rt>こま</rt></ruby>ります", meaning: "Rắc rối, khó xử" },
+      ],
+    },
+
+    // B. Thời tiết & Thiên văn
+    {
+      id: "b32_thoitiet",
+      name: "B. Thời tiết & Thiên văn",
+      selected: true,
+      items: [
+        { kana: "たいよう", romaji: ["taiyou"], rubyHtml: "<ruby>太<rt>たい</rt></ruby><ruby>陽<rt>よう</rt></ruby>", meaning: "Mặt trời" },
+        { kana: "ほし", romaji: ["hoshi"], rubyHtml: "<ruby>星<rt>ほし</rt></ruby>", meaning: "Ngôi sao" },
+        { kana: "かぜ", romaji: ["kaze"], rubyHtml: "<ruby>風<rt>かぜ</rt></ruby>", meaning: "Gió" },
+        { kana: "きた", romaji: ["kita"], rubyHtml: "<ruby>北<rt>きた</rt></ruby>", meaning: "Hướng Bắc" },
+        { kana: "みなみ", romaji: ["minami"], rubyHtml: "<ruby>南<rt>みなみ</rt></ruby>", meaning: "Hướng Nam" },
+        { kana: "にし", romaji: ["nishi"], rubyHtml: "<ruby>西<rt>にし</rt></ruby>", meaning: "Hướng Tây" },
+        { kana: "ひがし", romaji: ["higashi"], rubyHtml: "<ruby>東<rt>ひがし</rt></ruby>", meaning: "Hướng Đông" },
+        { kana: "すいどう", romaji: ["suidou"], rubyHtml: "<ruby>水<rt>すい</rt></ruby><ruby>道<rt>どう</rt></ruby>", meaning: "Nước máy" },
+        { kana: "エンジン", romaji: ["enjin"], rubyHtml: "エンジン", meaning: "Động cơ" },
+        { kana: "こんや", romaji: ["konya"], rubyHtml: "<ruby>今<rt>こん</rt></ruby><ruby>夜<rt>や</rt></ruby>", meaning: "Tối nay, đêm nay" },
+        { kana: "ゆうがた", romaji: ["yuugata"], rubyHtml: "<ruby>夕<rt>ゆう</rt></ruby><ruby>方<rt>がた</rt></ruby>", meaning: "Chiều tối" },
+        { kana: "まえ", romaji: ["mae"], rubyHtml: "まえ", meaning: "Trước" },
+      ],
+    },
+
+    // C. Bệnh tật & Y tế
+    {
+      id: "b32_benhtat",
+      name: "C. Bệnh tật & Y tế",
+      selected: true,
+      items: [
+        { kana: "しんぱい", romaji: ["shinpai"], rubyHtml: "<ruby>心<rt>しん</rt></ruby><ruby>配<rt>ぱい</rt></ruby>", meaning: "Lo lắng" },
+        { kana: "やけど", romaji: ["yakedo"], rubyHtml: "やけど", meaning: "Bị bỏng" },
+        { kana: "けが", romaji: ["kega"], rubyHtml: "けが", meaning: "Vết thương" },
+        { kana: "せき", romaji: ["seki"], rubyHtml: "せき", meaning: "Cơn ho" },
+        { kana: "インフルエンザ", romaji: ["infuruenza"], rubyHtml: "インフルエンザ", meaning: "Cúm mùa" },
+        { kana: "ストレス", romaji: ["sutoresu"], rubyHtml: "ストレス", meaning: "Căng thẳng, stress" },
+        { kana: "ひきます", romaji: ["hikimasu"], rubyHtml: "［かぜを～］ひきます", meaning: "Bị ［cảm］" },
+        { kana: "げんき", romaji: ["genki"], rubyHtml: "<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Khỏe, khỏe mạnh" },
+        { kana: "い", romaji: ["i"], rubyHtml: "<ruby>胃<rt>い</rt></ruby>", meaning: "Dạ dày" },
+        { kana: "はたらきすぎ", romaji: ["hatarakisugi"], rubyHtml: "<ruby>働<rt>はたら</rt></ruby>きすぎ", meaning: "Làm việc quá sức" },
+      ],
+    },
+
+    // D. Bói toán & Khác
+    {
+      id: "b32_boitoan",
+      name: "D. Bói toán & Khác",
+      selected: true,
+      items: [
+        { kana: "もしかしたら", romaji: ["moshikashitara"], rubyHtml: "もしかしたら", meaning: "Có lẽ, biết đâu chừng" },
+        { kana: "オリンピック", romaji: ["orinpikku"], rubyHtml: "オリンピック", meaning: "Thế vận hội Olympic" },
+        { kana: "たからくじ", romaji: ["takarakuji"], rubyHtml: "<ruby>宝<rt>たから</rt></ruby>くじ", meaning: "Vé số" },
+        { kana: "けんこう", romaji: ["kenkou"], rubyHtml: "<ruby>健<rt>けん</rt></ruby><ruby>康<rt>こう</rt></ruby>", meaning: "Sức khỏe" },
+        { kana: "チーム", romaji: ["chi-mu"], rubyHtml: "チーム", meaning: "Đội" },
+        { kana: "こんなに", romaji: ["konnani"], rubyHtml: "こんなに", meaning: "Như thế này" },
+        { kana: "そんなに", romaji: ["sonnani"], rubyHtml: "そんなに", meaning: "Như thế đó" },
+        { kana: "あんなに", romaji: ["annani"], rubyHtml: "あんなに", meaning: "Như thế kia" },
+        { kana: "それはいけませんね", romaji: ["sorewaikemasenne"], rubyHtml: "それはいけませんね。", meaning: "Thế thì thật không tốt." },
+        { kana: "ほしうらない", romaji: ["hoshiuranai"], rubyHtml: "<ruby>星占<rt>ほしうら</rt></ruby>い", meaning: "Bói sao" },
+        { kana: "おうしざ", romaji: ["oushiza"], rubyHtml: "<ruby>牡<rt>お</rt></ruby><ruby>牛<rt>うし</rt></ruby><ruby>座<rt>ざ</rt></ruby>", meaning: "Chòm sao Kim Ngưu" },
+        { kana: "あたります", romaji: ["atarimasu"], rubyHtml: "［<ruby>宝<rt>たから</rt></ruby>くじが～］<ruby>当<rt>あた</rt></ruby>ります", meaning: "Trúng ［xổ số］" },
+        { kana: "れんあい", romaji: ["renai"], rubyHtml: "<ruby>恋<rt>れん</rt></ruby><ruby>愛<rt>あい</rt></ruby>", meaning: "Tình yêu" },
+        { kana: "こいびと", romaji: ["koibito"], rubyHtml: "<ruby>恋<rt>こい</rt></ruby><ruby>人<rt>びと</rt></ruby>", meaning: "Người yêu" },
+        { kana: "かねもち", romaji: ["kanemochi"], rubyHtml: "［お］<ruby>金<rt>かね</rt></ruby><ruby>持<rt>も</rt></ruby>ち", meaning: "Người giàu có" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 33
+  // ========================================
   33: [
-    { id: 'b33_menhlenh', name: 'A. Động từ Mệnh lệnh & Cấm đoán', selected: true, items: [
-      { kana: 'にげます', romaji: ['nigemasu'], rubyHtml: '<ruby>逃<rt>に</rt></ruby>げます', meaning: 'Chạy trốn' },
-      { kana: 'さわぎます', romaji: ['sawagimasu'], rubyHtml: '<ruby>騒<rt>さわ</rt></ruby>ぎます', meaning: 'Làm ồn, gây náo động' },
-      { kana: 'あきらめます', romaji: ['akiramemasu'], rubyHtml: '<ruby>諦<rt>あきら</rt></ruby>めます', meaning: 'Từ bỏ, từ khước' },
-      { kana: 'なげます', romaji: ['nagemasu'], rubyHtml: '<ruby>投<rt>な</rt></ruby>げます', meaning: 'Ném' },
-      { kana: 'まもります', romaji: ['mamorimasu'], rubyHtml: '<ruby>守<rt>まも</rt></ruby>ります', meaning: 'Bảo vệ, giữ quy tắc' },
-      { kana: 'つたえます', romaji: ['tsutaemasu'], rubyHtml: '<ruby>伝<rt>つた</rt></ruby>えます', meaning: 'Truyền đạt, nhắn lại' },
-      { kana: 'ちゅういします', romaji: ['chuuishimasu'], rubyHtml: '<ruby>注<rt>ちゅう</rt></ruby><ruby>意<rt>い</rt></ruby>します', meaning: 'Chú ý, nhắc nhở' },
-      { kana: 'あげます', romaji: ['agemasu'], rubyHtml: '<ruby>上<rt>あ</rt></ruby>げます', meaning: 'Nâng lên, tăng lên' },
-{ kana: 'さげます', romaji: ['sagemasu'], rubyHtml: '<ruby>下<rt>さ</rt></ruby>げます', meaning: 'Hạ xuống, giảm xuống' },
-{ kana: 'はずします', romaji: ['hazushimasu'], rubyHtml: '［<ruby>席<rt>せき</rt></ruby>を～］<ruby>外<rt>はず</rt></ruby>します', meaning: 'Rời ［chỗ ngồi］' },
-{ kana: 'うちます', romaji: ['uchimasu'], rubyHtml: '［<ruby>電<rt>でん</rt></ruby><ruby>報<rt>ぽう</rt></ruby>を～］<ruby>打<rt>う</rt></ruby>ちます', meaning: 'Gửi ［bức điện］' },
-{ kana: 'なくなります', romaji: ['nakunarimasu'], rubyHtml: '<ruby>亡<rt>な</rt></ruby>くなります', meaning: 'Chết, mất' },
-{ kana: 'りようします', romaji: ['riyoushimasu'], rubyHtml: '<ruby>利<rt>り</rt></ruby><ruby>用<rt>よう</rt></ruby>します', meaning: 'Sử dụng, tận dụng' },
-    ]},
-    { id: 'b33_bienbao', name: 'B. Biển báo & Quy tắc', selected: true, items: [
-      { kana: 'だめ', romaji: ['dame'], rubyHtml: 'だめ', meaning: 'Không được, cấm' },
-      { kana: 'きそく', romaji: ['kisoku'], rubyHtml: '<ruby>規<rt>き</rt></ruby><ruby>則<rt>そく</rt></ruby>', meaning: 'Quy tắc, nội quy' },
-      { kana: 'しようきんし', romaji: ['shiyoukinshi'], rubyHtml: '<ruby>使<rt>し</rt></ruby><ruby>用<rt>よう</rt></ruby><ruby>禁<rt>きん</rt></ruby><ruby>止<rt>し</rt></ruby>', meaning: 'Cấm sử dụng' },
-      { kana: 'たちいりきんし', romaji: ['tachiirikinshi'], rubyHtml: '<ruby>立<rt>たち</rt></ruby><ruby>入<rt>いり</rt></ruby><ruby>禁<rt>きん</rt></ruby><ruby>止<rt>し</rt></ruby>', meaning: 'Cấm vào' },
-      { kana: 'いりぐち', romaji: ['iriguchi'], rubyHtml: '<ruby>入<rt>いり</rt></ruby><ruby>口<rt>ぐち</rt></ruby>', meaning: 'Lối vào' },
-      { kana: 'でぐち', romaji: ['deguchi'], rubyHtml: '<ruby>出<rt>で</rt></ruby><ruby>口<rt>ぐち</rt></ruby>', meaning: 'Lối ra' },
-      { kana: 'ひじょうぐち', romaji: ['hijouguchi'], rubyHtml: '<ruby>非<rt>ひ</rt></ruby><ruby>常<rt>じょう</rt></ruby><ruby>口<rt>ぐち</rt></ruby>', meaning: 'Lối thoát hiểm' },
-      { kana: 'むりょう', romaji: ['muryou'], rubyHtml: '<ruby>無<rt>む</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Miễn phí' },
-      { kana: 'えいぎょうちゅう', romaji: ['eigyouchuu'], rubyHtml: '<ruby>営<rt>えい</rt></ruby><ruby>業<rt>ぎょう</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>', meaning: 'Đang mở cửa bán' },
-      { kana: 'せき', romaji: ['seki'], rubyHtml: '<ruby>席<rt>せき</rt></ruby>', meaning: 'Chỗ ngồi, ghế' },
-{ kana: 'マーク', romaji: ['ma-ku'], rubyHtml: 'マーク', meaning: 'Ký hiệu' },
-{ kana: 'ボール', romaji: ['bo-ru'], rubyHtml: 'ボール', meaning: 'Quả bóng' },
-{ kana: 'せんたくき', romaji: ['sentakuki'], rubyHtml: '<ruby>洗<rt>せん</rt></ruby><ruby>濯<rt>たく</rt></ruby><ruby>機<rt>き</rt></ruby>', meaning: 'Máy giặt' },
-{ kana: 'き', romaji: ['ki'], rubyHtml: '～<ruby>機<rt>き</rt></ruby>', meaning: 'Máy ~' },
-{ kana: 'ほんじつきゅうぎょう', romaji: ['honjitsukyuugyou'], rubyHtml: '<ruby>本<rt>ほん</rt></ruby><ruby>日<rt>じつ</rt></ruby><ruby>休<rt>きゅう</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>', meaning: 'Hôm nay đóng cửa, nghỉ' },
-{ kana: 'しようちゅう', romaji: ['shiyouchuu'], rubyHtml: '<ruby>使<rt>し</rt></ruby><ruby>用<rt>よう</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>', meaning: 'Đang sử dụng' },
-{ kana: 'ちゅう', romaji: ['chuu'], rubyHtml: '～<ruby>中<rt>ちゅう</rt></ruby>', meaning: 'Đang ~' },
-{ kana: 'ちゅうしゃいはん', romaji: ['chuushaihan'], rubyHtml: '<ruby>駐<rt>ちゅう</rt></ruby><ruby>車<rt>しゃ</rt></ruby><ruby>違<rt>い</rt></ruby><ruby>反<rt>はん</rt></ruby>', meaning: 'Đỗ xe trái phép' },
-{ kana: 'いない', romaji: ['inai'], rubyHtml: '～<ruby>以<rt>い</rt></ruby><ruby>内<rt>ない</rt></ruby>', meaning: 'Trong khoảng ~, trong vòng ~' },
-    ]},
-    { id: 'b33_canhsat', name: 'C. Cảnh sát & Điện báo', selected: true, items: [
-      { kana: 'けいさつ', romaji: ['keisatsu'], rubyHtml: '<ruby>警<rt>けい</rt></ruby><ruby>察<rt>さつ</rt></ruby>', meaning: 'Cảnh sát' },
-      { kana: 'ぱっきん', romaji: ['pakkin'], rubyHtml: '<ruby>罰<rt>ばっ</rt></ruby><ruby>金<rt>きん</rt></ruby>', meaning: 'Tiền phạt' },
-      { kana: 'でんぽう', romaji: ['denpou'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>報<rt>ぽう</rt></ruby>', meaning: 'Bức điện báo' },
-      { kana: 'るす', romaji: ['rusu'], rubyHtml: '<ruby>留<rt>る</rt></ruby><ruby>守<rt>す</rt></ruby>', meaning: 'Vắng nhà' },
-      { kana: 'ひとびと', romaji: ['hitobito'], rubyHtml: '<ruby>人<rt>ひと</rt></ruby><ruby>々<rt>びと</rt></ruby>', meaning: 'Người, những người' },
-{ kana: 'きゅうよう', romaji: ['kyuuyou'], rubyHtml: '<ruby>急<rt>きゅう</rt></ruby><ruby>用<rt>よう</rt></ruby>', meaning: 'Việc gấp' },
-{ kana: 'でんぽうだい', romaji: ['denpoudai'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>報<rt>ぽう</rt></ruby><ruby>代<rt>だい</rt></ruby>', meaning: 'Tiền cước điện báo' },
-{ kana: 'キトク', romaji: ['kitoku'], rubyHtml: 'キトク（<ruby>危<rt>き</rt></ruby><ruby>篤<rt>とく</rt></ruby>）', meaning: 'Tình trạng hiểm nghèo' },
-{ kana: 'おもいびょうき', romaji: ['omoibyouki'], rubyHtml: '<ruby>重<rt>おも</rt></ruby>い<ruby>病<rt>びょう</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Bệnh nặng' },
-{ kana: 'るすばん', romaji: ['rusuban'], rubyHtml: '<ruby>留<rt>る</rt></ruby><ruby>守<rt>す</rt></ruby><ruby>番<rt>ばん</rt></ruby>', meaning: 'Trông nhà' },
-{ kana: 'いわい', romaji: ['iwai'], rubyHtml: '［お］<ruby>祝<rt>いわ</rt></ruby>い', meaning: 'Việc mừng, vật mừng' },
-    ]},
-    { id: 'b33_giaotiep', name: 'D. Trạng từ & Giao tiếp', selected: true, items: [
-      { kana: 'ファイト', romaji: ['faito'], rubyHtml: 'ファイト', meaning: 'Cố lên! (Fight)' },
-      { kana: 'できるだけ', romaji: ['dekirudake'], rubyHtml: 'できるだけ', meaning: 'Trong khả năng có thể' },
-      { kana: 'どういう', romaji: ['douiu'], rubyHtml: 'どういう～', meaning: '~ Gì, ~ thế nào' },
-{ kana: 'もう', romaji: ['mou'], rubyHtml: 'もう', meaning: 'Không ~ nữa' },
-{ kana: 'あと', romaji: ['ato'], rubyHtml: 'あと～', meaning: 'Còn ~' },
-{ kana: 'そりゃあ', romaji: ['soryaa'], rubyHtml: 'そりゃあ', meaning: 'Thế thì, ồ' },
-{ kana: 'みじかく', romaji: ['mijikaku'], rubyHtml: '<ruby>短<rt>みじか</rt></ruby>く', meaning: 'Ngắn gọn, đơn giản' },
-{ kana: 'また', romaji: ['mata'], rubyHtml: 'また', meaning: 'Thêm nữa' },
-{ kana: 'たとえば', romaji: ['tatoeba'], rubyHtml: '<ruby>例<rt>たと</rt></ruby>えば', meaning: 'Ví dụ' },
-{ kana: 'あす', romaji: ['asu'], rubyHtml: '<ruby>明日<rt>あす</rt></ruby>', meaning: 'Ngày mai' },
-{ kana: 'かなしみ', romaji: ['kanashimi'], rubyHtml: '<ruby>悲<rt>かな</rt></ruby>しみ', meaning: 'Buồn, nỗi buồn' },
-    ]}
-  ],
- 34: [
-    { id: 'b34_thaotac', name: 'A. Động từ Thao tác & Nấu ăn', selected: true, items: [
-      { kana: 'みがきます', romaji: ['migakimasu'], rubyHtml: '［<ruby>歯<rt>は</rt></ruby>を～］<ruby>磨<rt>みが</rt></ruby>きます', meaning: 'Mài, đánh [răng]' },
-      { kana: 'くみたてます', romaji: ['kumitatemasu'], rubyHtml: '<ruby>組<rt>く</rt></ruby>み<ruby>立<rt>た</rt></ruby>てます', meaning: 'Lắp, lắp ráp, lắp đặt' },
-      { kana: 'おります', romaji: ['orimasu'], rubyHtml: '<ruby>折<rt>お</rt></ruby>ります', meaning: 'Gấp, gập, bẻ gãy' },
-      { kana: 'きがつきます', romaji: ['kigatsukimasu'], rubyHtml: '［<ruby>忘<rt>わす</rt></ruby>れ<ruby>物<rt>もの</rt></ruby>に～］<ruby>気<rt>き</rt></ruby>がつきます', meaning: 'Nhận thấy, phát hiện [đồ bỏ quên]' },
-      { kana: 'つけます', romaji: ['tsukemasu'], rubyHtml: '［しょうゆを～］つけます', meaning: 'Chấm [xì dầu]' },
-      { kana: 'みつかります', romaji: ['mitsukarimasu'], rubyHtml: '［かぎが～］<ruby>見<rt>み</rt></ruby>つかります', meaning: 'Được tìm thấy [chìa khóa ~]' },
-      { kana: 'します', romaji: ['shimasu'], rubyHtml: '［ネクタイを～］します', meaning: 'Đeo, thắt [cà-vạt]' },
-      { kana: 'しつもんします', romaji: ['shitsumonshimasu'], rubyHtml: '<ruby>質<rt>しつ</rt></ruby><ruby>問<rt>もん</rt></ruby>します', meaning: 'Hỏi' },
-      { kana: 'おちゃをたてます', romaji: ['ochawotatemasu'], rubyHtml: 'お<ruby>茶<rt>ちゃ</rt></ruby>をたてます', meaning: 'Pha trà, khuấy trà' },
-      { kana: 'のせます', romaji: ['nosemasu'], rubyHtml: '<ruby>載<rt>の</rt></ruby>せます', meaning: 'Để lên, đặt lên' },
-      { kana: 'ひにかけます', romaji: ['hinikakemasu'], rubyHtml: '<ruby>火<rt>ひ</rt></ruby>にかけます', meaning: 'Cho qua lửa, đun' },
-      { kana: 'にます', romaji: ['nimasu'], rubyHtml: '<ruby>煮<rt>に</rt></ruby>ます', meaning: 'Ninh, hầm, nấu' },
-      { kana: 'にえます', romaji: ['niemasu'], rubyHtml: '<ruby>煮<rt>に</rt></ruby>えます', meaning: 'Chín, được nấu' }
-    ]},
-    { id: 'b34_dovat', name: 'B. Đồ vật & Màu sắc', selected: true, items: [
-      { kana: 'ほそい', romaji: ['hosoi'], rubyHtml: '<ruby>細<rt>ほそ</rt></ruby>い', meaning: 'Gầy, mỏng, thon' },
-      { kana: 'ふとい', romaji: ['futoi'], rubyHtml: '<ruby>太<rt>ふと</rt></ruby>い', meaning: 'Béo, to' },
-      { kana: 'かぐ', romaji: ['kagu'], rubyHtml: '<ruby>家<rt>か</rt></ruby><ruby>具<rt>ぐ</rt></ruby>', meaning: 'Gia cụ, đồ nội thất' },
-      { kana: 'キー', romaji: ['ki-'], rubyHtml: 'キー', meaning: 'Chìa khóa' },
-      { kana: 'シートベルト', romaji: ['shi-toberuto'], rubyHtml: 'シートベルト', meaning: 'Dây an toàn' },
-      { kana: 'せつめいしょ', romaji: ['setsumeisho'], rubyHtml: '<ruby>説<rt>せつ</rt></ruby><ruby>明<rt>めい</rt></ruby><ruby>書<rt>しょ</rt></ruby>', meaning: 'Quyển hướng dẫn' },
-      { kana: 'ず', romaji: ['zu'], rubyHtml: '<ruby>図<rt>ず</rt></ruby>', meaning: 'Sơ đồ, hình vẽ' },
-      { kana: 'せん', romaji: ['sen'], rubyHtml: '<ruby>線<rt>せん</rt></ruby>', meaning: 'Đường' },
-      { kana: 'やじるし', romaji: ['yajirushi'], rubyHtml: '<ruby>矢<rt>や</rt></ruby><ruby>印<rt>じるし</rt></ruby>', meaning: 'Dấu mũi tên' },
-      { kana: 'くろ', romaji: ['kuro'], rubyHtml: '<ruby>黒<rt>くろ</rt></ruby>', meaning: 'Màu đen' },
-      { kana: 'しろ', romaji: ['shiro'], rubyHtml: '<ruby>白<rt>しろ</rt></ruby>', meaning: 'Màu trắng' },
-      { kana: 'あか', romaji: ['aka'], rubyHtml: '<ruby>赤<rt>あか</rt></ruby>', meaning: 'Màu đỏ' },
-      { kana: 'あお', romaji: ['ao'], rubyHtml: '<ruby>青<rt>あお</rt></ruby>', meaning: 'Màu xanh da trời' },
-      { kana: 'こん', romaji: ['kon'], rubyHtml: '<ruby>紺<rt>こん</rt></ruby>', meaning: 'Màu xanh lam' },
-      { kana: 'きいろ', romaji: ['kiiro'], rubyHtml: '<ruby>黄<rt>き</rt></ruby><ruby>色<rt>いろ</rt></ruby>', meaning: 'Màu vàng' },
-      { kana: 'なべ', romaji: ['nabe'], rubyHtml: 'なべ', meaning: 'Cái nồi, cái chảo' },
-      { kana: 'ひ', romaji: ['hi'], rubyHtml: '<ruby>火<rt>ひ</rt></ruby>', meaning: 'Lửa' },
-      { kana: 'どんぶり', romaji: ['donburi'], rubyHtml: 'どんぶり', meaning: 'Cái bát' }
-    ]},
-    { id: 'b34_monan', name: 'C. Món ăn & Gia vị', selected: true, items: [
-      { kana: 'ぼんおどり', romaji: ['bonodori'], rubyHtml: '<ruby>盆<rt>ぼん</rt></ruby><ruby>踊<rt>おど</rt></ruby>り', meaning: 'Múa trong hội Bon' },
-      { kana: 'スポーツクラブ', romaji: ['supo-tsukurabu'], rubyHtml: 'スポーツクラブ', meaning: 'Câu lạc bộ thể thao' },
-      { kana: 'さどう', romaji: ['sadou'], rubyHtml: '<ruby>茶<rt>さ</rt></ruby><ruby>道<rt>どう</rt></ruby>', meaning: 'Trà đạo' },
-      { kana: 'しょうゆ', romaji: ['shouyu'], rubyHtml: 'しょうゆ', meaning: 'Nước tương, xì dầu' },
-      { kana: 'ソース', romaji: ['so-su'], rubyHtml: 'ソース', meaning: 'Nước sốt' },
-      { kana: 'おやこどんぶり', romaji: ['oyakodonburi'], rubyHtml: '<ruby>親<rt>おや</rt></ruby><ruby>子<rt>こ</rt></ruby>どんぶり', meaning: 'Món Oyako-don' },
-      { kana: 'ざいりょう', romaji: ['zairyou'], rubyHtml: '<ruby>材<rt>ざい</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Nguyên liệu' },
-      { kana: 'とりにく', romaji: ['toriniku'], rubyHtml: '<ruby>鳥<rt>とり</rt></ruby><ruby>肉<rt>にく</rt></ruby>', meaning: 'Thịt gà' },
-      { kana: 'たまねぎ', romaji: ['tamanegi'], rubyHtml: 'たまねぎ', meaning: 'Hành củ, hành tây' },
-      { kana: 'ちょうみりょう', romaji: ['choumiryou'], rubyHtml: '<ruby>調<rt>ちょう</rt></ruby><ruby>味<rt>み</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Gia vị' }
-    ]},
-    { id: 'b34_donvi', name: 'D. Đơn vị & Trạng từ', selected: true, items: [
-      { kana: 'か', romaji: ['ka'], rubyHtml: '～か～', meaning: '~ Hay ~' },
-      { kana: 'ゆうべ', romaji: ['yuube'], rubyHtml: 'ゆうべ', meaning: 'Tối qua, đêm qua' },
-      { kana: 'さっき', romaji: ['sakki'], rubyHtml: 'さっき', meaning: 'Lúc nãy, vừa rồi' },
-      { kana: 'さきに', romaji: ['sakini'], rubyHtml: '<ruby>先<rt>さき</rt></ruby>に', meaning: 'Trước' },
-      { kana: 'これでいいですか', romaji: ['koredeiidesuka'], rubyHtml: 'これでいいですか', meaning: 'Thế này có được không?' },
-      { kana: 'にがい', romaji: ['nigai'], rubyHtml: '<ruby>苦<rt>に</rt></ruby>がい', meaning: 'Đắng' },
-      { kana: 'ぶん', romaji: ['bun'], rubyHtml: '―<ruby>分<rt>ぶん</rt></ruby>', meaning: 'Suất, người' },
-      { kana: 'グラム', romaji: ['guramu'], rubyHtml: '―グラム', meaning: 'Gam' },
-      { kana: 'こ', romaji: ['ko'], rubyHtml: '―<ruby>個<rt>こ</rt></ruby>', meaning: 'Cái, quả, miếng' },
-      { kana: 'よんぶんのいち', romaji: ['yonbunnoichi'], rubyHtml: '4<ruby>分<rt>ぶん</rt></ruby>の1', meaning: 'Một phần tư' }
-    ]}
+    // A. Động từ Mệnh lệnh & Cấm đoán
+    {
+      id: "b33_menhlenh",
+      name: "A. Động từ Mệnh lệnh & Cấm đoán",
+      selected: true,
+      items: [
+        { kana: "にげます", romaji: ["nigemasu"], rubyHtml: "<ruby>逃<rt>に</rt></ruby>げます", meaning: "Chạy trốn" },
+        { kana: "さわぎます", romaji: ["sawagimasu"], rubyHtml: "<ruby>騒<rt>さわ</rt></ruby>ぎます", meaning: "Làm ồn, gây náo động" },
+        { kana: "あきらめます", romaji: ["akiramemasu"], rubyHtml: "<ruby>諦<rt>あきら</rt></ruby>めます", meaning: "Từ bỏ, từ khước" },
+        { kana: "なげます", romaji: ["nagemasu"], rubyHtml: "<ruby>投<rt>な</rt></ruby>げます", meaning: "Ném" },
+        { kana: "まもります", romaji: ["mamorimasu"], rubyHtml: "<ruby>守<rt>まも</rt></ruby>ります", meaning: "Bảo vệ, giữ quy tắc" },
+        { kana: "つたえます", romaji: ["tsutaemasu"], rubyHtml: "<ruby>伝<rt>つた</rt></ruby>えます", meaning: "Truyền đạt, nhắn lại" },
+        { kana: "ちゅういします", romaji: ["chuuishimasu"], rubyHtml: "<ruby>注<rt>ちゅう</rt></ruby><ruby>意<rt>い</rt></ruby>します", meaning: "Chú ý, nhắc nhở" },
+        { kana: "あげます", romaji: ["agemasu"], rubyHtml: "<ruby>上<rt>あ</rt></ruby>げます", meaning: "Nâng lên, tăng lên" },
+        { kana: "さげます", romaji: ["sagemasu"], rubyHtml: "<ruby>下<rt>さ</rt></ruby>げます", meaning: "Hạ xuống, giảm xuống" },
+        { kana: "はずします", romaji: ["hazushimasu"], rubyHtml: "［<ruby>席<rt>せき</rt></ruby>を～］<ruby>外<rt>はず</rt></ruby>します", meaning: "Rời ［chỗ ngồi］" },
+        { kana: "うちます", romaji: ["uchimasu"], rubyHtml: "［<ruby>電<rt>でん</rt></ruby><ruby>報<rt>ぽう</rt></ruby>を～］<ruby>打<rt>う</rt></ruby>ちます", meaning: "Gửi ［bức điện］" },
+        { kana: "なくなります", romaji: ["nakunarimasu"], rubyHtml: "<ruby>亡<rt>な</rt></ruby>くなります", meaning: "Chết, mất" },
+        { kana: "りようします", romaji: ["riyoushimasu"], rubyHtml: "<ruby>利<rt>り</rt></ruby><ruby>用<rt>よう</rt></ruby>します", meaning: "Sử dụng, tận dụng" },
+      ],
+    },
+
+    // B. Biển báo & Quy tắc
+    {
+      id: "b33_bienbao",
+      name: "B. Biển báo & Quy tắc",
+      selected: true,
+      items: [
+        { kana: "だめ", romaji: ["dame"], rubyHtml: "だめ", meaning: "Không được, cấm" },
+        { kana: "きそく", romaji: ["kisoku"], rubyHtml: "<ruby>規<rt>き</rt></ruby><ruby>則<rt>そく</rt></ruby>", meaning: "Quy tắc, nội quy" },
+        { kana: "しようきんし", romaji: ["shiyoukinshi"], rubyHtml: "<ruby>使<rt>し</rt></ruby><ruby>用<rt>よう</rt></ruby><ruby>禁<rt>きん</rt></ruby><ruby>止<rt>し</rt></ruby>", meaning: "Cấm sử dụng" },
+        { kana: "たちいりきんし", romaji: ["tachiirikinshi"], rubyHtml: "<ruby>立<rt>たち</rt></ruby><ruby>入<rt>いり</rt></ruby><ruby>禁<rt>きん</rt></ruby><ruby>止<rt>し</rt></ruby>", meaning: "Cấm vào" },
+        { kana: "いりぐち", romaji: ["iriguchi"], rubyHtml: "<ruby>入<rt>いり</rt></ruby><ruby>口<rt>ぐち</rt></ruby>", meaning: "Lối vào" },
+        { kana: "でぐち", romaji: ["deguchi"], rubyHtml: "<ruby>出<rt>で</rt></ruby><ruby>口<rt>ぐち</rt></ruby>", meaning: "Lối ra" },
+        { kana: "ひじょうぐち", romaji: ["hijouguchi"], rubyHtml: "<ruby>非<rt>ひ</rt></ruby><ruby>常<rt>じょう</rt></ruby><ruby>口<rt>ぐち</rt></ruby>", meaning: "Lối thoát hiểm" },
+        { kana: "むりょう", romaji: ["muryou"], rubyHtml: "<ruby>無<rt>む</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Miễn phí" },
+        { kana: "えいぎょうちゅう", romaji: ["eigyouchuu"], rubyHtml: "<ruby>営<rt>えい</rt></ruby><ruby>業<rt>ぎょう</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>", meaning: "Đang mở cửa bán" },
+        { kana: "せき", romaji: ["seki"], rubyHtml: "<ruby>席<rt>せき</rt></ruby>", meaning: "Chỗ ngồi, ghế" },
+        { kana: "マーク", romaji: ["ma-ku"], rubyHtml: "マーク", meaning: "Ký hiệu" },
+        { kana: "ボール", romaji: ["bo-ru"], rubyHtml: "ボール", meaning: "Quả bóng" },
+        { kana: "せんたくき", romaji: ["sentakuki"], rubyHtml: "<ruby>洗<rt>せん</rt></ruby><ruby>濯<rt>たく</rt></ruby><ruby>機<rt>き</rt></ruby>", meaning: "Máy giặt" },
+        { kana: "き", romaji: ["ki"], rubyHtml: "～<ruby>機<rt>き</rt></ruby>", meaning: "Máy ~" },
+        { kana: "ほんじつきゅうぎょう", romaji: ["honjitsukyuugyou"], rubyHtml: "<ruby>本<rt>ほん</rt></ruby><ruby>日<rt>じつ</rt></ruby><ruby>休<rt>きゅう</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>", meaning: "Hôm nay đóng cửa, nghỉ" },
+        { kana: "しようちゅう", romaji: ["shiyouchuu"], rubyHtml: "<ruby>使<rt>し</rt></ruby><ruby>用<rt>よう</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>", meaning: "Đang sử dụng" },
+        { kana: "ちゅう", romaji: ["chuu"], rubyHtml: "～<ruby>中<rt>ちゅう</rt></ruby>", meaning: "Đang ~" },
+        { kana: "ちゅうしゃいはん", romaji: ["chuushaihan"], rubyHtml: "<ruby>駐<rt>ちゅう</rt></ruby><ruby>車<rt>しゃ</rt></ruby><ruby>違<rt>い</rt></ruby><ruby>反<rt>はん</rt></ruby>", meaning: "Đỗ xe trái phép" },
+        { kana: "いない", romaji: ["inai"], rubyHtml: "～<ruby>以<rt>い</rt></ruby><ruby>内<rt>ない</rt></ruby>", meaning: "Trong khoảng ~, trong vòng ~" },
+      ],
+    },
+
+    // C. Cảnh sát & Điện báo
+    {
+      id: "b33_canhsat",
+      name: "C. Cảnh sát & Điện báo",
+      selected: true,
+      items: [
+        { kana: "けいさつ", romaji: ["keisatsu"], rubyHtml: "<ruby>警<rt>けい</rt></ruby><ruby>察<rt>さつ</rt></ruby>", meaning: "Cảnh sát" },
+        { kana: "ぱっきん", romaji: ["pakkin"], rubyHtml: "<ruby>罰<rt>ばっ</rt></ruby><ruby>金<rt>きん</rt></ruby>", meaning: "Tiền phạt" },
+        { kana: "でんぽう", romaji: ["denpou"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>報<rt>ぽう</rt></ruby>", meaning: "Bức điện báo" },
+        { kana: "るす", romaji: ["rusu"], rubyHtml: "<ruby>留<rt>る</rt></ruby><ruby>守<rt>す</rt></ruby>", meaning: "Vắng nhà" },
+        { kana: "ひとびと", romaji: ["hitobito"], rubyHtml: "<ruby>人<rt>ひと</rt></ruby><ruby>々<rt>びと</rt></ruby>", meaning: "Người, những người" },
+        { kana: "きゅうよう", romaji: ["kyuuyou"], rubyHtml: "<ruby>急<rt>きゅう</rt></ruby><ruby>用<rt>よう</rt></ruby>", meaning: "Việc gấp" },
+        { kana: "でんぽうだい", romaji: ["denpoudai"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>報<rt>ぽう</rt></ruby><ruby>代<rt>だい</rt></ruby>", meaning: "Tiền cước điện báo" },
+        { kana: "キトク", romaji: ["kitoku"], rubyHtml: "キトク（<ruby>危<rt>き</rt></ruby><ruby>篤<rt>とく</rt></ruby>）", meaning: "Tình trạng hiểm nghèo" },
+        { kana: "おもいびょうき", romaji: ["omoibyouki"], rubyHtml: "<ruby>重<rt>おも</rt></ruby>い<ruby>病<rt>びょう</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Bệnh nặng" },
+        { kana: "るすばん", romaji: ["rusuban"], rubyHtml: "<ruby>留<rt>る</rt></ruby><ruby>守<rt>す</rt></ruby><ruby>番<rt>ばん</rt></ruby>", meaning: "Trông nhà" },
+        { kana: "いわい", romaji: ["iwai"], rubyHtml: "［お］<ruby>祝<rt>いわ</rt></ruby>い", meaning: "Việc mừng, vật mừng" },
+      ],
+    },
+
+    // D. Trạng từ & Giao tiếp
+    {
+      id: "b33_giaotiep",
+      name: "D. Trạng từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "ファイト", romaji: ["faito"], rubyHtml: "ファイト", meaning: "Cố lên! (Fight)" },
+        { kana: "できるだけ", romaji: ["dekirudake"], rubyHtml: "できるだけ", meaning: "Trong khả năng có thể" },
+        { kana: "どういう", romaji: ["douiu"], rubyHtml: "どういう～", meaning: "~ Gì, ~ thế nào" },
+        { kana: "もう", romaji: ["mou"], rubyHtml: "もう", meaning: "Không ~ nữa" },
+        { kana: "あと", romaji: ["ato"], rubyHtml: "あと～", meaning: "Còn ~" },
+        { kana: "そりゃあ", romaji: ["soryaa"], rubyHtml: "そりゃあ", meaning: "Thế thì, ồ" },
+        { kana: "みじかく", romaji: ["mijikaku"], rubyHtml: "<ruby>短<rt>みじか</rt></ruby>く", meaning: "Ngắn gọn, đơn giản" },
+        { kana: "また", romaji: ["mata"], rubyHtml: "また", meaning: "Thêm nữa" },
+        { kana: "たとえば", romaji: ["tatoeba"], rubyHtml: "<ruby>例<rt>たと</rt></ruby>えば", meaning: "Ví dụ" },
+        { kana: "あす", romaji: ["asu"], rubyHtml: "<ruby>明日<rt>あす</rt></ruby>", meaning: "Ngày mai" },
+        { kana: "かなしみ", romaji: ["kanashimi"], rubyHtml: "<ruby>悲<rt>かな</rt></ruby>しみ", meaning: "Buồn, nỗi buồn" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 34
+  // ========================================
+  34: [
+    // A. Động từ Thao tác & Nấu ăn
+    {
+      id: "b34_thaotac",
+      name: "A. Động từ Thao tác & Nấu ăn",
+      selected: true,
+      items: [
+        { kana: "みがきます", romaji: ["migakimasu"], rubyHtml: "［<ruby>歯<rt>は</rt></ruby>を～］<ruby>磨<rt>みが</rt></ruby>きます", meaning: "Mài, đánh [răng]" },
+        { kana: "くみたてます", romaji: ["kumitatemasu"], rubyHtml: "<ruby>組<rt>く</rt></ruby>み<ruby>立<rt>た</rt></ruby>てます", meaning: "Lắp, lắp ráp, lắp đặt" },
+        { kana: "おります", romaji: ["orimasu"], rubyHtml: "<ruby>折<rt>お</rt></ruby>ります", meaning: "Gấp, gập, bẻ gãy" },
+        { kana: "きがつきます", romaji: ["kigatsukimasu"], rubyHtml: "［<ruby>忘<rt>わす</rt></ruby>れ<ruby>物<rt>もの</rt></ruby>に～］<ruby>気<rt>き</rt></ruby>がつきます", meaning: "Nhận thấy, phát hiện [đồ bỏ quên]" },
+        { kana: "つけます", romaji: ["tsukemasu"], rubyHtml: "［しょうゆを～］つけます", meaning: "Chấm [xì dầu]" },
+        { kana: "みつかります", romaji: ["mitsukarimasu"], rubyHtml: "［かぎが～］<ruby>見<rt>み</rt></ruby>つかります", meaning: "Được tìm thấy [chìa khóa ~]" },
+        { kana: "します", romaji: ["shimasu"], rubyHtml: "［ネクタイを～］します", meaning: "Đeo, thắt [cà-vạt]" },
+        { kana: "しつもんします", romaji: ["shitsumonshimasu"], rubyHtml: "<ruby>質<rt>しつ</rt></ruby><ruby>問<rt>もん</rt></ruby>します", meaning: "Hỏi" },
+        { kana: "おちゃをたてます", romaji: ["ochawotatemasu"], rubyHtml: "お<ruby>茶<rt>ちゃ</rt></ruby>をたてます", meaning: "Pha trà, khuấy trà" },
+        { kana: "のせます", romaji: ["nosemasu"], rubyHtml: "<ruby>載<rt>の</rt></ruby>せます", meaning: "Để lên, đặt lên" },
+        { kana: "ひにかけます", romaji: ["hinikakemasu"], rubyHtml: "<ruby>火<rt>ひ</rt></ruby>にかけます", meaning: "Cho qua lửa, đun" },
+        { kana: "にます", romaji: ["nimasu"], rubyHtml: "<ruby>煮<rt>に</rt></ruby>ます", meaning: "Ninh, hầm, nấu" },
+        { kana: "にえます", romaji: ["niemasu"], rubyHtml: "<ruby>煮<rt>に</rt></ruby>えます", meaning: "Chín, được nấu" },
+      ],
+    },
+
+    // B. Đồ vật & Màu sắc
+    {
+      id: "b34_dovat",
+      name: "B. Đồ vật & Màu sắc",
+      selected: true,
+      items: [
+        { kana: "ほそい", romaji: ["hosoi"], rubyHtml: "<ruby>細<rt>ほそ</rt></ruby>い", meaning: "Gầy, mỏng, thon" },
+        { kana: "ふとい", romaji: ["futoi"], rubyHtml: "<ruby>太<rt>ふと</rt></ruby>い", meaning: "Béo, to" },
+        { kana: "かぐ", romaji: ["kagu"], rubyHtml: "<ruby>家<rt>か</rt></ruby><ruby>具<rt>ぐ</rt></ruby>", meaning: "Gia cụ, đồ nội thất" },
+        { kana: "キー", romaji: ["ki-"], rubyHtml: "キー", meaning: "Chìa khóa" },
+        { kana: "シートベルト", romaji: ["shi-toberuto"], rubyHtml: "シートベルト", meaning: "Dây an toàn" },
+        { kana: "せつめいしょ", romaji: ["setsumeisho"], rubyHtml: "<ruby>説<rt>せつ</rt></ruby><ruby>明<rt>めい</rt></ruby><ruby>書<rt>しょ</rt></ruby>", meaning: "Quyển hướng dẫn" },
+        { kana: "ず", romaji: ["zu"], rubyHtml: "<ruby>図<rt>ず</rt></ruby>", meaning: "Sơ đồ, hình vẽ" },
+        { kana: "せん", romaji: ["sen"], rubyHtml: "<ruby>線<rt>せん</rt></ruby>", meaning: "Đường" },
+        { kana: "やじるし", romaji: ["yajirushi"], rubyHtml: "<ruby>矢<rt>や</rt></ruby><ruby>印<rt>じるし</rt></ruby>", meaning: "Dấu mũi tên" },
+        { kana: "くろ", romaji: ["kuro"], rubyHtml: "<ruby>黒<rt>くろ</rt></ruby>", meaning: "Màu đen" },
+        { kana: "しろ", romaji: ["shiro"], rubyHtml: "<ruby>白<rt>しろ</rt></ruby>", meaning: "Màu trắng" },
+        { kana: "あか", romaji: ["aka"], rubyHtml: "<ruby>赤<rt>あか</rt></ruby>", meaning: "Màu đỏ" },
+        { kana: "あお", romaji: ["ao"], rubyHtml: "<ruby>青<rt>あお</rt></ruby>", meaning: "Màu xanh da trời" },
+        { kana: "こん", romaji: ["kon"], rubyHtml: "<ruby>紺<rt>こん</rt></ruby>", meaning: "Màu xanh lam" },
+        { kana: "きいろ", romaji: ["kiiro"], rubyHtml: "<ruby>黄<rt>き</rt></ruby><ruby>色<rt>いろ</rt></ruby>", meaning: "Màu vàng" },
+        { kana: "なべ", romaji: ["nabe"], rubyHtml: "なべ", meaning: "Cái nồi, cái chảo" },
+        { kana: "ひ", romaji: ["hi"], rubyHtml: "<ruby>火<rt>ひ</rt></ruby>", meaning: "Lửa" },
+        { kana: "どんぶり", romaji: ["donburi"], rubyHtml: "どんぶり", meaning: "Cái bát" },
+      ],
+    },
+
+    // C. Món ăn & Gia vị
+    {
+      id: "b34_monan",
+      name: "C. Món ăn & Gia vị",
+      selected: true,
+      items: [
+        { kana: "ぼんおどり", romaji: ["bonodori"], rubyHtml: "<ruby>盆<rt>ぼん</rt></ruby><ruby>踊<rt>おど</rt></ruby>り", meaning: "Múa trong hội Bon" },
+        { kana: "スポーツクラブ", romaji: ["supo-tsukurabu"], rubyHtml: "スポーツクラブ", meaning: "Câu lạc bộ thể thao" },
+        { kana: "さどう", romaji: ["sadou"], rubyHtml: "<ruby>茶<rt>さ</rt></ruby><ruby>道<rt>どう</rt></ruby>", meaning: "Trà đạo" },
+        { kana: "しょうゆ", romaji: ["shouyu"], rubyHtml: "しょうゆ", meaning: "Nước tương, xì dầu" },
+        { kana: "ソース", romaji: ["so-su"], rubyHtml: "ソース", meaning: "Nước sốt" },
+        { kana: "おやこどんぶり", romaji: ["oyakodonburi"], rubyHtml: "<ruby>親<rt>おや</rt></ruby><ruby>子<rt>こ</rt></ruby>どんぶり", meaning: "Món Oyako-don" },
+        { kana: "ざいりょう", romaji: ["zairyou"], rubyHtml: "<ruby>材<rt>ざい</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Nguyên liệu" },
+        { kana: "とりにく", romaji: ["toriniku"], rubyHtml: "<ruby>鳥<rt>とり</rt></ruby><ruby>肉<rt>にく</rt></ruby>", meaning: "Thịt gà" },
+        { kana: "たまねぎ", romaji: ["tamanegi"], rubyHtml: "たまねぎ", meaning: "Hành củ, hành tây" },
+        { kana: "ちょうみりょう", romaji: ["choumiryou"], rubyHtml: "<ruby>調<rt>ちょう</rt></ruby><ruby>味<rt>み</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Gia vị" },
+      ],
+    },
+
+    // D. Đơn vị & Trạng từ
+    {
+      id: "b34_donvi",
+      name: "D. Đơn vị & Trạng từ",
+      selected: true,
+      items: [
+        { kana: "か", romaji: ["ka"], rubyHtml: "～か～", meaning: "~ Hay ~" },
+        { kana: "ゆうべ", romaji: ["yuube"], rubyHtml: "ゆうべ", meaning: "Tối qua, đêm qua" },
+        { kana: "さっき", romaji: ["sakki"], rubyHtml: "さっき", meaning: "Lúc nãy, vừa rồi" },
+        { kana: "さきに", romaji: ["sakini"], rubyHtml: "<ruby>先<rt>さき</rt></ruby>に", meaning: "Trước" },
+        { kana: "これでいいですか", romaji: ["koredeiidesuka"], rubyHtml: "これでいいですか", meaning: "Thế này có được không?" },
+        { kana: "にがい", romaji: ["nigai"], rubyHtml: "<ruby>苦<rt>に</rt></ruby>がい", meaning: "Đắng" },
+        { kana: "ぶん", romaji: ["bun"], rubyHtml: "―<ruby>分<rt>ぶん</rt></ruby>", meaning: "Suất, người" },
+        { kana: "グラム", romaji: ["guramu"], rubyHtml: "―グラム", meaning: "Gam" },
+        { kana: "こ", romaji: ["ko"], rubyHtml: "―<ruby>個<rt>こ</rt></ruby>", meaning: "Cái, quả, miếng" },
+        { kana: "よんぶんのいち", romaji: ["yonbunnoichi"], rubyHtml: "4<ruby>分<rt>ぶん</rt></ruby>の1", meaning: "Một phần tư" },
+      ],
+    },
+
+  ],
+
+  // ========================================
+  // BÀI 35
+  // ========================================
   35: [
-    { id: 'b35_dieukien', name: 'A. Động từ Điều kiện & Biến đổi', selected: true, items: [
-      { kana: 'さきます', romaji: ['sakimasu'], rubyHtml: '［<ruby>花<rt>はな</rt></ruby>が～］<ruby>咲<rt>さ</rt></ruby>きます', meaning: 'Nở [hoa ~]' },
-      { kana: 'かわります', romaji: ['kawarimasu'], rubyHtml: '［<ruby>色<rt>いろ</rt></ruby>が～］<ruby>変<rt>か</rt></ruby>わります', meaning: 'Thay đổi, đổi màu' },
-      { kana: 'こまります', romaji: ['komarimasu'], rubyHtml: '<ruby>困<rt>こま</rt></ruby>ります', meaning: 'Rắc rối, khó xử, gặp khó khăn' },
-      { kana: 'つけます', romaji: ['tsukemasu'], rubyHtml: '［<ruby>丸<rt>まる</rt></ruby>を～］<ruby>付<rt>つ</rt></ruby>けます', meaning: 'Vẽ, đánh dấu [tròn]' },
-      { kana: 'ひろいます', romaji: ['hiroimasu'], rubyHtml: '<ruby>拾<rt>ひろ</rt></ruby>います', meaning: 'Nhặt, nhặt lên' },
-      { kana: 'かかります', romaji: ['kakarimasu'], rubyHtml: '［<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>が～］かかります', meaning: 'Có điện thoại' },
-      { kana: 'まじわります', romaji: ['majiwarimasu'], rubyHtml: '<ruby>交<rt>まじ</rt></ruby>わります', meaning: 'Giao lưu với, quan hệ với' },
-      { kana: 'なかよくします', romaji: ['nakayokushimasu'], rubyHtml: '<ruby>仲<rt>なか</rt></ruby>よくします', meaning: 'Quan hệ tốt với, chơi thân với' }
-    ]},
-    { id: 'b35_dulich', name: 'B. Địa điểm & Du lịch', selected: true, items: [
-      { kana: 'らく', romaji: ['raku'], rubyHtml: '<ruby>楽<rt>らく</rt></ruby>［な］', meaning: 'Thoải mái, nhàn hạ' },
-      { kana: 'めずらしい', romaji: ['mezurashii'], rubyHtml: '<ruby>珍<rt>めずら</rt></ruby>しい', meaning: 'Hiếm, hiếm có' },
-      { kana: 'かた', romaji: ['kata'], rubyHtml: '<ruby>方<rt>かた</rt></ruby>', meaning: 'Vị, người' },
-      { kana: 'むこう', romaji: ['mukou'], rubyHtml: '<ruby>向<rt>む</rt></ruby>こう', meaning: 'Bên kia, phía đằng kia' },
-      { kana: 'しま', romaji: ['shima'], rubyHtml: '<ruby>島<rt>しま</rt></ruby>', meaning: 'Đảo, hòn đảo' },
-      { kana: 'むら', romaji: ['mura'], rubyHtml: '<ruby>村<rt>むら</rt></ruby>', meaning: 'Làng' },
-      { kana: 'みなと', romaji: ['minato'], rubyHtml: '<ruby>港<rt>みなと</rt></ruby>', meaning: 'Cảng, bến cảng' },
-      { kana: 'きんじょ', romaji: ['kinjo'], rubyHtml: '<ruby>近<rt>きん</rt></ruby><ruby>所<rt>じょ</rt></ruby>', meaning: 'Hàng xóm, khu vực lân cận' },
-      { kana: 'おくじょう', romaji: ['okujou'], rubyHtml: '<ruby>屋<rt>おく</rt></ruby><ruby>上<rt>じょう</rt></ruby>', meaning: 'Mái nhà, sân thượng' },
-      { kana: 'かいがい', romaji: ['kaigai'], rubyHtml: '<ruby>海<rt>かい</rt></ruby><ruby>外<rt>がい</rt></ruby>', meaning: 'Nước ngoài' },
-      { kana: 'やまのぼり', romaji: ['yamanobori'], rubyHtml: '<ruby>山<rt>やま</rt></ruby><ruby>登<rt>のぼ</rt></ruby>り', meaning: 'Leo núi' },
-      { kana: 'ハイキング', romaji: ['haikingu'], rubyHtml: 'ハイキング', meaning: 'Leo núi, đi bộ trên núi' },
-      { kana: 'はこね', romaji: ['hakone'], rubyHtml: '<ruby>箱<rt>はこ</rt></ruby><ruby>根<rt>ね</rt></ruby>', meaning: 'Hakone (địa điểm du lịch ở Kanagawa)' },
-      { kana: 'にっこう', romaji: ['nikkou'], rubyHtml: '<ruby>日<rt>にっ</rt></ruby><ruby>光<rt>こう</rt></ruby>', meaning: 'Nikko (địa điểm du lịch ở Tochigi)' },
-      { kana: 'しろうま', romaji: ['shirouma'], rubyHtml: '<ruby>白<rt>しろ</rt></ruby><ruby>馬<rt>うま</rt></ruby>', meaning: 'Hakuba (địa điểm du lịch ở Nagano)' },
-      { kana: 'アフリカ', romaji: ['afurika'], rubyHtml: 'アフリカ', meaning: 'Châu Phi' },
-      { kana: 'やこうバス', romaji: ['yakoubasu'], rubyHtml: '<ruby>夜<rt>や</rt></ruby><ruby>行<rt>こう</rt></ruby>バス', meaning: 'Xe buýt chạy đêm' },
-      { kana: 'りょこうしゃ', romaji: ['ryokousha'], rubyHtml: '<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>社<rt>しゃ</rt></ruby>', meaning: 'Công ty du lịch' },
-      { kana: 'スキーじょう', romaji: ['suki-jou'], rubyHtml: 'スキー<ruby>場<rt>じょう</rt></ruby>', meaning: 'Bãi trượt tuyết' },
-      { kana: 'くさつ', romaji: ['kusatsu'], rubyHtml: '<ruby>草<rt>くさ</rt></ruby><ruby>津<rt>つ</rt></ruby>', meaning: 'Kusatsu (tỉnh Gunma)' },
-      { kana: 'しがこうげん', romaji: ['shigakougen'], rubyHtml: '<ruby>志<rt>し</rt></ruby><ruby>賀<rt>が</rt></ruby><ruby>高<rt>こう</rt></ruby><ruby>原<rt>げん</rt></ruby>', meaning: 'Shiga Kogen (tỉnh Nagano)' }
-    ]},
-    { id: 'b35_dodung', name: 'C. Đồ dùng & Khác', selected: true, items: [
-      { kana: 'きかい', romaji: ['kikai'], rubyHtml: '<ruby>機<rt>き</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Cơ hội' },
-      { kana: 'きょか', romaji: ['kyoka'], rubyHtml: '<ruby>許<rt>きょ</rt></ruby><ruby>可<rt>か</rt></ruby>', meaning: 'Giấy phép, sự cho phép' },
-      { kana: 'まる', romaji: ['maru'], rubyHtml: '<ruby>丸<rt>まる</rt></ruby>', meaning: 'Vòng tròn, tròn' },
-      { kana: 'そうさ', romaji: ['sousa'], rubyHtml: '<ruby>操<rt>そう</rt></ruby><ruby>作<rt>さ</rt></ruby>', meaning: 'Thao tác' },
-      { kana: 'ほうほう', romaji: ['houhou'], rubyHtml: '<ruby>方<rt>ほう</rt></ruby><ruby>法<rt>ほう</rt></ruby>', meaning: 'Phương pháp' },
-      { kana: 'せつび', romaji: ['setsubi'], rubyHtml: '<ruby>設<rt>せつ</rt></ruby><ruby>備<rt>び</rt></ruby>', meaning: 'Trang thiết bị' },
-      { kana: 'カーテン', romaji: ['ka-ten'], rubyHtml: 'カーテン', meaning: 'Cái rèm' },
-      { kana: 'ひも', romaji: ['himo'], rubyHtml: 'ひも', meaning: 'Sợi dây' },
-      { kana: 'ふた', romaji: ['futa'], rubyHtml: 'ふた', meaning: 'Cái nắp' },
-      { kana: 'は', romaji: ['ha'], rubyHtml: '<ruby>葉<rt>は</rt></ruby>', meaning: 'Cái lá' },
-      { kana: 'きょく', romaji: ['kyoku'], rubyHtml: '<ruby>曲<rt>きょく</rt></ruby>', meaning: 'Bài hát, bản nhạc' },
-      { kana: 'しゅ', romaji: ['shu'], rubyHtml: '<ruby>朱<rt>しゅ</rt></ruby>', meaning: 'Đỏ, màu đỏ' },
-      { kana: 'ことわざ', romaji: ['kotowaza'], rubyHtml: 'ことわざ', meaning: 'Tục ngữ, ngạn ngữ' },
-      { kana: 'ひつよう', romaji: ['hitsuyou'], rubyHtml: '<ruby>必<rt>ひつ</rt></ruby><ruby>要<rt>よう</rt></ruby>［な］', meaning: 'Cần thiết' },
-      { kana: 'くわしい', romaji: ['kuwashii'], rubyHtml: '<ruby>詳<rt>くわ</rt></ruby>しい', meaning: 'Cụ thể, chi tiết' }
-    ]},
-    { id: 'b35_giaotiep', name: 'D. Trạng từ & Giao tiếp', selected: true, items: [
-      { kana: 'ただしい', romaji: ['tadashii'], rubyHtml: '<ruby>正<rt>ただ</rt></ruby>しい', meaning: 'Đúng, chính xác' },
-      { kana: 'たのしみ', romaji: ['tanoshimi'], rubyHtml: '<ruby>楽<rt>たの</rt></ruby>しみ', meaning: 'Niềm vui, điều vui' },
-      { kana: 'もっと', romaji: ['motto'], rubyHtml: 'もっと', meaning: 'Hơn nữa' },
-      { kana: 'はじめに', romaji: ['hajimeni'], rubyHtml: '<ruby>初<rt>はじめ</rt></ruby>めに', meaning: 'Đầu tiên, trước hết' },
-      { kana: 'これでおわります', romaji: ['koredeowarimasu'], rubyHtml: 'これで<ruby>終<rt>お</rt></ruby>わります。', meaning: 'Đến đây là hết.' },
-      { kana: 'それなら', romaji: ['sorenara'], rubyHtml: 'それなら', meaning: 'Nếu thế thì, vậy thì' }
-    ]}
-  ],
- 36: [
-    { id: 'b36_thoiquen', name: 'A. Động từ Thói quen & Mục tiêu', selected: true, items: [
-      { kana: 'とどきます', romaji: ['todokimasu'], rubyHtml: '［<ruby>荷<rt>に</rt></ruby><ruby>物<rt>もつ</rt></ruby>が～］<ruby>届<rt>とど</rt></ruby>きます', meaning: 'Được gửi đến, chuyển tới [hành lý ~]' },
-      { kana: 'でます', romaji: ['demasu'], rubyHtml: '［<ruby>試<rt>し</rt></ruby><ruby>合<rt>あい</rt></ruby>に～］<ruby>出<rt>で</rt></ruby>ます', meaning: 'Tham gia, tham dự [trận đấu]' },
-      { kana: 'うちます', romaji: ['uchimasu'], rubyHtml: '［ワープロを～］<ruby>打<rt>う</rt></ruby>ちます', meaning: 'Đánh [máy chữ]' },
-      { kana: 'ちょきんします', romaji: ['chokinshimasu'], rubyHtml: '<ruby>貯<rt>ちょ</rt></ruby><ruby>金<rt>きん</rt></ruby>します', meaning: 'Tiết kiệm tiền, để dành tiền' },
-      { kana: 'ふとります', romaji: ['futorimasu'], rubyHtml: '<ruby>太<rt>ふと</rt></ruby>ります', meaning: 'Béo lên, tăng cân' },
-      { kana: 'やせます', romaji: ['yasemasu'], rubyHtml: 'やせます', meaning: 'Gầy đi, giảm cân' },
-      { kana: 'すぎます', romaji: ['sugimasu'], rubyHtml: '［7<ruby>時<rt>じ</rt></ruby>を～］<ruby>過<rt>す</rt></ruby>ぎます', meaning: 'Quá, qua [7 giờ]' },
-      { kana: 'なれます', romaji: ['naremasu'], rubyHtml: '［<ruby>習<rt>しゅう</rt></ruby><ruby>慣<rt>かん</rt></ruby>に～］<ruby>慣<rt>な</rt></ruby>れます', meaning: 'Làm quen với [tập quán]' },
-      { kana: 'していらっしゃいます', romaji: ['shiteirasshaimasu'], rubyHtml: 'していらっしゃいます', meaning: 'Đang làm (tôn kính ngữ của しています)' },
-      { kana: 'チャレンジします', romaji: ['charenjishimasu'], rubyHtml: 'チャレンジします', meaning: 'Thử, thử thách, dám làm' },
-      { kana: 'はこびます', romaji: ['hakobimasu'], rubyHtml: '<ruby>運<rt>はこ</rt></ruby>びます', meaning: 'Mang, chở, vận chuyển' },
-      { kana: 'とびます', romaji: ['tobimasu'], rubyHtml: '<ruby>飛<rt>と</rt></ruby>びます', meaning: 'Bay' }
-    ]},
-    { id: 'b36_dovat', name: 'B. Đồ vật & Cơ sở', selected: true, items: [
-      { kana: 'かたい', romaji: ['katai'], rubyHtml: '<ruby>硬<rt>かた</rt></ruby>い', meaning: 'Cứng' },
-      { kana: 'やわらかい', romaji: ['yawarakai'], rubyHtml: '<ruby>軟<rt>やわら</rt></ruby>かい', meaning: 'Mềm' },
-      { kana: 'でんし', romaji: ['denshi'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>子<rt>し</rt></ruby>～', meaning: '~ Điện tử' },
-      { kana: 'こうじょう', romaji: ['koujou'], rubyHtml: '<ruby>工<rt>こう</rt></ruby><ruby>場<rt>じょう</rt></ruby>', meaning: 'Nhà máy, phân xưởng' },
-      { kana: 'けいたい', romaji: ['keitai'], rubyHtml: '<ruby>携<rt>けい</rt></ruby><ruby>帯<rt>たい</rt></ruby>～', meaning: 'Cầm tay' },
-      { kana: 'のりもの', romaji: ['norimono'], rubyHtml: '<ruby>乗<rt>の</rt></ruby>り<ruby>物<rt>もの</rt></ruby>', meaning: 'Phương tiện đi lại' },
-      { kana: 'きしゃ', romaji: ['kisha'], rubyHtml: '<ruby>汽<rt>き</rt></ruby><ruby>車<rt>しゃ</rt></ruby>', meaning: 'Tàu hỏa chạy bằng hơi nước' },
-      { kana: 'きせん', romaji: ['kisen'], rubyHtml: '<ruby>汽<rt>き</rt></ruby><ruby>船<rt>せん</rt></ruby>', meaning: 'Thuyền chạy bằng hơi nước' },
-      { kana: 'あんぜん', romaji: ['anzen'], rubyHtml: '<ruby>安<rt>あん</rt></ruby><ruby>全<rt>ぜん</rt></ruby>', meaning: 'An toàn' },
-      { kana: 'うちゅう', romaji: ['uchuu'], rubyHtml: '<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby>', meaning: 'Vũ trụ' },
-      { kana: 'ちきゅう', romaji: ['chikyuu'], rubyHtml: '<ruby>地<rt>ち</rt></ruby><ruby>球<rt>きゅう</rt></ruby>', meaning: 'Trái đất' }
-    ]},
-    { id: 'b36_thoigian', name: 'C. Thời gian & Thể thao', selected: true, items: [
-      { kana: 'けんこう', romaji: ['kenkou'], rubyHtml: '<ruby>健<rt>けん</rt></ruby><ruby>康<rt>こう</rt></ruby>', meaning: 'Sức khỏe' },
-      { kana: 'けんどう', romaji: ['kendou'], rubyHtml: '<ruby>剣<rt>けん</rt></ruby><ruby>道<rt>どう</rt></ruby>', meaning: 'Kiếm đạo' },
-      { kana: 'まいしゅう', romaji: ['maishuu'], rubyHtml: '<ruby>毎<rt>まい</rt></ruby><ruby>週<rt>しゅう</rt></ruby>', meaning: 'Hàng tuần' },
-      { kana: 'まいつき', romaji: ['maitsuki'], rubyHtml: '<ruby>毎<rt>まい</rt></ruby><ruby>月<rt>つき</rt></ruby>', meaning: 'Hàng tháng' },
-      { kana: 'まいとし', romaji: ['maitoshi', 'mainen'], rubyHtml: '<ruby>毎<rt>まい</rt></ruby><ruby>年<rt>とし</rt></ruby>', meaning: 'Hàng năm' },
-      { kana: 'すいえい', romaji: ['suiei'], rubyHtml: '<ruby>水<rt>すい</rt></ruby><ruby>泳<rt>えい</rt></ruby>', meaning: 'Bơi, môn bơi' },
-      { kana: 'タンゴ', romaji: ['tango'], rubyHtml: 'タンゴ', meaning: 'Nhạc Tango' },
-      { kana: 'きもち', romaji: ['kimochi'], rubyHtml: '<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ち', meaning: 'Cảm giác, tâm trạng' },
-      { kana: 'れきし', romaji: ['rekishi'], rubyHtml: '<ruby>歴<rt>れき</rt></ruby><ruby>史<rt>し</rt></ruby>', meaning: 'Lịch sử' },
-      { kana: 'せいき', romaji: ['seiki'], rubyHtml: '―<ruby>世<rt>せい</rt></ruby><ruby>紀<rt>き</rt></ruby>', meaning: 'Thế kỷ -' },
-      { kana: 'とおく', romaji: ['tooku'], rubyHtml: '<ruby>遠<rt>とお</rt></ruby>く', meaning: 'Xa, ở xa' },
-      { kana: 'ショパン', romaji: ['shopan'], rubyHtml: 'ショパン', meaning: 'Nhà soạn nhạc Chopin' },
-      { kana: 'ライトきょうだい', romaji: ['raitokyoudai'], rubyHtml: 'ライト<ruby>兄<rt>きょう</rt></ruby><ruby>弟<rt>だい</rt></ruby>', meaning: 'Anh em nhà Wright' }
-    ]},
-    { id: 'b36_giaotiep', name: 'D. Trạng từ & Cụm từ', selected: true, items: [
-      { kana: 'やっと', romaji: ['yatto'], rubyHtml: 'やっと', meaning: 'Cuối cùng thì' },
-      { kana: 'かなり', romaji: ['kanari'], rubyHtml: 'かなり', meaning: 'Khá, tương đối' },
-      { kana: 'かならず', romaji: ['kanarazu'], rubyHtml: '<ruby>必<rt>かなら</rt></ruby>ず', meaning: 'Nhất định' },
-      { kana: 'ぜったいに', romaji: ['zettaini'], rubyHtml: '<ruby>絶<rt>ぜっ</rt></ruby><ruby>対<rt>たい</rt></ruby>に', meaning: 'Nhất định, tuyệt đối' },
-      { kana: 'じょうずに', romaji: ['jouzuni'], rubyHtml: '<ruby>上<rt>じょう</rt></ruby><ruby>手<rt>ず</rt></ruby>に', meaning: 'Giỏi, khéo' },
-      { kana: 'できるだけ', romaji: ['dekirudake'], rubyHtml: 'できるだけ', meaning: 'Cố gắng, trong khả năng có thể' },
-      { kana: 'このごろ', romaji: ['konogoro'], rubyHtml: 'このごろ', meaning: 'Gần đây, dạo này' },
-      { kana: 'ずつ', romaji: ['zutsu'], rubyHtml: '～ずつ', meaning: 'Từng ~, ~ một' },
-      { kana: 'そのほうが', romaji: ['sonohouga'], rubyHtml: 'そのほうが～', meaning: 'Cái đó ~ hơn, như thế ~ hơn' },
-      { kana: 'おきゃくさま', romaji: ['okyakusama'], rubyHtml: 'お<ruby>客<rt>きゃく</rt></ruby><ruby>様<rt>さま</rt></ruby>', meaning: 'Quý khách, khách hàng' },
-      { kana: 'とくべつ', romaji: ['tokubetsu'], rubyHtml: '<ruby>特<rt>とく</rt></ruby><ruby>別<rt>べつ</rt></ruby>［な］', meaning: 'Đặc biệt' },
-      { kana: 'とか', romaji: ['toka'], rubyHtml: '～とか、～とか', meaning: '~ V.v.' },
-      { kana: 'おおぜいの', romaji: ['oozeino'], rubyHtml: '<ruby>大<rt>おお</rt></ruby><ruby>勢<rt>ぜい</rt></ruby>の～', meaning: 'Nhiều (người)' }
-    ]}
+    // A. Động từ Điều kiện & Biến đổi
+    {
+      id: "b35_dieukien",
+      name: "A. Động từ Điều kiện & Biến đổi",
+      selected: true,
+      items: [
+        { kana: "さきます", romaji: ["sakimasu"], rubyHtml: "［<ruby>花<rt>はな</rt></ruby>が～］<ruby>咲<rt>さ</rt></ruby>きます", meaning: "Nở [hoa ~]" },
+        { kana: "かわります", romaji: ["kawarimasu"], rubyHtml: "［<ruby>色<rt>いろ</rt></ruby>が～］<ruby>変<rt>か</rt></ruby>わります", meaning: "Thay đổi, đổi màu" },
+        { kana: "こまります", romaji: ["komarimasu"], rubyHtml: "<ruby>困<rt>こま</rt></ruby>ります", meaning: "Rắc rối, khó xử, gặp khó khăn" },
+        { kana: "つけます", romaji: ["tsukemasu"], rubyHtml: "［<ruby>丸<rt>まる</rt></ruby>を～］<ruby>付<rt>つ</rt></ruby>けます", meaning: "Vẽ, đánh dấu [tròn]" },
+        { kana: "ひろいます", romaji: ["hiroimasu"], rubyHtml: "<ruby>拾<rt>ひろ</rt></ruby>います", meaning: "Nhặt, nhặt lên" },
+        { kana: "かかります", romaji: ["kakarimasu"], rubyHtml: "［<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>が～］かかります", meaning: "Có điện thoại" },
+        { kana: "まじわります", romaji: ["majiwarimasu"], rubyHtml: "<ruby>交<rt>まじ</rt></ruby>わります", meaning: "Giao lưu với, quan hệ với" },
+        { kana: "なかよくします", romaji: ["nakayokushimasu"], rubyHtml: "<ruby>仲<rt>なか</rt></ruby>よくします", meaning: "Quan hệ tốt với, chơi thân với" },
+      ],
+    },
+
+    // B. Địa điểm & Du lịch
+    {
+      id: "b35_dulich",
+      name: "B. Địa điểm & Du lịch",
+      selected: true,
+      items: [
+        { kana: "らく", romaji: ["raku"], rubyHtml: "<ruby>楽<rt>らく</rt></ruby>［な］", meaning: "Thoải mái, nhàn hạ" },
+        { kana: "めずらしい", romaji: ["mezurashii"], rubyHtml: "<ruby>珍<rt>めずら</rt></ruby>しい", meaning: "Hiếm, hiếm có" },
+        { kana: "かた", romaji: ["kata"], rubyHtml: "<ruby>方<rt>かた</rt></ruby>", meaning: "Vị, người" },
+        { kana: "むこう", romaji: ["mukou"], rubyHtml: "<ruby>向<rt>む</rt></ruby>こう", meaning: "Bên kia, phía đằng kia" },
+        { kana: "しま", romaji: ["shima"], rubyHtml: "<ruby>島<rt>しま</rt></ruby>", meaning: "Đảo, hòn đảo" },
+        { kana: "むら", romaji: ["mura"], rubyHtml: "<ruby>村<rt>むら</rt></ruby>", meaning: "Làng" },
+        { kana: "みなと", romaji: ["minato"], rubyHtml: "<ruby>港<rt>みなと</rt></ruby>", meaning: "Cảng, bến cảng" },
+        { kana: "きんじょ", romaji: ["kinjo"], rubyHtml: "<ruby>近<rt>きん</rt></ruby><ruby>所<rt>じょ</rt></ruby>", meaning: "Hàng xóm, khu vực lân cận" },
+        { kana: "おくじょう", romaji: ["okujou"], rubyHtml: "<ruby>屋<rt>おく</rt></ruby><ruby>上<rt>じょう</rt></ruby>", meaning: "Mái nhà, sân thượng" },
+        { kana: "かいがい", romaji: ["kaigai"], rubyHtml: "<ruby>海<rt>かい</rt></ruby><ruby>外<rt>がい</rt></ruby>", meaning: "Nước ngoài" },
+        { kana: "やまのぼり", romaji: ["yamanobori"], rubyHtml: "<ruby>山<rt>やま</rt></ruby><ruby>登<rt>のぼ</rt></ruby>り", meaning: "Leo núi" },
+        { kana: "ハイキング", romaji: ["haikingu"], rubyHtml: "ハイキング", meaning: "Leo núi, đi bộ trên núi" },
+        { kana: "はこね", romaji: ["hakone"], rubyHtml: "<ruby>箱<rt>はこ</rt></ruby><ruby>根<rt>ね</rt></ruby>", meaning: "Hakone (địa điểm du lịch ở Kanagawa)" },
+        { kana: "にっこう", romaji: ["nikkou"], rubyHtml: "<ruby>日<rt>にっ</rt></ruby><ruby>光<rt>こう</rt></ruby>", meaning: "Nikko (địa điểm du lịch ở Tochigi)" },
+        { kana: "しろうま", romaji: ["shirouma"], rubyHtml: "<ruby>白<rt>しろ</rt></ruby><ruby>馬<rt>うま</rt></ruby>", meaning: "Hakuba (địa điểm du lịch ở Nagano)" },
+        { kana: "アフリカ", romaji: ["afurika"], rubyHtml: "アフリカ", meaning: "Châu Phi" },
+        { kana: "やこうバス", romaji: ["yakoubasu"], rubyHtml: "<ruby>夜<rt>や</rt></ruby><ruby>行<rt>こう</rt></ruby>バス", meaning: "Xe buýt chạy đêm" },
+        { kana: "りょこうしゃ", romaji: ["ryokousha"], rubyHtml: "<ruby>旅<rt>りょ</rt></ruby><ruby>行<rt>こう</rt></ruby><ruby>社<rt>しゃ</rt></ruby>", meaning: "Công ty du lịch" },
+        { kana: "スキーじょう", romaji: ["suki-jou"], rubyHtml: "スキー<ruby>場<rt>じょう</rt></ruby>", meaning: "Bãi trượt tuyết" },
+        { kana: "くさつ", romaji: ["kusatsu"], rubyHtml: "<ruby>草<rt>くさ</rt></ruby><ruby>津<rt>つ</rt></ruby>", meaning: "Kusatsu (tỉnh Gunma)" },
+        { kana: "しがこうげん", romaji: ["shigakougen"], rubyHtml: "<ruby>志<rt>し</rt></ruby><ruby>賀<rt>が</rt></ruby><ruby>高<rt>こう</rt></ruby><ruby>原<rt>げん</rt></ruby>", meaning: "Shiga Kogen (tỉnh Nagano)" },
+      ],
+    },
+
+    // C. Đồ dùng & Khác
+    {
+      id: "b35_dodung",
+      name: "C. Đồ dùng & Khác",
+      selected: true,
+      items: [
+        { kana: "きかい", romaji: ["kikai"], rubyHtml: "<ruby>機<rt>き</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Cơ hội" },
+        { kana: "きょか", romaji: ["kyoka"], rubyHtml: "<ruby>許<rt>きょ</rt></ruby><ruby>可<rt>か</rt></ruby>", meaning: "Giấy phép, sự cho phép" },
+        { kana: "まる", romaji: ["maru"], rubyHtml: "<ruby>丸<rt>まる</rt></ruby>", meaning: "Vòng tròn, tròn" },
+        { kana: "そうさ", romaji: ["sousa"], rubyHtml: "<ruby>操<rt>そう</rt></ruby><ruby>作<rt>さ</rt></ruby>", meaning: "Thao tác" },
+        { kana: "ほうほう", romaji: ["houhou"], rubyHtml: "<ruby>方<rt>ほう</rt></ruby><ruby>法<rt>ほう</rt></ruby>", meaning: "Phương pháp" },
+        { kana: "せつび", romaji: ["setsubi"], rubyHtml: "<ruby>設<rt>せつ</rt></ruby><ruby>備<rt>び</rt></ruby>", meaning: "Trang thiết bị" },
+        { kana: "カーテン", romaji: ["ka-ten"], rubyHtml: "カーテン", meaning: "Cái rèm" },
+        { kana: "ひも", romaji: ["himo"], rubyHtml: "ひも", meaning: "Sợi dây" },
+        { kana: "ふた", romaji: ["futa"], rubyHtml: "ふた", meaning: "Cái nắp" },
+        { kana: "は", romaji: ["ha"], rubyHtml: "<ruby>葉<rt>は</rt></ruby>", meaning: "Cái lá" },
+        { kana: "きょく", romaji: ["kyoku"], rubyHtml: "<ruby>曲<rt>きょく</rt></ruby>", meaning: "Bài hát, bản nhạc" },
+        { kana: "しゅ", romaji: ["shu"], rubyHtml: "<ruby>朱<rt>しゅ</rt></ruby>", meaning: "Đỏ, màu đỏ" },
+        { kana: "ことわざ", romaji: ["kotowaza"], rubyHtml: "ことわざ", meaning: "Tục ngữ, ngạn ngữ" },
+        { kana: "ひつよう", romaji: ["hitsuyou"], rubyHtml: "<ruby>必<rt>ひつ</rt></ruby><ruby>要<rt>よう</rt></ruby>［な］", meaning: "Cần thiết" },
+        { kana: "くわしい", romaji: ["kuwashii"], rubyHtml: "<ruby>詳<rt>くわ</rt></ruby>しい", meaning: "Cụ thể, chi tiết" },
+      ],
+    },
+
+    // D. Trạng từ & Giao tiếp
+    {
+      id: "b35_giaotiep",
+      name: "D. Trạng từ & Giao tiếp",
+      selected: true,
+      items: [
+        { kana: "ただしい", romaji: ["tadashii"], rubyHtml: "<ruby>正<rt>ただ</rt></ruby>しい", meaning: "Đúng, chính xác" },
+        { kana: "たのしみ", romaji: ["tanoshimi"], rubyHtml: "<ruby>楽<rt>たの</rt></ruby>しみ", meaning: "Niềm vui, điều vui" },
+        { kana: "もっと", romaji: ["motto"], rubyHtml: "もっと", meaning: "Hơn nữa" },
+        { kana: "はじめに", romaji: ["hajimeni"], rubyHtml: "<ruby>初<rt>はじめ</rt></ruby>めに", meaning: "Đầu tiên, trước hết" },
+        { kana: "これでおわります", romaji: ["koredeowarimasu"], rubyHtml: "これで<ruby>終<rt>お</rt></ruby>わります。", meaning: "Đến đây là hết." },
+        { kana: "それなら", romaji: ["sorenara"], rubyHtml: "それなら", meaning: "Nếu thế thì, vậy thì" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 36
+  // ========================================
+  36: [
+    // A. Động từ Thói quen & Mục tiêu
+    {
+      id: "b36_thoiquen",
+      name: "A. Động từ Thói quen & Mục tiêu",
+      selected: true,
+      items: [
+        { kana: "とどきます", romaji: ["todokimasu"], rubyHtml: "［<ruby>荷<rt>に</rt></ruby><ruby>物<rt>もつ</rt></ruby>が～］<ruby>届<rt>とど</rt></ruby>きます", meaning: "Được gửi đến, chuyển tới [hành lý ~]" },
+        { kana: "でます", romaji: ["demasu"], rubyHtml: "［<ruby>試<rt>し</rt></ruby><ruby>合<rt>あい</rt></ruby>に～］<ruby>出<rt>で</rt></ruby>ます", meaning: "Tham gia, tham dự [trận đấu]" },
+        { kana: "うちます", romaji: ["uchimasu"], rubyHtml: "［ワープロを～］<ruby>打<rt>う</rt></ruby>ちます", meaning: "Đánh [máy chữ]" },
+        { kana: "ちょきんします", romaji: ["chokinshimasu"], rubyHtml: "<ruby>貯<rt>ちょ</rt></ruby><ruby>金<rt>きん</rt></ruby>します", meaning: "Tiết kiệm tiền, để dành tiền" },
+        { kana: "ふとります", romaji: ["futorimasu"], rubyHtml: "<ruby>太<rt>ふと</rt></ruby>ります", meaning: "Béo lên, tăng cân" },
+        { kana: "やせます", romaji: ["yasemasu"], rubyHtml: "やせます", meaning: "Gầy đi, giảm cân" },
+        { kana: "すぎます", romaji: ["sugimasu"], rubyHtml: "［7<ruby>時<rt>じ</rt></ruby>を～］<ruby>過<rt>す</rt></ruby>ぎます", meaning: "Quá, qua [7 giờ]" },
+        { kana: "なれます", romaji: ["naremasu"], rubyHtml: "［<ruby>習<rt>しゅう</rt></ruby><ruby>慣<rt>かん</rt></ruby>に～］<ruby>慣<rt>な</rt></ruby>れます", meaning: "Làm quen với [tập quán]" },
+        { kana: "していらっしゃいます", romaji: ["shiteirasshaimasu"], rubyHtml: "していらっしゃいます", meaning: "Đang làm (tôn kính ngữ của しています)" },
+        { kana: "チャレンジします", romaji: ["charenjishimasu"], rubyHtml: "チャレンジします", meaning: "Thử, thử thách, dám làm" },
+        { kana: "はこびます", romaji: ["hakobimasu"], rubyHtml: "<ruby>運<rt>はこ</rt></ruby>びます", meaning: "Mang, chở, vận chuyển" },
+        { kana: "とびます", romaji: ["tobimasu"], rubyHtml: "<ruby>飛<rt>と</rt></ruby>びます", meaning: "Bay" },
+      ],
+    },
+
+    // B. Đồ vật & Cơ sở
+    {
+      id: "b36_dovat",
+      name: "B. Đồ vật & Cơ sở",
+      selected: true,
+      items: [
+        { kana: "かたい", romaji: ["katai"], rubyHtml: "<ruby>硬<rt>かた</rt></ruby>い", meaning: "Cứng" },
+        { kana: "やわらかい", romaji: ["yawarakai"], rubyHtml: "<ruby>軟<rt>やわら</rt></ruby>かい", meaning: "Mềm" },
+        { kana: "でんし", romaji: ["denshi"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>子<rt>し</rt></ruby>～", meaning: "~ Điện tử" },
+        { kana: "こうじょう", romaji: ["koujou"], rubyHtml: "<ruby>工<rt>こう</rt></ruby><ruby>場<rt>じょう</rt></ruby>", meaning: "Nhà máy, phân xưởng" },
+        { kana: "けいたい", romaji: ["keitai"], rubyHtml: "<ruby>携<rt>けい</rt></ruby><ruby>帯<rt>たい</rt></ruby>～", meaning: "Cầm tay" },
+        { kana: "のりもの", romaji: ["norimono"], rubyHtml: "<ruby>乗<rt>の</rt></ruby>り<ruby>物<rt>もの</rt></ruby>", meaning: "Phương tiện đi lại" },
+        { kana: "きしゃ", romaji: ["kisha"], rubyHtml: "<ruby>汽<rt>き</rt></ruby><ruby>車<rt>しゃ</rt></ruby>", meaning: "Tàu hỏa chạy bằng hơi nước" },
+        { kana: "きせん", romaji: ["kisen"], rubyHtml: "<ruby>汽<rt>き</rt></ruby><ruby>船<rt>せん</rt></ruby>", meaning: "Thuyền chạy bằng hơi nước" },
+        { kana: "あんぜん", romaji: ["anzen"], rubyHtml: "<ruby>安<rt>あん</rt></ruby><ruby>全<rt>ぜん</rt></ruby>", meaning: "An toàn" },
+        { kana: "うちゅう", romaji: ["uchuu"], rubyHtml: "<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby>", meaning: "Vũ trụ" },
+        { kana: "ちきゅう", romaji: ["chikyuu"], rubyHtml: "<ruby>地<rt>ち</rt></ruby><ruby>球<rt>きゅう</rt></ruby>", meaning: "Trái đất" },
+      ],
+    },
+
+    // C. Thời gian & Thể thao
+    {
+      id: "b36_thoigian",
+      name: "C. Thời gian & Thể thao",
+      selected: true,
+      items: [
+        { kana: "けんこう", romaji: ["kenkou"], rubyHtml: "<ruby>健<rt>けん</rt></ruby><ruby>康<rt>こう</rt></ruby>", meaning: "Sức khỏe" },
+        { kana: "けんどう", romaji: ["kendou"], rubyHtml: "<ruby>剣<rt>けん</rt></ruby><ruby>道<rt>どう</rt></ruby>", meaning: "Kiếm đạo" },
+        { kana: "まいしゅう", romaji: ["maishuu"], rubyHtml: "<ruby>毎<rt>まい</rt></ruby><ruby>週<rt>しゅう</rt></ruby>", meaning: "Hàng tuần" },
+        { kana: "まいつき", romaji: ["maitsuki"], rubyHtml: "<ruby>毎<rt>まい</rt></ruby><ruby>月<rt>つき</rt></ruby>", meaning: "Hàng tháng" },
+        { kana: "まいとし", romaji: ["maitoshi","mainen"], rubyHtml: "<ruby>毎<rt>まい</rt></ruby><ruby>年<rt>とし</rt></ruby>", meaning: "Hàng năm" },
+        { kana: "すいえい", romaji: ["suiei"], rubyHtml: "<ruby>水<rt>すい</rt></ruby><ruby>泳<rt>えい</rt></ruby>", meaning: "Bơi, môn bơi" },
+        { kana: "タンゴ", romaji: ["tango"], rubyHtml: "タンゴ", meaning: "Nhạc Tango" },
+        { kana: "きもち", romaji: ["kimochi"], rubyHtml: "<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ち", meaning: "Cảm giác, tâm trạng" },
+        { kana: "れきし", romaji: ["rekishi"], rubyHtml: "<ruby>歴<rt>れき</rt></ruby><ruby>史<rt>し</rt></ruby>", meaning: "Lịch sử" },
+        { kana: "せいき", romaji: ["seiki"], rubyHtml: "―<ruby>世<rt>せい</rt></ruby><ruby>紀<rt>き</rt></ruby>", meaning: "Thế kỷ -" },
+        { kana: "とおく", romaji: ["tooku"], rubyHtml: "<ruby>遠<rt>とお</rt></ruby>く", meaning: "Xa, ở xa" },
+        { kana: "ショパン", romaji: ["shopan"], rubyHtml: "ショパン", meaning: "Nhà soạn nhạc Chopin" },
+        { kana: "ライトきょうだい", romaji: ["raitokyoudai"], rubyHtml: "ライト<ruby>兄<rt>きょう</rt></ruby><ruby>弟<rt>だい</rt></ruby>", meaning: "Anh em nhà Wright" },
+      ],
+    },
+
+    // D. Trạng từ & Cụm từ
+    {
+      id: "b36_giaotiep",
+      name: "D. Trạng từ & Cụm từ",
+      selected: true,
+      items: [
+        { kana: "やっと", romaji: ["yatto"], rubyHtml: "やっと", meaning: "Cuối cùng thì" },
+        { kana: "かなり", romaji: ["kanari"], rubyHtml: "かなり", meaning: "Khá, tương đối" },
+        { kana: "かならず", romaji: ["kanarazu"], rubyHtml: "<ruby>必<rt>かなら</rt></ruby>ず", meaning: "Nhất định" },
+        { kana: "ぜったいに", romaji: ["zettaini"], rubyHtml: "<ruby>絶<rt>ぜっ</rt></ruby><ruby>対<rt>たい</rt></ruby>に", meaning: "Nhất định, tuyệt đối" },
+        { kana: "じょうずに", romaji: ["jouzuni"], rubyHtml: "<ruby>上<rt>じょう</rt></ruby><ruby>手<rt>ず</rt></ruby>に", meaning: "Giỏi, khéo" },
+        { kana: "できるだけ", romaji: ["dekirudake"], rubyHtml: "できるだけ", meaning: "Cố gắng, trong khả năng có thể" },
+        { kana: "このごろ", romaji: ["konogoro"], rubyHtml: "このごろ", meaning: "Gần đây, dạo này" },
+        { kana: "ずつ", romaji: ["zutsu"], rubyHtml: "～ずつ", meaning: "Từng ~, ~ một" },
+        { kana: "そのほうが", romaji: ["sonohouga"], rubyHtml: "そのほうが～", meaning: "Cái đó ~ hơn, như thế ~ hơn" },
+        { kana: "おきゃくさま", romaji: ["okyakusama"], rubyHtml: "お<ruby>客<rt>きゃく</rt></ruby><ruby>様<rt>さま</rt></ruby>", meaning: "Quý khách, khách hàng" },
+        { kana: "とくべつ", romaji: ["tokubetsu"], rubyHtml: "<ruby>特<rt>とく</rt></ruby><ruby>別<rt>べつ</rt></ruby>［な］", meaning: "Đặc biệt" },
+        { kana: "とか", romaji: ["toka"], rubyHtml: "～とか、～とか", meaning: "~ V.v." },
+        { kana: "おおぜいの", romaji: ["oozeino"], rubyHtml: "<ruby>大<rt>おお</rt></ruby><ruby>勢<rt>ぜい</rt></ruby>の～", meaning: "Nhiều (người)" },
+      ],
+    },
+
+  ],
+
+  // ========================================
+  // BÀI 37
+  // ========================================
   37: [
-    { id: 'b37_bidong', name: 'A. Động từ Bị động & Hành động', selected: true, items: [
-      { kana: 'ほめます', romaji: ['homemasu'], rubyHtml: '<ruby>褒<rt>ほ</rt></ruby>めます', meaning: 'Khen ngợi' },
-      { kana: 'しかります', romaji: ['shikarimasu'], rubyHtml: 'しかります', meaning: 'Mắng mỏ' },
-      { kana: 'さそいます', romaji: ['sasoimasu'], rubyHtml: '<ruby>誘<rt>さそ</rt></ruby>います', meaning: 'Mời, rủ rê' },
-      { kana: 'おこします', romaji: ['okoshimasu'], rubyHtml: '<ruby>起<rt>お</rt></ruby>こします', meaning: 'Đánh thức' },
-      { kana: 'しょうたいします', romaji: ['shoutaishimasu'], rubyHtml: '<ruby>招<rt>しょう</rt></ruby><ruby>待<rt>たい</rt></ruby>します', meaning: 'Mời (trân trọng)' },
-      { kana: 'たのみます', romaji: ['tanomimasu'], rubyHtml: '<ruby>頼<rt>たの</rt></ruby>みます', meaning: 'Nhờ vả' },
-      { kana: 'ちゅういします', romaji: ['chuuishimasu'], rubyHtml: '<ruby>注<rt>ちゅう</rt></ruby><ruby>意<rt>い</rt></ruby>します', meaning: 'Chú ý, nhắc nhở' },
-      { kana: 'とります', romaji: ['torimasu'], rubyHtml: 'とります', meaning: 'Ăn trộm, lấy cắp' },
-      { kana: 'ふみます', romaji: ['fumimasu'], rubyHtml: '<ruby>踏<rt>ふ</rt></ruby>みます', meaning: 'Giẫm, đạp lên' },
-      { kana: 'こわします', romaji: ['kowashimasu'], rubyHtml: '<ruby>壊<rt>こわ</rt></ruby>します', meaning: 'Phá, làm hỏng' },
-      { kana: 'よごします', romaji: ['yogoshimasu'], rubyHtml: '<ruby>汚<rt>よご</rt></ruby>します', meaning: 'Làm bẩn' },
-      { kana: 'おこないます', romaji: ['okonaimasu'], rubyHtml: '<ruby>行<rt>おこな</rt></ruby>います', meaning: 'Thực hiện, tiến hành' },
-      { kana: 'ゆしゅつします', romaji: ['yushutsushimasu'], rubyHtml: '<ruby>輸<rt>ゆ</rt></ruby><ruby>出<rt>しゅつ</rt></ruby>します', meaning: 'Xuất khẩu' },
-      { kana: 'ゆにゅうします', romaji: ['yunyuushimasu'], rubyHtml: '<ruby>輸<rt>ゆ</rt></ruby><ruby>入<rt>にゅう</rt></ruby>します', meaning: 'Nhập khẩu' },
-      { kana: 'ほんやくします', romaji: ['honyakushimasu'], rubyHtml: '<ruby>翻<rt>ほん</rt></ruby><ruby>訳<rt>やく</rt></ruby>します', meaning: 'Dịch (sách, tài liệu)' },
-      { kana: 'はつめいします', romaji: ['hatsumeishimasu'], rubyHtml: '<ruby>発<rt>はつ</rt></ruby><ruby>明<rt>めい</rt></ruby>します', meaning: 'Phát minh' },
-      { kana: 'はっけんします', romaji: ['hakkenshimasu'], rubyHtml: '<ruby>発<rt>はっ</rt></ruby><ruby>見<rt>けん</rt></ruby>します', meaning: 'Phát hiện, tìm ra' },
-      { kana: 'せっけいします', romaji: ['sekkeishimasu'], rubyHtml: '<ruby>設<rt>せっ</rt></ruby><ruby>計<rt>けい</rt></ruby>します', meaning: 'Thiết kế' },
-      { kana: 'うめたてます', romaji: ['umatetemasu'], rubyHtml: '<ruby>埋<rt>う</rt></ruby>め<ruby>立<rt>た</rt></ruby>てます', meaning: 'Lấp (biển)' },
-      { kana: 'りようします', romaji: ['riyoushimasu'], rubyHtml: '<ruby>利<rt>り</rt></ruby><ruby>用<rt>よう</rt></ruby>します', meaning: 'Lợi dụng, sử dụng' },
-      { kana: 'ねむります', romaji: ['nemurimasu'], rubyHtml: '<ruby>眠<rt>ねむ</rt></ruby>ります', meaning: 'Ngủ' },
-      { kana: 'ほります', romaji: ['horimasu'], rubyHtml: '<ruby>彫<rt>ほ</rt></ruby>ります', meaning: 'Khắc' }
-    ]},
-    { id: 'b37_toipham', name: 'B. Tội phạm & Nghề nghiệp', selected: true, items: [
-      { kana: 'どろぼう', romaji: ['dorobou'], rubyHtml: '<ruby>泥<rt>どろ</rt></ruby><ruby>棒<rt>ぼう</rt></ruby>', meaning: 'Kẻ trộm' },
-      { kana: 'けいかん', romaji: ['keikan'], rubyHtml: '<ruby>警<rt>けい</rt></ruby><ruby>官<rt>かん</rt></ruby>', meaning: 'Cảnh sát' },
-      { kana: 'けんちくか', romaji: ['kenchikuka'], rubyHtml: '<ruby>建<rt>けん</rt></ruby><ruby>築<rt>ちく</rt></ruby><ruby>家<rt>か</rt></ruby>', meaning: 'Kiến trúc sư' },
-      { kana: 'かがくしゃ', romaji: ['kagakusha'], rubyHtml: '<ruby>科<rt>か</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>者<rt>しゃ</rt></ruby>', meaning: 'Nhà khoa học' },
-      { kana: 'なかま', romaji: ['nakama'], rubyHtml: '<ruby>仲<rt>なか</rt></ruby><ruby>間<rt>ま</rt></ruby>', meaning: 'Bạn bè, đồng nghiệp' }
-    ]},
-    { id: 'b37_sanvat', name: 'C. Sản vật & Khoa học', selected: true, items: [
-      { kana: 'こめ', romaji: ['kome'], rubyHtml: '<ruby>米<rt>こめ</rt></ruby>', meaning: 'Gạo' },
-      { kana: 'むぎ', romaji: ['mugi'], rubyHtml: '<ruby>麦<rt>むぎ</rt></ruby>', meaning: 'Lúa mạch' },
-      { kana: 'せきゆ', romaji: ['sekiyu'], rubyHtml: '<ruby>石<rt>せき</rt></ruby><ruby>油<rt>ゆ</rt></ruby>', meaning: 'Dầu mỏ' },
-      { kana: 'げんりょう', romaji: ['genryou'], rubyHtml: '<ruby>原<rt>げん</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Nguyên liệu' },
-      { kana: 'まんが', romaji: ['manga'], rubyHtml: '<ruby>漫<rt>まん</rt></ruby><ruby>画<rt>が</rt></ruby>', meaning: 'Truyện tranh' },
-      { kana: 'ぎじゅつ', romaji: ['gijutsu'], rubyHtml: '<ruby>技<rt>ぎ</rt></ruby><ruby>術<rt>じゅつ</rt></ruby>', meaning: 'Kỹ thuật' },
-      { kana: 'とち', romaji: ['tochi'], rubyHtml: '<ruby>土<rt>と</rt></ruby><ruby>地<rt>ち</rt></ruby>', meaning: 'Đất, diện tích đất' },
-      { kana: 'そうおん', romaji: ['souon'], rubyHtml: '<ruby>騒<rt>そう</rt></ruby><ruby>音<rt>おん</rt></ruby>', meaning: 'Tiếng ồn' },
-      { kana: 'せいき', romaji: ['seiki'], rubyHtml: '一<ruby>世<rt>せい</rt></ruby><ruby>紀<rt>き</rt></ruby>', meaning: 'Thế kỷ -' },
-      { kana: 'ちょうこく', romaji: ['choukoku'], rubyHtml: '<ruby>彫<rt>ちょう</rt></ruby><ruby>刻<rt>こく</rt></ruby>', meaning: 'Điêu khắc' },
-      { kana: 'ねずみ', romaji: ['nezumi'], rubyHtml: 'ねずみ', meaning: 'Con chuột' },
-      { kana: 'ねむりねこ', romaji: ['nemurineko'], rubyHtml: '<ruby>眠<rt>ねむ</rt></ruby>り<ruby>猫<rt>ねこ</rt></ruby>', meaning: 'Tác phẩm điêu khắc Mèo ngủ' }
-    ]},
-    { id: 'b37_giaotiep', name: 'D. Giao tiếp & Khác', selected: true, items: [
-      { kana: 'せかいじゅう', romaji: ['sekaijuu'], rubyHtml: '<ruby>世界中<rt>せかいじゅう</rt></ruby>', meaning: 'Khắp thế giới, toàn thế giới' },
-      { kana: 'じゅう', romaji: ['juu'], rubyHtml: '～<ruby>中<rt>じゅう</rt></ruby>', meaning: 'Khắp, toàn ~' },
-      { kana: 'によって', romaji: ['niyotte'], rubyHtml: '～によって', meaning: 'Do ~' },
-      { kana: 'よかったですね', romaji: ['yokattadesune'], rubyHtml: 'よかったですね。', meaning: 'May nhỉ, may cho anh/chị nhỉ' },
-      { kana: 'デート', romaji: ['de-to'], rubyHtml: 'デート', meaning: 'Cuộc hẹn hò' },
-      { kana: 'ドミニカ', romaji: ['dominika'], rubyHtml: 'ドミニカ', meaning: 'Nước Dominica' },
-      { kana: 'げんじものがたり', romaji: ['genjimonogatari'], rubyHtml: '<ruby>源氏物語<rt>げんじものがたり</rt></ruby>', meaning: 'Chuyện Genji' },
-      { kana: 'サウジアラビア', romaji: ['saujiarabia'], rubyHtml: 'サウジアラビア', meaning: 'Saudi Arabia' },
-      { kana: 'アクセス', romaji: ['akusesu'], rubyHtml: 'アクセス', meaning: 'Nối, giao thông đi đến' },
-      { kana: 'ごうか', romaji: ['gouka'], rubyHtml: '<ruby>豪<rt>ごう</rt></ruby><ruby>華<rt>か</rt></ruby>［な］', meaning: 'Hào hoa, sang trọng' },
-      { kana: 'そのあと', romaji: ['sonoato'], rubyHtml: 'そのあと', meaning: 'Sau đó' },
-      { kana: 'いっしょうけんめい', romaji: ['isshoukenmei'], rubyHtml: '<ruby>一<rt>いっ</rt></ruby><ruby>生<rt>しょう</rt></ruby><ruby>懸<rt>けん</rt></ruby><ruby>命<rt>めい</rt></ruby>', meaning: 'Cố gắng hết sức, chăm chỉ' },
-      { kana: 'いっぴきもいません', romaji: ['ippikimoimasen'], rubyHtml: '<ruby>一<rt>いっ</rt></ruby><ruby>匹<rt>ひき</rt></ruby>もいません。', meaning: 'Không có con nào cả' }
-    ]}
+    // A. Động từ Bị động & Hành động
+    {
+      id: "b37_bidong",
+      name: "A. Động từ Bị động & Hành động",
+      selected: true,
+      items: [
+        { kana: "ほめます", romaji: ["homemasu"], rubyHtml: "<ruby>褒<rt>ほ</rt></ruby>めます", meaning: "Khen ngợi" },
+        { kana: "しかります", romaji: ["shikarimasu"], rubyHtml: "しかります", meaning: "Mắng mỏ" },
+        { kana: "さそいます", romaji: ["sasoimasu"], rubyHtml: "<ruby>誘<rt>さそ</rt></ruby>います", meaning: "Mời, rủ rê" },
+        { kana: "おこします", romaji: ["okoshimasu"], rubyHtml: "<ruby>起<rt>お</rt></ruby>こします", meaning: "Đánh thức" },
+        { kana: "しょうたいします", romaji: ["shoutaishimasu"], rubyHtml: "<ruby>招<rt>しょう</rt></ruby><ruby>待<rt>たい</rt></ruby>します", meaning: "Mời (trân trọng)" },
+        { kana: "たのみます", romaji: ["tanomimasu"], rubyHtml: "<ruby>頼<rt>たの</rt></ruby>みます", meaning: "Nhờ vả" },
+        { kana: "ちゅういします", romaji: ["chuuishimasu"], rubyHtml: "<ruby>注<rt>ちゅう</rt></ruby><ruby>意<rt>い</rt></ruby>します", meaning: "Chú ý, nhắc nhở" },
+        { kana: "とります", romaji: ["torimasu"], rubyHtml: "とります", meaning: "Ăn trộm, lấy cắp" },
+        { kana: "ふみます", romaji: ["fumimasu"], rubyHtml: "<ruby>踏<rt>ふ</rt></ruby>みます", meaning: "Giẫm, đạp lên" },
+        { kana: "こわします", romaji: ["kowashimasu"], rubyHtml: "<ruby>壊<rt>こわ</rt></ruby>します", meaning: "Phá, làm hỏng" },
+        { kana: "よごします", romaji: ["yogoshimasu"], rubyHtml: "<ruby>汚<rt>よご</rt></ruby>します", meaning: "Làm bẩn" },
+        { kana: "おこないます", romaji: ["okonaimasu"], rubyHtml: "<ruby>行<rt>おこな</rt></ruby>います", meaning: "Thực hiện, tiến hành" },
+        { kana: "ゆしゅつします", romaji: ["yushutsushimasu"], rubyHtml: "<ruby>輸<rt>ゆ</rt></ruby><ruby>出<rt>しゅつ</rt></ruby>します", meaning: "Xuất khẩu" },
+        { kana: "ゆにゅうします", romaji: ["yunyuushimasu"], rubyHtml: "<ruby>輸<rt>ゆ</rt></ruby><ruby>入<rt>にゅう</rt></ruby>します", meaning: "Nhập khẩu" },
+        { kana: "ほんやくします", romaji: ["honyakushimasu"], rubyHtml: "<ruby>翻<rt>ほん</rt></ruby><ruby>訳<rt>やく</rt></ruby>します", meaning: "Dịch (sách, tài liệu)" },
+        { kana: "はつめいします", romaji: ["hatsumeishimasu"], rubyHtml: "<ruby>発<rt>はつ</rt></ruby><ruby>明<rt>めい</rt></ruby>します", meaning: "Phát minh" },
+        { kana: "はっけんします", romaji: ["hakkenshimasu"], rubyHtml: "<ruby>発<rt>はっ</rt></ruby><ruby>見<rt>けん</rt></ruby>します", meaning: "Phát hiện, tìm ra" },
+        { kana: "せっけいします", romaji: ["sekkeishimasu"], rubyHtml: "<ruby>設<rt>せっ</rt></ruby><ruby>計<rt>けい</rt></ruby>します", meaning: "Thiết kế" },
+        { kana: "うめたてます", romaji: ["umatetemasu"], rubyHtml: "<ruby>埋<rt>う</rt></ruby>め<ruby>立<rt>た</rt></ruby>てます", meaning: "Lấp (biển)" },
+        { kana: "りようします", romaji: ["riyoushimasu"], rubyHtml: "<ruby>利<rt>り</rt></ruby><ruby>用<rt>よう</rt></ruby>します", meaning: "Lợi dụng, sử dụng" },
+        { kana: "ねむります", romaji: ["nemurimasu"], rubyHtml: "<ruby>眠<rt>ねむ</rt></ruby>ります", meaning: "Ngủ" },
+        { kana: "ほります", romaji: ["horimasu"], rubyHtml: "<ruby>彫<rt>ほ</rt></ruby>ります", meaning: "Khắc" },
+      ],
+    },
+
+    // B. Tội phạm & Nghề nghiệp
+    {
+      id: "b37_toipham",
+      name: "B. Tội phạm & Nghề nghiệp",
+      selected: true,
+      items: [
+        { kana: "どろぼう", romaji: ["dorobou"], rubyHtml: "<ruby>泥<rt>どろ</rt></ruby><ruby>棒<rt>ぼう</rt></ruby>", meaning: "Kẻ trộm" },
+        { kana: "けいかん", romaji: ["keikan"], rubyHtml: "<ruby>警<rt>けい</rt></ruby><ruby>官<rt>かん</rt></ruby>", meaning: "Cảnh sát" },
+        { kana: "けんちくか", romaji: ["kenchikuka"], rubyHtml: "<ruby>建<rt>けん</rt></ruby><ruby>築<rt>ちく</rt></ruby><ruby>家<rt>か</rt></ruby>", meaning: "Kiến trúc sư" },
+        { kana: "かがくしゃ", romaji: ["kagakusha"], rubyHtml: "<ruby>科<rt>か</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>者<rt>しゃ</rt></ruby>", meaning: "Nhà khoa học" },
+        { kana: "なかま", romaji: ["nakama"], rubyHtml: "<ruby>仲<rt>なか</rt></ruby><ruby>間<rt>ま</rt></ruby>", meaning: "Bạn bè, đồng nghiệp" },
+      ],
+    },
+
+    // C. Sản vật & Khoa học
+    {
+      id: "b37_sanvat",
+      name: "C. Sản vật & Khoa học",
+      selected: true,
+      items: [
+        { kana: "こめ", romaji: ["kome"], rubyHtml: "<ruby>米<rt>こめ</rt></ruby>", meaning: "Gạo" },
+        { kana: "むぎ", romaji: ["mugi"], rubyHtml: "<ruby>麦<rt>むぎ</rt></ruby>", meaning: "Lúa mạch" },
+        { kana: "せきゆ", romaji: ["sekiyu"], rubyHtml: "<ruby>石<rt>せき</rt></ruby><ruby>油<rt>ゆ</rt></ruby>", meaning: "Dầu mỏ" },
+        { kana: "げんりょう", romaji: ["genryou"], rubyHtml: "<ruby>原<rt>げん</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Nguyên liệu" },
+        { kana: "まんが", romaji: ["manga"], rubyHtml: "<ruby>漫<rt>まん</rt></ruby><ruby>画<rt>が</rt></ruby>", meaning: "Truyện tranh" },
+        { kana: "ぎじゅつ", romaji: ["gijutsu"], rubyHtml: "<ruby>技<rt>ぎ</rt></ruby><ruby>術<rt>じゅつ</rt></ruby>", meaning: "Kỹ thuật" },
+        { kana: "とち", romaji: ["tochi"], rubyHtml: "<ruby>土<rt>と</rt></ruby><ruby>地<rt>ち</rt></ruby>", meaning: "Đất, diện tích đất" },
+        { kana: "そうおん", romaji: ["souon"], rubyHtml: "<ruby>騒<rt>そう</rt></ruby><ruby>音<rt>おん</rt></ruby>", meaning: "Tiếng ồn" },
+        { kana: "せいき", romaji: ["seiki"], rubyHtml: "一<ruby>世<rt>せい</rt></ruby><ruby>紀<rt>き</rt></ruby>", meaning: "Thế kỷ -" },
+        { kana: "ちょうこく", romaji: ["choukoku"], rubyHtml: "<ruby>彫<rt>ちょう</rt></ruby><ruby>刻<rt>こく</rt></ruby>", meaning: "Điêu khắc" },
+        { kana: "ねずみ", romaji: ["nezumi"], rubyHtml: "ねずみ", meaning: "Con chuột" },
+        { kana: "ねむりねこ", romaji: ["nemurineko"], rubyHtml: "<ruby>眠<rt>ねむ</rt></ruby>り<ruby>猫<rt>ねこ</rt></ruby>", meaning: "Tác phẩm điêu khắc Mèo ngủ" },
+      ],
+    },
+
+    // D. Giao tiếp & Khác
+    {
+      id: "b37_giaotiep",
+      name: "D. Giao tiếp & Khác",
+      selected: true,
+      items: [
+        { kana: "せかいじゅう", romaji: ["sekaijuu"], rubyHtml: "<ruby>世界中<rt>せかいじゅう</rt></ruby>", meaning: "Khắp thế giới, toàn thế giới" },
+        { kana: "じゅう", romaji: ["juu"], rubyHtml: "～<ruby>中<rt>じゅう</rt></ruby>", meaning: "Khắp, toàn ~" },
+        { kana: "によって", romaji: ["niyotte"], rubyHtml: "～によって", meaning: "Do ~" },
+        { kana: "よかったですね", romaji: ["yokattadesune"], rubyHtml: "よかったですね。", meaning: "May nhỉ, may cho anh/chị nhỉ" },
+        { kana: "デート", romaji: ["de-to"], rubyHtml: "デート", meaning: "Cuộc hẹn hò" },
+        { kana: "ドミニカ", romaji: ["dominika"], rubyHtml: "ドミニカ", meaning: "Nước Dominica" },
+        { kana: "げんじものがたり", romaji: ["genjimonogatari"], rubyHtml: "<ruby>源氏物語<rt>げんじものがたり</rt></ruby>", meaning: "Chuyện Genji" },
+        { kana: "サウジアラビア", romaji: ["saujiarabia"], rubyHtml: "サウジアラビア", meaning: "Saudi Arabia" },
+        { kana: "アクセス", romaji: ["akusesu"], rubyHtml: "アクセス", meaning: "Nối, giao thông đi đến" },
+        { kana: "ごうか", romaji: ["gouka"], rubyHtml: "<ruby>豪<rt>ごう</rt></ruby><ruby>華<rt>か</rt></ruby>［な］", meaning: "Hào hoa, sang trọng" },
+        { kana: "そのあと", romaji: ["sonoato"], rubyHtml: "そのあと", meaning: "Sau đó" },
+        { kana: "いっしょうけんめい", romaji: ["isshoukenmei"], rubyHtml: "<ruby>一<rt>いっ</rt></ruby><ruby>生<rt>しょう</rt></ruby><ruby>懸<rt>けん</rt></ruby><ruby>命<rt>めい</rt></ruby>", meaning: "Cố gắng hết sức, chăm chỉ" },
+        { kana: "いっぴきもいません", romaji: ["ippikimoimasen"], rubyHtml: "<ruby>一<rt>いっ</rt></ruby><ruby>匹<rt>ひき</rt></ruby>もいません。", meaning: "Không có con nào cả" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 38
+  // ========================================
   38: [
-    { id: 'b38_danh-tu-hoa', name: 'A. Động từ Danh từ hóa', selected: true, items: [
-      { kana: 'そだてます', romaji: ['sodatemasu'], rubyHtml: '<ruby>育<rt>そだ</rt></ruby>てます', meaning: 'Nuôi, trồng' },
-      { kana: 'はこびます', romaji: ['hakobimasu'], rubyHtml: '<ruby>運<rt>はこ</rt></ruby>びます', meaning: 'Chở, vận chuyển' },
-      { kana: 'なくなります', romaji: ['nakunarimasu'], rubyHtml: '<ruby>亡<rt>な</rt></ruby>くなります', meaning: 'Mất, qua đời' },
-      { kana: 'にゅういんします', romaji: ['nyuuinshimasu'], rubyHtml: '<ruby>入<rt>にゅう</rt></ruby><ruby>院<rt>いん</rt></ruby>します', meaning: 'Nhập viện' },
-      { kana: 'たいいんします', romaji: ['taiinshimasu'], rubyHtml: '<ruby>退<rt>たい</rt></ruby><ruby>院<rt>いん</rt></ruby>します', meaning: 'Xuất viện' },
-      { kana: 'いれます', romaji: ['iremasu'], rubyHtml: '［<ruby>電<rt>でん</rt></ruby><ruby>源<rt>げん</rt></ruby>を～］<ruby>入<rt>い</rt></ruby>れます', meaning: 'Bật [công tắc, nguồn điện]' },
-      { kana: 'きります', romaji: ['kirimasu'], rubyHtml: '［<ruby>電<rt>でん</rt></ruby><ruby>源<rt>げん</rt></ruby>を～］<ruby>切<rt>き</rt></ruby>ります', meaning: 'Tắt [công tắc, nguồn điện]' },
-      { kana: 'かけます', romaji: ['kakemasu'], rubyHtml: '［かぎを～］<ruby>掛<rt>か</rt></ruby>けます', meaning: 'Khóa [chìa khóa]' },
-      { kana: 'せいりします', romaji: ['seirishimasu'], rubyHtml: '<ruby>整<rt>せい</rt></ruby><ruby>理<rt>り</rt></ruby>します', meaning: 'Sắp xếp' },
-      { kana: 'おします', romaji: ['oshimasu'], rubyHtml: '［はんこを～］<ruby>押<rt>お</rt></ruby>します', meaning: 'Đóng [dấu]' },
-      { kana: 'にています', romaji: ['niteimasu'], rubyHtml: '<ruby>似<rt>に</rt></ruby>ています', meaning: 'Giống' },
-      { kana: 'せわをします', romaji: ['sewaoshimasu'], rubyHtml: '<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>をします', meaning: 'Chăm sóc, giúp đỡ' },
-      { kana: 'じかんがたちます', romaji: ['jikangatachimasu'], rubyHtml: '<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>がたちます', meaning: 'Thời gian trôi đi' },
-      { kana: 'けんかします', romaji: ['kenkashimasu'], rubyHtml: 'けんかします', meaning: 'Cãi nhau, đánh nhau' }
-    ]},
-    { id: 'b38_truonghoc', name: 'B. Trường học & Gia đình', selected: true, items: [
-      { kana: 'あかちゃん', romaji: ['akachan'], rubyHtml: '<ruby>赤<rt>あか</rt></ruby>ちゃん', meaning: 'Em bé' },
-      { kana: 'しょうがっこう', romaji: ['shougakkou'], rubyHtml: '<ruby>小<rt>しょう</rt></ruby><ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>', meaning: 'Trường tiểu học' },
-      { kana: 'ちゅうがっこう', romaji: ['chuugakkou'], rubyHtml: '<ruby>中<rt>ちゅう</rt></ruby><ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>', meaning: 'Trường THCS' },
-      { kana: 'ふたご', romaji: ['futago'], rubyHtml: '<ruby>双<rt>ふた</rt></ruby><ruby>子<rt>ご</rt></ruby>', meaning: 'Cặp sinh đôi' },
-      { kana: 'しまい', romaji: ['shimai'], rubyHtml: '<ruby>姉<rt>し</rt></ruby><ruby>妹<rt>まい</rt></ruby>', meaning: 'Chị em' },
-      { kana: '5ねんせい', romaji: ['gonensei'], rubyHtml: '5<ruby>年<rt>ねん</rt></ruby><ruby>生<rt>せい</rt></ruby>', meaning: 'Học sinh năm thứ 5' },
-      { kana: 'せいかく', romaji: ['seikaku'], rubyHtml: '<ruby>性<rt>せい</rt></ruby><ruby>格<rt>かく</rt></ruby>', meaning: 'Tính cách, tính tình' },
-      { kana: 'おとなしい', romaji: ['otonashii'], rubyHtml: 'おとなしい', meaning: 'Hiền lành, trầm' },
-      { kana: 'だいすき', romaji: ['daisuki'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>好<rt>す</rt></ruby>き［な］', meaning: 'Rất thích' },
-      { kana: 'クラス', romaji: ['kurasu'], rubyHtml: 'クラス', meaning: 'Lớp học' },
-      { kana: 'ふしぎ', romaji: ['fushigi'], rubyHtml: '<ruby>不<rt>ふ</rt></ruby><ruby>思<rt>し</rt></ruby><ruby>議<rt>ぎ</rt></ruby>［な］', meaning: 'Bí ẩn, kỳ thú, khó hiểu' }
-    ]},
-    { id: 'b38_diadiem', name: 'C. Địa điểm & Khác', selected: true, items: [
-      { kana: 'きもちがいい', romaji: ['kimochigaii'], rubyHtml: '<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ちがいい', meaning: 'Dễ chịu, thư giãn' },
-      { kana: 'きもちがわるい', romaji: ['kimochigawarui'], rubyHtml: '<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ちが<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Khó chịu' },
-      { kana: 'おおきな', romaji: ['ookina'], rubyHtml: '<ruby>大<rt>おお</rt></ruby>きな～', meaning: '~ To, ~ lớn' },
-      { kana: 'ちいさな', romaji: ['chiisana'], rubyHtml: '<ruby>小<rt>ちい</rt></ruby>さな～', meaning: '~ Nhỏ, ~ bé' },
-      { kana: 'えきまえ', romaji: ['ekimae'], rubyHtml: '<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>', meaning: 'Khu vực trước nhà ga' },
-      { kana: 'かいがん', romaji: ['kaigan'], rubyHtml: '<ruby>海<rt>かい</rt></ruby><ruby>岸<rt>がん</rt></ruby>', meaning: 'Bờ biển' },
-      { kana: 'うそ', romaji: ['uso'], rubyHtml: 'うそ', meaning: 'Lời nói dối' },
-      { kana: 'しょるい', romaji: ['shorui'], rubyHtml: '<ruby>書<rt>しょ</rt></ruby><ruby>類<rt>るい</rt></ruby>', meaning: 'Giấy tờ, tài liệu' },
-      { kana: 'でんげん', romaji: ['dengen'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>源<rt>げん</rt></ruby>', meaning: 'Nguồn điện, công tắc điện' },
-      { kana: 'せい', romaji: ['sei'], rubyHtml: '～<ruby>製<rt>せい</rt></ruby>', meaning: 'Sản xuất tại' },
-      { kana: 'いけない', romaji: ['ikenai'], rubyHtml: '［あ、］いけない', meaning: 'Ôi, hỏng mất rồi / Ôi, trời ơi' },
-      { kana: 'おさきに', romaji: ['osakini'], rubyHtml: 'お<ruby>先<rt>さき</rt></ruby>に［<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>します］', meaning: 'Tôi xin phép về trước' },
-      { kana: 'げんぱくドーム', romaji: ['genbakudo-mu'], rubyHtml: '<ruby>原<rt>げん</rt></ruby><ruby>爆<rt>ばく</rt></ruby>ドーム', meaning: 'Nhà vòm Bom nguyên tử' },
-      { kana: 'かいらん', romaji: ['kairan'], rubyHtml: '<ruby>回<rt>かい</rt></ruby><ruby>覧<rt>らん</rt></ruby>', meaning: 'Tập thông báo' },
-      { kana: 'けんきゅうしつ', romaji: ['kenkyuushitsu'], rubyHtml: '<ruby>研<rt>けん</rt></ruby><ruby>究<rt>きゅう</rt></ruby><ruby>室<rt>しつ</rt></ruby>', meaning: 'Phòng nghiên cứu' },
-      { kana: 'きちんと', romaji: ['kichinto'], rubyHtml: 'きちんと', meaning: 'Nghiêm chỉnh, hẳn hoi, đứng đắn' },
-      { kana: 'というほん', romaji: ['toiuhon'], rubyHtml: '～という<ruby>本<rt>ほん</rt></ruby>', meaning: 'Quyển sách có tên là ~' },
-      { kana: 'さつ', romaji: ['satsu'], rubyHtml: '―<ruby>冊<rt>さつ</rt></ruby>', meaning: 'Đơn vị đếm sách, vở' },
-      { kana: 'はんこ', romaji: ['hanko'], rubyHtml: 'はんこ', meaning: 'Con dấu, dấu' },
-      { kana: 'てん', romaji: ['ten'], rubyHtml: '―<ruby>点<rt>てん</rt></ruby>', meaning: '- Điểm' }
-    ]}
+    // A. Động từ Danh từ hóa
+    {
+      id: "b38_danh-tu-hoa",
+      name: "A. Động từ Danh từ hóa",
+      selected: true,
+      items: [
+        { kana: "そだてます", romaji: ["sodatemasu"], rubyHtml: "<ruby>育<rt>そだ</rt></ruby>てます", meaning: "Nuôi, trồng" },
+        { kana: "はこびます", romaji: ["hakobimasu"], rubyHtml: "<ruby>運<rt>はこ</rt></ruby>びます", meaning: "Chở, vận chuyển" },
+        { kana: "なくなります", romaji: ["nakunarimasu"], rubyHtml: "<ruby>亡<rt>な</rt></ruby>くなります", meaning: "Mất, qua đời" },
+        { kana: "にゅういんします", romaji: ["nyuuinshimasu"], rubyHtml: "<ruby>入<rt>にゅう</rt></ruby><ruby>院<rt>いん</rt></ruby>します", meaning: "Nhập viện" },
+        { kana: "たいいんします", romaji: ["taiinshimasu"], rubyHtml: "<ruby>退<rt>たい</rt></ruby><ruby>院<rt>いん</rt></ruby>します", meaning: "Xuất viện" },
+        { kana: "いれます", romaji: ["iremasu"], rubyHtml: "［<ruby>電<rt>でん</rt></ruby><ruby>源<rt>げん</rt></ruby>を～］<ruby>入<rt>い</rt></ruby>れます", meaning: "Bật [công tắc, nguồn điện]" },
+        { kana: "きります", romaji: ["kirimasu"], rubyHtml: "［<ruby>電<rt>でん</rt></ruby><ruby>源<rt>げん</rt></ruby>を～］<ruby>切<rt>き</rt></ruby>ります", meaning: "Tắt [công tắc, nguồn điện]" },
+        { kana: "かけます", romaji: ["kakemasu"], rubyHtml: "［かぎを～］<ruby>掛<rt>か</rt></ruby>けます", meaning: "Khóa [chìa khóa]" },
+        { kana: "せいりします", romaji: ["seirishimasu"], rubyHtml: "<ruby>整<rt>せい</rt></ruby><ruby>理<rt>り</rt></ruby>します", meaning: "Sắp xếp" },
+        { kana: "おします", romaji: ["oshimasu"], rubyHtml: "［はんこを～］<ruby>押<rt>お</rt></ruby>します", meaning: "Đóng [dấu]" },
+        { kana: "にています", romaji: ["niteimasu"], rubyHtml: "<ruby>似<rt>に</rt></ruby>ています", meaning: "Giống" },
+        { kana: "せわをします", romaji: ["sewaoshimasu"], rubyHtml: "<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>をします", meaning: "Chăm sóc, giúp đỡ" },
+        { kana: "じかんがたちます", romaji: ["jikangatachimasu"], rubyHtml: "<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>がたちます", meaning: "Thời gian trôi đi" },
+        { kana: "けんかします", romaji: ["kenkashimasu"], rubyHtml: "けんかします", meaning: "Cãi nhau, đánh nhau" },
+      ],
+    },
+
+    // B. Trường học & Gia đình
+    {
+      id: "b38_truonghoc",
+      name: "B. Trường học & Gia đình",
+      selected: true,
+      items: [
+        { kana: "あかちゃん", romaji: ["akachan"], rubyHtml: "<ruby>赤<rt>あか</rt></ruby>ちゃん", meaning: "Em bé" },
+        { kana: "しょうがっこう", romaji: ["shougakkou"], rubyHtml: "<ruby>小<rt>しょう</rt></ruby><ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>", meaning: "Trường tiểu học" },
+        { kana: "ちゅうがっこう", romaji: ["chuugakkou"], rubyHtml: "<ruby>中<rt>ちゅう</rt></ruby><ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>", meaning: "Trường THCS" },
+        { kana: "ふたご", romaji: ["futago"], rubyHtml: "<ruby>双<rt>ふた</rt></ruby><ruby>子<rt>ご</rt></ruby>", meaning: "Cặp sinh đôi" },
+        { kana: "しまい", romaji: ["shimai"], rubyHtml: "<ruby>姉<rt>し</rt></ruby><ruby>妹<rt>まい</rt></ruby>", meaning: "Chị em" },
+        { kana: "5ねんせい", romaji: ["gonensei"], rubyHtml: "5<ruby>年<rt>ねん</rt></ruby><ruby>生<rt>せい</rt></ruby>", meaning: "Học sinh năm thứ 5" },
+        { kana: "せいかく", romaji: ["seikaku"], rubyHtml: "<ruby>性<rt>せい</rt></ruby><ruby>格<rt>かく</rt></ruby>", meaning: "Tính cách, tính tình" },
+        { kana: "おとなしい", romaji: ["otonashii"], rubyHtml: "おとなしい", meaning: "Hiền lành, trầm" },
+        { kana: "だいすき", romaji: ["daisuki"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>好<rt>す</rt></ruby>き［な］", meaning: "Rất thích" },
+        { kana: "クラス", romaji: ["kurasu"], rubyHtml: "クラス", meaning: "Lớp học" },
+        { kana: "ふしぎ", romaji: ["fushigi"], rubyHtml: "<ruby>不<rt>ふ</rt></ruby><ruby>思<rt>し</rt></ruby><ruby>議<rt>ぎ</rt></ruby>［な］", meaning: "Bí ẩn, kỳ thú, khó hiểu" },
+      ],
+    },
+
+    // C. Địa điểm & Khác
+    {
+      id: "b38_diadiem",
+      name: "C. Địa điểm & Khác",
+      selected: true,
+      items: [
+        { kana: "きもちがいい", romaji: ["kimochigaii"], rubyHtml: "<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ちがいい", meaning: "Dễ chịu, thư giãn" },
+        { kana: "きもちがわるい", romaji: ["kimochigawarui"], rubyHtml: "<ruby>気<rt>き</rt></ruby><ruby>持<rt>も</rt></ruby>ちが<ruby>悪<rt>わる</rt></ruby>い", meaning: "Khó chịu" },
+        { kana: "おおきな", romaji: ["ookina"], rubyHtml: "<ruby>大<rt>おお</rt></ruby>きな～", meaning: "~ To, ~ lớn" },
+        { kana: "ちいさな", romaji: ["chiisana"], rubyHtml: "<ruby>小<rt>ちい</rt></ruby>さな～", meaning: "~ Nhỏ, ~ bé" },
+        { kana: "えきまえ", romaji: ["ekimae"], rubyHtml: "<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>", meaning: "Khu vực trước nhà ga" },
+        { kana: "かいがん", romaji: ["kaigan"], rubyHtml: "<ruby>海<rt>かい</rt></ruby><ruby>岸<rt>がん</rt></ruby>", meaning: "Bờ biển" },
+        { kana: "うそ", romaji: ["uso"], rubyHtml: "うそ", meaning: "Lời nói dối" },
+        { kana: "しょるい", romaji: ["shorui"], rubyHtml: "<ruby>書<rt>しょ</rt></ruby><ruby>類<rt>るい</rt></ruby>", meaning: "Giấy tờ, tài liệu" },
+        { kana: "でんげん", romaji: ["dengen"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>源<rt>げん</rt></ruby>", meaning: "Nguồn điện, công tắc điện" },
+        { kana: "せい", romaji: ["sei"], rubyHtml: "～<ruby>製<rt>せい</rt></ruby>", meaning: "Sản xuất tại" },
+        { kana: "いけない", romaji: ["ikenai"], rubyHtml: "［あ、］いけない", meaning: "Ôi, hỏng mất rồi / Ôi, trời ơi" },
+        { kana: "おさきに", romaji: ["osakini"], rubyHtml: "お<ruby>先<rt>さき</rt></ruby>に［<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>します］", meaning: "Tôi xin phép về trước" },
+        { kana: "げんぱくドーム", romaji: ["genbakudo-mu"], rubyHtml: "<ruby>原<rt>げん</rt></ruby><ruby>爆<rt>ばく</rt></ruby>ドーム", meaning: "Nhà vòm Bom nguyên tử" },
+        { kana: "かいらん", romaji: ["kairan"], rubyHtml: "<ruby>回<rt>かい</rt></ruby><ruby>覧<rt>らん</rt></ruby>", meaning: "Tập thông báo" },
+        { kana: "けんきゅうしつ", romaji: ["kenkyuushitsu"], rubyHtml: "<ruby>研<rt>けん</rt></ruby><ruby>究<rt>きゅう</rt></ruby><ruby>室<rt>しつ</rt></ruby>", meaning: "Phòng nghiên cứu" },
+        { kana: "きちんと", romaji: ["kichinto"], rubyHtml: "きちんと", meaning: "Nghiêm chỉnh, hẳn hoi, đứng đắn" },
+        { kana: "というほん", romaji: ["toiuhon"], rubyHtml: "～という<ruby>本<rt>ほん</rt></ruby>", meaning: "Quyển sách có tên là ~" },
+        { kana: "さつ", romaji: ["satsu"], rubyHtml: "―<ruby>冊<rt>さつ</rt></ruby>", meaning: "Đơn vị đếm sách, vở" },
+        { kana: "はんこ", romaji: ["hanko"], rubyHtml: "はんこ", meaning: "Con dấu, dấu" },
+        { kana: "てん", romaji: ["ten"], rubyHtml: "―<ruby>点<rt>てん</rt></ruby>", meaning: "- Điểm" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 39
+  // ========================================
   39: [
-    { id: 'b39_nguyennhan', name: 'A. Động từ Nguyên nhân & Kết quả', selected: true, items: [
-      { kana: 'こたえます', romaji: ['kotaemasu'], rubyHtml: '［<ruby>質<rt>しつ</rt></ruby><ruby>問<rt>もん</rt></ruby>に～］<ruby>答<rt>こた</rt></ruby>えます', meaning: 'Trả lời [câu hỏi]' },
-      { kana: 'たおれます', romaji: ['taoremasu'], rubyHtml: '［ビルが～］<ruby>倒<rt>たお</rt></ruby>れます', meaning: 'Đổ [nhà cao tầng ~]' },
-      { kana: 'やけます', romaji: ['yakemasu'], rubyHtml: '［うちが～］<ruby>焼<rt>や</rt></ruby>けます', meaning: 'Cháy [nhà ~] / Được nướng [bánh mì, thịt]' },
-      { kana: 'とおります', romaji: ['toorimasu'], rubyHtml: '［<ruby>道<rt>みち</rt></ruby>を～］<ruby>通<rt>とお</rt></ruby>ります', meaning: 'Đi qua [đường]' },
-      { kana: 'しにます', romaji: ['shinimasu'], rubyHtml: '<ruby>死<rt>し</rt></ruby>にます', meaning: 'Chết' },
-      { kana: 'びっくりします', romaji: ['bikkurishimasu'], rubyHtml: 'びっくりします', meaning: 'Ngạc nhiên, giật mình' },
-      { kana: 'がっかりします', romaji: ['gakkarishimasu'], rubyHtml: 'がっかりします', meaning: 'Thất vọng' },
-      { kana: 'あんしんします', romaji: ['anshinshimasu'], rubyHtml: '<ruby>安<rt>あん</rt></ruby><ruby>心<rt>しん</rt></ruby>します', meaning: 'Yên tâm' },
-      { kana: 'ちこくします', romaji: ['chikokushimasu'], rubyHtml: '<ruby>遅<rt>ち</rt></ruby><ruby>刻<rt>こく</rt></ruby>します', meaning: 'Đến chậm, đến muộn' },
-      { kana: 'そうたいします', romaji: ['soutaishimasu'], rubyHtml: '<ruby>早<rt>そう</rt></ruby><ruby>退<rt>たい</rt></ruby>します', meaning: 'Về sớm, ra sớm' },
-      { kana: 'けんかします', romaji: ['kenkashimasu'], rubyHtml: 'けんかします', meaning: 'Cãi nhau' },
-      { kana: 'りこんします', romaji: ['rikonshimasu'], rubyHtml: '<ruby>離<rt>り</rt></ruby><ruby>婚<rt>こん</rt></ruby>します', meaning: 'Ly dị, ly hôn' },
-      { kana: 'ぶつかります', romaji: ['butsukarimasu'], rubyHtml: 'ぶつかります', meaning: 'Đâm, va chạm' },
-      { kana: 'ならびます', romaji: ['narabimasu'], rubyHtml: '<ruby>並<rt>なら</rt></ruby>びます', meaning: 'Xếp hàng' },
-      { kana: 'せいようかします', romaji: ['seiyoukashimasu'], rubyHtml: '<ruby>西<rt>せい</rt></ruby><ruby>洋<rt>よう</rt></ruby><ruby>化<rt>か</rt></ruby>します', meaning: 'Tây Âu hóa' },
-      { kana: 'あいます', romaji: ['aimasu'], rubyHtml: '<ruby>合<rt>あ</rt></ruby>います', meaning: 'Vừa, hợp' }
-    ]},
-    { id: 'b39_tainhan', name: 'B. Tai nạn & Thiên tai', selected: true, items: [
-      { kana: 'じしん', romaji: ['jishin'], rubyHtml: '<ruby>地<rt>じ</rt></ruby><ruby>震<rt>しん</rt></ruby>', meaning: 'Động đất' },
-      { kana: 'たいふう', romaji: ['taifuu'], rubyHtml: '<ruby>台<rt>たい</rt></ruby><ruby>風<rt>ふう</rt></ruby>', meaning: 'Bão' },
-      { kana: 'かじ', romaji: ['kaji'], rubyHtml: '<ruby>火<rt>か</rt></ruby><ruby>事<rt>じ</rt></ruby>', meaning: 'Hỏa hoạn' },
-      { kana: 'じこ', romaji: ['jiko'], rubyHtml: '<ruby>事<rt>じ</rt></ruby><ruby>故<rt>こ</rt></ruby>', meaning: 'Tai nạn, sự cố' },
-      { kana: 'あせ', romaji: ['ase'], rubyHtml: '<ruby>汗<rt>あせ</rt></ruby>', meaning: 'Mồ hôi' },
-      { kana: 'トラック', romaji: ['torakku'], rubyHtml: 'トラック', meaning: 'Xe tải' }
-    ]},
-    { id: 'b39_doisong', name: 'C. Đời sống & Xã hội', selected: true, items: [
-      { kana: 'ふくざつ', romaji: ['fukuzatsu'], rubyHtml: '<ruby>複<rt>ふく</rt></ruby><ruby>雑<rt>ざつ</rt></ruby>［な］', meaning: 'Phức tạp' },
-      { kana: 'じゃま', romaji: ['jama'], rubyHtml: '<ruby>邪<rt>じゃ</rt></ruby><ruby>魔<rt>ま</rt></ruby>［な］', meaning: 'Cản trở, chiếm diện tích' },
-      { kana: 'きたない', romaji: ['kitanai'], rubyHtml: '<ruby>汚<rt>きた</rt></ruby>ない', meaning: 'Bẩn' },
-      { kana: 'うれしい', romaji: ['ureshii'], rubyHtml: 'うれしい', meaning: 'Vui, mừng' },
-      { kana: 'かなしい', romaji: ['kanashii'], rubyHtml: '<ruby>悲<rt>かな</rt></ruby>しい', meaning: 'Buồn, đau thương' },
-      { kana: 'はずかしい', romaji: ['hazukashii'], rubyHtml: '<ruby>恥<rt>はず</rt></ruby>かしい', meaning: 'Xấu hổ' },
-      { kana: 'おみあい', romaji: ['omiai'], rubyHtml: '［お］<ruby>見<rt>み</rt></ruby><ruby>合<rt>あ</rt></ruby>い', meaning: 'Xem mắt, làm mối' },
-      { kana: 'でんわだい', romaji: ['denwadai'], rubyHtml: '<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby><ruby>代<rt>だい</rt></ruby>', meaning: 'Tiền điện thoại' },
-      { kana: 'だい', romaji: ['dai'], rubyHtml: '～<ruby>代<rt>だい</rt></ruby>', meaning: 'Tiền ~, phí ~' },
-      { kana: 'フロント', romaji: ['furonto'], rubyHtml: 'フロント', meaning: 'Bộ phận tiếp tân' },
-      { kana: 'ごうしつ', romaji: ['goushitsu'], rubyHtml: '―<ruby>号<rt>ごう</rt></ruby><ruby>室<rt>しつ</rt></ruby>', meaning: 'Phòng số -' },
-      { kana: 'タオル', romaji: ['taoru'], rubyHtml: 'タオル', meaning: 'Khăn lau, khăn tắm' },
-      { kana: 'せっけん', romaji: ['sekken'], rubyHtml: 'せっけん', meaning: 'Xà phòng' },
-      { kana: 'おおぜい', romaji: ['oozei'], rubyHtml: '<ruby>大<rt>おお</rt></ruby><ruby>勢<rt>ぜい</rt></ruby>', meaning: 'Nhiều người' },
-      { kana: 'おつかれさまでした', romaji: ['otsukaresamadeshita'], rubyHtml: 'お<ruby>疲<rt>つか</rt></ruby>れ<ruby>様<rt>さま</rt></ruby>でした。', meaning: 'Cảm ơn anh chị đã làm việc vất vả' },
-      { kana: 'うかがいます', romaji: ['ukagaimasu'], rubyHtml: '<ruby>伺<rt>うかが</rt></ruby>います', meaning: 'Tôi đến thăm (khiêm nhường của いきます)' },
-      { kana: 'とちゅうで', romaji: ['tochuude'], rubyHtml: '<ruby>途<rt>と</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>で', meaning: 'Giữa đường, dọc đường' },
-      { kana: 'おとな', romaji: ['otona'], rubyHtml: '<ruby>大人<rt>おとな</rt></ruby>', meaning: 'Người lớn' },
-      { kana: 'ようふく', romaji: ['youfuku'], rubyHtml: '<ruby>洋<rt>よう</rt></ruby><ruby>服<rt>ふく</rt></ruby>', meaning: 'Quần áo kiểu Tây' },
-      { kana: 'いまでは', romaji: ['imadewa'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>では', meaning: 'Bây giờ (thì)' },
-      { kana: 'せいじんしき', romaji: ['seijinshiki'], rubyHtml: '<ruby>成<rt>せい</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>式<rt>しき</rt></ruby>', meaning: 'Lễ trưởng thành' }
-    ]}
+    // A. Động từ Nguyên nhân & Kết quả
+    {
+      id: "b39_nguyennhan",
+      name: "A. Động từ Nguyên nhân & Kết quả",
+      selected: true,
+      items: [
+        { kana: "こたえます", romaji: ["kotaemasu"], rubyHtml: "［<ruby>質<rt>しつ</rt></ruby><ruby>問<rt>もん</rt></ruby>に～］<ruby>答<rt>こた</rt></ruby>えます", meaning: "Trả lời [câu hỏi]" },
+        { kana: "たおれます", romaji: ["taoremasu"], rubyHtml: "［ビルが～］<ruby>倒<rt>たお</rt></ruby>れます", meaning: "Đổ [nhà cao tầng ~]" },
+        { kana: "やけます", romaji: ["yakemasu"], rubyHtml: "［うちが～］<ruby>焼<rt>や</rt></ruby>けます", meaning: "Cháy [nhà ~] / Được nướng [bánh mì, thịt]" },
+        { kana: "とおります", romaji: ["toorimasu"], rubyHtml: "［<ruby>道<rt>みち</rt></ruby>を～］<ruby>通<rt>とお</rt></ruby>ります", meaning: "Đi qua [đường]" },
+        { kana: "しにます", romaji: ["shinimasu"], rubyHtml: "<ruby>死<rt>し</rt></ruby>にます", meaning: "Chết" },
+        { kana: "びっくりします", romaji: ["bikkurishimasu"], rubyHtml: "びっくりします", meaning: "Ngạc nhiên, giật mình" },
+        { kana: "がっかりします", romaji: ["gakkarishimasu"], rubyHtml: "がっかりします", meaning: "Thất vọng" },
+        { kana: "あんしんします", romaji: ["anshinshimasu"], rubyHtml: "<ruby>安<rt>あん</rt></ruby><ruby>心<rt>しん</rt></ruby>します", meaning: "Yên tâm" },
+        { kana: "ちこくします", romaji: ["chikokushimasu"], rubyHtml: "<ruby>遅<rt>ち</rt></ruby><ruby>刻<rt>こく</rt></ruby>します", meaning: "Đến chậm, đến muộn" },
+        { kana: "そうたいします", romaji: ["soutaishimasu"], rubyHtml: "<ruby>早<rt>そう</rt></ruby><ruby>退<rt>たい</rt></ruby>します", meaning: "Về sớm, ra sớm" },
+        { kana: "けんかします", romaji: ["kenkashimasu"], rubyHtml: "けんかします", meaning: "Cãi nhau" },
+        { kana: "りこんします", romaji: ["rikonshimasu"], rubyHtml: "<ruby>離<rt>り</rt></ruby><ruby>婚<rt>こん</rt></ruby>します", meaning: "Ly dị, ly hôn" },
+        { kana: "ぶつかります", romaji: ["butsukarimasu"], rubyHtml: "ぶつかります", meaning: "Đâm, va chạm" },
+        { kana: "ならびます", romaji: ["narabimasu"], rubyHtml: "<ruby>並<rt>なら</rt></ruby>びます", meaning: "Xếp hàng" },
+        { kana: "せいようかします", romaji: ["seiyoukashimasu"], rubyHtml: "<ruby>西<rt>せい</rt></ruby><ruby>洋<rt>よう</rt></ruby><ruby>化<rt>か</rt></ruby>します", meaning: "Tây Âu hóa" },
+        { kana: "あいます", romaji: ["aimasu"], rubyHtml: "<ruby>合<rt>あ</rt></ruby>います", meaning: "Vừa, hợp" },
+      ],
+    },
+
+    // B. Tai nạn & Thiên tai
+    {
+      id: "b39_tainhan",
+      name: "B. Tai nạn & Thiên tai",
+      selected: true,
+      items: [
+        { kana: "じしん", romaji: ["jishin"], rubyHtml: "<ruby>地<rt>じ</rt></ruby><ruby>震<rt>しん</rt></ruby>", meaning: "Động đất" },
+        { kana: "たいふう", romaji: ["taifuu"], rubyHtml: "<ruby>台<rt>たい</rt></ruby><ruby>風<rt>ふう</rt></ruby>", meaning: "Bão" },
+        { kana: "かじ", romaji: ["kaji"], rubyHtml: "<ruby>火<rt>か</rt></ruby><ruby>事<rt>じ</rt></ruby>", meaning: "Hỏa hoạn" },
+        { kana: "じこ", romaji: ["jiko"], rubyHtml: "<ruby>事<rt>じ</rt></ruby><ruby>故<rt>こ</rt></ruby>", meaning: "Tai nạn, sự cố" },
+        { kana: "あせ", romaji: ["ase"], rubyHtml: "<ruby>汗<rt>あせ</rt></ruby>", meaning: "Mồ hôi" },
+        { kana: "トラック", romaji: ["torakku"], rubyHtml: "トラック", meaning: "Xe tải" },
+      ],
+    },
+
+    // C. Đời sống & Xã hội
+    {
+      id: "b39_doisong",
+      name: "C. Đời sống & Xã hội",
+      selected: true,
+      items: [
+        { kana: "ふくざつ", romaji: ["fukuzatsu"], rubyHtml: "<ruby>複<rt>ふく</rt></ruby><ruby>雑<rt>ざつ</rt></ruby>［な］", meaning: "Phức tạp" },
+        { kana: "じゃま", romaji: ["jama"], rubyHtml: "<ruby>邪<rt>じゃ</rt></ruby><ruby>魔<rt>ま</rt></ruby>［な］", meaning: "Cản trở, chiếm diện tích" },
+        { kana: "きたない", romaji: ["kitanai"], rubyHtml: "<ruby>汚<rt>きた</rt></ruby>ない", meaning: "Bẩn" },
+        { kana: "うれしい", romaji: ["ureshii"], rubyHtml: "うれしい", meaning: "Vui, mừng" },
+        { kana: "かなしい", romaji: ["kanashii"], rubyHtml: "<ruby>悲<rt>かな</rt></ruby>しい", meaning: "Buồn, đau thương" },
+        { kana: "はずかしい", romaji: ["hazukashii"], rubyHtml: "<ruby>恥<rt>はず</rt></ruby>かしい", meaning: "Xấu hổ" },
+        { kana: "おみあい", romaji: ["omiai"], rubyHtml: "［お］<ruby>見<rt>み</rt></ruby><ruby>合<rt>あ</rt></ruby>い", meaning: "Xem mắt, làm mối" },
+        { kana: "でんわだい", romaji: ["denwadai"], rubyHtml: "<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby><ruby>代<rt>だい</rt></ruby>", meaning: "Tiền điện thoại" },
+        { kana: "だい", romaji: ["dai"], rubyHtml: "～<ruby>代<rt>だい</rt></ruby>", meaning: "Tiền ~, phí ~" },
+        { kana: "フロント", romaji: ["furonto"], rubyHtml: "フロント", meaning: "Bộ phận tiếp tân" },
+        { kana: "ごうしつ", romaji: ["goushitsu"], rubyHtml: "―<ruby>号<rt>ごう</rt></ruby><ruby>室<rt>しつ</rt></ruby>", meaning: "Phòng số -" },
+        { kana: "タオル", romaji: ["taoru"], rubyHtml: "タオル", meaning: "Khăn lau, khăn tắm" },
+        { kana: "せっけん", romaji: ["sekken"], rubyHtml: "せっけん", meaning: "Xà phòng" },
+        { kana: "おおぜい", romaji: ["oozei"], rubyHtml: "<ruby>大<rt>おお</rt></ruby><ruby>勢<rt>ぜい</rt></ruby>", meaning: "Nhiều người" },
+        { kana: "おつかれさまでした", romaji: ["otsukaresamadeshita"], rubyHtml: "お<ruby>疲<rt>つか</rt></ruby>れ<ruby>様<rt>さま</rt></ruby>でした。", meaning: "Cảm ơn anh chị đã làm việc vất vả" },
+        { kana: "うかがいます", romaji: ["ukagaimasu"], rubyHtml: "<ruby>伺<rt>うかが</rt></ruby>います", meaning: "Tôi đến thăm (khiêm nhường của いきます)" },
+        { kana: "とちゅうで", romaji: ["tochuude"], rubyHtml: "<ruby>途<rt>と</rt></ruby><ruby>中<rt>ちゅう</rt></ruby>で", meaning: "Giữa đường, dọc đường" },
+        { kana: "おとな", romaji: ["otona"], rubyHtml: "<ruby>大人<rt>おとな</rt></ruby>", meaning: "Người lớn" },
+        { kana: "ようふく", romaji: ["youfuku"], rubyHtml: "<ruby>洋<rt>よう</rt></ruby><ruby>服<rt>ふく</rt></ruby>", meaning: "Quần áo kiểu Tây" },
+        { kana: "いまでは", romaji: ["imadewa"], rubyHtml: "<ruby>今<rt>いま</rt></ruby>では", meaning: "Bây giờ (thì)" },
+        { kana: "せいじんしき", romaji: ["seijinshiki"], rubyHtml: "<ruby>成<rt>せい</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>式<rt>しき</rt></ruby>", meaning: "Lễ trưởng thành" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 40
+  // ========================================
   40: [
-    { id: 'b40_doluong', name: 'A. Động từ Đo lường & Xác nhận', selected: true, items: [
-      { kana: 'かぞえます', romaji: ['kazoemasu'], rubyHtml: '<ruby>数<rt>かぞ</rt></ruby>えます', meaning: 'Đếm' },
-      { kana: 'はかります', romaji: ['hakarimasu'], rubyHtml: '<ruby>測<rt>はか</rt></ruby>ります、<ruby>量<rt>はか</rt></ruby>ります', meaning: 'Đo, cân' },
-      { kana: 'たしかめます', romaji: ['tashikamemasu'], rubyHtml: '<ruby>確<rt>たしか</rt></ruby>めます', meaning: 'Xác nhận' },
-      { kana: 'あいます', romaji: ['aimasu'], rubyHtml: '［サイズが～］<ruby>合<rt>あ</rt></ruby>います', meaning: 'Vừa, hợp [kích thước]' },
-      { kana: 'しゅっぱつします', romaji: ['shuppatsushimasu'], rubyHtml: '<ruby>出<rt>しゅっ</rt></ruby><ruby>発<rt>ぱつ</rt></ruby>します', meaning: 'Xuất phát, khởi hành' },
-      { kana: 'とうちゃくします', romaji: ['touchakushimasu'], rubyHtml: '<ruby>到<rt>とう</rt></ruby><ruby>着<rt>ちゃく</rt></ruby>します', meaning: 'Đến, đến nơi' },
-      { kana: 'よいます', romaji: ['yoimasu'], rubyHtml: '<ruby>酔<rt>よ</rt></ruby>います', meaning: 'Say (rượu, xe)' },
-      { kana: 'つみます', romaji: ['tsumimasu'], rubyHtml: '<ruby>積<rt>つ</rt></ruby>みます', meaning: 'Chuyển lên, xếp hàng lên' },
-      { kana: 'うごかします', romaji: ['ugokashimasu'], rubyHtml: '<ruby>動<rt>うご</rt></ruby>かします', meaning: 'Khởi động, chạy' },
-      { kana: 'てにいれます', romaji: ['teniiremasu'], rubyHtml: '<ruby>手<rt>て</rt></ruby>に<ruby>入<rt>い</rt></ruby>れます', meaning: 'Có được, lấy được' },
-      { kana: 'うわさします', romaji: ['uwasashimasu'], rubyHtml: 'うわさします', meaning: 'Đồn đại' }
-    ]},
-    { id: 'b40_sukien', name: 'B. Sự kiện & Kích thước', selected: true, items: [
-      { kana: 'きけん', romaji: ['kiken'], rubyHtml: '<ruby>危<rt>き</rt></ruby><ruby>険<rt>けん</rt></ruby>［な］', meaning: 'Nguy hiểm' },
-      { kana: 'ひつよう', romaji: ['hitsuyou'], rubyHtml: '<ruby>必<rt>ひつ</rt></ruby><ruby>要<rt>よう</rt></ruby>［な］', meaning: 'Cần thiết' },
-      { kana: 'うちゅう', romaji: ['uchuu'], rubyHtml: '<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby>', meaning: 'Vũ trụ' },
-      { kana: 'ちきゅう', romaji: ['chikyuu'], rubyHtml: '<ruby>地<rt>ち</rt></ruby><ruby>球<rt>きゅう</rt></ruby>', meaning: 'Trái đất' },
-      { kana: 'ぼうねんかい', romaji: ['bounenkai'], rubyHtml: '<ruby>忘<rt>ぼう</rt></ruby><ruby>年<rt>ねん</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Tiệc tất niên' },
-      { kana: 'しんねんかい', romaji: ['shinnenkai'], rubyHtml: '<ruby>新<rt>しん</rt></ruby><ruby>年<rt>ねん</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Tiệc tân niên' },
-      { kana: 'にじかい', romaji: ['nijikai'], rubyHtml: '<ruby>二<rt>に</rt></ruby><ruby>次<rt>じ</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Tiệc tăng hai' },
-      { kana: 'たいかい', romaji: ['taikai'], rubyHtml: '<ruby>大<rt>たい</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Đại hội, cuộc thi' },
-      { kana: 'マラソン', romaji: ['marason'], rubyHtml: 'マラソン', meaning: 'Ma-ra-tông' },
-      { kana: 'コンテスト', romaji: ['kontesuto'], rubyHtml: 'コンテスト', meaning: 'Cuộc thi' },
-      { kana: 'おもて', romaji: ['omote'], rubyHtml: '<ruby>表<rt>おもて</rt></ruby>', meaning: 'Phía trước, mặt trước' },
-      { kana: 'うら', romaji: ['ura'], rubyHtml: '<ruby>裏<rt>うら</rt></ruby>', meaning: 'Phía sau, mặt sau' },
-      { kana: 'へんじ', romaji: ['henji'], rubyHtml: '<ruby>返<rt>へん</rt></ruby><ruby>事<rt>じ</rt></ruby>', meaning: 'Hồi âm, trả lời' },
-      { kana: 'もうしこみ', romaji: ['moushikomi'], rubyHtml: '<ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>み', meaning: 'Đăng ký' },
-      { kana: 'ほんとう', romaji: ['hontou'], rubyHtml: 'ほんとう', meaning: 'Thật' },
-      { kana: 'まちがい', romaji: ['machigai'], rubyHtml: 'まちがい', meaning: 'Sai, lỗi' },
-      { kana: 'きず', romaji: ['kizu'], rubyHtml: '<ruby>傷<rt>きず</rt></ruby>', meaning: 'Vết thương' },
-      { kana: 'ズボン', romaji: ['zubon'], rubyHtml: 'ズボン', meaning: 'Cái quần' },
-      { kana: 'ながさ', romaji: ['nagasa'], rubyHtml: '<ruby>長<rt>なが</rt></ruby>さ', meaning: 'Chiều dài' },
-      { kana: 'おもさ', romaji: ['omosa'], rubyHtml: '<ruby>重<rt>おも</rt></ruby>さ', meaning: 'Cân nặng, trọng lượng' },
-      { kana: 'たかさ', romaji: ['takasa'], rubyHtml: '<ruby>高<rt>たか</rt></ruby>さ', meaning: 'Chiều cao' },
-      { kana: 'おおきさ', romaji: ['ookisa'], rubyHtml: '<ruby>大<rt>おお</rt></ruby>きさ', meaning: 'Cỡ, kích thước' },
-      { kana: 'びん', romaji: ['bin'], rubyHtml: '［―］<ruby>便<rt>びん</rt></ruby>', meaning: 'Chuyến bay [-]' },
-      { kana: 'ごう', romaji: ['gou'], rubyHtml: '―<ruby>号<rt>ごう</rt></ruby>', meaning: 'Số [-]' },
-      { kana: 'こ', romaji: ['ko'], rubyHtml: '―<ruby>個<rt>こ</rt></ruby>', meaning: 'Cái, cục, viên' },
-      { kana: 'ほん', romaji: ['hon'], rubyHtml: '―<ruby>本<rt>ほん</rt></ruby>', meaning: 'Cái (đơn vị đếm vật dài)' },
-      { kana: 'はい', romaji: ['hai'], rubyHtml: '―<ruby>杯<rt>はい</rt></ruby>', meaning: 'Chén, cốc' },
-      { kana: 'キロ', romaji: ['kiro'], rubyHtml: '―キロ', meaning: 'Ki-lô, cân' },
-      { kana: 'グラム', romaji: ['guramu'], rubyHtml: '―グラム', meaning: 'Gam' },
-      { kana: 'センチ', romaji: ['senchi'], rubyHtml: '―センチ', meaning: 'Xăng-ti-mét' },
-      { kana: 'ミリ', romaji: ['miri'], rubyHtml: '―ミリ', meaning: 'Mi-li-mét' },
-      { kana: 'いじょう', romaji: ['ijou'], rubyHtml: '～<ruby>以<rt>い</rt></ruby><ruby>上<rt>じょう</rt></ruby>', meaning: '~ Trở lên, trên' },
-      { kana: 'いか', romaji: ['ika'], rubyHtml: '～<ruby>以<rt>い</rt></ruby><ruby>下<rt>か</rt></ruby>', meaning: '~ Trở xuống, dưới' },
-      { kana: 'さあ', romaji: ['saa'], rubyHtml: 'さあ', meaning: 'À...' },
-      { kana: 'ゆきまつり', romaji: ['yukimatsuri'], rubyHtml: '<ruby>雪<rt>ゆき</rt></ruby><ruby>祭<rt>まつ</rt></ruby>り', meaning: 'Lễ hội tuyết' },
-      { kana: 'どうでしょうか', romaji: ['doudeshouka'], rubyHtml: 'どうでしょうか。', meaning: 'Thế nào? (lịch sự của どうですか)' },
-      { kana: 'テスト', romaji: ['tesuto'], rubyHtml: 'テスト', meaning: 'Bài kiểm tra, bài thi' },
-      { kana: 'せいせき', romaji: ['seiseki'], rubyHtml: '<ruby>成<rt>せい</rt></ruby><ruby>績<rt>せき</rt></ruby>', meaning: 'Kết quả, thành tích' },
-      { kana: 'ところで', romaji: ['tokorode'], rubyHtml: 'ところで', meaning: 'Nhân tiện đây' },
-      { kana: 'いらっしゃいます', romaji: ['irasshaimasu'], rubyHtml: 'いらっしゃいます', meaning: 'Đến (tôn kính ngữ của きます)' },
-      { kana: 'ようす', romaji: ['yousu'], rubyHtml: '<ruby>様<rt>よう</rt></ruby><ruby>子<rt>す</rt></ruby>', meaning: 'Vẻ, tình hình' },
-      { kana: 'じけん', romaji: ['jiken'], rubyHtml: '<ruby>事<rt>じ</rt></ruby><ruby>件<rt>けん</rt></ruby>', meaning: 'Vụ án' },
-      { kana: 'オートバイ', romaji: ['o-tobai'], rubyHtml: 'オートバイ', meaning: 'Xe máy' },
-      { kana: 'ばくだん', romaji: ['bakudan'], rubyHtml: '<ruby>爆<rt>ばく</rt></ruby><ruby>弾<rt>だん</rt></ruby>', meaning: 'Bom' },
-      { kana: 'うんてんしゅ', romaji: ['untenshu'], rubyHtml: '<ruby>運<rt>うん</rt></ruby><ruby>転<rt>てん</rt></ruby><ruby>手<rt>しゅ</rt></ruby>', meaning: 'Lái xe' },
-      { kana: 'はなれた', romaji: ['hanareta'], rubyHtml: '<ruby>離<rt>はな</rt></ruby>れた', meaning: 'Xa cách, xa' },
-      { kana: 'が', romaji: ['ga'], rubyHtml: 'が', meaning: 'Nhưng' },
-      { kana: 'きゅうに', romaji: ['kyuuni'], rubyHtml: '<ruby>急<rt>きゅう</rt></ruby>に', meaning: 'Gấp, đột nhiên' },
-      { kana: 'いっしょうけんめい', romaji: ['isshoukenmei'], rubyHtml: '<ruby>一<rt>いっ</rt></ruby><ruby>生<rt>しょう</rt></ruby><ruby>懸<rt>けん</rt></ruby><ruby>命<rt>めい</rt></ruby>', meaning: 'Hết sức, chăm chỉ' },
-      { kana: 'はんにん', romaji: ['hannin'], rubyHtml: '<ruby>犯<rt>はん</rt></ruby><ruby>人<rt>にん</rt></ruby>', meaning: 'Thủ phạm' },
-      { kana: 'いまでも', romaji: ['imademo'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>でも', meaning: 'Ngay cả bây giờ' }
-    ]}
+    // A. Động từ Đo lường & Xác nhận
+    {
+      id: "b40_doluong",
+      name: "A. Động từ Đo lường & Xác nhận",
+      selected: true,
+      items: [
+        { kana: "かぞえます", romaji: ["kazoemasu"], rubyHtml: "<ruby>数<rt>かぞ</rt></ruby>えます", meaning: "Đếm" },
+        { kana: "はかります", romaji: ["hakarimasu"], rubyHtml: "<ruby>測<rt>はか</rt></ruby>ります、<ruby>量<rt>はか</rt></ruby>ります", meaning: "Đo, cân" },
+        { kana: "たしかめます", romaji: ["tashikamemasu"], rubyHtml: "<ruby>確<rt>たしか</rt></ruby>めます", meaning: "Xác nhận" },
+        { kana: "あいます", romaji: ["aimasu"], rubyHtml: "［サイズが～］<ruby>合<rt>あ</rt></ruby>います", meaning: "Vừa, hợp [kích thước]" },
+        { kana: "しゅっぱつします", romaji: ["shuppatsushimasu"], rubyHtml: "<ruby>出<rt>しゅっ</rt></ruby><ruby>発<rt>ぱつ</rt></ruby>します", meaning: "Xuất phát, khởi hành" },
+        { kana: "とうちゃくします", romaji: ["touchakushimasu"], rubyHtml: "<ruby>到<rt>とう</rt></ruby><ruby>着<rt>ちゃく</rt></ruby>します", meaning: "Đến, đến nơi" },
+        { kana: "よいます", romaji: ["yoimasu"], rubyHtml: "<ruby>酔<rt>よ</rt></ruby>います", meaning: "Say (rượu, xe)" },
+        { kana: "つみます", romaji: ["tsumimasu"], rubyHtml: "<ruby>積<rt>つ</rt></ruby>みます", meaning: "Chuyển lên, xếp hàng lên" },
+        { kana: "うごかします", romaji: ["ugokashimasu"], rubyHtml: "<ruby>動<rt>うご</rt></ruby>かします", meaning: "Khởi động, chạy" },
+        { kana: "てにいれます", romaji: ["teniiremasu"], rubyHtml: "<ruby>手<rt>て</rt></ruby>に<ruby>入<rt>い</rt></ruby>れます", meaning: "Có được, lấy được" },
+        { kana: "うわさします", romaji: ["uwasashimasu"], rubyHtml: "うわさします", meaning: "Đồn đại" },
+      ],
+    },
+
+    // B. Sự kiện & Kích thước
+    {
+      id: "b40_sukien",
+      name: "B. Sự kiện & Kích thước",
+      selected: true,
+      items: [
+        { kana: "きけん", romaji: ["kiken"], rubyHtml: "<ruby>危<rt>き</rt></ruby><ruby>険<rt>けん</rt></ruby>［な］", meaning: "Nguy hiểm" },
+        { kana: "ひつよう", romaji: ["hitsuyou"], rubyHtml: "<ruby>必<rt>ひつ</rt></ruby><ruby>要<rt>よう</rt></ruby>［な］", meaning: "Cần thiết" },
+        { kana: "うちゅう", romaji: ["uchuu"], rubyHtml: "<ruby>宇<rt>う</rt></ruby><ruby>宙<rt>ちゅう</rt></ruby>", meaning: "Vũ trụ" },
+        { kana: "ちきゅう", romaji: ["chikyuu"], rubyHtml: "<ruby>地<rt>ち</rt></ruby><ruby>球<rt>きゅう</rt></ruby>", meaning: "Trái đất" },
+        { kana: "ぼうねんかい", romaji: ["bounenkai"], rubyHtml: "<ruby>忘<rt>ぼう</rt></ruby><ruby>年<rt>ねん</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Tiệc tất niên" },
+        { kana: "しんねんかい", romaji: ["shinnenkai"], rubyHtml: "<ruby>新<rt>しん</rt></ruby><ruby>年<rt>ねん</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Tiệc tân niên" },
+        { kana: "にじかい", romaji: ["nijikai"], rubyHtml: "<ruby>二<rt>に</rt></ruby><ruby>次<rt>じ</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Tiệc tăng hai" },
+        { kana: "たいかい", romaji: ["taikai"], rubyHtml: "<ruby>大<rt>たい</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Đại hội, cuộc thi" },
+        { kana: "マラソン", romaji: ["marason"], rubyHtml: "マラソン", meaning: "Ma-ra-tông" },
+        { kana: "コンテスト", romaji: ["kontesuto"], rubyHtml: "コンテスト", meaning: "Cuộc thi" },
+        { kana: "おもて", romaji: ["omote"], rubyHtml: "<ruby>表<rt>おもて</rt></ruby>", meaning: "Phía trước, mặt trước" },
+        { kana: "うら", romaji: ["ura"], rubyHtml: "<ruby>裏<rt>うら</rt></ruby>", meaning: "Phía sau, mặt sau" },
+        { kana: "へんじ", romaji: ["henji"], rubyHtml: "<ruby>返<rt>へん</rt></ruby><ruby>事<rt>じ</rt></ruby>", meaning: "Hồi âm, trả lời" },
+        { kana: "もうしこみ", romaji: ["moushikomi"], rubyHtml: "<ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>み", meaning: "Đăng ký" },
+        { kana: "ほんとう", romaji: ["hontou"], rubyHtml: "ほんとう", meaning: "Thật" },
+        { kana: "まちがい", romaji: ["machigai"], rubyHtml: "まちがい", meaning: "Sai, lỗi" },
+        { kana: "きず", romaji: ["kizu"], rubyHtml: "<ruby>傷<rt>きず</rt></ruby>", meaning: "Vết thương" },
+        { kana: "ズボン", romaji: ["zubon"], rubyHtml: "ズボン", meaning: "Cái quần" },
+        { kana: "ながさ", romaji: ["nagasa"], rubyHtml: "<ruby>長<rt>なが</rt></ruby>さ", meaning: "Chiều dài" },
+        { kana: "おもさ", romaji: ["omosa"], rubyHtml: "<ruby>重<rt>おも</rt></ruby>さ", meaning: "Cân nặng, trọng lượng" },
+        { kana: "たかさ", romaji: ["takasa"], rubyHtml: "<ruby>高<rt>たか</rt></ruby>さ", meaning: "Chiều cao" },
+        { kana: "おおきさ", romaji: ["ookisa"], rubyHtml: "<ruby>大<rt>おお</rt></ruby>きさ", meaning: "Cỡ, kích thước" },
+        { kana: "びん", romaji: ["bin"], rubyHtml: "［―］<ruby>便<rt>びん</rt></ruby>", meaning: "Chuyến bay [-]" },
+        { kana: "ごう", romaji: ["gou"], rubyHtml: "―<ruby>号<rt>ごう</rt></ruby>", meaning: "Số [-]" },
+        { kana: "こ", romaji: ["ko"], rubyHtml: "―<ruby>個<rt>こ</rt></ruby>", meaning: "Cái, cục, viên" },
+        { kana: "ほん", romaji: ["hon"], rubyHtml: "―<ruby>本<rt>ほん</rt></ruby>", meaning: "Cái (đơn vị đếm vật dài)" },
+        { kana: "はい", romaji: ["hai"], rubyHtml: "―<ruby>杯<rt>はい</rt></ruby>", meaning: "Chén, cốc" },
+        { kana: "キロ", romaji: ["kiro"], rubyHtml: "―キロ", meaning: "Ki-lô, cân" },
+        { kana: "グラム", romaji: ["guramu"], rubyHtml: "―グラム", meaning: "Gam" },
+        { kana: "センチ", romaji: ["senchi"], rubyHtml: "―センチ", meaning: "Xăng-ti-mét" },
+        { kana: "ミリ", romaji: ["miri"], rubyHtml: "―ミリ", meaning: "Mi-li-mét" },
+        { kana: "いじょう", romaji: ["ijou"], rubyHtml: "～<ruby>以<rt>い</rt></ruby><ruby>上<rt>じょう</rt></ruby>", meaning: "~ Trở lên, trên" },
+        { kana: "いか", romaji: ["ika"], rubyHtml: "～<ruby>以<rt>い</rt></ruby><ruby>下<rt>か</rt></ruby>", meaning: "~ Trở xuống, dưới" },
+        { kana: "さあ", romaji: ["saa"], rubyHtml: "さあ", meaning: "À..." },
+        { kana: "ゆきまつり", romaji: ["yukimatsuri"], rubyHtml: "<ruby>雪<rt>ゆき</rt></ruby><ruby>祭<rt>まつ</rt></ruby>り", meaning: "Lễ hội tuyết" },
+        { kana: "どうでしょうか", romaji: ["doudeshouka"], rubyHtml: "どうでしょうか。", meaning: "Thế nào? (lịch sự của どうですか)" },
+        { kana: "テスト", romaji: ["tesuto"], rubyHtml: "テスト", meaning: "Bài kiểm tra, bài thi" },
+        { kana: "せいせき", romaji: ["seiseki"], rubyHtml: "<ruby>成<rt>せい</rt></ruby><ruby>績<rt>せき</rt></ruby>", meaning: "Kết quả, thành tích" },
+        { kana: "ところで", romaji: ["tokorode"], rubyHtml: "ところで", meaning: "Nhân tiện đây" },
+        { kana: "いらっしゃいます", romaji: ["irasshaimasu"], rubyHtml: "いらっしゃいます", meaning: "Đến (tôn kính ngữ của きます)" },
+        { kana: "ようす", romaji: ["yousu"], rubyHtml: "<ruby>様<rt>よう</rt></ruby><ruby>子<rt>す</rt></ruby>", meaning: "Vẻ, tình hình" },
+        { kana: "じけん", romaji: ["jiken"], rubyHtml: "<ruby>事<rt>じ</rt></ruby><ruby>件<rt>けん</rt></ruby>", meaning: "Vụ án" },
+        { kana: "オートバイ", romaji: ["o-tobai"], rubyHtml: "オートバイ", meaning: "Xe máy" },
+        { kana: "ばくだん", romaji: ["bakudan"], rubyHtml: "<ruby>爆<rt>ばく</rt></ruby><ruby>弾<rt>だん</rt></ruby>", meaning: "Bom" },
+        { kana: "うんてんしゅ", romaji: ["untenshu"], rubyHtml: "<ruby>運<rt>うん</rt></ruby><ruby>転<rt>てん</rt></ruby><ruby>手<rt>しゅ</rt></ruby>", meaning: "Lái xe" },
+        { kana: "はなれた", romaji: ["hanareta"], rubyHtml: "<ruby>離<rt>はな</rt></ruby>れた", meaning: "Xa cách, xa" },
+        { kana: "が", romaji: ["ga"], rubyHtml: "が", meaning: "Nhưng" },
+        { kana: "きゅうに", romaji: ["kyuuni"], rubyHtml: "<ruby>急<rt>きゅう</rt></ruby>に", meaning: "Gấp, đột nhiên" },
+        { kana: "いっしょうけんめい", romaji: ["isshoukenmei"], rubyHtml: "<ruby>一<rt>いっ</rt></ruby><ruby>生<rt>しょう</rt></ruby><ruby>懸<rt>けん</rt></ruby><ruby>命<rt>めい</rt></ruby>", meaning: "Hết sức, chăm chỉ" },
+        { kana: "はんにん", romaji: ["hannin"], rubyHtml: "<ruby>犯<rt>はん</rt></ruby><ruby>人<rt>にん</rt></ruby>", meaning: "Thủ phạm" },
+        { kana: "いまでも", romaji: ["imademo"], rubyHtml: "<ruby>今<rt>いま</rt></ruby>でも", meaning: "Ngay cả bây giờ" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 41
+  // ========================================
   41: [
-    { id: 'b41_chonhan', name: 'A. Động từ Cho - Nhận', selected: true, items: [
-      { kana: 'いただきます', romaji: ['itadakimasu'], rubyHtml: 'いただきます', meaning: 'Nhận (khiêm nhường ngữ của もらいます)' },
-      { kana: 'くださいます', romaji: ['kudasaimasu'], rubyHtml: 'くださいます', meaning: 'Cho, tặng (tôi) (tôn kính ngữ của くれます)' },
-      { kana: 'やります', romaji: ['yarimasu'], rubyHtml: 'やります', meaning: 'Cho, tặng (dùng với người dưới/động vật)' },
-      { kana: 'よびます', romaji: ['yobimasu'], rubyHtml: '<ruby>呼<rt>よ</rt></ruby>びます', meaning: 'Mời, gọi' },
-      { kana: 'とりかえます', romaji: ['torikaemasu'], rubyHtml: '<ruby>取<rt>と</rt></ruby>り<ruby>替<rt>か</rt></ruby>えます', meaning: 'Đổi, thay' },
-      { kana: 'しんせつにします', romaji: ['shinsetsunishimasu'], rubyHtml: '<ruby>親<rt>しん</rt></ruby><ruby>切<rt>せつ</rt></ruby>にします', meaning: 'Giúp đỡ, đối xử thân thiện' },
-      { kana: 'あずかります', romaji: ['azukarimasu'], rubyHtml: '<ruby>預<rt>あずか</rt></ruby>ります', meaning: 'Giữ, giữ hộ, giữ cho' },
-      { kana: 'たすかります', romaji: ['tasukarimasu'], rubyHtml: '<ruby>助<rt>たす</rt></ruby>かります', meaning: 'May có anh/chị giúp' },
-      { kana: 'いじめます', romaji: ['ijimemasu'], rubyHtml: 'いじめます', meaning: 'Bắt nạt' },
-      { kana: 'たすけます', romaji: ['tasukemasu'], rubyHtml: '<ruby>助<rt>たす</rt></ruby>けます', meaning: 'Giúp, giúp đỡ' },
-      { kana: 'くらします', romaji: ['kurashimasu'], rubyHtml: '<ruby>暮<rt>く</rt></ruby>らします', meaning: 'Sống, sinh hoạt' }
-    ]},
-    { id: 'b41_quatang', name: 'B. Quà tặng & Gia đình', selected: true, items: [
-      { kana: 'かわいい', romaji: ['kawaii'], rubyHtml: 'かわいい', meaning: 'Xinh, đáng yêu' },
-      { kana: 'おいわい', romaji: ['oiwai'], rubyHtml: '［お］<ruby>祝<rt>いわ</rt></ruby>い', meaning: 'Việc mừng, vật mừng' },
-      { kana: 'おとしだま', romaji: ['otoshidama'], rubyHtml: 'お<ruby>年<rt>とし</rt></ruby><ruby>玉<rt>だま</rt></ruby>', meaning: 'Tiền mừng tuổi' },
-      { kana: 'おみまい', romaji: ['omimai'], rubyHtml: '［お］<ruby>見<rt>み</rt></ruby><ruby>舞<rt>ま</rt></ruby>い', meaning: 'Thăm người ốm' },
-      { kana: 'きょうみ', romaji: ['kyoumi'], rubyHtml: '<ruby>興<rt>きょう</rt></ruby><ruby>味<rt>み</rt></ruby>', meaning: 'Sở thích, quan tâm' },
-      { kana: 'じょうほう', romaji: ['jouhou'], rubyHtml: '<ruby>情<rt>じょう</rt></ruby><ruby>報<rt>ほう</rt></ruby>', meaning: 'Thông tin' },
-      { kana: 'ぶんぽう', romaji: ['bunpou'], rubyHtml: '<ruby>文<rt>ぶん</rt></ruby><ruby>法<rt>ぽう</rt></ruby>', meaning: 'Ngữ pháp' },
-      { kana: 'はつおん', romaji: ['hatsuon'], rubyHtml: '<ruby>発<rt>はつ</rt></ruby><ruby>音<rt>おん</rt></ruby>', meaning: 'Phát âm' },
-      { kana: 'えさ', romaji: ['esa'], rubyHtml: 'えさ', meaning: 'Đồ ăn cho động vật, mồi' },
-      { kana: 'おもちゃ', romaji: ['omocha'], rubyHtml: 'おもちゃ', meaning: 'Đồ chơi' },
-      { kana: 'えはがき', romaji: ['ehagaki'], rubyHtml: 'えはがき', meaning: 'Bưu ảnh' },
-      { kana: 'えほん', romaji: ['ehon'], rubyHtml: 'えほん', meaning: 'Quyển truyện tranh' },
-      { kana: 'ドライバー', romaji: ['doraiba-'], rubyHtml: 'ドライバー', meaning: 'Cái tua-vít' },
-      { kana: 'ハンカチ', romaji: ['hankachi'], rubyHtml: 'ハンカチ', meaning: 'Khăn mùi xoa, khăn tay' },
-      { kana: 'くつした', romaji: ['kutsushita'], rubyHtml: '<ruby>靴<rt>くつ</rt></ruby><ruby>下<rt>した</rt></ruby>', meaning: 'Cái tất' },
-      { kana: 'てぶくろ', romaji: ['tebukuro'], rubyHtml: '<ruby>手<rt>て</rt></ruby><ruby>袋<rt>ぶくろ</rt></ruby>', meaning: 'Cái găng tay' },
-      { kana: 'ゆびわ', romaji: ['yubiwa'], rubyHtml: '<ruby>指<rt>ゆび</rt></ruby><ruby>輪<rt>わ</rt></ruby>', meaning: 'Cái nhẫn' },
-      { kana: 'バッグ', romaji: ['baggu'], rubyHtml: 'バッグ', meaning: 'Cái túi' },
-      { kana: 'そふ', romaji: ['sofu'], rubyHtml: '<ruby>祖<rt>そ</rt></ruby><ruby>父<rt>ふ</rt></ruby>', meaning: 'Ông (dùng với bản thân)' },
-      { kana: 'そぼ', romaji: ['sobo'], rubyHtml: '<ruby>祖<rt>そ</rt></ruby><ruby>母<rt>ぼ</rt></ruby>', meaning: 'Bà (dùng với bản thân)' },
-      { kana: 'まご', romaji: ['mago'], rubyHtml: '<ruby>孫<rt>まご</rt></ruby>', meaning: 'Cháu' },
-      { kana: 'おじ', romaji: ['oji'], rubyHtml: 'おじ', meaning: 'Chú, cậu, bác (dùng với bản thân)' },
-      { kana: 'おじさん', romaji: ['ojisan'], rubyHtml: 'おじさん', meaning: 'Chú, cậu, bác (dùng với người khác)' },
-      { kana: 'おば', romaji: ['oba'], rubyHtml: 'おば', meaning: 'Cô, dì, bác (dùng với bản thân)' },
-      { kana: 'おばさん', romaji: ['obasan'], rubyHtml: 'おばさん', meaning: 'Cô, dì, bác (dùng với người khác)' },
-      { kana: 'おととし', romaji: ['ototoshi'], rubyHtml: 'おととし', meaning: 'Năm kia' },
-      { kana: 'はあ', romaji: ['haa'], rubyHtml: 'はあ', meaning: 'À...' },
-      { kana: 'もうしわけありません', romaji: ['moushiwakearimasen'], rubyHtml: '<ruby>申<rt>もう</rt></ruby>し<ruby>訳<rt>わけ</rt></ruby>ありません。', meaning: 'Xin lỗi.' },
-      { kana: 'せんじつ', romaji: ['senjitsu'], rubyHtml: '<ruby>先<rt>せん</rt></ruby><ruby>日<rt>じつ</rt></ruby>', meaning: 'Hôm trước, mấy hôm trước' },
-      { kana: 'むかしばなし', romaji: ['mukashibanashi'], rubyHtml: '<ruby>昔<rt>むかし</rt></ruby><ruby>話<rt>ばなし</rt></ruby>', meaning: 'Chuyện cổ tích' },
-      { kana: 'ある', romaji: ['aru'], rubyHtml: 'ある～', meaning: 'Có ~, một ~' },
-      { kana: 'おとこ', romaji: ['otoko'], rubyHtml: '<ruby>男<rt>おとこ</rt></ruby>', meaning: 'Người đàn ông' },
-      { kana: 'こどもたち', romaji: ['kodomotachi'], rubyHtml: '<ruby>子<rt>こ</rt></ruby><ruby>供<rt>ども</rt></ruby>たち', meaning: 'Trẻ em, bọn trẻ' },
-      { kana: 'かめ', romaji: ['kame'], rubyHtml: 'かめ', meaning: 'Con rùa' },
-      { kana: 'おしろ', romaji: ['oshiro'], rubyHtml: '［お］<ruby>城<rt>しろ</rt></ruby>', meaning: 'Lâu đài, thành' },
-      { kana: 'おひめさま', romaji: ['ohimesama'], rubyHtml: 'お<ruby>姫<rt>ひめ</rt></ruby><ruby>様<rt>さま</rt></ruby>', meaning: 'Công chúa' },
-      { kana: 'たのしく', romaji: ['tanoshiku'], rubyHtml: '<ruby>楽<rt>たの</rt></ruby>しく', meaning: 'Vui' },
-      { kana: 'りく', romaji: ['riku'], rubyHtml: '<ruby>陸<rt>りく</rt></ruby>', meaning: 'Đất liền, lục địa' },
-      { kana: 'すると', romaji: ['suruto'], rubyHtml: 'すると', meaning: 'Thế rồi, sau đó' },
-      { kana: 'けむり', romaji: ['kemuri'], rubyHtml: '<ruby>煙<rt>けむり</rt></ruby>', meaning: 'Khói' },
-      { kana: 'まっしろ', romaji: ['masshiro'], rubyHtml: '<ruby>真<rt>ま</rt></ruby>っ<ruby>白<rt>しろ</rt></ruby>［な］', meaning: 'Trắng toàn bộ, trắng ngần' },
-      { kana: 'なかみ', romaji: ['nakami'], rubyHtml: '<ruby>中<rt>なか</rt></ruby><ruby>身<rt>み</rt></ruby>', meaning: 'Nội dung, cái bên trong' }
-    ]}
-  ],
- 42: [
-    { id: 'b42_mucdich', name: 'A. Động từ Mục đích & Sử dụng', selected: true, items: [
-      { kana: 'つつみます', romaji: ['tsutsumimasu'], rubyHtml: '<ruby>包<rt>つつ</rt></ruby>みます', meaning: 'Bọc, gói' },
-      { kana: 'わかします', romaji: ['wakashimasu'], rubyHtml: '<ruby>沸<rt>わ</rt></ruby>かします', meaning: 'Đun sôi' },
-      { kana: 'まぜます', romaji: ['mazemasu'], rubyHtml: '<ruby>混<rt>ま</rt></ruby>ぜます', meaning: 'Trộn, khuấy' },
-      { kana: 'けいさんします', romaji: ['keisanshimasu'], rubyHtml: '<ruby>計<rt>けい</rt></ruby><ruby>算<rt>さん</rt></ruby>します', meaning: 'Tính toán, làm tính' }
-    ]},
-    { id: 'b42_dungcu', name: 'B. Dụng cụ & Đồ hộp', selected: true, items: [
-      { kana: 'あつい', romaji: ['atsui'], rubyHtml: '<ruby>厚<rt>あつ</rt></ruby>い', meaning: 'Dày' },
-      { kana: 'うすい', romaji: ['usui'], rubyHtml: '<ruby>薄<rt>うす</rt></ruby>い', meaning: 'Mỏng' },
-      { kana: 'ミキサー', romaji: ['mikisa-'], rubyHtml: 'ミキサー', meaning: 'Máy trộn, máy xay sinh tố' },
-      { kana: 'やかん', romaji: ['yakan'], rubyHtml: 'やかん', meaning: 'Cái ấm nước' },
-      { kana: 'せんぬき', romaji: ['sennuki'], rubyHtml: '<ruby>栓<rt>せん</rt></ruby><ruby>抜<rt>ぬ</rt></ruby>き', meaning: 'Cái mở nắp chai' },
-      { kana: 'かんきり', romaji: ['kankiri'], rubyHtml: '<ruby>缶<rt>かん</rt></ruby><ruby>切<rt>き</rt></ruby>り', meaning: 'Cái mở đồ hộp' },
-      { kana: 'かんづめ', romaji: ['kandume'], rubyHtml: '<ruby>缶<rt>かん</rt></ruby><ruby>詰<rt>づめ</rt></ruby>', meaning: 'Đồ hộp' },
-      { kana: 'ふろしき', romaji: ['furoshiki'], rubyHtml: 'ふろしき', meaning: 'Tấm vải để gói đồ' },
-      { kana: 'そろばん', romaji: ['soroban'], rubyHtml: 'そろばん', meaning: 'Bàn tính' },
-      { kana: 'たいおんけい', romaji: ['taionkei'], rubyHtml: '<ruby>体<rt>たい</rt></ruby><ruby>温<rt>おん</rt></ruby><ruby>計<rt>けい</rt></ruby>', meaning: 'Máy đo nhiệt độ cơ thể' },
-      { kana: 'ざいりょう', romaji: ['zairyou'], rubyHtml: '<ruby>材<rt>ざい</rt></ruby><ruby>料<rt>りょう</rt></ruby>', meaning: 'Nguyên liệu' },
-      { kana: 'いし', romaji: ['ishi'], rubyHtml: '<ruby>石<rt>いし</rt></ruby>', meaning: 'Hòn đá, đá' },
-      { kana: 'ピラミッド', romaji: ['piramiddo'], rubyHtml: 'ピラミッド', meaning: 'Kim tự tháp' },
-      { kana: 'データ', romaji: ['de-ta'], rubyHtml: 'データ', meaning: 'Số liệu, dữ liệu' },
-      { kana: 'ファイル', romaji: ['fairu'], rubyHtml: 'ファイル', meaning: 'Cái kẹp tài liệu' },
-      { kana: 'セット', romaji: ['setto'], rubyHtml: 'セット', meaning: 'Bộ' },
-      { kana: 'あと', romaji: ['ato'], rubyHtml: 'あと', meaning: 'Còn lại' },
-      { kana: 'カップラーメン', romaji: ['kappura-men'], rubyHtml: 'カップラーメン', meaning: 'Mì ăn liền ly' },
-      { kana: 'インスタントラーメン', romaji: ['insutantora-men'], rubyHtml: 'インスタントラーメン', meaning: 'Mì ăn liền' },
-      { kana: 'なべ', romaji: ['nabe'], rubyHtml: 'なべ', meaning: 'Cái nồi, cái chảo' },
-      { kana: 'どんぶり', romaji: ['donburi'], rubyHtml: 'どんぶり', meaning: 'Cái bát tô' },
-      { kana: 'しょくひん', romaji: ['shokuhin'], rubyHtml: '<ruby>食<rt>しょく</rt></ruby><ruby>品<rt>ひん</rt></ruby>', meaning: 'Thực phẩm, đồ ăn' },
-      { kana: 'カップ', romaji: ['kappu'], rubyHtml: 'カップ', meaning: 'Cốc' }
-    ]},
-    { id: 'b42_xahoi', name: 'C. Xã hội & Pháp luật', selected: true, items: [
-      { kana: 'べんごし', romaji: ['bengoshi'], rubyHtml: '<ruby>弁<rt>べん</rt></ruby><ruby>護<rt>ご</rt></ruby><ruby>士<rt>し</rt></ruby>', meaning: 'Luật sư' },
-      { kana: 'おんがくか', romaji: ['ongakuka'], rubyHtml: '<ruby>音<rt>おん</rt></ruby><ruby>楽<rt>がく</rt></ruby><ruby>家<rt>か</rt></ruby>', meaning: 'Nhạc sĩ' },
-      { kana: 'こどもたち', romaji: ['kodomotachi'], rubyHtml: '<ruby>子<rt>こ</rt></ruby>どもたち', meaning: 'Trẻ em, trẻ con' },
-      { kana: 'ふたり', romaji: ['futari'], rubyHtml: '<ruby>二<rt>ふた</rt></ruby><ruby>人<rt>り</rt></ruby>', meaning: 'Hai người, cặp, đôi' },
-      { kana: 'きょういく', romaji: ['kyouiku'], rubyHtml: '<ruby>教<rt>きょう</rt></ruby><ruby>育<rt>いく</rt></ruby>', meaning: 'Giáo dục, việc học hành' },
-      { kana: 'れきし', romaji: ['rekishi'], rubyHtml: '<ruby>歴<rt>れき</rt></ruby><ruby>史<rt>し</rt></ruby>', meaning: 'Lịch sử' },
-      { kana: 'ぶんか', romaji: ['bunka'], rubyHtml: '<ruby>文<rt>ぶん</rt></ruby><ruby>化<rt>か</rt></ruby>', meaning: 'Văn hóa' },
-      { kana: 'しゃかい', romaji: ['shakai'], rubyHtml: '<ruby>社<rt>しゃ</rt></ruby><ruby>会<rt>かい</rt></ruby>', meaning: 'Xã hội' },
-      { kana: 'ほうりつ', romaji: ['houritsu'], rubyHtml: '<ruby>法<rt>ほう</rt></ruby><ruby>律<rt>りつ</rt></ruby>', meaning: 'Pháp luật' },
-      { kana: 'せんそう', romaji: ['sensou'], rubyHtml: '<ruby>戦<rt>せん</rt></ruby><ruby>争<rt>そう</rt></ruby>', meaning: 'Chiến tranh' },
-      { kana: 'へいわ', romaji: ['heiwa'], rubyHtml: '<ruby>平<rt>へい</rt></ruby><ruby>和<rt>わ</rt></ruby>', meaning: 'Hòa bình' },
-      { kana: 'もくてき', romaji: ['mokuteki'], rubyHtml: '<ruby>目<rt>もく</rt></ruby><ruby>的<rt>てき</rt></ruby>', meaning: 'Mục đích' },
-      { kana: 'あんぜん', romaji: ['anzen'], rubyHtml: '<ruby>安<rt>あん</rt></ruby><ruby>全<rt>ぜん</rt></ruby>', meaning: 'An toàn' },
-      { kana: 'ろんぶん', romaji: ['ronbun'], rubyHtml: '<ruby>論<rt>ろん</rt></ruby><ruby>文<rt>ぶん</rt></ruby>', meaning: 'Luận văn, bài báo học thuật' },
-      { kana: 'かんけい', romaji: ['kankei'], rubyHtml: '<ruby>関<rt>かん</rt></ruby><ruby>係<rt>けい</rt></ruby>', meaning: 'Quan hệ' },
-      { kana: 'ある', romaji: ['aru'], rubyHtml: 'ある～', meaning: 'Có, một' },
-      { kana: 'いっしょうけんめい', romaji: ['isshoukenmei'], rubyHtml: '<ruby>一<rt>いっ</rt></ruby><ruby>生<rt>しょう</rt></ruby><ruby>懸<rt>けん</rt></ruby><ruby>命<rt>めい</rt></ruby>', meaning: 'Hết sức, chăm chỉ' },
-      { kana: 'なぜ', romaji: ['naze'], rubyHtml: 'なぜ', meaning: 'Tại sao' },
-      { kana: 'こくれん', romaji: ['kokuren'], rubyHtml: '<ruby>国<rt>こく</rt></ruby><ruby>連<rt>れん</rt></ruby>', meaning: 'Liên Hợp Quốc' },
-      { kana: 'ポーランド', romaji: ['po-rando'], rubyHtml: 'ポーランド', meaning: 'Nước Ba Lan' },
-      { kana: 'ローン', romaji: ['ro-n'], rubyHtml: 'ローン', meaning: 'Khoản vay trả góp' },
-      { kana: 'ちょうさ', romaji: ['chousa'], rubyHtml: '<ruby>調<rt>ちょう</rt></ruby><ruby>査<rt>さ</rt></ruby>', meaning: 'Việc điều tra, cuộc điều tra' },
-      { kana: 'また', romaji: ['mata'], rubyHtml: 'また', meaning: 'Và, thêm nữa' },
-      { kana: 'のかわりに', romaji: ['nokawarini'], rubyHtml: '～の<ruby>代<rt>か</rt></ruby>わりに', meaning: 'Thay, thay thế' },
-      { kana: 'どこででも', romaji: ['dokodedemo'], rubyHtml: 'どこででも', meaning: 'Ở đâu cũng' },
-      { kana: 'いまでは', romaji: ['imadewa'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>では', meaning: 'Bây giờ (thì)' }
-    ]}
+    // A. Động từ Cho - Nhận
+    {
+      id: "b41_chonhan",
+      name: "A. Động từ Cho - Nhận",
+      selected: true,
+      items: [
+        { kana: "いただきます", romaji: ["itadakimasu"], rubyHtml: "いただきます", meaning: "Nhận (khiêm nhường ngữ của もらいます)" },
+        { kana: "くださいます", romaji: ["kudasaimasu"], rubyHtml: "くださいます", meaning: "Cho, tặng (tôi) (tôn kính ngữ của くれます)" },
+        { kana: "やります", romaji: ["yarimasu"], rubyHtml: "やります", meaning: "Cho, tặng (dùng với người dưới/động vật)" },
+        { kana: "よびます", romaji: ["yobimasu"], rubyHtml: "<ruby>呼<rt>よ</rt></ruby>びます", meaning: "Mời, gọi" },
+        { kana: "とりかえます", romaji: ["torikaemasu"], rubyHtml: "<ruby>取<rt>と</rt></ruby>り<ruby>替<rt>か</rt></ruby>えます", meaning: "Đổi, thay" },
+        { kana: "しんせつにします", romaji: ["shinsetsunishimasu"], rubyHtml: "<ruby>親<rt>しん</rt></ruby><ruby>切<rt>せつ</rt></ruby>にします", meaning: "Giúp đỡ, đối xử thân thiện" },
+        { kana: "あずかります", romaji: ["azukarimasu"], rubyHtml: "<ruby>預<rt>あずか</rt></ruby>ります", meaning: "Giữ, giữ hộ, giữ cho" },
+        { kana: "たすかります", romaji: ["tasukarimasu"], rubyHtml: "<ruby>助<rt>たす</rt></ruby>かります", meaning: "May có anh/chị giúp" },
+        { kana: "いじめます", romaji: ["ijimemasu"], rubyHtml: "いじめます", meaning: "Bắt nạt" },
+        { kana: "たすけます", romaji: ["tasukemasu"], rubyHtml: "<ruby>助<rt>たす</rt></ruby>けます", meaning: "Giúp, giúp đỡ" },
+        { kana: "くらします", romaji: ["kurashimasu"], rubyHtml: "<ruby>暮<rt>く</rt></ruby>らします", meaning: "Sống, sinh hoạt" },
+      ],
+    },
+
+    // B. Quà tặng & Gia đình
+    {
+      id: "b41_quatang",
+      name: "B. Quà tặng & Gia đình",
+      selected: true,
+      items: [
+        { kana: "かわいい", romaji: ["kawaii"], rubyHtml: "かわいい", meaning: "Xinh, đáng yêu" },
+        { kana: "おいわい", romaji: ["oiwai"], rubyHtml: "［お］<ruby>祝<rt>いわ</rt></ruby>い", meaning: "Việc mừng, vật mừng" },
+        { kana: "おとしだま", romaji: ["otoshidama"], rubyHtml: "お<ruby>年<rt>とし</rt></ruby><ruby>玉<rt>だま</rt></ruby>", meaning: "Tiền mừng tuổi" },
+        { kana: "おみまい", romaji: ["omimai"], rubyHtml: "［お］<ruby>見<rt>み</rt></ruby><ruby>舞<rt>ま</rt></ruby>い", meaning: "Thăm người ốm" },
+        { kana: "きょうみ", romaji: ["kyoumi"], rubyHtml: "<ruby>興<rt>きょう</rt></ruby><ruby>味<rt>み</rt></ruby>", meaning: "Sở thích, quan tâm" },
+        { kana: "じょうほう", romaji: ["jouhou"], rubyHtml: "<ruby>情<rt>じょう</rt></ruby><ruby>報<rt>ほう</rt></ruby>", meaning: "Thông tin" },
+        { kana: "ぶんぽう", romaji: ["bunpou"], rubyHtml: "<ruby>文<rt>ぶん</rt></ruby><ruby>法<rt>ぽう</rt></ruby>", meaning: "Ngữ pháp" },
+        { kana: "はつおん", romaji: ["hatsuon"], rubyHtml: "<ruby>発<rt>はつ</rt></ruby><ruby>音<rt>おん</rt></ruby>", meaning: "Phát âm" },
+        { kana: "えさ", romaji: ["esa"], rubyHtml: "えさ", meaning: "Đồ ăn cho động vật, mồi" },
+        { kana: "おもちゃ", romaji: ["omocha"], rubyHtml: "おもちゃ", meaning: "Đồ chơi" },
+        { kana: "えはがき", romaji: ["ehagaki"], rubyHtml: "えはがき", meaning: "Bưu ảnh" },
+        { kana: "えほん", romaji: ["ehon"], rubyHtml: "えほん", meaning: "Quyển truyện tranh" },
+        { kana: "ドライバー", romaji: ["doraiba-"], rubyHtml: "ドライバー", meaning: "Cái tua-vít" },
+        { kana: "ハンカチ", romaji: ["hankachi"], rubyHtml: "ハンカチ", meaning: "Khăn mùi xoa, khăn tay" },
+        { kana: "くつした", romaji: ["kutsushita"], rubyHtml: "<ruby>靴<rt>くつ</rt></ruby><ruby>下<rt>した</rt></ruby>", meaning: "Cái tất" },
+        { kana: "てぶくろ", romaji: ["tebukuro"], rubyHtml: "<ruby>手<rt>て</rt></ruby><ruby>袋<rt>ぶくろ</rt></ruby>", meaning: "Cái găng tay" },
+        { kana: "ゆびわ", romaji: ["yubiwa"], rubyHtml: "<ruby>指<rt>ゆび</rt></ruby><ruby>輪<rt>わ</rt></ruby>", meaning: "Cái nhẫn" },
+        { kana: "バッグ", romaji: ["baggu"], rubyHtml: "バッグ", meaning: "Cái túi" },
+        { kana: "そふ", romaji: ["sofu"], rubyHtml: "<ruby>祖<rt>そ</rt></ruby><ruby>父<rt>ふ</rt></ruby>", meaning: "Ông (dùng với bản thân)" },
+        { kana: "そぼ", romaji: ["sobo"], rubyHtml: "<ruby>祖<rt>そ</rt></ruby><ruby>母<rt>ぼ</rt></ruby>", meaning: "Bà (dùng với bản thân)" },
+        { kana: "まご", romaji: ["mago"], rubyHtml: "<ruby>孫<rt>まご</rt></ruby>", meaning: "Cháu" },
+        { kana: "おじ", romaji: ["oji"], rubyHtml: "おじ", meaning: "Chú, cậu, bác (dùng với bản thân)" },
+        { kana: "おじさん", romaji: ["ojisan"], rubyHtml: "おじさん", meaning: "Chú, cậu, bác (dùng với người khác)" },
+        { kana: "おば", romaji: ["oba"], rubyHtml: "おば", meaning: "Cô, dì, bác (dùng với bản thân)" },
+        { kana: "おばさん", romaji: ["obasan"], rubyHtml: "おばさん", meaning: "Cô, dì, bác (dùng với người khác)" },
+        { kana: "おととし", romaji: ["ototoshi"], rubyHtml: "おととし", meaning: "Năm kia" },
+        { kana: "はあ", romaji: ["haa"], rubyHtml: "はあ", meaning: "À..." },
+        { kana: "もうしわけありません", romaji: ["moushiwakearimasen"], rubyHtml: "<ruby>申<rt>もう</rt></ruby>し<ruby>訳<rt>わけ</rt></ruby>ありません。", meaning: "Xin lỗi." },
+        { kana: "せんじつ", romaji: ["senjitsu"], rubyHtml: "<ruby>先<rt>せん</rt></ruby><ruby>日<rt>じつ</rt></ruby>", meaning: "Hôm trước, mấy hôm trước" },
+        { kana: "むかしばなし", romaji: ["mukashibanashi"], rubyHtml: "<ruby>昔<rt>むかし</rt></ruby><ruby>話<rt>ばなし</rt></ruby>", meaning: "Chuyện cổ tích" },
+        { kana: "ある", romaji: ["aru"], rubyHtml: "ある～", meaning: "Có ~, một ~" },
+        { kana: "おとこ", romaji: ["otoko"], rubyHtml: "<ruby>男<rt>おとこ</rt></ruby>", meaning: "Người đàn ông" },
+        { kana: "こどもたち", romaji: ["kodomotachi"], rubyHtml: "<ruby>子<rt>こ</rt></ruby><ruby>供<rt>ども</rt></ruby>たち", meaning: "Trẻ em, bọn trẻ" },
+        { kana: "かめ", romaji: ["kame"], rubyHtml: "かめ", meaning: "Con rùa" },
+        { kana: "おしろ", romaji: ["oshiro"], rubyHtml: "［お］<ruby>城<rt>しろ</rt></ruby>", meaning: "Lâu đài, thành" },
+        { kana: "おひめさま", romaji: ["ohimesama"], rubyHtml: "お<ruby>姫<rt>ひめ</rt></ruby><ruby>様<rt>さま</rt></ruby>", meaning: "Công chúa" },
+        { kana: "たのしく", romaji: ["tanoshiku"], rubyHtml: "<ruby>楽<rt>たの</rt></ruby>しく", meaning: "Vui" },
+        { kana: "りく", romaji: ["riku"], rubyHtml: "<ruby>陸<rt>りく</rt></ruby>", meaning: "Đất liền, lục địa" },
+        { kana: "すると", romaji: ["suruto"], rubyHtml: "すると", meaning: "Thế rồi, sau đó" },
+        { kana: "けむり", romaji: ["kemuri"], rubyHtml: "<ruby>煙<rt>けむり</rt></ruby>", meaning: "Khói" },
+        { kana: "まっしろ", romaji: ["masshiro"], rubyHtml: "<ruby>真<rt>ま</rt></ruby>っ<ruby>白<rt>しろ</rt></ruby>［な］", meaning: "Trắng toàn bộ, trắng ngần" },
+        { kana: "なかみ", romaji: ["nakami"], rubyHtml: "<ruby>中<rt>なか</rt></ruby><ruby>身<rt>み</rt></ruby>", meaning: "Nội dung, cái bên trong" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 42
+  // ========================================
+  42: [
+    // A. Động từ Mục đích & Sử dụng
+    {
+      id: "b42_mucdich",
+      name: "A. Động từ Mục đích & Sử dụng",
+      selected: true,
+      items: [
+        { kana: "つつみます", romaji: ["tsutsumimasu"], rubyHtml: "<ruby>包<rt>つつ</rt></ruby>みます", meaning: "Bọc, gói" },
+        { kana: "わかします", romaji: ["wakashimasu"], rubyHtml: "<ruby>沸<rt>わ</rt></ruby>かします", meaning: "Đun sôi" },
+        { kana: "まぜます", romaji: ["mazemasu"], rubyHtml: "<ruby>混<rt>ま</rt></ruby>ぜます", meaning: "Trộn, khuấy" },
+        { kana: "けいさんします", romaji: ["keisanshimasu"], rubyHtml: "<ruby>計<rt>けい</rt></ruby><ruby>算<rt>さん</rt></ruby>します", meaning: "Tính toán, làm tính" },
+      ],
+    },
+
+    // B. Dụng cụ & Đồ hộp
+    {
+      id: "b42_dungcu",
+      name: "B. Dụng cụ & Đồ hộp",
+      selected: true,
+      items: [
+        { kana: "あつい", romaji: ["atsui"], rubyHtml: "<ruby>厚<rt>あつ</rt></ruby>い", meaning: "Dày" },
+        { kana: "うすい", romaji: ["usui"], rubyHtml: "<ruby>薄<rt>うす</rt></ruby>い", meaning: "Mỏng" },
+        { kana: "ミキサー", romaji: ["mikisa-"], rubyHtml: "ミキサー", meaning: "Máy trộn, máy xay sinh tố" },
+        { kana: "やかん", romaji: ["yakan"], rubyHtml: "やかん", meaning: "Cái ấm nước" },
+        { kana: "せんぬき", romaji: ["sennuki"], rubyHtml: "<ruby>栓<rt>せん</rt></ruby><ruby>抜<rt>ぬ</rt></ruby>き", meaning: "Cái mở nắp chai" },
+        { kana: "かんきり", romaji: ["kankiri"], rubyHtml: "<ruby>缶<rt>かん</rt></ruby><ruby>切<rt>き</rt></ruby>り", meaning: "Cái mở đồ hộp" },
+        { kana: "かんづめ", romaji: ["kandume"], rubyHtml: "<ruby>缶<rt>かん</rt></ruby><ruby>詰<rt>づめ</rt></ruby>", meaning: "Đồ hộp" },
+        { kana: "ふろしき", romaji: ["furoshiki"], rubyHtml: "ふろしき", meaning: "Tấm vải để gói đồ" },
+        { kana: "そろばん", romaji: ["soroban"], rubyHtml: "そろばん", meaning: "Bàn tính" },
+        { kana: "たいおんけい", romaji: ["taionkei"], rubyHtml: "<ruby>体<rt>たい</rt></ruby><ruby>温<rt>おん</rt></ruby><ruby>計<rt>けい</rt></ruby>", meaning: "Máy đo nhiệt độ cơ thể" },
+        { kana: "ざいりょう", romaji: ["zairyou"], rubyHtml: "<ruby>材<rt>ざい</rt></ruby><ruby>料<rt>りょう</rt></ruby>", meaning: "Nguyên liệu" },
+        { kana: "いし", romaji: ["ishi"], rubyHtml: "<ruby>石<rt>いし</rt></ruby>", meaning: "Hòn đá, đá" },
+        { kana: "ピラミッド", romaji: ["piramiddo"], rubyHtml: "ピラミッド", meaning: "Kim tự tháp" },
+        { kana: "データ", romaji: ["de-ta"], rubyHtml: "データ", meaning: "Số liệu, dữ liệu" },
+        { kana: "ファイル", romaji: ["fairu"], rubyHtml: "ファイル", meaning: "Cái kẹp tài liệu" },
+        { kana: "セット", romaji: ["setto"], rubyHtml: "セット", meaning: "Bộ" },
+        { kana: "あと", romaji: ["ato"], rubyHtml: "あと", meaning: "Còn lại" },
+        { kana: "カップラーメン", romaji: ["kappura-men"], rubyHtml: "カップラーメン", meaning: "Mì ăn liền ly" },
+        { kana: "インスタントラーメン", romaji: ["insutantora-men"], rubyHtml: "インスタントラーメン", meaning: "Mì ăn liền" },
+        { kana: "なべ", romaji: ["nabe"], rubyHtml: "なべ", meaning: "Cái nồi, cái chảo" },
+        { kana: "どんぶり", romaji: ["donburi"], rubyHtml: "どんぶり", meaning: "Cái bát tô" },
+        { kana: "しょくひん", romaji: ["shokuhin"], rubyHtml: "<ruby>食<rt>しょく</rt></ruby><ruby>品<rt>ひん</rt></ruby>", meaning: "Thực phẩm, đồ ăn" },
+        { kana: "カップ", romaji: ["kappu"], rubyHtml: "カップ", meaning: "Cốc" },
+      ],
+    },
+
+    // C. Xã hội & Pháp luật
+    {
+      id: "b42_xahoi",
+      name: "C. Xã hội & Pháp luật",
+      selected: true,
+      items: [
+        { kana: "べんごし", romaji: ["bengoshi"], rubyHtml: "<ruby>弁<rt>べん</rt></ruby><ruby>護<rt>ご</rt></ruby><ruby>士<rt>し</rt></ruby>", meaning: "Luật sư" },
+        { kana: "おんがくか", romaji: ["ongakuka"], rubyHtml: "<ruby>音<rt>おん</rt></ruby><ruby>楽<rt>がく</rt></ruby><ruby>家<rt>か</rt></ruby>", meaning: "Nhạc sĩ" },
+        { kana: "こどもたち", romaji: ["kodomotachi"], rubyHtml: "<ruby>子<rt>こ</rt></ruby>どもたち", meaning: "Trẻ em, trẻ con" },
+        { kana: "ふたり", romaji: ["futari"], rubyHtml: "<ruby>二<rt>ふた</rt></ruby><ruby>人<rt>り</rt></ruby>", meaning: "Hai người, cặp, đôi" },
+        { kana: "きょういく", romaji: ["kyouiku"], rubyHtml: "<ruby>教<rt>きょう</rt></ruby><ruby>育<rt>いく</rt></ruby>", meaning: "Giáo dục, việc học hành" },
+        { kana: "れきし", romaji: ["rekishi"], rubyHtml: "<ruby>歴<rt>れき</rt></ruby><ruby>史<rt>し</rt></ruby>", meaning: "Lịch sử" },
+        { kana: "ぶんか", romaji: ["bunka"], rubyHtml: "<ruby>文<rt>ぶん</rt></ruby><ruby>化<rt>か</rt></ruby>", meaning: "Văn hóa" },
+        { kana: "しゃかい", romaji: ["shakai"], rubyHtml: "<ruby>社<rt>しゃ</rt></ruby><ruby>会<rt>かい</rt></ruby>", meaning: "Xã hội" },
+        { kana: "ほうりつ", romaji: ["houritsu"], rubyHtml: "<ruby>法<rt>ほう</rt></ruby><ruby>律<rt>りつ</rt></ruby>", meaning: "Pháp luật" },
+        { kana: "せんそう", romaji: ["sensou"], rubyHtml: "<ruby>戦<rt>せん</rt></ruby><ruby>争<rt>そう</rt></ruby>", meaning: "Chiến tranh" },
+        { kana: "へいわ", romaji: ["heiwa"], rubyHtml: "<ruby>平<rt>へい</rt></ruby><ruby>和<rt>わ</rt></ruby>", meaning: "Hòa bình" },
+        { kana: "もくてき", romaji: ["mokuteki"], rubyHtml: "<ruby>目<rt>もく</rt></ruby><ruby>的<rt>てき</rt></ruby>", meaning: "Mục đích" },
+        { kana: "あんぜん", romaji: ["anzen"], rubyHtml: "<ruby>安<rt>あん</rt></ruby><ruby>全<rt>ぜん</rt></ruby>", meaning: "An toàn" },
+        { kana: "ろんぶん", romaji: ["ronbun"], rubyHtml: "<ruby>論<rt>ろん</rt></ruby><ruby>文<rt>ぶん</rt></ruby>", meaning: "Luận văn, bài báo học thuật" },
+        { kana: "かんけい", romaji: ["kankei"], rubyHtml: "<ruby>関<rt>かん</rt></ruby><ruby>係<rt>けい</rt></ruby>", meaning: "Quan hệ" },
+        { kana: "ある", romaji: ["aru"], rubyHtml: "ある～", meaning: "Có, một" },
+        { kana: "いっしょうけんめい", romaji: ["isshoukenmei"], rubyHtml: "<ruby>一<rt>いっ</rt></ruby><ruby>生<rt>しょう</rt></ruby><ruby>懸<rt>けん</rt></ruby><ruby>命<rt>めい</rt></ruby>", meaning: "Hết sức, chăm chỉ" },
+        { kana: "なぜ", romaji: ["naze"], rubyHtml: "なぜ", meaning: "Tại sao" },
+        { kana: "こくれん", romaji: ["kokuren"], rubyHtml: "<ruby>国<rt>こく</rt></ruby><ruby>連<rt>れん</rt></ruby>", meaning: "Liên Hợp Quốc" },
+        { kana: "ポーランド", romaji: ["po-rando"], rubyHtml: "ポーランド", meaning: "Nước Ba Lan" },
+        { kana: "ローン", romaji: ["ro-n"], rubyHtml: "ローン", meaning: "Khoản vay trả góp" },
+        { kana: "ちょうさ", romaji: ["chousa"], rubyHtml: "<ruby>調<rt>ちょう</rt></ruby><ruby>査<rt>さ</rt></ruby>", meaning: "Việc điều tra, cuộc điều tra" },
+        { kana: "また", romaji: ["mata"], rubyHtml: "また", meaning: "Và, thêm nữa" },
+        { kana: "のかわりに", romaji: ["nokawarini"], rubyHtml: "～の<ruby>代<rt>か</rt></ruby>わりに", meaning: "Thay, thay thế" },
+        { kana: "どこででも", romaji: ["dokodedemo"], rubyHtml: "どこででも", meaning: "Ở đâu cũng" },
+        { kana: "いまでは", romaji: ["imadewa"], rubyHtml: "<ruby>今<rt>いま</rt></ruby>では", meaning: "Bây giờ (thì)" },
+      ],
+    },
+
+  ],
+
+  // ========================================
+  // BÀI 43
+  // ========================================
   43: [
-    { id: 'b43_biendoi', name: 'A. Động từ Biến đổi Trạng thái', selected: true, items: [
-      { kana: 'ふえます', romaji: ['fuemasu'], rubyHtml: '［<ruby>輸<rt>ゆ</rt></ruby><ruby>出<rt>しゅつ</rt></ruby>が～］<ruby>増<rt>ふ</rt></ruby>えます', meaning: 'Tăng, tăng lên [xuất khẩu ~]' },
-      { kana: 'へります', romaji: ['herimasu'], rubyHtml: '［<ruby>輸<rt>ゆ</rt></ruby><ruby>出<rt>しゅつ</rt></ruby>が～］<ruby>減<rt>へ</rt></ruby>ります', meaning: 'Giảm, giảm xuống [xuất khẩu ~]' },
-      { kana: 'あがります', romaji: ['agarimasu'], rubyHtml: '［<ruby>値<rt>ね</rt></ruby><ruby>段<rt>だん</rt></ruby>が～］<ruby>上<rt>あ</rt></ruby>がります', meaning: 'Tăng, tăng lên [giá ~]' },
-      { kana: 'さがります', romaji: ['sagarimasu'], rubyHtml: '［<ruby>値<rt>ね</rt></ruby><ruby>段<rt>だん</rt></ruby>が～］<ruby>下<rt>さ</rt></ruby>がります', meaning: 'Giảm, giảm xuống [giá ~]' },
-      { kana: 'きれます', romaji: ['kiremasu'], rubyHtml: '［ひもが～］<ruby>切<rt>き</rt></ruby>れます', meaning: 'Đứt [sợi dây bị ~]' },
-      { kana: 'とれます', romaji: ['toremasu'], rubyHtml: '［ボタンが～］とれます', meaning: 'Tuột [cúc áo bị ~]' },
-      { kana: 'おちます', romaji: ['ochimasu'], rubyHtml: '［<ruby>荷<rt>に</rt></ruby><ruby>物<rt>もつ</rt></ruby>が～］<ruby>落<rt>お</rt></ruby>ちます', meaning: 'Rơi [hành lý bị ~]' },
-      { kana: 'なくなります', romaji: ['nakunarimasu'], rubyHtml: '［ガソリンが～］なくなります', meaning: 'Mất, hết [xăng bị ~]' },
-      { kana: 'いまにも', romaji: ['imanimo'], rubyHtml: 'いまにも', meaning: '(Có vẻ, sắp) ~ đến nơi' },
-      { kana: 'ぴったり', romaji: ['pittari'], rubyHtml: 'ぴったり', meaning: 'Vừa vặn, đúng' }
-    ]},
-    { id: 'b43_trangthai', name: 'B. Trạng thái & Cảm nhận', selected: true, items: [
-      { kana: 'じょうぶ', romaji: ['joubu'], rubyHtml: '<ruby>丈<rt>じょう</rt></ruby><ruby>夫<rt>ぶ</rt></ruby>［な］', meaning: 'Chắc, bền' },
-      { kana: 'へん', romaji: ['hen'], rubyHtml: '<ruby>変<rt>へん</rt></ruby>［な］', meaning: 'Lạ, kỳ quặc' },
-      { kana: 'しあわせ', romaji: ['shiawase'], rubyHtml: '<ruby>幸<rt>しあわ</rt></ruby>せ［な］', meaning: 'Hạnh phúc' },
-      { kana: 'うまい', romaji: ['umai'], rubyHtml: 'うまい', meaning: 'Ngon, giỏi' },
-      { kana: 'まずい', romaji: ['mazui'], rubyHtml: 'まずい', meaning: 'Dở, không ngon' },
-      { kana: 'つまらない', romaji: ['tsumaranai'], rubyHtml: 'つまらない', meaning: 'Buồn tẻ, không hấp dẫn' },
-      { kana: 'ガソリン', romaji: ['gasorin'], rubyHtml: 'ガソリン', meaning: 'Xăng' },
-      { kana: 'だんぼう', romaji: ['danbou'], rubyHtml: '<ruby>暖<rt>だん</rt></ruby><ruby>房<rt>ぼう</rt></ruby>', meaning: 'Thiết bị làm ấm, lò sưởi' },
-      { kana: 'れいぼう', romaji: ['reibou'], rubyHtml: '<ruby>冷<rt>れい</rt></ruby><ruby>房<rt>ぼう</rt></ruby>', meaning: 'Thiết bị làm mát, điều hòa' },
-      { kana: 'センス', romaji: ['sensu'], rubyHtml: 'センス', meaning: 'Có khiếu, có gu' },
-      { kana: 'わあ', romaji: ['waa'], rubyHtml: 'わあ', meaning: 'Ôi!' },
-      { kana: 'かいいん', romaji: ['kaiin'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>員<rt>いん</rt></ruby>', meaning: 'Thành viên' },
-      { kana: 'てきとう', romaji: ['tekitou'], rubyHtml: '<ruby>適<rt>てき</rt></ruby><ruby>当<rt>とう</rt></ruby>［な］', meaning: 'Thích hợp, vừa phải' },
-      { kana: 'ねんれい', romaji: ['nenrei'], rubyHtml: '<ruby>年<rt>ねん</rt></ruby><ruby>齢<rt>れい</rt></ruby>', meaning: 'Tuổi' },
-      { kana: 'しゅうにゅう', romaji: ['shuunyuu'], rubyHtml: '<ruby>収<rt>しゅう</rt></ruby><ruby>入<rt>にゅう</rt></ruby>', meaning: 'Thu nhập' },
-      { kana: 'そのうえ', romaji: ['sonoue'], rubyHtml: 'そのうえ', meaning: 'Thêm vào đó, hơn thế' },
-      { kana: 'といいます', romaji: ['toiimasu'], rubyHtml: '～といいます', meaning: '(Tên) là ~, gọi là ~' },
-      { kana: 'ばら', romaji: ['bara'], rubyHtml: 'ばら', meaning: 'Hoa hồng' },
-      { kana: 'ドライブ', romaji: ['doraibu'], rubyHtml: 'ドライブ', meaning: 'Lái xe (đi chơi)' }
-    ]}
+    // A. Động từ Biến đổi Trạng thái
+    {
+      id: "b43_biendoi",
+      name: "A. Động từ Biến đổi Trạng thái",
+      selected: true,
+      items: [
+        { kana: "ふえます", romaji: ["fuemasu"], rubyHtml: "［<ruby>輸<rt>ゆ</rt></ruby><ruby>出<rt>しゅつ</rt></ruby>が～］<ruby>増<rt>ふ</rt></ruby>えます", meaning: "Tăng, tăng lên [xuất khẩu ~]" },
+        { kana: "へります", romaji: ["herimasu"], rubyHtml: "［<ruby>輸<rt>ゆ</rt></ruby><ruby>出<rt>しゅつ</rt></ruby>が～］<ruby>減<rt>へ</rt></ruby>ります", meaning: "Giảm, giảm xuống [xuất khẩu ~]" },
+        { kana: "あがります", romaji: ["agarimasu"], rubyHtml: "［<ruby>値<rt>ね</rt></ruby><ruby>段<rt>だん</rt></ruby>が～］<ruby>上<rt>あ</rt></ruby>がります", meaning: "Tăng, tăng lên [giá ~]" },
+        { kana: "さがります", romaji: ["sagarimasu"], rubyHtml: "［<ruby>値<rt>ね</rt></ruby><ruby>段<rt>だん</rt></ruby>が～］<ruby>下<rt>さ</rt></ruby>がります", meaning: "Giảm, giảm xuống [giá ~]" },
+        { kana: "きれます", romaji: ["kiremasu"], rubyHtml: "［ひもが～］<ruby>切<rt>き</rt></ruby>れます", meaning: "Đứt [sợi dây bị ~]" },
+        { kana: "とれます", romaji: ["toremasu"], rubyHtml: "［ボタンが～］とれます", meaning: "Tuột [cúc áo bị ~]" },
+        { kana: "おちます", romaji: ["ochimasu"], rubyHtml: "［<ruby>荷<rt>に</rt></ruby><ruby>物<rt>もつ</rt></ruby>が～］<ruby>落<rt>お</rt></ruby>ちます", meaning: "Rơi [hành lý bị ~]" },
+        { kana: "なくなります", romaji: ["nakunarimasu"], rubyHtml: "［ガソリンが～］なくなります", meaning: "Mất, hết [xăng bị ~]" },
+        { kana: "いまにも", romaji: ["imanimo"], rubyHtml: "いまにも", meaning: "(Có vẻ, sắp) ~ đến nơi" },
+        { kana: "ぴったり", romaji: ["pittari"], rubyHtml: "ぴったり", meaning: "Vừa vặn, đúng" },
+      ],
+    },
+
+    // B. Trạng thái & Cảm nhận
+    {
+      id: "b43_trangthai",
+      name: "B. Trạng thái & Cảm nhận",
+      selected: true,
+      items: [
+        { kana: "じょうぶ", romaji: ["joubu"], rubyHtml: "<ruby>丈<rt>じょう</rt></ruby><ruby>夫<rt>ぶ</rt></ruby>［な］", meaning: "Chắc, bền" },
+        { kana: "へん", romaji: ["hen"], rubyHtml: "<ruby>変<rt>へん</rt></ruby>［な］", meaning: "Lạ, kỳ quặc" },
+        { kana: "しあわせ", romaji: ["shiawase"], rubyHtml: "<ruby>幸<rt>しあわ</rt></ruby>せ［な］", meaning: "Hạnh phúc" },
+        { kana: "うまい", romaji: ["umai"], rubyHtml: "うまい", meaning: "Ngon, giỏi" },
+        { kana: "まずい", romaji: ["mazui"], rubyHtml: "まずい", meaning: "Dở, không ngon" },
+        { kana: "つまらない", romaji: ["tsumaranai"], rubyHtml: "つまらない", meaning: "Buồn tẻ, không hấp dẫn" },
+        { kana: "ガソリン", romaji: ["gasorin"], rubyHtml: "ガソリン", meaning: "Xăng" },
+        { kana: "だんぼう", romaji: ["danbou"], rubyHtml: "<ruby>暖<rt>だん</rt></ruby><ruby>房<rt>ぼう</rt></ruby>", meaning: "Thiết bị làm ấm, lò sưởi" },
+        { kana: "れいぼう", romaji: ["reibou"], rubyHtml: "<ruby>冷<rt>れい</rt></ruby><ruby>房<rt>ぼう</rt></ruby>", meaning: "Thiết bị làm mát, điều hòa" },
+        { kana: "センス", romaji: ["sensu"], rubyHtml: "センス", meaning: "Có khiếu, có gu" },
+        { kana: "わあ", romaji: ["waa"], rubyHtml: "わあ", meaning: "Ôi!" },
+        { kana: "かいいん", romaji: ["kaiin"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>員<rt>いん</rt></ruby>", meaning: "Thành viên" },
+        { kana: "てきとう", romaji: ["tekitou"], rubyHtml: "<ruby>適<rt>てき</rt></ruby><ruby>当<rt>とう</rt></ruby>［な］", meaning: "Thích hợp, vừa phải" },
+        { kana: "ねんれい", romaji: ["nenrei"], rubyHtml: "<ruby>年<rt>ねん</rt></ruby><ruby>齢<rt>れい</rt></ruby>", meaning: "Tuổi" },
+        { kana: "しゅうにゅう", romaji: ["shuunyuu"], rubyHtml: "<ruby>収<rt>しゅう</rt></ruby><ruby>入<rt>にゅう</rt></ruby>", meaning: "Thu nhập" },
+        { kana: "そのうえ", romaji: ["sonoue"], rubyHtml: "そのうえ", meaning: "Thêm vào đó, hơn thế" },
+        { kana: "といいます", romaji: ["toiimasu"], rubyHtml: "～といいます", meaning: "(Tên) là ~, gọi là ~" },
+        { kana: "ばら", romaji: ["bara"], rubyHtml: "ばら", meaning: "Hoa hồng" },
+        { kana: "ドライブ", romaji: ["doraibu"], rubyHtml: "ドライブ", meaning: "Lái xe (đi chơi)" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 44
+  // ========================================
   44: [
-    { id: 'b44_camxuc', name: 'A. Động từ Cảm xúc & Sinh hoạt', selected: true, items: [
-      { kana: 'なきます', romaji: ['nakimasu'], rubyHtml: '<ruby>泣<rt>な</rt></ruby>きます', meaning: 'Khóc' },
-      { kana: 'わらいます', romaji: ['waraimasu'], rubyHtml: '<ruby>笑<rt>わら</rt></ruby>います', meaning: 'Cười' },
-      { kana: 'かわきます', romaji: ['kawakimasu'], rubyHtml: '<ruby>乾<rt>かわ</rt></ruby>きます', meaning: 'Khô (quần áo khô)' },
-      { kana: 'ぬれます', romaji: ['nuremasu'], rubyHtml: 'ぬれます', meaning: 'Ướt' },
-      { kana: 'すべります', romaji: ['suberimasu'], rubyHtml: '<ruby>滑<rt>すべ</rt></ruby>ります', meaning: 'Trượt, trơn trượt' },
-      { kana: 'おきます', romaji: ['okimasu'], rubyHtml: '［<ruby>事<rt>じ</rt></ruby><ruby>故<rt>こ</rt></ruby>が～］<ruby>起<rt>お</rt></ruby>きます', meaning: 'Xảy ra [tai nạn ~]' },
-      { kana: 'ちょうせつします', romaji: ['chousetsushimasu'], rubyHtml: '<ruby>調<rt>ちょう</rt></ruby><ruby>節<rt>せつ</rt></ruby>します', meaning: 'Điều tiết, điều chỉnh' },
-      { kana: 'いやがります', romaji: ['iyagarimasu'], rubyHtml: '<ruby>嫌<rt>いや</rt></ruby>がります', meaning: 'Không thích, tỏ thái độ không thích' },
-      { kana: 'わかれます', romaji: ['wakaremasu'], rubyHtml: '<ruby>別<rt>わか</rt></ruby>れます', meaning: 'Chia tay, từ biệt' }
-    ]},
-    { id: 'b44_cattoc', name: 'B. Tiệm cắt tóc & Từ vựng', selected: true, items: [
-      { kana: 'あんぜん', romaji: ['anzen'], rubyHtml: '<ruby>安<rt>あん</rt></ruby><ruby>全<rt>ぜん</rt></ruby>［な］', meaning: 'An toàn' },
-      { kana: 'ていねい', romaji: ['teinei'], rubyHtml: '<ruby>丁<rt>てい</rt></ruby><ruby>寧<rt>ねい</rt></ruby>［な］', meaning: 'Lịch sự, cẩn thận' },
-      { kana: 'こまかい', romaji: ['komakai'], rubyHtml: '<ruby>細<rt>こま</rt></ruby>かい', meaning: 'Chi tiết, tỉ mỉ, nhỏ' },
-      { kana: 'こい', romaji: ['koi'], rubyHtml: '<ruby>濃<rt>こ</rt></ruby>い', meaning: 'Nồng, đậm' },
-      { kana: 'うすい', romaji: ['usui'], rubyHtml: '<ruby>薄<rt>うす</rt></ruby>い', meaning: 'Nhạt, mỏng' },
-      { kana: 'くうき', romaji: ['kuuki'], rubyHtml: '<ruby>空<rt>くう</rt></ruby><ruby>気<rt>き</rt></ruby>', meaning: 'Không khí' },
-      { kana: 'なみだ', romaji: ['namida'], rubyHtml: '<ruby>涙<rt>なみだ</rt></ruby>', meaning: 'Nước mắt' },
-      { kana: 'わしょく', romaji: ['washoku'], rubyHtml: '<ruby>和<rt>わ</rt></ruby><ruby>食<rt>しょく</rt></ruby>', meaning: 'Món ăn Nhật' },
-      { kana: 'ようしょく', romaji: ['youshoku'], rubyHtml: '<ruby>洋<rt>よう</rt></ruby><ruby>食<rt>しょく</rt></ruby>', meaning: 'Món ăn Âu Mỹ' },
-      { kana: 'おかず', romaji: ['okazu'], rubyHtml: 'おかず', meaning: 'Thức ăn' },
-      { kana: 'りょう', romaji: ['ryou'], rubyHtml: '<ruby>量<rt>りょう</rt></ruby>', meaning: 'Lượng' },
-      { kana: 'ばい', romaji: ['bai'], rubyHtml: '―<ruby>倍<rt>ばい</rt></ruby>', meaning: '- Lần' },
-      { kana: 'はんぶん', romaji: ['hanbun'], rubyHtml: '<ruby>半<rt>はん</rt></ruby><ruby>分<rt>ぶん</rt></ruby>', meaning: 'Một nửa' },
-      { kana: 'シングル', romaji: ['shinguru'], rubyHtml: 'シングル', meaning: 'Phòng đơn' },
-      { kana: 'ツイン', romaji: ['tsuin'], rubyHtml: 'ツイン', meaning: 'Phòng đôi' },
-      { kana: 'たんす', romaji: ['tansu'], rubyHtml: 'たんす', meaning: 'Tủ đựng quần áo' },
-      { kana: 'せんたくもの', romaji: ['sentakumono'], rubyHtml: '<ruby>洗<rt>せん</rt></ruby><ruby>濯<rt>たく</rt></ruby><ruby>物<rt>もの</rt></ruby>', meaning: 'Quần áo giặt' },
-      { kana: 'りゆう', romaji: ['riyuu'], rubyHtml: '<ruby>理<rt>り</rt></ruby><ruby>由<rt>ゆう</rt></ruby>', meaning: 'Lý do' },
-      { kana: 'どうなさいますか', romaji: ['dounasaimasuka'], rubyHtml: 'どうなさいますか。', meaning: 'Anh/chị định như thế nào?' },
-      { kana: 'カット', romaji: ['katto'], rubyHtml: 'カット', meaning: 'Cắt tóc' },
-      { kana: 'シャンプー', romaji: ['shanpu-'], rubyHtml: 'シャンプー', meaning: 'Gội đầu' },
-      { kana: 'どういうふうになさいますか', romaji: ['douiufuninasaimasuka'], rubyHtml: 'どういうふうになさいますか。', meaning: 'Anh/chị định ~ như thế nào?' },
-      { kana: 'ショート', romaji: ['sho-to'], rubyHtml: 'ショート', meaning: 'Kiểu ngắn' },
-      { kana: 'みたいにしてください', romaji: ['mitainishitekudasai'], rubyHtml: '～みたいにしてください。', meaning: 'Hãy cắt như ~' },
-      { kana: 'これでよろしいでしょうか', romaji: ['koredeyoroshiideshouka'], rubyHtml: 'これでよろしいでしょうか。', meaning: 'Thế này đã được chưa ạ?' },
-      { kana: 'おつかれさまでした', romaji: ['otsukaresamadeshita'], rubyHtml: '［どうも］お<ruby>疲<rt>つか</rt></ruby>れ<ruby>様<rt>さま</rt></ruby>でした。', meaning: 'Cảm ơn anh/chị' },
-      { kana: 'また', romaji: ['mata'], rubyHtml: 'また', meaning: 'Thêm nữa' },
-      { kana: 'じゅんじょ', romaji: ['junjo'], rubyHtml: '<ruby>順<rt>じゅん</rt></ruby><ruby>序<rt>じょ</rt></ruby>', meaning: 'Thứ tự' },
-      { kana: 'ひょうげん', romaji: ['hyougen'], rubyHtml: '<ruby>表<rt>ひょう</rt></ruby><ruby>現<rt>げん</rt></ruby>', meaning: 'Cách nói, cách diễn đạt' },
-      { kana: 'たとえば', romaji: ['tatoeba'], rubyHtml: '<ruby>例<rt>たと</rt></ruby>えば', meaning: 'Ví dụ' },
-      { kana: 'これら', romaji: ['korera'], rubyHtml: 'これら', meaning: 'Những cái này' },
-      { kana: 'えんぎがわるい', romaji: ['engigawarui'], rubyHtml: '<ruby>縁<rt>えん</rt></ruby><ruby>起<rt>ぎ</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い', meaning: 'Không may, không lành' }
-    ]}
+    // A. Động từ Cảm xúc & Sinh hoạt
+    {
+      id: "b44_camxuc",
+      name: "A. Động từ Cảm xúc & Sinh hoạt",
+      selected: true,
+      items: [
+        { kana: "なきます", romaji: ["nakimasu"], rubyHtml: "<ruby>泣<rt>な</rt></ruby>きます", meaning: "Khóc" },
+        { kana: "わらいます", romaji: ["waraimasu"], rubyHtml: "<ruby>笑<rt>わら</rt></ruby>います", meaning: "Cười" },
+        { kana: "かわきます", romaji: ["kawakimasu"], rubyHtml: "<ruby>乾<rt>かわ</rt></ruby>きます", meaning: "Khô (quần áo khô)" },
+        { kana: "ぬれます", romaji: ["nuremasu"], rubyHtml: "ぬれます", meaning: "Ướt" },
+        { kana: "すべります", romaji: ["suberimasu"], rubyHtml: "<ruby>滑<rt>すべ</rt></ruby>ります", meaning: "Trượt, trơn trượt" },
+        { kana: "おきます", romaji: ["okimasu"], rubyHtml: "［<ruby>事<rt>じ</rt></ruby><ruby>故<rt>こ</rt></ruby>が～］<ruby>起<rt>お</rt></ruby>きます", meaning: "Xảy ra [tai nạn ~]" },
+        { kana: "ちょうせつします", romaji: ["chousetsushimasu"], rubyHtml: "<ruby>調<rt>ちょう</rt></ruby><ruby>節<rt>せつ</rt></ruby>します", meaning: "Điều tiết, điều chỉnh" },
+        { kana: "いやがります", romaji: ["iyagarimasu"], rubyHtml: "<ruby>嫌<rt>いや</rt></ruby>がります", meaning: "Không thích, tỏ thái độ không thích" },
+        { kana: "わかれます", romaji: ["wakaremasu"], rubyHtml: "<ruby>別<rt>わか</rt></ruby>れます", meaning: "Chia tay, từ biệt" },
+      ],
+    },
+
+    // B. Tiệm cắt tóc & Từ vựng
+    {
+      id: "b44_cattoc",
+      name: "B. Tiệm cắt tóc & Từ vựng",
+      selected: true,
+      items: [
+        { kana: "あんぜん", romaji: ["anzen"], rubyHtml: "<ruby>安<rt>あん</rt></ruby><ruby>全<rt>ぜん</rt></ruby>［な］", meaning: "An toàn" },
+        { kana: "ていねい", romaji: ["teinei"], rubyHtml: "<ruby>丁<rt>てい</rt></ruby><ruby>寧<rt>ねい</rt></ruby>［な］", meaning: "Lịch sự, cẩn thận" },
+        { kana: "こまかい", romaji: ["komakai"], rubyHtml: "<ruby>細<rt>こま</rt></ruby>かい", meaning: "Chi tiết, tỉ mỉ, nhỏ" },
+        { kana: "こい", romaji: ["koi"], rubyHtml: "<ruby>濃<rt>こ</rt></ruby>い", meaning: "Nồng, đậm" },
+        { kana: "うすい", romaji: ["usui"], rubyHtml: "<ruby>薄<rt>うす</rt></ruby>い", meaning: "Nhạt, mỏng" },
+        { kana: "くうき", romaji: ["kuuki"], rubyHtml: "<ruby>空<rt>くう</rt></ruby><ruby>気<rt>き</rt></ruby>", meaning: "Không khí" },
+        { kana: "なみだ", romaji: ["namida"], rubyHtml: "<ruby>涙<rt>なみだ</rt></ruby>", meaning: "Nước mắt" },
+        { kana: "わしょく", romaji: ["washoku"], rubyHtml: "<ruby>和<rt>わ</rt></ruby><ruby>食<rt>しょく</rt></ruby>", meaning: "Món ăn Nhật" },
+        { kana: "ようしょく", romaji: ["youshoku"], rubyHtml: "<ruby>洋<rt>よう</rt></ruby><ruby>食<rt>しょく</rt></ruby>", meaning: "Món ăn Âu Mỹ" },
+        { kana: "おかず", romaji: ["okazu"], rubyHtml: "おかず", meaning: "Thức ăn" },
+        { kana: "りょう", romaji: ["ryou"], rubyHtml: "<ruby>量<rt>りょう</rt></ruby>", meaning: "Lượng" },
+        { kana: "ばい", romaji: ["bai"], rubyHtml: "―<ruby>倍<rt>ばい</rt></ruby>", meaning: "- Lần" },
+        { kana: "はんぶん", romaji: ["hanbun"], rubyHtml: "<ruby>半<rt>はん</rt></ruby><ruby>分<rt>ぶん</rt></ruby>", meaning: "Một nửa" },
+        { kana: "シングル", romaji: ["shinguru"], rubyHtml: "シングル", meaning: "Phòng đơn" },
+        { kana: "ツイン", romaji: ["tsuin"], rubyHtml: "ツイン", meaning: "Phòng đôi" },
+        { kana: "たんす", romaji: ["tansu"], rubyHtml: "たんす", meaning: "Tủ đựng quần áo" },
+        { kana: "せんたくもの", romaji: ["sentakumono"], rubyHtml: "<ruby>洗<rt>せん</rt></ruby><ruby>濯<rt>たく</rt></ruby><ruby>物<rt>もの</rt></ruby>", meaning: "Quần áo giặt" },
+        { kana: "りゆう", romaji: ["riyuu"], rubyHtml: "<ruby>理<rt>り</rt></ruby><ruby>由<rt>ゆう</rt></ruby>", meaning: "Lý do" },
+        { kana: "どうなさいますか", romaji: ["dounasaimasuka"], rubyHtml: "どうなさいますか。", meaning: "Anh/chị định như thế nào?" },
+        { kana: "カット", romaji: ["katto"], rubyHtml: "カット", meaning: "Cắt tóc" },
+        { kana: "シャンプー", romaji: ["shanpu-"], rubyHtml: "シャンプー", meaning: "Gội đầu" },
+        { kana: "どういうふうになさいますか", romaji: ["douiufuninasaimasuka"], rubyHtml: "どういうふうになさいますか。", meaning: "Anh/chị định ~ như thế nào?" },
+        { kana: "ショート", romaji: ["sho-to"], rubyHtml: "ショート", meaning: "Kiểu ngắn" },
+        { kana: "みたいにしてください", romaji: ["mitainishitekudasai"], rubyHtml: "～みたいにしてください。", meaning: "Hãy cắt như ~" },
+        { kana: "これでよろしいでしょうか", romaji: ["koredeyoroshiideshouka"], rubyHtml: "これでよろしいでしょうか。", meaning: "Thế này đã được chưa ạ?" },
+        { kana: "おつかれさまでした", romaji: ["otsukaresamadeshita"], rubyHtml: "［どうも］お<ruby>疲<rt>つか</rt></ruby>れ<ruby>様<rt>さま</rt></ruby>でした。", meaning: "Cảm ơn anh/chị" },
+        { kana: "また", romaji: ["mata"], rubyHtml: "また", meaning: "Thêm nữa" },
+        { kana: "じゅんじょ", romaji: ["junjo"], rubyHtml: "<ruby>順<rt>じゅん</rt></ruby><ruby>序<rt>じょ</rt></ruby>", meaning: "Thứ tự" },
+        { kana: "ひょうげん", romaji: ["hyougen"], rubyHtml: "<ruby>表<rt>ひょう</rt></ruby><ruby>現<rt>げん</rt></ruby>", meaning: "Cách nói, cách diễn đạt" },
+        { kana: "たとえば", romaji: ["tatoeba"], rubyHtml: "<ruby>例<rt>たと</rt></ruby>えば", meaning: "Ví dụ" },
+        { kana: "これら", romaji: ["korera"], rubyHtml: "これら", meaning: "Những cái này" },
+        { kana: "えんぎがわるい", romaji: ["engigawarui"], rubyHtml: "<ruby>縁<rt>えん</rt></ruby><ruby>起<rt>ぎ</rt></ruby>が<ruby>悪<rt>わる</rt></ruby>い", meaning: "Không may, không lành" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 45
+  // ========================================
   45: [
-    { id: 'b45_chuanbi', name: 'A. Động từ Chuẩn bị & Sự cố', selected: true, items: [
-      { kana: 'あやまります', romaji: ['ayamarimasu'], rubyHtml: '<ruby>謝<rt>あやま</rt></ruby>ります', meaning: 'Xin lỗi, tạ lỗi' },
-      { kana: 'あいます', romaji: ['aimasu'], rubyHtml: '［<ruby>事<rt>じ</rt></ruby><ruby>故<rt>こ</rt></ruby>に～］<ruby>遭<rt>あ</rt></ruby>います', meaning: 'Gặp [tai nạn]' },
-      { kana: 'しんじます', romaji: ['shinjimasu'], rubyHtml: '<ruby>信<rt>しん</rt></ruby>じます', meaning: 'Tin, tin tưởng' },
-      { kana: 'よういします', romaji: ['youishimasu'], rubyHtml: '<ruby>用<rt>よう</rt></ruby><ruby>意<rt>い</rt></ruby>します', meaning: 'Sửa soạn, chuẩn bị' },
-      { kana: 'キャンセルします', romaji: ['kyanserushimasu'], rubyHtml: 'キャンセルします', meaning: 'Hủy bỏ, hủy' },
-      { kana: 'うまくいきます', romaji: ['umakuikimasu'], rubyHtml: 'うまくいきます', meaning: 'Tốt, thuận lợi' },
-      { kana: 'ゆうしょうします', romaji: ['yuushoushimasu'], rubyHtml: '<ruby>優<rt>ゆう</rt></ruby><ruby>勝<rt>しょう</rt></ruby>します', meaning: 'Vô địch, đoạt giải nhất' },
-      { kana: 'ねむります', romaji: ['nemurimasu'], rubyHtml: '<ruby>眠<rt>ねむ</rt></ruby>ります', meaning: 'Ngủ' },
-      { kana: 'めがさめます', romaji: ['megasamemasu'], rubyHtml: '<ruby>目<rt>め</rt></ruby>が<ruby>覚<rt>さ</rt></ruby>めます', meaning: 'Tỉnh giấc' },
-      { kana: 'なります', romaji: ['narimasu'], rubyHtml: '<ruby>鳴<rt>な</rt></ruby>ります', meaning: 'Reo, kêu' },
-      { kana: 'セットします', romaji: ['settoshimasu'], rubyHtml: 'セットします', meaning: 'Cài, đặt' }
-    ]},
-    { id: 'b45_giayto', name: 'B. Giấy tờ & Tài chính', selected: true, items: [
-      { kana: 'ほしょうしょ', romaji: ['hoshousho'], rubyHtml: '<ruby>保<rt>ほ</rt></ruby><ruby>証<rt>しょう</rt></ruby><ruby>書<rt>しょ</rt></ruby>', meaning: 'Giấy bảo hành' },
-      { kana: 'りょうしゅうしょ', romaji: ['ryoushuusho'], rubyHtml: '<ruby>領<rt>りょう</rt></ruby><ruby>収<rt>しゅう</rt></ruby><ruby>書<rt>しょ</rt></ruby>', meaning: 'Hóa đơn thanh toán' },
-      { kana: 'おくりもの', romaji: ['okurimono'], rubyHtml: '<ruby>贈<rt>おく</rt></ruby>り<ruby>物<rt>もの</rt></ruby>', meaning: 'Quà tặng, quà biếu' },
-      { kana: 'まちがいでんわ', romaji: ['machigaidenwa'], rubyHtml: 'まちがい<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>', meaning: 'Điện thoại nhầm' },
-      { kana: 'キャンプ', romaji: ['kyanpu'], rubyHtml: 'キャンプ', meaning: 'Trại' },
-      { kana: 'かかり', romaji: ['kakari'], rubyHtml: 'かかり', meaning: 'Nhân viên, người phụ trách' },
-      { kana: 'ちゅうし', romaji: ['chuushi'], rubyHtml: '<ruby>中<rt>ちゅう</rt></ruby><ruby>止<rt>し</rt></ruby>', meaning: 'Dừng, đình chỉ' },
-      { kana: 'てん', romaji: ['ten'], rubyHtml: '<ruby>点<rt>てん</rt></ruby>', meaning: 'Điểm' },
-      { kana: 'レバー', romaji: ['reba-'], rubyHtml: 'レバー', meaning: 'Tay bẻ, tay số, cần gạt' },
-      { kana: 'さつ', romaji: ['satsu'], rubyHtml: '［一円］<ruby>札<rt>さつ</rt></ruby>', meaning: 'Tờ tiền giấy [-yên]' },
-      { kana: 'ちゃんと', romaji: ['chanto'], rubyHtml: 'ちゃんと', meaning: 'Đúng, hẳn hoi' },
-      { kana: 'きゅうに', romaji: ['kyuuni'], rubyHtml: '<ruby>急<rt>きゅう</rt></ruby>に', meaning: 'Gấp, đột nhiên' },
-      { kana: 'たのしみにしています', romaji: ['tanoshiminishiteimasu'], rubyHtml: '<ruby>楽<rt>たの</rt></ruby>しみにしています', meaning: 'Mong đợi, lấy làm vui' },
-      { kana: 'いじょうです', romaji: ['ijoudesu'], rubyHtml: '<ruby>以<rt>い</rt></ruby><ruby>上<rt>じょう</rt></ruby>です。', meaning: 'Xin hết.' },
-      { kana: 'かかりいん', romaji: ['kakariin'], rubyHtml: '<ruby>係<rt>かかり</rt></ruby><ruby>員<rt>いん</rt></ruby>', meaning: 'Nhân viên' },
-      { kana: 'コース', romaji: ['ko-su'], rubyHtml: 'コース', meaning: 'Đường chạy (marathon)' },
-      { kana: 'スタート', romaji: ['suta-to'], rubyHtml: 'スタート', meaning: 'Xuất phát' },
-      { kana: 'い', romaji: ['i'], rubyHtml: '―<ruby>位<rt>い</rt></ruby>', meaning: 'Thứ -, giải -' },
-      { kana: 'なやみ', romaji: ['nayami'], rubyHtml: '<ruby>悩<rt>なや</rt></ruby>み', meaning: 'Điều/sự lo nghĩ, trăn trở, phiền muộn' },
-      { kana: 'めざましどけい', romaji: ['mezamashidokei'], rubyHtml: '<ruby>目<rt>め</rt></ruby><ruby>覚<rt>ざ</rt></ruby>まし［<ruby>時計<rt>とけい</rt></ruby>］', meaning: 'Đồng hồ báo thức' },
-      { kana: 'だいがくせい', romaji: ['daigakusei'], rubyHtml: '<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>', meaning: 'Sinh viên đại học' },
-      { kana: 'かいとう', romaji: ['kaitou'], rubyHtml: '<ruby>回<rt>かい</rt></ruby><ruby>答<rt>とう</rt></ruby>', meaning: 'Câu trả lời, lời giải' },
-      { kana: 'それでも', romaji: ['soredemo'], rubyHtml: 'それでも', meaning: 'Tuy thế, mặc dù thế' }
-    ]}
+    // A. Động từ Chuẩn bị & Sự cố
+    {
+      id: "b45_chuanbi",
+      name: "A. Động từ Chuẩn bị & Sự cố",
+      selected: true,
+      items: [
+        { kana: "あやまります", romaji: ["ayamarimasu"], rubyHtml: "<ruby>謝<rt>あやま</rt></ruby>ります", meaning: "Xin lỗi, tạ lỗi" },
+        { kana: "あいます", romaji: ["aimasu"], rubyHtml: "［<ruby>事<rt>じ</rt></ruby><ruby>故<rt>こ</rt></ruby>に～］<ruby>遭<rt>あ</rt></ruby>います", meaning: "Gặp [tai nạn]" },
+        { kana: "しんじます", romaji: ["shinjimasu"], rubyHtml: "<ruby>信<rt>しん</rt></ruby>じます", meaning: "Tin, tin tưởng" },
+        { kana: "よういします", romaji: ["youishimasu"], rubyHtml: "<ruby>用<rt>よう</rt></ruby><ruby>意<rt>い</rt></ruby>します", meaning: "Sửa soạn, chuẩn bị" },
+        { kana: "キャンセルします", romaji: ["kyanserushimasu"], rubyHtml: "キャンセルします", meaning: "Hủy bỏ, hủy" },
+        { kana: "うまくいきます", romaji: ["umakuikimasu"], rubyHtml: "うまくいきます", meaning: "Tốt, thuận lợi" },
+        { kana: "ゆうしょうします", romaji: ["yuushoushimasu"], rubyHtml: "<ruby>優<rt>ゆう</rt></ruby><ruby>勝<rt>しょう</rt></ruby>します", meaning: "Vô địch, đoạt giải nhất" },
+        { kana: "ねむります", romaji: ["nemurimasu"], rubyHtml: "<ruby>眠<rt>ねむ</rt></ruby>ります", meaning: "Ngủ" },
+        { kana: "めがさめます", romaji: ["megasamemasu"], rubyHtml: "<ruby>目<rt>め</rt></ruby>が<ruby>覚<rt>さ</rt></ruby>めます", meaning: "Tỉnh giấc" },
+        { kana: "なります", romaji: ["narimasu"], rubyHtml: "<ruby>鳴<rt>な</rt></ruby>ります", meaning: "Reo, kêu" },
+        { kana: "セットします", romaji: ["settoshimasu"], rubyHtml: "セットします", meaning: "Cài, đặt" },
+      ],
+    },
+
+    // B. Giấy tờ & Tài chính
+    {
+      id: "b45_giayto",
+      name: "B. Giấy tờ & Tài chính",
+      selected: true,
+      items: [
+        { kana: "ほしょうしょ", romaji: ["hoshousho"], rubyHtml: "<ruby>保<rt>ほ</rt></ruby><ruby>証<rt>しょう</rt></ruby><ruby>書<rt>しょ</rt></ruby>", meaning: "Giấy bảo hành" },
+        { kana: "りょうしゅうしょ", romaji: ["ryoushuusho"], rubyHtml: "<ruby>領<rt>りょう</rt></ruby><ruby>収<rt>しゅう</rt></ruby><ruby>書<rt>しょ</rt></ruby>", meaning: "Hóa đơn thanh toán" },
+        { kana: "おくりもの", romaji: ["okurimono"], rubyHtml: "<ruby>贈<rt>おく</rt></ruby>り<ruby>物<rt>もの</rt></ruby>", meaning: "Quà tặng, quà biếu" },
+        { kana: "まちがいでんわ", romaji: ["machigaidenwa"], rubyHtml: "まちがい<ruby>電<rt>でん</rt></ruby><ruby>話<rt>わ</rt></ruby>", meaning: "Điện thoại nhầm" },
+        { kana: "キャンプ", romaji: ["kyanpu"], rubyHtml: "キャンプ", meaning: "Trại" },
+        { kana: "かかり", romaji: ["kakari"], rubyHtml: "かかり", meaning: "Nhân viên, người phụ trách" },
+        { kana: "ちゅうし", romaji: ["chuushi"], rubyHtml: "<ruby>中<rt>ちゅう</rt></ruby><ruby>止<rt>し</rt></ruby>", meaning: "Dừng, đình chỉ" },
+        { kana: "てん", romaji: ["ten"], rubyHtml: "<ruby>点<rt>てん</rt></ruby>", meaning: "Điểm" },
+        { kana: "レバー", romaji: ["reba-"], rubyHtml: "レバー", meaning: "Tay bẻ, tay số, cần gạt" },
+        { kana: "さつ", romaji: ["satsu"], rubyHtml: "［一円］<ruby>札<rt>さつ</rt></ruby>", meaning: "Tờ tiền giấy [-yên]" },
+        { kana: "ちゃんと", romaji: ["chanto"], rubyHtml: "ちゃんと", meaning: "Đúng, hẳn hoi" },
+        { kana: "きゅうに", romaji: ["kyuuni"], rubyHtml: "<ruby>急<rt>きゅう</rt></ruby>に", meaning: "Gấp, đột nhiên" },
+        { kana: "たのしみにしています", romaji: ["tanoshiminishiteimasu"], rubyHtml: "<ruby>楽<rt>たの</rt></ruby>しみにしています", meaning: "Mong đợi, lấy làm vui" },
+        { kana: "いじょうです", romaji: ["ijoudesu"], rubyHtml: "<ruby>以<rt>い</rt></ruby><ruby>上<rt>じょう</rt></ruby>です。", meaning: "Xin hết." },
+        { kana: "かかりいん", romaji: ["kakariin"], rubyHtml: "<ruby>係<rt>かかり</rt></ruby><ruby>員<rt>いん</rt></ruby>", meaning: "Nhân viên" },
+        { kana: "コース", romaji: ["ko-su"], rubyHtml: "コース", meaning: "Đường chạy (marathon)" },
+        { kana: "スタート", romaji: ["suta-to"], rubyHtml: "スタート", meaning: "Xuất phát" },
+        { kana: "い", romaji: ["i"], rubyHtml: "―<ruby>位<rt>い</rt></ruby>", meaning: "Thứ -, giải -" },
+        { kana: "なやみ", romaji: ["nayami"], rubyHtml: "<ruby>悩<rt>なや</rt></ruby>み", meaning: "Điều/sự lo nghĩ, trăn trở, phiền muộn" },
+        { kana: "めざましどけい", romaji: ["mezamashidokei"], rubyHtml: "<ruby>目<rt>め</rt></ruby><ruby>覚<rt>ざ</rt></ruby>まし［<ruby>時計<rt>とけい</rt></ruby>］", meaning: "Đồng hồ báo thức" },
+        { kana: "だいがくせい", romaji: ["daigakusei"], rubyHtml: "<ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>生<rt>せい</rt></ruby>", meaning: "Sinh viên đại học" },
+        { kana: "かいとう", romaji: ["kaitou"], rubyHtml: "<ruby>回<rt>かい</rt></ruby><ruby>答<rt>とう</rt></ruby>", meaning: "Câu trả lời, lời giải" },
+        { kana: "それでも", romaji: ["soredemo"], rubyHtml: "それでも", meaning: "Tuy thế, mặc dù thế" },
+      ],
+    },
+
   ],
+
+  // ========================================
+  // BÀI 46
+  // ========================================
   46: [
-    { id: 'b46_chuyenphat', name: 'A. Động từ Chuyển phát & Nhập liệu', selected: true, items: [
-      { kana: 'やきます', romaji: ['yakimasu'], rubyHtml: '<ruby>焼<rt>や</rt></ruby>きます', meaning: 'Nướng, rán' },
-      { kana: 'わたします', romaji: ['watashimasu'], rubyHtml: '<ruby>渡<rt>わた</rt></ruby>します', meaning: 'Đưa cho, giao cho' },
-      { kana: 'かえってきます', romaji: ['kaettekimasu'], rubyHtml: '<ruby>帰<rt>かえ</rt></ruby>って<ruby>来<rt>き</rt></ruby>ます', meaning: 'Về, trở lại' },
-      { kana: 'でます', romaji: ['demasu'], rubyHtml: '［バスが～］<ruby>出<rt>で</rt></ruby>ます', meaning: 'Xuất phát, chạy ［xe buýt ~］' },
-      { kana: 'むかいます', romaji: ['mukaimasu'], rubyHtml: '<ruby>向<rt>むか</rt></ruby>います', meaning: 'Hướng đến, trên đường đến' },
-      { kana: 'てにはいります', romaji: ['tenihairimasu'], rubyHtml: '［<ruby>情<rt>じょう</rt></ruby><ruby>報<rt>ほう</rt></ruby>が～］<ruby>手<rt>て</rt></ruby>に<ruby>入<rt>はい</rt></ruby>ります', meaning: 'Lấy được, thu thập được ［thông tin ~］' },
-      { kana: 'にゅうりょくします', romaji: ['nyuuryokushimasu'], rubyHtml: '<ruby>入<rt>にゅう</rt></ruby><ruby>力<rt>りょく</rt></ruby>します', meaning: 'Nhập dữ liệu' },
-      { kana: 'でます', romaji: ['demasu'], rubyHtml: '［<ruby>本<rt>ほん</rt></ruby>が～］<ruby>出<rt>で</rt></ruby>ます', meaning: 'Được xuất bản ［quyển sách ~］' }
-    ]},
-    { id: 'b46_dichvu', name: 'B. Dịch vụ & Thiết bị', selected: true, items: [
-      { kana: 'るす', romaji: ['rusu'], rubyHtml: '<ruby>留<rt>る</rt></ruby><ruby>守<rt>す</rt></ruby>', meaning: 'Đi vắng' },
-      { kana: 'たくはいびん', romaji: ['takuhaibin'], rubyHtml: '<ruby>宅<rt>たく</rt></ruby><ruby>配<rt>はい</rt></ruby><ruby>便<rt>びん</rt></ruby>', meaning: 'Dịch vụ chuyển đồ đến nhà' },
-      { kana: 'げんいん', romaji: ['genin'], rubyHtml: '<ruby>原<rt>げん</rt></ruby><ruby>因<rt>いん</rt></ruby>', meaning: 'Nguyên nhân' },
-      { kana: 'ちゅうしゃ', romaji: ['chuusha'], rubyHtml: '<ruby>注<rt>ちゅう</rt></ruby><ruby>射<rt>しゃ</rt></ruby>', meaning: 'Tiêm, mũi tiêm' },
-      { kana: 'しょくよく', romaji: ['shokuyoku'], rubyHtml: '<ruby>食<rt>しょく</rt></ruby><ruby>欲<rt>よく</rt></ruby>', meaning: 'Cảm giác muốn ăn, thèm ăn' },
-      { kana: 'パンフレット', romaji: ['panfuretto'], rubyHtml: 'パンフレット', meaning: 'Tờ rơi, tờ quảng cáo' },
-      { kana: 'ステレオ', romaji: ['sutereo'], rubyHtml: 'ステレオ', meaning: 'Stereo' },
-      { kana: 'ガスサービスセンター', romaji: ['gasusa-bisusenta-'], rubyHtml: 'ガスサービスセンター', meaning: 'Trung tâm dịch vụ ga' },
-      { kana: 'ガスレンジ', romaji: ['gasurenji'], rubyHtml: 'ガスレンジ', meaning: 'Bếp ga' },
-      { kana: 'ぐあい', romaji: ['guai'], rubyHtml: '<ruby>具<rt>ぐ</rt></ruby><ruby>合<rt>あい</rt></ruby>', meaning: 'Trạng thái, tình hình' },
-      { kana: 'ちしき', romaji: ['chishiki'], rubyHtml: '<ruby>知<rt>ち</rt></ruby><ruby>識<rt>しき</rt></ruby>', meaning: 'Tri thức, kiến thức' },
-      { kana: 'ほうこ', romaji: ['houko'], rubyHtml: '<ruby>宝<rt>ほう</rt></ruby><ruby>庫<rt>こ</rt></ruby>', meaning: 'Kho báu' },
-      { kana: 'システム', romaji: ['shisutemu'], rubyHtml: 'システム', meaning: 'Hệ thống' },
-      { kana: 'キーワード', romaji: ['ki-wa-do'], rubyHtml: 'キーワード', meaning: 'Từ khóa' },
-      { kana: 'いちぶぶん', romaji: ['ichibubun'], rubyHtml: '<ruby>一<rt>いち</rt></ruby><ruby>部<rt>ぶ</rt></ruby><ruby>分<rt>ぶん</rt></ruby>', meaning: 'Một bộ phận' },
-      { kana: 'びょう', romaji: ['byou'], rubyHtml: '<ruby>秒<rt>びょう</rt></ruby>', meaning: 'Giây' },
-      { kana: 'こちら', romaji: ['kochira'], rubyHtml: 'こちら', meaning: 'Đây, đằng này' },
-      { kana: 'のところ', romaji: ['notokoro'], rubyHtml: '～のところ', meaning: 'Quanh, xung quanh ~' },
-      { kana: 'ちょうど', romaji: ['choudo'], rubyHtml: 'ちょうど', meaning: 'Vừa đúng' },
-      { kana: 'たったいま', romaji: ['tattaima'], rubyHtml: 'たった<ruby>今<rt>いま</rt></ruby>', meaning: 'Vừa mới rồi' },
-      { kana: 'いまいいでしょうか', romaji: ['imaiideshouka'], rubyHtml: '<ruby>今<rt>いま</rt></ruby>いいでしょうか。', meaning: 'Bây giờ tôi làm phiền anh có được không ạ?' },
-      { kana: 'どちらさまでしょうか', romaji: ['dochirasamadeshouka'], rubyHtml: 'どちら<ruby>様<rt>さま</rt></ruby>でしょうか。', meaning: 'Ai đấy ạ?' },
-      { kana: 'おまたせしました', romaji: ['omataseshimashita'], rubyHtml: 'お<ruby>待<rt>ま</rt></ruby>たせしました。', meaning: 'Xin lỗi vì để anh/chị phải đợi' }
-    ]}
+    // A. Động từ Chuyển phát & Nhập liệu
+    {
+      id: "b46_chuyenphat",
+      name: "A. Động từ Chuyển phát & Nhập liệu",
+      selected: true,
+      items: [
+        { kana: "やきます", romaji: ["yakimasu"], rubyHtml: "<ruby>焼<rt>や</rt></ruby>きます", meaning: "Nướng, rán" },
+        { kana: "わたします", romaji: ["watashimasu"], rubyHtml: "<ruby>渡<rt>わた</rt></ruby>します", meaning: "Đưa cho, giao cho" },
+        { kana: "かえってきます", romaji: ["kaettekimasu"], rubyHtml: "<ruby>帰<rt>かえ</rt></ruby>って<ruby>来<rt>き</rt></ruby>ます", meaning: "Về, trở lại" },
+        { kana: "でます", romaji: ["demasu"], rubyHtml: "［バスが～］<ruby>出<rt>で</rt></ruby>ます", meaning: "Xuất phát, chạy ［xe buýt ~］" },
+        { kana: "むかいます", romaji: ["mukaimasu"], rubyHtml: "<ruby>向<rt>むか</rt></ruby>います", meaning: "Hướng đến, trên đường đến" },
+        { kana: "てにはいります", romaji: ["tenihairimasu"], rubyHtml: "［<ruby>情<rt>じょう</rt></ruby><ruby>報<rt>ほう</rt></ruby>が～］<ruby>手<rt>て</rt></ruby>に<ruby>入<rt>はい</rt></ruby>ります", meaning: "Lấy được, thu thập được ［thông tin ~］" },
+        { kana: "にゅうりょくします", romaji: ["nyuuryokushimasu"], rubyHtml: "<ruby>入<rt>にゅう</rt></ruby><ruby>力<rt>りょく</rt></ruby>します", meaning: "Nhập dữ liệu" },
+        { kana: "でます", romaji: ["demasu"], rubyHtml: "［<ruby>本<rt>ほん</rt></ruby>が～］<ruby>出<rt>で</rt></ruby>ます", meaning: "Được xuất bản ［quyển sách ~］" },
+      ],
+    },
+
+    // B. Dịch vụ & Thiết bị
+    {
+      id: "b46_dichvu",
+      name: "B. Dịch vụ & Thiết bị",
+      selected: true,
+      items: [
+        { kana: "るす", romaji: ["rusu"], rubyHtml: "<ruby>留<rt>る</rt></ruby><ruby>守<rt>す</rt></ruby>", meaning: "Đi vắng" },
+        { kana: "たくはいびん", romaji: ["takuhaibin"], rubyHtml: "<ruby>宅<rt>たく</rt></ruby><ruby>配<rt>はい</rt></ruby><ruby>便<rt>びん</rt></ruby>", meaning: "Dịch vụ chuyển đồ đến nhà" },
+        { kana: "げんいん", romaji: ["genin"], rubyHtml: "<ruby>原<rt>げん</rt></ruby><ruby>因<rt>いん</rt></ruby>", meaning: "Nguyên nhân" },
+        { kana: "ちゅうしゃ", romaji: ["chuusha"], rubyHtml: "<ruby>注<rt>ちゅう</rt></ruby><ruby>射<rt>しゃ</rt></ruby>", meaning: "Tiêm, mũi tiêm" },
+        { kana: "しょくよく", romaji: ["shokuyoku"], rubyHtml: "<ruby>食<rt>しょく</rt></ruby><ruby>欲<rt>よく</rt></ruby>", meaning: "Cảm giác muốn ăn, thèm ăn" },
+        { kana: "パンフレット", romaji: ["panfuretto"], rubyHtml: "パンフレット", meaning: "Tờ rơi, tờ quảng cáo" },
+        { kana: "ステレオ", romaji: ["sutereo"], rubyHtml: "ステレオ", meaning: "Stereo" },
+        { kana: "ガスサービスセンター", romaji: ["gasusa-bisusenta-"], rubyHtml: "ガスサービスセンター", meaning: "Trung tâm dịch vụ ga" },
+        { kana: "ガスレンジ", romaji: ["gasurenji"], rubyHtml: "ガスレンジ", meaning: "Bếp ga" },
+        { kana: "ぐあい", romaji: ["guai"], rubyHtml: "<ruby>具<rt>ぐ</rt></ruby><ruby>合<rt>あい</rt></ruby>", meaning: "Trạng thái, tình hình" },
+        { kana: "ちしき", romaji: ["chishiki"], rubyHtml: "<ruby>知<rt>ち</rt></ruby><ruby>識<rt>しき</rt></ruby>", meaning: "Tri thức, kiến thức" },
+        { kana: "ほうこ", romaji: ["houko"], rubyHtml: "<ruby>宝<rt>ほう</rt></ruby><ruby>庫<rt>こ</rt></ruby>", meaning: "Kho báu" },
+        { kana: "システム", romaji: ["shisutemu"], rubyHtml: "システム", meaning: "Hệ thống" },
+        { kana: "キーワード", romaji: ["ki-wa-do"], rubyHtml: "キーワード", meaning: "Từ khóa" },
+        { kana: "いちぶぶん", romaji: ["ichibubun"], rubyHtml: "<ruby>一<rt>いち</rt></ruby><ruby>部<rt>ぶ</rt></ruby><ruby>分<rt>ぶん</rt></ruby>", meaning: "Một bộ phận" },
+        { kana: "びょう", romaji: ["byou"], rubyHtml: "<ruby>秒<rt>びょう</rt></ruby>", meaning: "Giây" },
+        { kana: "こちら", romaji: ["kochira"], rubyHtml: "こちら", meaning: "Đây, đằng này" },
+        { kana: "のところ", romaji: ["notokoro"], rubyHtml: "～のところ", meaning: "Quanh, xung quanh ~" },
+        { kana: "ちょうど", romaji: ["choudo"], rubyHtml: "ちょうど", meaning: "Vừa đúng" },
+        { kana: "たったいま", romaji: ["tattaima"], rubyHtml: "たった<ruby>今<rt>いま</rt></ruby>", meaning: "Vừa mới rồi" },
+        { kana: "いまいいでしょうか", romaji: ["imaiideshouka"], rubyHtml: "<ruby>今<rt>いま</rt></ruby>いいでしょうか。", meaning: "Bây giờ tôi làm phiền anh có được không ạ?" },
+        { kana: "どちらさまでしょうか", romaji: ["dochirasamadeshouka"], rubyHtml: "どちら<ruby>様<rt>さま</rt></ruby>でしょうか。", meaning: "Ai đấy ạ?" },
+        { kana: "おまたせしました", romaji: ["omataseshimashita"], rubyHtml: "お<ruby>待<rt>ま</rt></ruby>たせしました。", meaning: "Xin lỗi vì để anh/chị phải đợi" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 47
+  // ========================================
   47: [
-    { id: 'b47_dongtu', name: 'A. Động từ & Cảm nhận', selected: true, items: [
-      { kana: 'あつまります', romaji: ['atsumarimasu'], rubyHtml: '［<ruby>人<rt>ひと</rt></ruby>が～］<ruby>集<rt>あつ</rt></ruby>まります', meaning: 'Tập trung, tập hợp ［người ~］' },
-      { kana: 'わかれます', romaji: ['wakaremasu'], rubyHtml: '［<ruby>人<rt>ひと</rt></ruby>が～］<ruby>別<rt>わか</rt></ruby>れます', meaning: 'Chia, chia ra ［người ~］' },
-      { kana: 'ながいきします', romaji: ['nagaikishimasu'], rubyHtml: '<ruby>長<rt>なが</rt></ruby><ruby>生<rt>い</rt></ruby>きします', meaning: 'Sống thọ' },
-      { kana: 'します', romaji: ['shimasu'], rubyHtml: '［<ruby>音<rt>おと</rt></ruby>/<ruby>声<rt>こえ</rt></ruby>が～］します', meaning: 'Nghe thấy, có ［âm thanh / tiếng］' },
-      { kana: 'します', romaji: ['shimasu'], rubyHtml: '［<ruby>味<rt>あじ</rt></ruby>が～］します', meaning: 'Có ［vị］' },
-      { kana: 'します', romaji: ['shimasu'], rubyHtml: '［においが～］します', meaning: 'Có ［mùi］' },
-      { kana: 'さします', romaji: ['sashimasu'], rubyHtml: '［<ruby>傘<rt>かさ</rt></ruby>を～］さします', meaning: 'Che ［ô］' },
-      { kana: 'こんやくします', romaji: ['konyakushimasu'], rubyHtml: '<ruby>婚<rt>こん</rt></ruby><ruby>約<rt>やく</rt></ruby>します', meaning: 'Đính hôn' }
-    ]},
-    { id: 'b47_dubao', name: 'B. Dự báo & Khoa học', selected: true, items: [
-      { kana: 'ひどい', romaji: ['hidoi'], rubyHtml: 'ひどい', meaning: 'Tồi tệ, xấu' },
-      { kana: 'こわい', romaji: ['kowai'], rubyHtml: '<ruby>怖<rt>こわ</rt></ruby>い', meaning: 'Sợ, khiếp' },
-      { kana: 'てんきよほう', romaji: ['tenkiyohou'], rubyHtml: '<ruby>天<rt>てん</rt></ruby><ruby>気<rt>き</rt></ruby><ruby>予<rt>よ</rt></ruby><ruby>報<rt>ほう</rt></ruby>', meaning: 'Dự báo thời tiết' },
-      { kana: 'はっぴょう', romaji: ['happyou'], rubyHtml: '<ruby>発<rt>はっ</rt></ruby><ruby>表<rt>ぴょう</rt></ruby>', meaning: 'Phát biểu, báo cáo' },
-      { kana: 'じっけん', romaji: ['jikken'], rubyHtml: '<ruby>実<rt>じっ</rt></ruby><ruby>験<rt>けん</rt></ruby>', meaning: 'Thí nghiệm' },
-      { kana: 'じんこう', romaji: ['jinkou'], rubyHtml: '<ruby>人<rt>じん</rt></ruby><ruby>口<rt>こう</rt></ruby>', meaning: 'Dân số' },
-      { kana: 'におい', romaji: ['nioi'], rubyHtml: 'におい', meaning: 'Mùi' },
-      { kana: 'かがく', romaji: ['kagaku'], rubyHtml: '<ruby>科<rt>か</rt></ruby><ruby>学<rt>がく</rt></ruby>', meaning: 'Khoa học' },
-      { kana: 'いがく', romaji: ['igaku'], rubyHtml: '<ruby>医<rt>い</rt></ruby><ruby>学<rt>がく</rt></ruby>', meaning: 'Y học' },
-      { kana: 'ぶんがく', romaji: ['bungaku'], rubyHtml: '<ruby>文<rt>ぶん</rt></ruby><ruby>学<rt>がく</rt></ruby>', meaning: 'Văn học' },
-      { kana: 'パトカー', romaji: ['patoka-'], rubyHtml: 'パトカー', meaning: 'Xe cảnh sát' },
-      { kana: 'きゅうきゅうしゃ', romaji: ['kyuukyuusha'], rubyHtml: '<ruby>救<rt>きゅう</rt></ruby><ruby>急<rt>きゅう</rt></ruby><ruby>車<rt>しゃ</rt></ruby>', meaning: 'Xe cấp cứu' },
-      { kana: 'さんせい', romaji: ['sansei'], rubyHtml: '<ruby>賛<rt>さん</rt></ruby><ruby>成<rt>せい</rt></ruby>', meaning: 'Tán thành, đồng ý' },
-      { kana: 'はんたい', romaji: ['hantai'], rubyHtml: '<ruby>反<rt>はん</rt></ruby><ruby>対<rt>たい</rt></ruby>', meaning: 'Phản đối' },
-      { kana: 'だんせい', romaji: ['dansei'], rubyHtml: '<ruby>男<rt>だん</rt></ruby><ruby>性<rt>せい</rt></ruby>', meaning: 'Nam giới, nam' },
-      { kana: 'じょせい', romaji: ['josei'], rubyHtml: '<ruby>女<rt>じょ</rt></ruby><ruby>性<rt>せい</rt></ruby>', meaning: 'Nữ giới, nữ' },
-      { kana: 'どうも', romaji: ['doumo'], rubyHtml: 'どうも', meaning: 'Có vẻ như là, có lẽ là' },
-      { kana: 'によると', romaji: ['niyoruto'], rubyHtml: '～によると', meaning: 'Theo ~ thì, căn cứ vào ~ thì' },
-      { kana: 'イラン', romaji: ['iran'], rubyHtml: 'イラン', meaning: 'Nước Iran' },
-      { kana: 'カリフォルニア', romaji: ['kariforunia'], rubyHtml: 'カリフォルニア', meaning: 'Bang California' },
-      { kana: 'こいびと', romaji: ['koibito'], rubyHtml: '<ruby>恋<rt>こい</rt></ruby><ruby>人<rt>びと</rt></ruby>', meaning: 'Người yêu' },
-      { kana: 'あいて', romaji: ['aite'], rubyHtml: '<ruby>相<rt>あい</rt></ruby><ruby>手<rt>て</rt></ruby>', meaning: 'Đối tác, đối phương' }
-    ]}
+    // A. Động từ & Cảm nhận
+    {
+      id: "b47_dongtu",
+      name: "A. Động từ & Cảm nhận",
+      selected: true,
+      items: [
+        { kana: "あつまります", romaji: ["atsumarimasu"], rubyHtml: "［<ruby>人<rt>ひと</rt></ruby>が～］<ruby>集<rt>あつ</rt></ruby>まります", meaning: "Tập trung, tập hợp ［người ~］" },
+        { kana: "わかれます", romaji: ["wakaremasu"], rubyHtml: "［<ruby>人<rt>ひと</rt></ruby>が～］<ruby>別<rt>わか</rt></ruby>れます", meaning: "Chia, chia ra ［người ~］" },
+        { kana: "ながいきします", romaji: ["nagaikishimasu"], rubyHtml: "<ruby>長<rt>なが</rt></ruby><ruby>生<rt>い</rt></ruby>きします", meaning: "Sống thọ" },
+        { kana: "します", romaji: ["shimasu"], rubyHtml: "［<ruby>音<rt>おと</rt></ruby>/<ruby>声<rt>こえ</rt></ruby>が～］します", meaning: "Nghe thấy, có ［âm thanh / tiếng］" },
+        { kana: "します", romaji: ["shimasu"], rubyHtml: "［<ruby>味<rt>あじ</rt></ruby>が～］します", meaning: "Có ［vị］" },
+        { kana: "します", romaji: ["shimasu"], rubyHtml: "［においが～］します", meaning: "Có ［mùi］" },
+        { kana: "さします", romaji: ["sashimasu"], rubyHtml: "［<ruby>傘<rt>かさ</rt></ruby>を～］さします", meaning: "Che ［ô］" },
+        { kana: "こんやくします", romaji: ["konyakushimasu"], rubyHtml: "<ruby>婚<rt>こん</rt></ruby><ruby>約<rt>やく</rt></ruby>します", meaning: "Đính hôn" },
+      ],
+    },
+
+    // B. Dự báo & Khoa học
+    {
+      id: "b47_dubao",
+      name: "B. Dự báo & Khoa học",
+      selected: true,
+      items: [
+        { kana: "ひどい", romaji: ["hidoi"], rubyHtml: "ひどい", meaning: "Tồi tệ, xấu" },
+        { kana: "こわい", romaji: ["kowai"], rubyHtml: "<ruby>怖<rt>こわ</rt></ruby>い", meaning: "Sợ, khiếp" },
+        { kana: "てんきよほう", romaji: ["tenkiyohou"], rubyHtml: "<ruby>天<rt>てん</rt></ruby><ruby>気<rt>き</rt></ruby><ruby>予<rt>よ</rt></ruby><ruby>報<rt>ほう</rt></ruby>", meaning: "Dự báo thời tiết" },
+        { kana: "はっぴょう", romaji: ["happyou"], rubyHtml: "<ruby>発<rt>はっ</rt></ruby><ruby>表<rt>ぴょう</rt></ruby>", meaning: "Phát biểu, báo cáo" },
+        { kana: "じっけん", romaji: ["jikken"], rubyHtml: "<ruby>実<rt>じっ</rt></ruby><ruby>験<rt>けん</rt></ruby>", meaning: "Thí nghiệm" },
+        { kana: "じんこう", romaji: ["jinkou"], rubyHtml: "<ruby>人<rt>じん</rt></ruby><ruby>口<rt>こう</rt></ruby>", meaning: "Dân số" },
+        { kana: "におい", romaji: ["nioi"], rubyHtml: "におい", meaning: "Mùi" },
+        { kana: "かがく", romaji: ["kagaku"], rubyHtml: "<ruby>科<rt>か</rt></ruby><ruby>学<rt>がく</rt></ruby>", meaning: "Khoa học" },
+        { kana: "いがく", romaji: ["igaku"], rubyHtml: "<ruby>医<rt>い</rt></ruby><ruby>学<rt>がく</rt></ruby>", meaning: "Y học" },
+        { kana: "ぶんがく", romaji: ["bungaku"], rubyHtml: "<ruby>文<rt>ぶん</rt></ruby><ruby>学<rt>がく</rt></ruby>", meaning: "Văn học" },
+        { kana: "パトカー", romaji: ["patoka-"], rubyHtml: "パトカー", meaning: "Xe cảnh sát" },
+        { kana: "きゅうきゅうしゃ", romaji: ["kyuukyuusha"], rubyHtml: "<ruby>救<rt>きゅう</rt></ruby><ruby>急<rt>きゅう</rt></ruby><ruby>車<rt>しゃ</rt></ruby>", meaning: "Xe cấp cứu" },
+        { kana: "さんせい", romaji: ["sansei"], rubyHtml: "<ruby>賛<rt>さん</rt></ruby><ruby>成<rt>せい</rt></ruby>", meaning: "Tán thành, đồng ý" },
+        { kana: "はんたい", romaji: ["hantai"], rubyHtml: "<ruby>反<rt>はん</rt></ruby><ruby>対<rt>たい</rt></ruby>", meaning: "Phản đối" },
+        { kana: "だんせい", romaji: ["dansei"], rubyHtml: "<ruby>男<rt>だん</rt></ruby><ruby>性<rt>せい</rt></ruby>", meaning: "Nam giới, nam" },
+        { kana: "じょせい", romaji: ["josei"], rubyHtml: "<ruby>女<rt>じょ</rt></ruby><ruby>性<rt>せい</rt></ruby>", meaning: "Nữ giới, nữ" },
+        { kana: "どうも", romaji: ["doumo"], rubyHtml: "どうも", meaning: "Có vẻ như là, có lẽ là" },
+        { kana: "によると", romaji: ["niyoruto"], rubyHtml: "～によると", meaning: "Theo ~ thì, căn cứ vào ~ thì" },
+        { kana: "イラン", romaji: ["iran"], rubyHtml: "イラン", meaning: "Nước Iran" },
+        { kana: "カリフォルニア", romaji: ["kariforunia"], rubyHtml: "カリフォルニア", meaning: "Bang California" },
+        { kana: "こいびと", romaji: ["koibito"], rubyHtml: "<ruby>恋<rt>こい</rt></ruby><ruby>人<rt>びと</rt></ruby>", meaning: "Người yêu" },
+        { kana: "あいて", romaji: ["aite"], rubyHtml: "<ruby>相<rt>あい</rt></ruby><ruby>手<rt>て</rt></ruby>", meaning: "Đối tác, đối phương" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 48
+  // ========================================
   48: [
-    { id: 'b48_saikhien', name: 'A. Động từ Sai khiến', selected: true, items: [
-      { kana: 'おろします', romaji: ['oroshimasu'], rubyHtml: '<ruby>降<rt>お</rt></ruby>ろします、<ruby>下<rt>お</rt></ruby>ろします', meaning: 'Cho xuống, hạ xuống' },
-      { kana: 'とどけます', romaji: ['todokemasu'], rubyHtml: '<ruby>届<rt>とど</rt></ruby>けます', meaning: 'Gửi đến, chuyển đến' },
-      { kana: 'せわをします', romaji: ['sewaoshimasu'], rubyHtml: '<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>をします', meaning: 'Chăm sóc' },
-      { kana: 'たのしみます', romaji: ['tanoshimimasu'], rubyHtml: '<ruby>楽<rt>たの</rt></ruby>しみます', meaning: 'Vui, vui thích' },
-      { kana: 'かわりをします', romaji: ['kawarioshimasu'], rubyHtml: '<ruby>代<rt>か</rt></ruby>わりをします', meaning: 'Thay thế' },
-      { kana: 'きょうそうします', romaji: ['kyousoushimasu'], rubyHtml: '<ruby>競<rt>きょう</rt></ruby><ruby>走<rt>そう</rt></ruby>します', meaning: 'Chạy đua, thi chạy' },
-      { kana: 'とらえます', romaji: ['toraemasu'], rubyHtml: 'とらえます', meaning: 'Giành được, nắm bắt' }
-    ]},
-    { id: 'b48_giaoduc', name: 'B. Giáo dục & Lịch trình', selected: true, items: [
-      { kana: 'いや', romaji: ['iya'], rubyHtml: '<ruby>嫌<rt>いや</rt></ruby>［な］', meaning: 'Ngán, không thích' },
-      { kana: 'きびしい', romaji: ['kibishii'], rubyHtml: '<ruby>厳<rt>きび</rt></ruby>しい', meaning: 'Nghiêm, nghiêm khắc' },
-      { kana: 'じゅく', romaji: ['juku'], rubyHtml: '<ruby>塾<rt>じゅく</rt></ruby>', meaning: 'Cơ sở học thêm' },
-      { kana: 'スケジュール', romaji: ['sukeju-ru'], rubyHtml: 'スケジュール', meaning: 'Thời khóa biểu, lịch làm việc' },
-      { kana: 'せいと', romaji: ['seito'], rubyHtml: '<ruby>生<rt>せい</rt></ruby><ruby>徒<rt>と</rt></ruby>', meaning: 'Học sinh, học trò' },
-      { kana: 'もの', romaji: ['mono'], rubyHtml: '<ruby>者<rt>もの</rt></ruby>', meaning: 'Người (thân hoặc cấp dưới)' },
-      { kana: 'にゅうかん', romaji: ['nyuukan'], rubyHtml: '<ruby>入<rt>にゅう</rt></ruby><ruby>管<rt>かん</rt></ruby>', meaning: 'Cục quản lý nhập cảnh' },
-      { kana: 'さいにゅうこくビザ', romaji: ['sainyuukokubiza'], rubyHtml: '<ruby>再<rt>さい</rt></ruby><ruby>入<rt>にゅう</rt></ruby><ruby>国<rt>こく</rt></ruby>ビザ', meaning: 'Thị thực tái nhập cảnh' },
-      { kana: 'じゆうに', romaji: ['jiyuuni'], rubyHtml: '<ruby>自<rt>じ</rt></ruby><ruby>由<rt>ゆう</rt></ruby>に', meaning: 'Tự do' },
-      { kana: 'かん', romaji: ['kan'], rubyHtml: '～<ruby>間<rt>かん</rt></ruby>', meaning: 'Trong ~ (khoảng thời gian)' },
-      { kana: 'いいことですね', romaji: ['iikotodesune'], rubyHtml: 'いいことですね。', meaning: 'Hay nhỉ / Được đấy nhỉ' },
-      { kana: 'おいそがしいですか', romaji: ['oisogashiidesuka'], rubyHtml: 'お<ruby>忙<rt>いそが</rt></ruby>しいですか。', meaning: 'Anh/chị có bận không?' },
-      { kana: 'ひさしぶり', romaji: ['hisashiburi'], rubyHtml: '<ruby>久<rt>ひさ</rt></ruby>しぶり', meaning: 'Lâu' },
-      { kana: 'えいぎょう', romaji: ['eigyou'], rubyHtml: '<ruby>営<rt>えい</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>', meaning: 'Kinh doanh, bán hàng' },
-      { kana: 'それまでに', romaji: ['soremadeni'], rubyHtml: 'それまでに', meaning: 'Trước thời điểm đó' },
-      { kana: 'かまいません', romaji: ['kamaimasen'], rubyHtml: 'かまいません。', meaning: 'Không sao / Không có vấn đề gì' },
-      { kana: 'もともと', romaji: ['motomoto'], rubyHtml: 'もともと', meaning: 'Vốn dĩ' },
-      { kana: 'せいき', romaji: ['seiki'], rubyHtml: '一<ruby>世<rt>せい</rt></ruby><ruby>紀<rt>き</rt></ruby>', meaning: 'Thế kỷ -' },
-      { kana: 'スピード', romaji: ['supi-do'], rubyHtml: 'スピード', meaning: 'Tốc độ' },
-      { kana: 'サーカス', romaji: ['sa-kasu'], rubyHtml: 'サーカス', meaning: 'Xiếc' },
-      { kana: 'げい', romaji: ['gei'], rubyHtml: '<ruby>芸<rt>げい</rt></ruby>', meaning: 'Trò diễn, tiết mục' },
-      { kana: 'うつくしい', romaji: ['utsukushii'], rubyHtml: '<ruby>美<rt>うつく</rt></ruby>しい', meaning: 'Đẹp' },
-      { kana: 'すがた', romaji: ['sugata'], rubyHtml: '<ruby>姿<rt>すがた</rt></ruby>', meaning: 'Dáng điệu, tư thế' },
-      { kana: 'こころ', romaji: ['kokoro'], rubyHtml: '<ruby>心<rt>こころ</rt></ruby>', meaning: 'Trái tim, tấm lòng' },
-      { kana: 'にとって', romaji: ['nitotte'], rubyHtml: '～にとって', meaning: 'Đối với ~' }
-    ]}
+    // A. Động từ Sai khiến
+    {
+      id: "b48_saikhien",
+      name: "A. Động từ Sai khiến",
+      selected: true,
+      items: [
+        { kana: "おろします", romaji: ["oroshimasu"], rubyHtml: "<ruby>降<rt>お</rt></ruby>ろします、<ruby>下<rt>お</rt></ruby>ろします", meaning: "Cho xuống, hạ xuống" },
+        { kana: "とどけます", romaji: ["todokemasu"], rubyHtml: "<ruby>届<rt>とど</rt></ruby>けます", meaning: "Gửi đến, chuyển đến" },
+        { kana: "せわをします", romaji: ["sewaoshimasu"], rubyHtml: "<ruby>世<rt>せ</rt></ruby><ruby>話<rt>わ</rt></ruby>をします", meaning: "Chăm sóc" },
+        { kana: "たのしみます", romaji: ["tanoshimimasu"], rubyHtml: "<ruby>楽<rt>たの</rt></ruby>しみます", meaning: "Vui, vui thích" },
+        { kana: "かわりをします", romaji: ["kawarioshimasu"], rubyHtml: "<ruby>代<rt>か</rt></ruby>わりをします", meaning: "Thay thế" },
+        { kana: "きょうそうします", romaji: ["kyousoushimasu"], rubyHtml: "<ruby>競<rt>きょう</rt></ruby><ruby>走<rt>そう</rt></ruby>します", meaning: "Chạy đua, thi chạy" },
+        { kana: "とらえます", romaji: ["toraemasu"], rubyHtml: "とらえます", meaning: "Giành được, nắm bắt" },
+      ],
+    },
+
+    // B. Giáo dục & Lịch trình
+    {
+      id: "b48_giaoduc",
+      name: "B. Giáo dục & Lịch trình",
+      selected: true,
+      items: [
+        { kana: "いや", romaji: ["iya"], rubyHtml: "<ruby>嫌<rt>いや</rt></ruby>［な］", meaning: "Ngán, không thích" },
+        { kana: "きびしい", romaji: ["kibishii"], rubyHtml: "<ruby>厳<rt>きび</rt></ruby>しい", meaning: "Nghiêm, nghiêm khắc" },
+        { kana: "じゅく", romaji: ["juku"], rubyHtml: "<ruby>塾<rt>じゅく</rt></ruby>", meaning: "Cơ sở học thêm" },
+        { kana: "スケジュール", romaji: ["sukeju-ru"], rubyHtml: "スケジュール", meaning: "Thời khóa biểu, lịch làm việc" },
+        { kana: "せいと", romaji: ["seito"], rubyHtml: "<ruby>生<rt>せい</rt></ruby><ruby>徒<rt>と</rt></ruby>", meaning: "Học sinh, học trò" },
+        { kana: "もの", romaji: ["mono"], rubyHtml: "<ruby>者<rt>もの</rt></ruby>", meaning: "Người (thân hoặc cấp dưới)" },
+        { kana: "にゅうかん", romaji: ["nyuukan"], rubyHtml: "<ruby>入<rt>にゅう</rt></ruby><ruby>管<rt>かん</rt></ruby>", meaning: "Cục quản lý nhập cảnh" },
+        { kana: "さいにゅうこくビザ", romaji: ["sainyuukokubiza"], rubyHtml: "<ruby>再<rt>さい</rt></ruby><ruby>入<rt>にゅう</rt></ruby><ruby>国<rt>こく</rt></ruby>ビザ", meaning: "Thị thực tái nhập cảnh" },
+        { kana: "じゆうに", romaji: ["jiyuuni"], rubyHtml: "<ruby>自<rt>じ</rt></ruby><ruby>由<rt>ゆう</rt></ruby>に", meaning: "Tự do" },
+        { kana: "かん", romaji: ["kan"], rubyHtml: "～<ruby>間<rt>かん</rt></ruby>", meaning: "Trong ~ (khoảng thời gian)" },
+        { kana: "いいことですね", romaji: ["iikotodesune"], rubyHtml: "いいことですね。", meaning: "Hay nhỉ / Được đấy nhỉ" },
+        { kana: "おいそがしいですか", romaji: ["oisogashiidesuka"], rubyHtml: "お<ruby>忙<rt>いそが</rt></ruby>しいですか。", meaning: "Anh/chị có bận không?" },
+        { kana: "ひさしぶり", romaji: ["hisashiburi"], rubyHtml: "<ruby>久<rt>ひさ</rt></ruby>しぶり", meaning: "Lâu" },
+        { kana: "えいぎょう", romaji: ["eigyou"], rubyHtml: "<ruby>営<rt>えい</rt></ruby><ruby>業<rt>ぎょう</rt></ruby>", meaning: "Kinh doanh, bán hàng" },
+        { kana: "それまでに", romaji: ["soremadeni"], rubyHtml: "それまでに", meaning: "Trước thời điểm đó" },
+        { kana: "かまいません", romaji: ["kamaimasen"], rubyHtml: "かまいません。", meaning: "Không sao / Không có vấn đề gì" },
+        { kana: "もともと", romaji: ["motomoto"], rubyHtml: "もともと", meaning: "Vốn dĩ" },
+        { kana: "せいき", romaji: ["seiki"], rubyHtml: "一<ruby>世<rt>せい</rt></ruby><ruby>紀<rt>き</rt></ruby>", meaning: "Thế kỷ -" },
+        { kana: "スピード", romaji: ["supi-do"], rubyHtml: "スピード", meaning: "Tốc độ" },
+        { kana: "サーカス", romaji: ["sa-kasu"], rubyHtml: "サーカス", meaning: "Xiếc" },
+        { kana: "げい", romaji: ["gei"], rubyHtml: "<ruby>芸<rt>げい</rt></ruby>", meaning: "Trò diễn, tiết mục" },
+        { kana: "うつくしい", romaji: ["utsukushii"], rubyHtml: "<ruby>美<rt>うつく</rt></ruby>しい", meaning: "Đẹp" },
+        { kana: "すがた", romaji: ["sugata"], rubyHtml: "<ruby>姿<rt>すがた</rt></ruby>", meaning: "Dáng điệu, tư thế" },
+        { kana: "こころ", romaji: ["kokoro"], rubyHtml: "<ruby>心<rt>こころ</rt></ruby>", meaning: "Trái tim, tấm lòng" },
+        { kana: "にとって", romaji: ["nitotte"], rubyHtml: "～にとって", meaning: "Đối với ~" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 49
+  // ========================================
   49: [
-    { id: 'b49_sonkeigo', name: 'A. Động từ Tôn kính ngữ (Sonkeigo)', selected: true, items: [
-      { kana: 'つとめます', romaji: ['tsutomemasu'], rubyHtml: '［<ruby>会<rt>かい</rt></ruby><ruby>社<rt>しゃ</rt></ruby>に～］<ruby>勤<rt>つと</rt></ruby>めます', meaning: 'Làm việc ở [công ty]' },
-      { kana: 'やすみます', romaji: ['yasumimasu'], rubyHtml: '<ruby>休<rt>やす</rt></ruby>みます', meaning: 'Nghỉ' },
-      { kana: 'かけます', romaji: ['kakemasu'], rubyHtml: '［いすに～］<ruby>掛<rt>か</rt></ruby>けます', meaning: 'Ngồi [ghế]' },
-      { kana: 'すごします', romaji: ['sugoshimasu'], rubyHtml: '<ruby>過<rt>すご</rt></ruby>します', meaning: 'Tiêu thời gian, trải qua' },
-      { kana: 'よります', romaji: ['yorimasu'], rubyHtml: '［<ruby>銀<rt>ぎん</rt></ruby><ruby>行<rt>こう</rt></ruby>に～］<ruby>寄<rt>よ</rt></ruby>ります', meaning: 'Ghé qua [ngân hàng]' },
-      { kana: 'いらっしゃいます', romaji: ['irasshaimasu'], rubyHtml: 'いらっしゃいます', meaning: 'Ở / Đi / Đến (tôn kính ngữ của います/いきます/きます)' },
-      { kana: 'めしあがります', romaji: ['meshiagarimasu'], rubyHtml: '<ruby>召<rt>め</rt></ruby>し<ruby>上<rt>あ</rt></ruby>がります', meaning: 'Ăn / Uống (tôn kính ngữ của たべます/のみます)' },
-      { kana: 'おっしゃいます', romaji: ['osshaimasu'], rubyHtml: 'おっしゃいます', meaning: 'Nói (tôn kính ngữ của いいます)' },
-      { kana: 'なさいます', romaji: ['nasaimasu'], rubyHtml: 'なさいます', meaning: 'Làm (tôn kính ngữ của します)' },
-      { kana: 'ごらんになります', romaji: ['goranninarimasu'], rubyHtml: 'ご<ruby>覧<rt>らん</rt></ruby>になります', meaning: 'Xem / Nhìn (tôn kính ngữ của みます)' },
-      { kana: 'ごぞんじです', romaji: ['gozonjidesu'], rubyHtml: 'ご<ruby>存<rt>ぞん</rt></ruby>じです', meaning: 'Biết (tôn kính ngữ của しっています)' },
-      { kana: 'だします', romaji: ['dashimasu'], rubyHtml: '［<ruby>熱<rt>ねつ</rt></ruby>を～］<ruby>出<rt>だ</rt></ruby>します', meaning: 'Bị [sốt]' },
-      { kana: 'でいらっしゃいます', romaji: ['deirasshaimasu'], rubyHtml: '～でいらっしゃいます', meaning: 'Là ~ (tôn kính ngữ của です)' },
-      { kana: 'おもちです', romaji: ['omochidesu'], rubyHtml: 'お<ruby>持<rt>も</rt></ruby>ちです', meaning: 'Có (tôn kính ngữ của もっています)' }
-    ]},
-    { id: 'b49_nghenghiep', name: 'B. Nghề nghiệp & Khách sạn', selected: true, items: [
-      { kana: 'あいさつ', romaji: ['aisatsu'], rubyHtml: '<ruby>挨<rt>あい</rt></ruby><ruby>拶<rt>さつ</rt></ruby>', meaning: 'Chào hỏi' },
-      { kana: 'はいざら', romaji: ['haizara'], rubyHtml: '<ruby>灰<rt>はい</rt></ruby><ruby>皿<rt>ざら</rt></ruby>', meaning: 'Cái gạt tàn' },
-      { kana: 'りょかん', romaji: ['ryokan'], rubyHtml: '<ruby>旅<rt>りょ</rt></ruby><ruby>館<rt>かん</rt></ruby>', meaning: 'Khách sạn kiểu Nhật' },
-      { kana: 'かいじょう', romaji: ['kaijou'], rubyHtml: '<ruby>会<rt>かい</rt></ruby><ruby>場<rt>じょう</rt></ruby>', meaning: 'Hội trường, địa điểm tổ chức' },
-      { kana: 'バスてい', romaji: ['basutei'], rubyHtml: 'バス<ruby>停<rt>てい</rt></ruby>', meaning: 'Bến xe buýt' },
-      { kana: 'ぼうえき', romaji: ['boueki'], rubyHtml: '<ruby>貿<rt>ぼう</rt></ruby><ruby>易<rt>えき</rt></ruby>', meaning: 'Thương mại quốc tế, mậu dịch' },
-      { kana: 'さま', romaji: ['sama'], rubyHtml: '～<ruby>様<rt>さま</rt></ruby>', meaning: 'Ngài, ông, bà ~' },
-      { kana: 'かえりに', romaji: ['kaerini'], rubyHtml: '<ruby>帰<rt>かえ</rt></ruby>りに', meaning: 'Trên đường về' },
-      { kana: 'たまに', romaji: ['tamani'], rubyHtml: 'たまに', meaning: 'Thỉnh thoảng' },
-      { kana: 'ちっとも', romaji: ['chittomo'], rubyHtml: 'ちっとも', meaning: 'Chẳng ~ tí nào, không hề' },
-      { kana: 'えんりょなく', romaji: ['enryonaku'], rubyHtml: '<ruby>遠<rt>えん</rt></ruby><ruby>慮<rt>りょ</rt></ruby>なく', meaning: 'Không giữ ý, đừng ngại' },
-      { kana: 'ねんくみ', romaji: ['nenkumi'], rubyHtml: '一<ruby>年<rt>ねん</rt></ruby>一<ruby>組<rt>くみ</rt></ruby>', meaning: 'Lớp -, năm thứ -' },
-      { kana: 'では', romaji: ['dewa'], rubyHtml: 'では', meaning: 'Thế thì, vậy thì' },
-      { kana: 'よろしくおつたえください', romaji: ['yoroshikuotsutaekudasai'], rubyHtml: 'よろしくお<ruby>伝<rt>つた</rt></ruby>えください。', meaning: 'Cho tôi gửi lời hỏi thăm' },
-      { kana: 'しつれいいたします', romaji: ['shitsureiitashimasu'], rubyHtml: '<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>いたします。', meaning: 'Xin phép anh/chị' },
-      { kana: 'ひまわりしょうがっこう', romaji: ['himawarishougakkou'], rubyHtml: 'ひまわり<ruby>小<rt>しょう</rt></ruby><ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>', meaning: 'Trường tiểu học Himawari' },
-      { kana: 'こうし', romaji: ['koushi'], rubyHtml: '<ruby>講<rt>こう</rt></ruby><ruby>師<rt>し</rt></ruby>', meaning: 'Giảng viên' },
-      { kana: 'おおくの', romaji: ['ookuno'], rubyHtml: '<ruby>多<rt>おお</rt></ruby>くの～', meaning: 'Nhiều ~' },
-      { kana: 'さくひん', romaji: ['sakuhin'], rubyHtml: '<ruby>作<rt>さく</rt></ruby><ruby>品<rt>ひん</rt></ruby>', meaning: 'Tác phẩm' },
-      { kana: 'じゅしょうします', romaji: ['jushoushimasu'], rubyHtml: '<ruby>受<rt>じゅ</rt></ruby><ruby>賞<rt>しょう</rt></ruby>します', meaning: 'Nhận giải thưởng' },
-      { kana: 'せかいてきに', romaji: ['sekaitekini'], rubyHtml: '<ruby>世<rt>せ</rt></ruby><ruby>界<rt>かい</rt></ruby><ruby>的<rt>てき</rt></ruby>に', meaning: 'Tầm cỡ thế giới' },
-      { kana: 'さっか', romaji: ['sakka'], rubyHtml: '<ruby>作<rt>さっ</rt></ruby><ruby>家<rt>か</rt></ruby>', meaning: 'Nhà văn' },
-      { kana: 'ちょうなん', romaji: ['chounan'], rubyHtml: '<ruby>長<rt>ちょう</rt></ruby><ruby>男<rt>なん</rt></ruby>', meaning: 'Trưởng nam' },
-      { kana: 'しょうがい', romaji: ['shougai'], rubyHtml: '<ruby>障<rt>しょう</rt></ruby><ruby>害<rt>がい</rt></ruby>', meaning: 'Khuyết tật' },
-      { kana: 'さっきょく', romaji: ['sakkyoku'], rubyHtml: '<ruby>作<rt>さっ</rt></ruby><ruby>曲<rt>きょく</rt></ruby>', meaning: 'Sáng tác nhạc' },
-      { kana: 'かつどう', romaji: ['katsudou'], rubyHtml: '<ruby>活<rt>かつ</rt></ruby><ruby>動<rt>どう</rt></ruby>', meaning: 'Hoạt động' },
-      { kana: 'それでは', romaji: ['soredewa'], rubyHtml: 'それでは', meaning: 'Bây giờ thì, đến đây' },
-      { kana: 'おおえけんざぶろう', romaji: ['ooekenzaburou'], rubyHtml: '<ruby>大江健三郎<rt>おおえけんざぶろう</rt></ruby>', meaning: 'Nhà văn Kenzaburo Oe' },
-      { kana: 'とうきょうだいがく', romaji: ['toukyoudaigaku'], rubyHtml: '<ruby>東<rt>とう</rt></ruby><ruby>京<rt>きょう</rt></ruby><ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby>', meaning: 'Đại học Tokyo' },
-      { kana: 'ノーベルぶんがくしょう', romaji: ['no-berubungakushou'], rubyHtml: 'ノーベル<ruby>文<rt>ぶん</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>賞<rt>しょう</rt></ruby>', meaning: 'Giải Nobel Văn học' }
-    ]}
+    // A. Động từ Tôn kính ngữ (Sonkeigo)
+    {
+      id: "b49_sonkeigo",
+      name: "A. Động từ Tôn kính ngữ (Sonkeigo)",
+      selected: true,
+      items: [
+        { kana: "つとめます", romaji: ["tsutomemasu"], rubyHtml: "［<ruby>会<rt>かい</rt></ruby><ruby>社<rt>しゃ</rt></ruby>に～］<ruby>勤<rt>つと</rt></ruby>めます", meaning: "Làm việc ở [công ty]" },
+        { kana: "やすみます", romaji: ["yasumimasu"], rubyHtml: "<ruby>休<rt>やす</rt></ruby>みます", meaning: "Nghỉ" },
+        { kana: "かけます", romaji: ["kakemasu"], rubyHtml: "［いすに～］<ruby>掛<rt>か</rt></ruby>けます", meaning: "Ngồi [ghế]" },
+        { kana: "すごします", romaji: ["sugoshimasu"], rubyHtml: "<ruby>過<rt>すご</rt></ruby>します", meaning: "Tiêu thời gian, trải qua" },
+        { kana: "よります", romaji: ["yorimasu"], rubyHtml: "［<ruby>銀<rt>ぎん</rt></ruby><ruby>行<rt>こう</rt></ruby>に～］<ruby>寄<rt>よ</rt></ruby>ります", meaning: "Ghé qua [ngân hàng]" },
+        { kana: "いらっしゃいます", romaji: ["irasshaimasu"], rubyHtml: "いらっしゃいます", meaning: "Ở / Đi / Đến (tôn kính ngữ của います/いきます/きます)" },
+        { kana: "めしあがります", romaji: ["meshiagarimasu"], rubyHtml: "<ruby>召<rt>め</rt></ruby>し<ruby>上<rt>あ</rt></ruby>がります", meaning: "Ăn / Uống (tôn kính ngữ của たべます/のみます)" },
+        { kana: "おっしゃいます", romaji: ["osshaimasu"], rubyHtml: "おっしゃいます", meaning: "Nói (tôn kính ngữ của いいます)" },
+        { kana: "なさいます", romaji: ["nasaimasu"], rubyHtml: "なさいます", meaning: "Làm (tôn kính ngữ của します)" },
+        { kana: "ごらんになります", romaji: ["goranninarimasu"], rubyHtml: "ご<ruby>覧<rt>らん</rt></ruby>になります", meaning: "Xem / Nhìn (tôn kính ngữ của みます)" },
+        { kana: "ごぞんじです", romaji: ["gozonjidesu"], rubyHtml: "ご<ruby>存<rt>ぞん</rt></ruby>じです", meaning: "Biết (tôn kính ngữ của しっています)" },
+        { kana: "だします", romaji: ["dashimasu"], rubyHtml: "［<ruby>熱<rt>ねつ</rt></ruby>を～］<ruby>出<rt>だ</rt></ruby>します", meaning: "Bị [sốt]" },
+        { kana: "でいらっしゃいます", romaji: ["deirasshaimasu"], rubyHtml: "～でいらっしゃいます", meaning: "Là ~ (tôn kính ngữ của です)" },
+        { kana: "おもちです", romaji: ["omochidesu"], rubyHtml: "お<ruby>持<rt>も</rt></ruby>ちです", meaning: "Có (tôn kính ngữ của もっています)" },
+      ],
+    },
+
+    // B. Nghề nghiệp & Khách sạn
+    {
+      id: "b49_nghenghiep",
+      name: "B. Nghề nghiệp & Khách sạn",
+      selected: true,
+      items: [
+        { kana: "あいさつ", romaji: ["aisatsu"], rubyHtml: "<ruby>挨<rt>あい</rt></ruby><ruby>拶<rt>さつ</rt></ruby>", meaning: "Chào hỏi" },
+        { kana: "はいざら", romaji: ["haizara"], rubyHtml: "<ruby>灰<rt>はい</rt></ruby><ruby>皿<rt>ざら</rt></ruby>", meaning: "Cái gạt tàn" },
+        { kana: "りょかん", romaji: ["ryokan"], rubyHtml: "<ruby>旅<rt>りょ</rt></ruby><ruby>館<rt>かん</rt></ruby>", meaning: "Khách sạn kiểu Nhật" },
+        { kana: "かいじょう", romaji: ["kaijou"], rubyHtml: "<ruby>会<rt>かい</rt></ruby><ruby>場<rt>じょう</rt></ruby>", meaning: "Hội trường, địa điểm tổ chức" },
+        { kana: "バスてい", romaji: ["basutei"], rubyHtml: "バス<ruby>停<rt>てい</rt></ruby>", meaning: "Bến xe buýt" },
+        { kana: "ぼうえき", romaji: ["boueki"], rubyHtml: "<ruby>貿<rt>ぼう</rt></ruby><ruby>易<rt>えき</rt></ruby>", meaning: "Thương mại quốc tế, mậu dịch" },
+        { kana: "さま", romaji: ["sama"], rubyHtml: "～<ruby>様<rt>さま</rt></ruby>", meaning: "Ngài, ông, bà ~" },
+        { kana: "かえりに", romaji: ["kaerini"], rubyHtml: "<ruby>帰<rt>かえ</rt></ruby>りに", meaning: "Trên đường về" },
+        { kana: "たまに", romaji: ["tamani"], rubyHtml: "たまに", meaning: "Thỉnh thoảng" },
+        { kana: "ちっとも", romaji: ["chittomo"], rubyHtml: "ちっとも", meaning: "Chẳng ~ tí nào, không hề" },
+        { kana: "えんりょなく", romaji: ["enryonaku"], rubyHtml: "<ruby>遠<rt>えん</rt></ruby><ruby>慮<rt>りょ</rt></ruby>なく", meaning: "Không giữ ý, đừng ngại" },
+        { kana: "ねんくみ", romaji: ["nenkumi"], rubyHtml: "一<ruby>年<rt>ねん</rt></ruby>一<ruby>組<rt>くみ</rt></ruby>", meaning: "Lớp -, năm thứ -" },
+        { kana: "では", romaji: ["dewa"], rubyHtml: "では", meaning: "Thế thì, vậy thì" },
+        { kana: "よろしくおつたえください", romaji: ["yoroshikuotsutaekudasai"], rubyHtml: "よろしくお<ruby>伝<rt>つた</rt></ruby>えください。", meaning: "Cho tôi gửi lời hỏi thăm" },
+        { kana: "しつれいいたします", romaji: ["shitsureiitashimasu"], rubyHtml: "<ruby>失<rt>しつ</rt></ruby><ruby>礼<rt>れい</rt></ruby>いたします。", meaning: "Xin phép anh/chị" },
+        { kana: "ひまわりしょうがっこう", romaji: ["himawarishougakkou"], rubyHtml: "ひまわり<ruby>小<rt>しょう</rt></ruby><ruby>学<rt>がっ</rt></ruby><ruby>校<rt>こう</rt></ruby>", meaning: "Trường tiểu học Himawari" },
+        { kana: "こうし", romaji: ["koushi"], rubyHtml: "<ruby>講<rt>こう</rt></ruby><ruby>師<rt>し</rt></ruby>", meaning: "Giảng viên" },
+        { kana: "おおくの", romaji: ["ookuno"], rubyHtml: "<ruby>多<rt>おお</rt></ruby>くの～", meaning: "Nhiều ~" },
+        { kana: "さくひん", romaji: ["sakuhin"], rubyHtml: "<ruby>作<rt>さく</rt></ruby><ruby>品<rt>ひん</rt></ruby>", meaning: "Tác phẩm" },
+        { kana: "じゅしょうします", romaji: ["jushoushimasu"], rubyHtml: "<ruby>受<rt>じゅ</rt></ruby><ruby>賞<rt>しょう</rt></ruby>します", meaning: "Nhận giải thưởng" },
+        { kana: "せかいてきに", romaji: ["sekaitekini"], rubyHtml: "<ruby>世<rt>せ</rt></ruby><ruby>界<rt>かい</rt></ruby><ruby>的<rt>てき</rt></ruby>に", meaning: "Tầm cỡ thế giới" },
+        { kana: "さっか", romaji: ["sakka"], rubyHtml: "<ruby>作<rt>さっ</rt></ruby><ruby>家<rt>か</rt></ruby>", meaning: "Nhà văn" },
+        { kana: "ちょうなん", romaji: ["chounan"], rubyHtml: "<ruby>長<rt>ちょう</rt></ruby><ruby>男<rt>なん</rt></ruby>", meaning: "Trưởng nam" },
+        { kana: "しょうがい", romaji: ["shougai"], rubyHtml: "<ruby>障<rt>しょう</rt></ruby><ruby>害<rt>がい</rt></ruby>", meaning: "Khuyết tật" },
+        { kana: "さっきょく", romaji: ["sakkyoku"], rubyHtml: "<ruby>作<rt>さっ</rt></ruby><ruby>曲<rt>きょく</rt></ruby>", meaning: "Sáng tác nhạc" },
+        { kana: "かつどう", romaji: ["katsudou"], rubyHtml: "<ruby>活<rt>かつ</rt></ruby><ruby>動<rt>どう</rt></ruby>", meaning: "Hoạt động" },
+        { kana: "それでは", romaji: ["soredewa"], rubyHtml: "それでは", meaning: "Bây giờ thì, đến đây" },
+        { kana: "おおえけんざぶろう", romaji: ["ooekenzaburou"], rubyHtml: "<ruby>大江健三郎<rt>おおえけんざぶろう</rt></ruby>", meaning: "Nhà văn Kenzaburo Oe" },
+        { kana: "とうきょうだいがく", romaji: ["toukyoudaigaku"], rubyHtml: "<ruby>東<rt>とう</rt></ruby><ruby>京<rt>きょう</rt></ruby><ruby>大<rt>だい</rt></ruby><ruby>学<rt>がく</rt></ruby>", meaning: "Đại học Tokyo" },
+        { kana: "ノーベルぶんがくしょう", romaji: ["no-berubungakushou"], rubyHtml: "ノーベル<ruby>文<rt>ぶん</rt></ruby><ruby>学<rt>がく</rt></ruby><ruby>賞<rt>しょう</rt></ruby>", meaning: "Giải Nobel Văn học" },
+      ],
+    },
+
   ],
 
+  // ========================================
+  // BÀI 50
+  // ========================================
   50: [
-    { id: 'b50_kenjougo', name: 'A. Động từ Khiêm nhường ngữ (Kenjougo)', selected: true, items: [
-      { kana: 'まいります', romaji: ['mairimasu'], rubyHtml: '<ruby>参<rt>まい</rt></ruby>ります', meaning: 'Đi / Đến (Khiêm nhường của いきます/きます)' },
-      { kana: 'おります', romaji: ['orimasu'], rubyHtml: 'おります', meaning: 'Ở / Có (Khiêm nhường của います)' },
-      { kana: 'いただきます', romaji: ['itadakimasu'], rubyHtml: '<ruby>頂<rt>いただ</rt></ruby>きます', meaning: 'Ăn / Uống / Nhận (Khiêm nhường của たべます/のみます/もらいます)' },
-      { kana: 'もうします', romaji: ['moushimasu'], rubyHtml: '<ruby>申<rt>もう</rt></ruby>します', meaning: 'Nói / Tên là (Khiêm nhường của いいます)' },
-      { kana: 'いたします', romaji: ['itashimasu'], rubyHtml: 'いたします', meaning: 'Làm (Khiêm nhường của します)' },
-      { kana: 'はいけんします', romaji: ['haikenshimasu'], rubyHtml: '<ruby>拝<rt>はい</rt></ruby><ruby>見<rt>けん</rt></ruby>します', meaning: 'Xem / Nhìn (Khiêm nhường của みます)' },
-      { kana: 'ぞんじております', romaji: ['zonjiteorimasu'], rubyHtml: '<ruby>存<rt>ぞん</rt></ruby>じております', meaning: 'Biết (Khiêm nhường của しっています)' },
-      { kana: 'うかがいます', romaji: ['ukagaimasu'], rubyHtml: '<ruby>伺<rt>うかが</rt></ruby>います', meaning: 'Hỏi / Đến thăm (Khiêm nhường của ききます/いきます)' },
-      { kana: 'おめにかかります', romaji: ['omenikakarimasu'], rubyHtml: 'お<ruby>目<rt>め</rt></ruby>にかかります', meaning: 'Gặp (Khiêm nhường của あいます)' },
-      { kana: 'ございます', romaji: ['gozaimasu'], rubyHtml: 'ございます', meaning: 'Có (Lịch sự của あります)' },
-      { kana: 'でございます', romaji: ['degozaimasu'], rubyHtml: 'でございます', meaning: 'Là (Lịch sự của です)' }
-    ]},
-    { id: 'b50_danhtu', name: 'B. Động từ lịch sự & Danh từ', selected: true, items: [
-      { kana: 'わたくし', romaji: ['watakushi'], rubyHtml: '<ruby>私<rt>わたくし</rt></ruby>', meaning: 'Tôi (Khiêm nhường của わたし)' },
-      { kana: 'ガイド', romaji: ['gaido'], rubyHtml: 'ガイド', meaning: 'Người hướng dẫn, hướng dẫn viên' },
-      { kana: 'おたく', romaji: ['otaku'], rubyHtml: 'お<ruby>宅<rt>たく</rt></ruby>', meaning: 'Nhà của ngài' },
-      { kana: 'こうがい', romaji: ['kougai'], rubyHtml: '<ruby>郊<rt>こう</rt></ruby><ruby>外<rt>がい</rt></ruby>', meaning: 'Ngoại ô' },
-      { kana: 'アルバム', romaji: ['arubamu'], rubyHtml: 'アルバム', meaning: 'Tập ảnh, album' },
-      { kana: 'さらいしゅう', romaji: ['saraishuu'], rubyHtml: 'さ<ruby>来<rt>らい</rt></ruby><ruby>週<rt>しゅう</rt></ruby>', meaning: 'Tuần sau nữa' },
-      { kana: 'さらいげつ', romaji: ['saraigetsu'], rubyHtml: 'さ<ruby>来<rt>らい</rt></ruby><ruby>月<rt>げつ</rt></ruby>', meaning: 'Tháng sau nữa' },
-      { kana: 'さらいねん', romaji: ['sarainen'], rubyHtml: 'さ<ruby>来<rt>らい</rt></ruby><ruby>年<rt>ねん</rt></ruby>', meaning: 'Năm sau nữa' },
-      { kana: 'はんとし', romaji: ['hantoshi'], rubyHtml: '<ruby>半<rt>はん</rt></ruby><ruby>年<rt>とし</rt></ruby>', meaning: 'Nửa năm' },
-      { kana: 'さいしょに', romaji: ['saishoni'], rubyHtml: '<ruby>最<rt>さい</rt></ruby><ruby>初<rt>しょ</rt></ruby>に', meaning: 'Đầu tiên, trước hết' },
-      { kana: 'さいごに', romaji: ['saigoni'], rubyHtml: '<ruby>最<rt>さい</rt></ruby><ruby>後<rt>ご</rt></ruby>に', meaning: 'Cuối cùng' },
-      { kana: 'ただいま', romaji: ['tadaima'], rubyHtml: 'ただいま', meaning: 'Bây giờ (dùng trong trang trọng/trình bày)' },
-      { kana: 'おれい', romaji: ['orei'], rubyHtml: 'お<ruby>礼<rt>れい</rt></ruby>', meaning: 'Lời cảm ơn, quà cảm ơn' },
-      { kana: 'しょうちします', romaji: ['shouchishimasu'], rubyHtml: '<ruby>承<rt>しょう</rt></ruby><ruby>知<rt>ち</rt></ruby>します', meaning: 'Hiểu, nhận lời' },
-      { kana: 'おうえんします', romaji: ['ouenshimasu'], rubyHtml: '<ruby>応<rt>おう</rt></ruby><ruby>援<rt>えん</rt></ruby>します', meaning: 'Cổ vũ, ủng hộ' }
-    ]}
-  ]
+    // A. Động từ Khiêm nhường ngữ (Kenjougo)
+    {
+      id: "b50_kenjougo",
+      name: "A. Động từ Khiêm nhường ngữ (Kenjougo)",
+      selected: true,
+      items: [
+        { kana: "まいります", romaji: ["mairimasu"], rubyHtml: "<ruby>参<rt>まい</rt></ruby>ります", meaning: "Đi / Đến (Khiêm nhường của いきます/きます)" },
+        { kana: "おります", romaji: ["orimasu"], rubyHtml: "おります", meaning: "Ở / Có (Khiêm nhường của います)" },
+        { kana: "いただきます", romaji: ["itadakimasu"], rubyHtml: "<ruby>頂<rt>いただ</rt></ruby>きます", meaning: "Ăn / Uống / Nhận (Khiêm nhường của たべます/のみます/もらいます)" },
+        { kana: "もうします", romaji: ["moushimasu"], rubyHtml: "<ruby>申<rt>もう</rt></ruby>します", meaning: "Nói / Tên là (Khiêm nhường của いいます)" },
+        { kana: "いたします", romaji: ["itashimasu"], rubyHtml: "いたします", meaning: "Làm (Khiêm nhường của します)" },
+        { kana: "はいけんします", romaji: ["haikenshimasu"], rubyHtml: "<ruby>拝<rt>はい</rt></ruby><ruby>見<rt>けん</rt></ruby>します", meaning: "Xem / Nhìn (Khiêm nhường của みます)" },
+        { kana: "ぞんじております", romaji: ["zonjiteorimasu"], rubyHtml: "<ruby>存<rt>ぞん</rt></ruby>じております", meaning: "Biết (Khiêm nhường của しっています)" },
+        { kana: "うかがいます", romaji: ["ukagaimasu"], rubyHtml: "<ruby>伺<rt>うかが</rt></ruby>います", meaning: "Hỏi / Đến thăm (Khiêm nhường của ききます/いきます)" },
+        { kana: "おめにかかります", romaji: ["omenikakarimasu"], rubyHtml: "お<ruby>目<rt>め</rt></ruby>にかかります", meaning: "Gặp (Khiêm nhường của あいます)" },
+        { kana: "ございます", romaji: ["gozaimasu"], rubyHtml: "ございます", meaning: "Có (Lịch sự của あります)" },
+        { kana: "でございます", romaji: ["degozaimasu"], rubyHtml: "でございます", meaning: "Là (Lịch sự của です)" },
+      ],
+    },
+
+    // B. Động từ lịch sự & Danh từ
+    {
+      id: "b50_danhtu",
+      name: "B. Động từ lịch sự & Danh từ",
+      selected: true,
+      items: [
+        { kana: "わたくし", romaji: ["watakushi"], rubyHtml: "<ruby>私<rt>わたくし</rt></ruby>", meaning: "Tôi (Khiêm nhường của わたし)" },
+        { kana: "ガイド", romaji: ["gaido"], rubyHtml: "ガイド", meaning: "Người hướng dẫn, hướng dẫn viên" },
+        { kana: "おたく", romaji: ["otaku"], rubyHtml: "お<ruby>宅<rt>たく</rt></ruby>", meaning: "Nhà của ngài" },
+        { kana: "こうがい", romaji: ["kougai"], rubyHtml: "<ruby>郊<rt>こう</rt></ruby><ruby>外<rt>がい</rt></ruby>", meaning: "Ngoại ô" },
+        { kana: "アルバム", romaji: ["arubamu"], rubyHtml: "アルバム", meaning: "Tập ảnh, album" },
+        { kana: "さらいしゅう", romaji: ["saraishuu"], rubyHtml: "さ<ruby>来<rt>らい</rt></ruby><ruby>週<rt>しゅう</rt></ruby>", meaning: "Tuần sau nữa" },
+        { kana: "さらいげつ", romaji: ["saraigetsu"], rubyHtml: "さ<ruby>来<rt>らい</rt></ruby><ruby>月<rt>げつ</rt></ruby>", meaning: "Tháng sau nữa" },
+        { kana: "さらいねん", romaji: ["sarainen"], rubyHtml: "さ<ruby>来<rt>らい</rt></ruby><ruby>年<rt>ねん</rt></ruby>", meaning: "Năm sau nữa" },
+        { kana: "はんとし", romaji: ["hantoshi"], rubyHtml: "<ruby>半<rt>はん</rt></ruby><ruby>年<rt>とし</rt></ruby>", meaning: "Nửa năm" },
+        { kana: "さいしょに", romaji: ["saishoni"], rubyHtml: "<ruby>最<rt>さい</rt></ruby><ruby>初<rt>しょ</rt></ruby>に", meaning: "Đầu tiên, trước hết" },
+        { kana: "さいごに", romaji: ["saigoni"], rubyHtml: "<ruby>最<rt>さい</rt></ruby><ruby>後<rt>ご</rt></ruby>に", meaning: "Cuối cùng" },
+        { kana: "ただいま", romaji: ["tadaima"], rubyHtml: "ただいま", meaning: "Bây giờ (dùng trong trang trọng/trình bày)" },
+        { kana: "おれい", romaji: ["orei"], rubyHtml: "お<ruby>礼<rt>れい</rt></ruby>", meaning: "Lời cảm ơn, quà cảm ơn" },
+        { kana: "しょうちします", romaji: ["shouchishimasu"], rubyHtml: "<ruby>承<rt>しょう</rt></ruby><ruby>知<rt>ち</rt></ruby>します", meaning: "Hiểu, nhận lời" },
+        { kana: "おうえんします", romaji: ["ouenshimasu"], rubyHtml: "<ruby>応<rt>おう</rt></ruby><ruby>援<rt>えん</rt></ruby>します", meaning: "Cổ vũ, ủng hộ" },
+      ],
+    },
+
+  ],
 };
