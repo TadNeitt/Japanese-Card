@@ -151,6 +151,7 @@
     #home-view { max-width: 1100px; display: none; }
     #practice-view { max-width: 540px; display: none; }
 
+    #btn-reset-current-lesson:disabled { opacity: 0.35; cursor: not-allowed; filter: grayscale(1); }
     .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
     .view-title { font-size: 1.35rem; font-weight: 800; color: var(--text-main); }
     .btn-header-action { background-color: transparent; color: var(--primary); border: 1.5px solid var(--primary); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
@@ -288,6 +289,14 @@
     .btn-skip { flex: 1; background-color: #e2e8f0; color: var(--text-main); }
     .btn-reveal, .btn-reset { flex: 1; background-color: transparent; color: var(--text-muted); border: 1px solid var(--border); }
 
+    .ime-hint-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
     /* MODAL CHUNG */
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 100; padding: 20px; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
@@ -378,6 +387,7 @@
       <button class="btn-header-action" id="btn-back-from-lesson">← Chọn Cấp độ</button>
       <div class="view-title" id="lesson-view-title">Từ vựng Minna no Nihongo</div>
       <div class="grid-controls">
+        <button class="btn-header-action" id="btn-reset-review-progress">↺ Reset tiến độ từ vựng</button>
         <button class="btn-header-action" id="btn-toggle-multi-lesson">⚡ Gom nhóm bài</button>
         <button class="btn-header-action" id="btn-lesson-select-all" style="display: none;">Chọn hết</button>
         <button class="btn-header-action" id="btn-lesson-deselect-all" style="display: none;">Bỏ chọn</button>
@@ -400,6 +410,7 @@
       <button class="btn-header-action" id="btn-back-from-topic">← Quay lại</button>
       <div class="view-title" id="topic-view-title">Chọn chủ đề</div>
       <div class="grid-controls">
+        <button class="btn-header-action" id="btn-reset-current-lesson" disabled>↺ Reset bài</button>
         <button class="btn-header-action" id="btn-topic-select-all">Chọn tất cả</button>
         <button class="btn-header-action" id="btn-topic-deselect-all">Bỏ chọn</button>
       </div>
@@ -467,7 +478,7 @@
 
     <div class="card" id="flashcard-box">
       <div class="card-top-tools" id="vocab-tools">
-        <button class="icon-btn" id="btn-open-note-modal" title="Thêm Ảnh & Câu ví dụ cá nhân cho từ này">📌</button>
+        <button class="icon-btn" id="btn-open-note-modal" title="Thêm Ảnh & Câu ví dụ cá nhân cho từ này">🖼️</button>
         <button class="icon-btn active" id="btn-toggle-speaker" title="Tự động phát âm thanh khi trả lời đúng">🔊</button>
       </div>
 
@@ -507,6 +518,7 @@
         <button class="btn-reveal" id="btn-reveal">Toi qua ngoo (Enter)</button>
         <button class="btn-reset" id="btn-reset">Làm lại</button>
       </div>
+      <div class="ime-hint-note">Nếu nhập bằng tiếng Nhật mà lag, bấm nút "Enter" 1 lần</div>
     </div>
   </div>
 
@@ -566,6 +578,7 @@
 
     let selectedGroupIds = new Set(['a', 'ka']);
     let selectedTopicIds = new Set();
+    let lessonResetUnlocked = false;
     
     let sessionTotalCards = 0;
     let currentRoundTotal = 0;
@@ -579,6 +592,93 @@
     let roundMistakes = new Map();
     let roundFailedKanas = new Set();
     let firstTrySuccessKanas = new Set();
+
+    // Tiến độ được lưu riêng theo bài, chủ đề và nội dung từ.
+    const REVIEW_STORAGE_KEY = 'minnaReviewProgress_v1';
+    let reviewProgress = {};
+    try { reviewProgress = JSON.parse(localStorage.getItem(REVIEW_STORAGE_KEY) || '{}') || {}; }
+    catch (error) { console.warn('Không đọc được tiến độ ôn tập', error); }
+    let reviewLessons = [];
+    let reviewResults = new Map();
+    let reviewCommitted = false;
+    let reviewSessionIsTest = false;
+    const REVIEW_RULE_VERSION = 'minnaReviewRules_v2';
+
+    function saveReviewProgress() {
+      try { localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(reviewProgress)); }
+      catch (error) { alert('Không thể lưu tiến độ ôn tập trên trình duyệt. Hãy kiểm tra bộ nhớ trình duyệt.'); }
+    }
+    // Quy t?c c? cho ngh? sau m?t l?n ??ng. ??a c?c t? ?? tr? l?i kho.
+    try {
+      if (localStorage.getItem(REVIEW_RULE_VERSION) !== '3') {
+        Object.values(reviewProgress).forEach(entry => {
+          if (entry) { entry.streak = 0; entry.remaining = Math.min(Number(entry.remaining) || 0, 3); }
+        });
+        localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(reviewProgress));
+        localStorage.setItem(REVIEW_RULE_VERSION, '3');
+      }
+    } catch (error) { console.warn('Kh?ng th? chuy?n ti?n ?? ?n t?p', error); }
+    function cardsForLesson(lesson, selectedTopics = null) {
+      const cards = [];
+      (MINNA_LESSONS_DATA[lesson] || []).forEach(topic => {
+        if (selectedTopics && !selectedTopics.has(topic.id)) return;
+        const occurrences = new Map();
+        topic.items.forEach(item => {
+          const identity = JSON.stringify([item.kana || '', item.meaning || '', item.kanji || '', item.rubyHtml || '']);
+          const occurrence = occurrences.get(identity) || 0;
+          occurrences.set(identity, occurrence + 1);
+          const reviewKey = JSON.stringify([String(lesson), String(item.reviewTopicId || topic.id), identity, occurrence]);
+          cards.push({ ...item, reviewKey, reviewLesson: String(lesson) });
+        });
+      });
+      return cards;
+    }
+    function cardKey(card) {
+      return card.reviewKey || (card.kana + '_' + (card.meaning || ''));
+    }
+    function advanceReviewLessons(lessons, exclude = new Set()) {
+      const selected = new Set(lessons.map(String));
+      Object.entries(reviewProgress).forEach(([key, entry]) => {
+        if (!exclude.has(key) && entry && selected.has(entry.lesson) && entry.remaining > 0) entry.remaining--;
+      });
+    }
+    function recordReviewResult(card, failed) {
+      if (currentAlphabet !== 'vocab' || !reviewSessionIsTest || !card.reviewKey) return;
+      const key = card.reviewKey;
+      const prior = reviewResults.get(key);
+      if (prior && (prior.failed || !failed)) return;
+      reviewResults.set(key, { lesson: card.reviewLesson, failed });
+      const old = reviewProgress[key] || { lesson: card.reviewLesson, streak: 0, remaining: 0 };
+      const streak = failed ? 0 : (Number(old.streak) || 0) + 1;
+      reviewProgress[key] = { lesson: card.reviewLesson, streak, remaining: failed ? 0 : (streak >= 2 ? 3 : 0) };
+      saveReviewProgress();
+    }
+    function prepareReview(cards, lessons, filtered) {
+      reviewSessionIsTest = filtered;
+      reviewLessons = lessons.map(String);
+      reviewResults = new Map();
+      reviewCommitted = false;
+      const available = filtered ? cards.filter(card => !(reviewProgress[card.reviewKey]?.remaining > 0)) : cards;
+      if (!available.length) {
+        if (cards.length && filtered && confirm('Tất cả từ đang nghỉ. Bạn có muốn tính một lượt nghỉ cho các bài đã chọn không?')) {
+          advanceReviewLessons(reviewLessons);
+          saveReviewProgress();
+          if (isMultiLessonMode) updateLessonMultiBarStats();
+          else renderTopicList();
+          alert('Đã tính một lượt nghỉ. Bạn có thể chọn bắt đầu lại.');
+        } else if (!cards.length) alert('Không có từ vựng nào trong lựa chọn này!');
+        return false;
+      }
+      sessionDeck = available;
+      return true;
+    }
+    function commitReview() {
+      if (currentAlphabet !== 'vocab' || !reviewSessionIsTest || reviewCommitted) return;
+      reviewCommitted = true;
+      // T? v?a tr? l?i ???c b?t ??u k? ngh? t? l??t ti?p theo.
+      advanceReviewLessons(reviewLessons, new Set(reviewResults.keys()));
+      saveReviewProgress();
+    }
 
     function toPlainRomaji(str) {
       if (!str) return '';
@@ -677,13 +777,15 @@
     const btnModalHome = document.getElementById('btn-modal-home');
 
     function resetInputField() {
+      romajiInput.blur();
       romajiInput.value = '';
       romajiInput.focus();
     }
 
     function selectAndFocusInputField() {
+      romajiInput.blur();
+      romajiInput.value = '';
       romajiInput.focus();
-      romajiInput.select();
     }
 
     function speakText(text, forceManual = false) {
@@ -1000,7 +1102,8 @@
       });
       selectedLessonsCount.textContent = selectedLessonIds.size;
       selectedLessonsVocabCount.textContent = totalCount;
-      btnStartMultiLessonTest.textContent = `Bắt đầu học (${selectedLessonIds.size} bài - ${totalCount} từ)`;
+      const ready = Array.from(selectedLessonIds).flatMap(num => cardsForLesson(num)).filter(card => !(reviewProgress[card.reviewKey]?.remaining > 0)).length;
+      btnStartMultiLessonTest.textContent = `Bắt đầu học (${ready} từ cần ôn · ${totalCount - ready} đang nghỉ)`;
     }
 
     btnStartMultiLessonTest.addEventListener('click', () => {
@@ -1009,18 +1112,11 @@
         return;
       }
 
-      sessionDeck = [];
-      selectedLessonIds.forEach(lessonNum => {
-        const topics = MINNA_LESSONS_DATA[lessonNum] || [];
-        topics.forEach(t => {
-          sessionDeck.push(...t.items);
-        });
-      });
-
-      if (sessionDeck.length === 0) {
-        alert('Không có từ vựng nào trong các bài đã chọn!');
-        return;
-      }
+      const lessons = Array.from(selectedLessonIds);
+      const cards = lessons.flatMap(lesson => cardsForLesson(lesson));
+      isStudyMode = false;
+      testModeToggle.classList.remove('active');
+      if (!prepareReview(cards, lessons, true)) return;
 
       isMultiLessonSession = true;
       sessionTotalCards = sessionDeck.length;
@@ -1069,6 +1165,7 @@
             } else {
               isMultiLessonSession = false;
               currentSelectedLesson = i;
+              lessonResetUnlocked = false;
               selectedTopicIds = new Set(MINNA_LESSONS_DATA[i].map(t => t.id));
               topicViewTitle.textContent = `${currentLevel.toUpperCase()} - Bài ${i}`;
               
@@ -1108,6 +1205,7 @@
         `;
 
         topicEl.addEventListener('click', () => {
+          lessonResetUnlocked = false;
           if (selectedTopicIds.has(topic.id)) {
             selectedTopicIds.delete(topic.id);
           } else {
@@ -1119,13 +1217,19 @@
         topicsWrapper.appendChild(topicEl);
       });
 
+      document.getElementById('btn-reset-current-lesson').disabled = !(lessonResetUnlocked && dataSet.length && dataSet.every(t => selectedTopicIds.has(t.id)));
       selectedTopicsCount.textContent = selectedTopicIds.size;
       selectedTopicVocabCount.textContent = totalVocabSelected;
-      btnStartTopicTest.textContent = `Bắt đầu học (${selectedTopicIds.size} chủ đề)`;
+      if (dataSet.length && dataSet.every(t => selectedTopicIds.has(t.id))) {
+        const cards = cardsForLesson(currentSelectedLesson, selectedTopicIds);
+        const ready = cards.filter(card => !(reviewProgress[card.reviewKey]?.remaining > 0)).length;
+        btnStartTopicTest.textContent = `Bắt đầu học (${ready} từ cần ôn · ${cards.length - ready} đang nghỉ)`;
+      } else btnStartTopicTest.textContent = `Bắt đầu học (${selectedTopicIds.size} chủ đề)`;
     }
 
     testModeToggle.addEventListener('click', () => {
       isStudyMode = !isStudyMode;
+      renderTopicList();
       if (isStudyMode) {
         testModeToggle.classList.add('active');
       } else {
@@ -1133,13 +1237,19 @@
       }
     });
 
+    document.getElementById('btn-reset-current-lesson').addEventListener('click', () => {
+      if (lessonResetUnlocked && !document.getElementById('btn-reset-current-lesson').disabled) resetLessonProgress(currentSelectedLesson);
+    });
+
     btnTopicSelectAll.addEventListener('click', () => {
       const dataSet = MINNA_LESSONS_DATA[currentSelectedLesson] || [];
       dataSet.forEach(t => selectedTopicIds.add(t.id));
+      lessonResetUnlocked = true;
       renderTopicList();
     });
 
     btnTopicDeselectAll.addEventListener('click', () => {
+      lessonResetUnlocked = false;
       selectedTopicIds.clear();
       renderTopicList();
     });
@@ -1151,13 +1261,14 @@
       }
 
       isMultiLessonSession = false;
-      sessionDeck = [];
       const dataSet = MINNA_LESSONS_DATA[currentSelectedLesson] || [];
-      dataSet.forEach(t => {
-        if (selectedTopicIds.has(t.id)) {
-          sessionDeck.push(...t.items);
-        }
-      });
+      const cards = cardsForLesson(currentSelectedLesson, selectedTopicIds);
+      const allTopics = dataSet.every(t => selectedTopicIds.has(t.id));
+      if (allTopics) {
+        isStudyMode = false;
+        testModeToggle.classList.remove('active');
+      }
+      if (!prepareReview(cards, [currentSelectedLesson], allTopics)) return;
 
       sessionTotalCards = sessionDeck.length;
       topicSelectView.style.display = 'none';
@@ -1265,6 +1376,8 @@
 
     function resetSession() {
       activeDeck = [...sessionDeck];
+      reviewResults = new Map();
+      reviewCommitted = false;
       sessionTotalCards = sessionDeck.length;
       currentRoundTotal = sessionTotalCards;
       roundMistakes.clear();
@@ -1304,9 +1417,10 @@
 
     function registerMistake() {
       if (!currentCard) return;
-      const key = currentCard.kana + '_' + (currentCard.meaning || '');
+      const key = cardKey(currentCard);
       roundMistakes.set(key, currentCard);
       roundFailedKanas.add(key);
+      recordReviewResult(currentCard, true);
       streak = 0;
       updateStatsUI();
     }
@@ -1399,7 +1513,8 @@
       if (isCorrect) {
         isLockInput = true;
 
-        const key = currentCard.kana + '_' + (currentCard.meaning || '');
+        const key = cardKey(currentCard);
+        recordReviewResult(currentCard, false);
         if (!roundFailedKanas.has(key) && !roundMistakes.has(key) && currentRoundTotal === sessionTotalCards) {
           firstTrySuccessKanas.add(key);
         }
@@ -1429,8 +1544,10 @@
       const maxLenKanji = cleanCardKanji ? cleanCardKanji.length : 0;
       const maxLenJapanese = Math.max(maxLenKana, maxLenKanji);
 
+      const JAPANESE_LEN_BUFFER = 2;
+
       const isOverRomajiLen = (cleanUser.length > 0 && cleanUser.length >= maxLenRomaji);
-      const isOverJapaneseLen = (cleanUser.length === 0 && rawInput.length > 0 && maxLenJapanese > 0 && rawInput.length >= maxLenJapanese);
+      const isOverJapaneseLen = (cleanUser.length === 0 && rawInput.length > 0 && maxLenJapanese > 0 && rawInput.length >= maxLenJapanese + JAPANESE_LEN_BUFFER);
 
       if (isOverRomajiLen || isOverJapaneseLen) {
         registerMistake();
@@ -1511,6 +1628,7 @@
     }
 
     function showCompletionModal() {
+      commitReview();
       const accuracyPct = sessionTotalCards > 0 
         ? Math.round((firstTrySuccessKanas.size / sessionTotalCards) * 100) 
         : 0;
@@ -1540,10 +1658,50 @@
       feedback.textContent = '';
     }
 
+    function resetLessonProgress(lesson) {
+      if (!confirm('Reset tiến độ từ vựng của bài ' + lesson + '? Tất cả từ trong bài này sẽ trở lại kho ôn, chuỗi đúng và lượt nghỉ về 0.')) return;
+      const remainingProgress = Object.fromEntries(Object.entries(reviewProgress).filter(([, entry]) => String(entry.lesson) !== String(lesson)));
+      try {
+        localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(remainingProgress));
+      } catch (error) {
+        alert('Không thể lưu việc reset. Vui lòng thử lại.');
+        return;
+      }
+      reviewProgress = remainingProgress;
+      reviewResults.clear();
+      reviewCommitted = true;
+      renderLessonGrid();
+      renderTopicList();
+      alert('Đã reset tiến độ bài ' + lesson + '.');
+    }
+
+    function resetVocabularyProgress() {
+      if (!confirm('Reset tiến độ của toàn bộ từ vựng (bài 1–50)? Tất cả từ sẽ trở lại kho ôn, chuỗi đúng liên tiếp và số lượt nghỉ sẽ về 0.')) return;
+      try {
+        localStorage.removeItem(REVIEW_STORAGE_KEY);
+      } catch (error) {
+        alert('Không thể reset tiến độ trong bộ nhớ trình duyệt. Vui lòng thử lại.');
+        return;
+      }
+      reviewProgress = {};
+      reviewResults.clear();
+      reviewCommitted = true;
+      renderLessonGrid();
+      renderTopicList();
+      alert('Đã reset tiến độ từ vựng. Toàn bộ từ đã trở lại kho ôn.');
+    }
+    document.getElementById('btn-reset-review-progress').addEventListener('click', resetVocabularyProgress);
+
     btnSkip.addEventListener('click', skipCard);
     btnReveal.addEventListener('click', revealAnswer);
     btnReset.addEventListener('click', resetSession);
-    btnRestart.addEventListener('click', resetSession);
+    btnRestart.addEventListener('click', () => {
+      if (currentAlphabet !== 'vocab') { resetSession(); return; }
+      modalCompletion.classList.remove('active');
+      practiceView.style.display = 'none';
+      if (isMultiLessonSession) { lessonSelectView.style.display = 'block'; btnStartMultiLessonTest.click(); }
+      else { topicSelectView.style.display = 'block'; btnStartTopicTest.click(); }
+    });
 
     document.addEventListener('keydown', (e) => {
       if (practiceView.style.display !== 'block') return;
