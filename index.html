@@ -312,6 +312,69 @@
     .form-label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
     .form-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 10px; outline: none; font-size: 0.95rem; }
     .form-input:focus { border-color: var(--primary); }
+    /* Giao diện chung theo bản Kanji Lab; các luồng học cũ giữ nguyên. */
+    :root { --bg-color:#f7fbf8; --card-bg:#fffefa; --primary:#278f82; --primary-hover:#1e766b; --primary-soft:#e0f3ed; --text-main:#203a3d; --text-muted:#657b78; --border:#dbe9e2; --success:#278369; --success-hover:#1d7059; --success-bg:#e3f4ea; --error:#b95764; --error-bg:#faecee; --pink-primary:#278f82; }
+    body { background:radial-gradient(circle at 2% 0%,#e0f4e9,transparent 30%),radial-gradient(circle at 100% 100%,#f8f1e7,transparent 34%),#f7fbf8; }
+    .app-container { border:1px solid #e5ece4; box-shadow:0 16px 48px rgba(39,92,79,.09); }
+    .main-title { font-size:clamp(1.9rem,4vw,2.7rem); letter-spacing:-.04em; }
+    .main-subtitle { line-height:1.6; }
+    #mode-select-view { max-width:900px; }
+    .modes-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .mode-card,.level-card,.lesson-card,.topic-item,.kana-column,.card { background:#fffefa; border-color:var(--border); }
+    .mode-card:hover:not(.disabled),.level-card:hover:not(.disabled) { box-shadow:0 12px 24px rgba(39,143,130,.14); }
+    .mode-icon { font-family:"Yu Mincho","Noto Serif CJK JP",serif; }
+    #card-vocab .mode-icon { color:var(--primary)!important; }
+    .lesson-card.multi-selected { background:var(--primary-soft)!important; box-shadow:0 4px 12px rgba(39,143,130,.15); }
+    .lesson-card.active,.topic-item.active,.kana-column.active { border-color:var(--primary); background:var(--primary-soft); box-shadow:0 4px 12px rgba(39,143,130,.12); }
+    .test-mode-box { background:var(--primary-soft); }
+    .test-mode-box.active .toggle-switch,.topic-item.active .toggle-switch,.kana-column.active .toggle-switch { background:var(--primary); }
+    .home-bottom-bar { background:#eff8f3; }
+    .btn-start-test,.btn-restart { background:var(--primary); box-shadow:0 4px 12px rgba(39,143,130,.2); }
+    .btn-start-test:hover { background:var(--primary-hover); }
+    .btn-skip { background:#e5f0e9; }
+    .streak-badge { background:#e1f4e9; color:var(--primary); }
+    .custom-sentence-text,.icon-btn.active { color:var(--primary); background:var(--primary-soft); border-color:var(--primary); }
+    #level-n4 .level-title { color:var(--primary)!important; }
+    .stats-pill { border-color:var(--border); }
+    .romaji-input:focus { box-shadow:0 0 0 4px rgba(39,143,130,.14); }
+    button:focus-visible,.mode-card:focus-visible,.lesson-card:focus-visible { outline:3px solid var(--primary); outline-offset:3px; }
+
+    /* Kanji Unit 1-5 */
+    #kanji-select-view,#kanji-study-view,#kanji-test-view { display:none; max-width:1060px; }
+    .kanji-intro { color:var(--text-muted); line-height:1.6; margin:0 0 20px; }
+    .kanji-lesson-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); gap:12px; }
+    .kanji-lesson { text-align:left; background:#fff; border:2px solid var(--border); border-radius:17px; padding:17px; cursor:pointer; }
+    .kanji-lesson.selected { background:var(--primary-soft); border-color:var(--primary); }
+    .kanji-lesson b { display:block; font-size:1.08rem; }
+    .kanji-lesson small { display:block; color:var(--text-muted); margin-top:6px; line-height:1.5; }
+    .kanji-lesson .kanji-sample { font-family:"Yu Mincho","Noto Serif CJK JP",serif; font-size:1.3rem; margin:10px 0; letter-spacing:.08em; }
+    .kanji-lesson button { margin-top:8px; padding:6px 10px; border:1px solid var(--border); background:#fff; font-size:.75rem; }
+    .kanji-bar { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-top:22px; padding:16px 18px; border:1px solid var(--border); background:#eff8f3; border-radius:16px; }
+    .kanji-actions { display:flex; gap:9px; flex-wrap:wrap; }
+    .kanji-btn { background:#fff; border:1px solid var(--border); color:var(--text-main); }
+    .kanji-btn.primary { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .kanji-btn:disabled { opacity:.42; cursor:not-allowed; }
+    .kanji-flash { background:#fffefa; border:1px solid var(--border); border-radius:20px; padding:24px; text-align:center; }
+    .kanji-big { font-family:"Yu Mincho","Noto Serif CJK JP",serif; font-size:clamp(100px,18vw,168px); line-height:1.2; }
+    .kanji-meaning { color:var(--primary); font-size:1.4rem; font-weight:800; margin:8px 0 18px; }
+    .kanji-reading-grid,.kanji-answer-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; text-align:left; }
+    .kanji-reading,.kanji-answer-box { padding:17px; border:1px solid var(--border); border-radius:15px; background:#fff; }
+    .kanji-reading h3,.kanji-answer-box h3 { margin:0 0 9px; color:var(--primary); font-size:.9rem; }
+    .kanji-word { font-family:"Yu Mincho","Noto Serif CJK JP",serif; font-size:1.8rem; font-weight:700; }
+    .kanji-reading .muted,.kanji-answer-box .muted { color:var(--text-muted); font-size:.8rem; }
+    .kanji-sentence { margin-top:12px; padding:12px; background:#eff8f3; border-radius:10px; line-height:1.55; }
+    .kanji-sentence span { display:block; color:var(--text-muted); font-size:.8rem; }
+    .kanji-input { width:100%; padding:12px; margin-top:12px; border:1.5px solid var(--border); border-radius:10px; font:inherit; font-size:1.05rem; outline:none; }
+    .kanji-input:focus { border-color:var(--primary); box-shadow:0 0 0 3px #d8eee7; }
+    .kanji-input.right { border-color:var(--success); background:var(--success-bg); }
+    .kanji-input.wrong { border-color:var(--error); background:var(--error-bg); }
+    .kanji-field-status { min-height:22px; color:var(--text-muted); font-size:.8rem; margin-top:7px; }
+    .kanji-feedback { min-height:42px; padding:13px 0; color:var(--text-muted); font-size:.88rem; }
+    .kanji-progress-track { height:8px; border-radius:10px; background:#e5f0e9; overflow:hidden; margin:15px 0 23px; }
+    .kanji-progress-fill { height:100%; width:0; background:var(--primary); }
+    #kanji-result { text-align:center; padding:26px 8px; }
+    @media(max-width:760px) { .modes-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:680px) { .kanji-reading-grid,.kanji-answer-grid { grid-template-columns:1fr; } .kanji-flash { padding:16px; } }
   </style>
 </head>
 <body>
@@ -340,6 +403,11 @@
         <div class="mode-icon" style="font-size: 2.4rem; color: #4f46e5;">語彙</div>
         <div class="mode-name">Từ vựng</div>
         <div class="mode-desc">Minna no Nihongo (N5 - N1)</div>
+      </div>
+      <div class="mode-card" id="card-kanji">
+        <div class="mode-icon">漢</div>
+        <div class="mode-name">Kanji</div>
+        <div class="mode-desc">Theo sách Kanji I · Unit 1–5</div>
       </div>
     </div>
   </div>
@@ -558,8 +626,29 @@
     </div>
   </div>
 
+  <!-- KANJI: khu riêng, không dùng chung bộ máy từ vựng/kana -->
+  <div class="app-container" id="kanji-select-view">
+    <div class="view-header"><button class="btn-header-action" id="kanji-home">← Trang chủ</button><div class="view-title">Kanji I · Unit 1–5</div><button class="btn-header-action" id="kanji-reset-all">↺ Reset Kanji</button></div>
+    <p class="kanji-intro">60 chữ theo đúng thứ tự sách. Chọn một hoặc nhiều Unit để học thẻ hay kiểm tra. Chữ không có âm Kun thông dụng chỉ hỏi âm On.</p>
+    <div class="kanji-lesson-grid" id="kanji-lessons"></div>
+    <div class="kanji-bar"><div class="selection-info" id="kanji-selection-info"></div><div class="kanji-actions"><button class="kanji-btn" id="kanji-select-all">Chọn cả 5 bài</button><button class="kanji-btn" id="kanji-clear">Bỏ chọn</button><button class="kanji-btn" id="kanji-learn">Học thẻ</button><button class="kanji-btn primary" id="kanji-start">Kiểm tra</button></div></div>
+  </div>
+
+  <div class="app-container" id="kanji-study-view">
+    <div class="view-header"><button class="btn-header-action" id="kanji-study-back">← Chọn bài</button><div class="view-title">Thẻ học Kanji</div><span class="streak-badge" id="kanji-study-count"></span></div>
+    <div class="kanji-flash"><div class="kanji-big" id="kanji-study-char"></div><div id="kanji-study-detail" style="display:none"><div class="kanji-meaning" id="kanji-study-meaning"></div><div class="kanji-reading-grid" id="kanji-study-readings"></div></div><p class="kanji-intro" id="kanji-study-hint">Đoán nghĩa và cách đọc trước khi mở đáp án.</p></div>
+    <div class="kanji-bar"><div class="kanji-actions"><button class="kanji-btn" id="kanji-prev">← Trước</button><button class="kanji-btn primary" id="kanji-reveal-study">Xem đáp án</button><button class="kanji-btn" id="kanji-next">Tiếp →</button></div><button class="kanji-btn" id="kanji-study-to-test">Kiểm tra các bài đã chọn</button></div>
+  </div>
+
+  <div class="app-container" id="kanji-test-view">
+    <div class="view-header"><button class="btn-header-action" id="kanji-test-back">← Chọn bài</button><div class="view-title">Kiểm tra Kanji</div><span class="streak-badge" id="kanji-test-count"></span></div>
+    <div id="kanji-test-active"><div class="selection-info" id="kanji-test-stats"></div><div class="kanji-progress-track"><div class="kanji-progress-fill" id="kanji-progress-fill"></div></div><div class="kanji-flash"><div class="kanji-big" id="kanji-test-char"></div><div class="kanji-meaning" id="kanji-test-meaning"></div><div class="kanji-answer-grid" id="kanji-answer-grid"></div></div><div class="kanji-feedback" id="kanji-test-feedback" role="status" aria-live="polite"></div><div class="kanji-actions"><button class="kanji-btn" id="kanji-show-answer">Hiện đáp án ô này (Enter)</button><button class="kanji-btn" id="kanji-skip">Qua chữ khác</button></div></div>
+    <div id="kanji-result" style="display:none"></div>
+  </div>
+
   <!-- NẠP FILE DỮ LIỆU -->
   <script src="data.js"></script>
+  <script src="kanji-data.js"></script>
 
   <!-- LOGIC ỨNG DỤNG -->
   <script>
@@ -1716,5 +1805,6 @@
       }
     });
   </script>
+  <script src="kanji.js"></script>
 </body>
 </html>
